@@ -1,6 +1,6 @@
-# Future digital hardware engineering
+# Digital hardware engineering
 
-Status: planned; M01 creates organization only. No implementation or validation is implied.
+Status: M08 digital package prepared for review; physical trials 0, field trials 0. See the [engineering report](../docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md) for executed checks and incomplete release gates.
 
 | Folder | Responsibility |
 | --- | --- |
@@ -15,4 +15,4 @@ Status: planned; M01 creates organization only. No implementation or validation 
 
 Follow [AGENTS.md](../AGENTS.md) and the [documentation index](../docs/README.md) before development.
 
-No physical build/purchase, CAD, schematics or firmware yet. Detailed source, dimensions and component qualification require M08. The ₹56,750 allocation is an estimate including contingency, not supplier-verified cost.
+M08 supplies editable [parametric CAD](mechanical-cad/guard5.py), [mechanical parameters](guard5-collar/envelope.json), four generated [schematic drafts and netlists](electronics/netlist.json), [pin/clock map](electronics/interfaces.json), [firmware readiness](firmware/INTERFACE_READINESS.md), [calibration plan](calibration/VALIDATION_PLAN.md), [rig layout](mechanical-cad/rig_layout.json), [itemized BOM](bom/M08_BOM.md), and [seven-figure renderer](render_m08.py). All are DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. No executable firmware, PCB fabrication release, physical build or purchase. Revised ₹59,330 materials estimate includes ₹5,000 reserve; no prices are vendor-verified. Native KiCad opening/ERC, exact protection/module details and physical fit/performance remain gates.

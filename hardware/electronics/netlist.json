@@ -1,0 +1,1158 @@
+{
+  "status": "DRAFT DIGITAL DESIGN; native KiCad/ERC unavailable",
+  "sheets": {
+    "watch": [
+      {
+        "ref": "U1",
+        "model": "ESP32-S3-DevKitC-1-N8R8",
+        "pins": {
+          "5V": "5V",
+          "3V3": "3V3",
+          "GND": "GND",
+          "GPIO8": "I2C_SDA",
+          "GPIO9": "I2C_SCL",
+          "GPIO4": "FLOW_IN",
+          "GPIO5": "FLOW_OUT",
+          "GPIO6": "DS18B20",
+          "GPIO12": "PROBE_P",
+          "GPIO13": "PROBE_N",
+          "GPIO14": "STATUS_LED"
+        }
+      },
+      {
+        "ref": "U2",
+        "model": "ADS1115IDGST 0x48",
+        "pins": {
+          "1": "GND",
+          "2": "ADC1_ALERT_NC",
+          "3": "GND",
+          "8": "3V3",
+          "9": "I2C_SDA",
+          "10": "I2C_SCL",
+          "4": "PRESSURE_IN",
+          "5": "PRESSURE_OUT",
+          "6": "COLLAR_A",
+          "7": "COLLAR_B"
+        }
+      },
+      {
+        "ref": "C1",
+        "model": "100nF",
+        "pins": {
+          "1": "3V3",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "U3",
+        "model": "ADS1115IDGST 0x49",
+        "pins": {
+          "1": "3V3",
+          "2": "ADC2_ALERT_NC",
+          "3": "GND",
+          "8": "3V3",
+          "9": "I2C_SDA",
+          "10": "I2C_SCL",
+          "4": "COLLAR_C",
+          "5": "COLLAR_EXT",
+          "6": "COLLAR_BYPASS",
+          "7": "V3V3_MONITOR"
+        }
+      },
+      {
+        "ref": "C2",
+        "model": "100nF",
+        "pins": {
+          "1": "3V3",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "R1",
+        "model": "4.7k",
+        "pins": {
+          "1": "I2C_SDA",
+          "2": "3V3"
+        }
+      },
+      {
+        "ref": "R2",
+        "model": "4.7k",
+        "pins": {
+          "1": "I2C_SCL",
+          "2": "3V3"
+        }
+      },
+      {
+        "ref": "JP1",
+        "model": "SEN0257 / lot pinout verify",
+        "pins": {
+          "1": "P_IN_RAW",
+          "2": "5V",
+          "3": "GND"
+        }
+      },
+      {
+        "ref": "RP1A",
+        "model": "20k 0.1%",
+        "pins": {
+          "1": "P_IN_RAW",
+          "2": "PRESSURE_IN"
+        }
+      },
+      {
+        "ref": "RP1B",
+        "model": "20k 0.1%",
+        "pins": {
+          "1": "PRESSURE_IN",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "CP1",
+        "model": "1uF",
+        "pins": {
+          "1": "PRESSURE_IN",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JF1",
+        "model": "SEN0217 / lot pinout verify",
+        "pins": {
+          "1": "FLOW_IN_RAW",
+          "2": "5V",
+          "3": "GND"
+        }
+      },
+      {
+        "ref": "RF1A",
+        "model": "47k",
+        "pins": {
+          "1": "FLOW_IN_RAW",
+          "2": "FLOW_IN_BASE"
+        }
+      },
+      {
+        "ref": "RF1B",
+        "model": "10k",
+        "pins": {
+          "1": "FLOW_IN",
+          "2": "3V3"
+        }
+      },
+      {
+        "ref": "RF1C",
+        "model": "10k",
+        "pins": {
+          "1": "FLOW_IN_RAW",
+          "2": "5V"
+        }
+      },
+      {
+        "ref": "RF1D",
+        "model": "100k",
+        "pins": {
+          "1": "FLOW_IN_BASE",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "Q1",
+        "model": "2N3904 pinout candidate",
+        "pins": {
+          "1": "GND",
+          "2": "FLOW_IN_BASE",
+          "3": "FLOW_IN"
+        }
+      },
+      {
+        "ref": "JP2",
+        "model": "SEN0257 / lot pinout verify",
+        "pins": {
+          "1": "P_OUT_RAW",
+          "2": "5V",
+          "3": "GND"
+        }
+      },
+      {
+        "ref": "RP2A",
+        "model": "20k 0.1%",
+        "pins": {
+          "1": "P_OUT_RAW",
+          "2": "PRESSURE_OUT"
+        }
+      },
+      {
+        "ref": "RP2B",
+        "model": "20k 0.1%",
+        "pins": {
+          "1": "PRESSURE_OUT",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "CP2",
+        "model": "1uF",
+        "pins": {
+          "1": "PRESSURE_OUT",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JF2",
+        "model": "SEN0217 / lot pinout verify",
+        "pins": {
+          "1": "FLOW_OUT_RAW",
+          "2": "5V",
+          "3": "GND"
+        }
+      },
+      {
+        "ref": "RF2A",
+        "model": "47k",
+        "pins": {
+          "1": "FLOW_OUT_RAW",
+          "2": "FLOW_OUT_BASE"
+        }
+      },
+      {
+        "ref": "RF2B",
+        "model": "10k",
+        "pins": {
+          "1": "FLOW_OUT",
+          "2": "3V3"
+        }
+      },
+      {
+        "ref": "RF2C",
+        "model": "10k",
+        "pins": {
+          "1": "FLOW_OUT_RAW",
+          "2": "5V"
+        }
+      },
+      {
+        "ref": "RF2D",
+        "model": "100k",
+        "pins": {
+          "1": "FLOW_OUT_BASE",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "Q2",
+        "model": "2N3904 pinout candidate",
+        "pins": {
+          "1": "GND",
+          "2": "FLOW_OUT_BASE",
+          "3": "FLOW_OUT"
+        }
+      },
+      {
+        "ref": "JH",
+        "model": "SHT31-DIS-B breakout",
+        "pins": {
+          "1": "3V3",
+          "2": "GND",
+          "3": "I2C_SDA",
+          "4": "I2C_SCL"
+        }
+      },
+      {
+        "ref": "JT",
+        "model": "DS18B20 externally powered",
+        "pins": {
+          "1": "GND",
+          "2": "DS18B20",
+          "3": "3V3"
+        }
+      },
+      {
+        "ref": "RT",
+        "model": "4.7k",
+        "pins": {
+          "1": "DS18B20",
+          "2": "3V3"
+        }
+      },
+      {
+        "ref": "RV1",
+        "model": "200k",
+        "pins": {
+          "1": "3V3",
+          "2": "V3V3_MONITOR"
+        }
+      },
+      {
+        "ref": "RV2",
+        "model": "100k",
+        "pins": {
+          "1": "V3V3_MONITOR",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JPOWER",
+        "model": "Protected regulated 5V input",
+        "pins": {
+          "1": "5V",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JW",
+        "model": "Five-channel daughterboard",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "PROBE_N",
+          "3": "GND",
+          "4": "COLLAR_A",
+          "5": "COLLAR_B",
+          "6": "COLLAR_C",
+          "7": "COLLAR_EXT",
+          "8": "COLLAR_BYPASS",
+          "9": "3V3"
+        }
+      }
+    ],
+    "wetness": [
+      {
+        "ref": "R1P",
+        "model": "47k",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "E_A_PLUS"
+        }
+      },
+      {
+        "ref": "R1N",
+        "model": "47k",
+        "pins": {
+          "1": "E_A_MINUS",
+          "2": "PROBE_N"
+        }
+      },
+      {
+        "ref": "R1S",
+        "model": "1k",
+        "pins": {
+          "1": "E_A_PLUS",
+          "2": "COLLAR_A"
+        }
+      },
+      {
+        "ref": "C1",
+        "model": "10nF",
+        "pins": {
+          "1": "COLLAR_A",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JE1",
+        "model": "Electrode A insert",
+        "pins": {
+          "1": "E_A_PLUS",
+          "2": "E_A_MINUS"
+        }
+      },
+      {
+        "ref": "REOL1",
+        "model": "100k DISTAL insert",
+        "pins": {
+          "1": "E_A_PLUS",
+          "2": "E_A_MINUS"
+        }
+      },
+      {
+        "ref": "D1",
+        "model": "Low-leak clamp network / MPN and pinout gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "COLLAR_A",
+          "VDD": "3V3"
+        }
+      },
+      {
+        "ref": "R2P",
+        "model": "47k",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "E_B_PLUS"
+        }
+      },
+      {
+        "ref": "R2N",
+        "model": "47k",
+        "pins": {
+          "1": "E_B_MINUS",
+          "2": "PROBE_N"
+        }
+      },
+      {
+        "ref": "R2S",
+        "model": "1k",
+        "pins": {
+          "1": "E_B_PLUS",
+          "2": "COLLAR_B"
+        }
+      },
+      {
+        "ref": "C2",
+        "model": "10nF",
+        "pins": {
+          "1": "COLLAR_B",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JE2",
+        "model": "Electrode B insert",
+        "pins": {
+          "1": "E_B_PLUS",
+          "2": "E_B_MINUS"
+        }
+      },
+      {
+        "ref": "REOL2",
+        "model": "100k DISTAL insert",
+        "pins": {
+          "1": "E_B_PLUS",
+          "2": "E_B_MINUS"
+        }
+      },
+      {
+        "ref": "D2",
+        "model": "Low-leak clamp network / MPN and pinout gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "COLLAR_B",
+          "VDD": "3V3"
+        }
+      },
+      {
+        "ref": "R3P",
+        "model": "47k",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "E_C_PLUS"
+        }
+      },
+      {
+        "ref": "R3N",
+        "model": "47k",
+        "pins": {
+          "1": "E_C_MINUS",
+          "2": "PROBE_N"
+        }
+      },
+      {
+        "ref": "R3S",
+        "model": "1k",
+        "pins": {
+          "1": "E_C_PLUS",
+          "2": "COLLAR_C"
+        }
+      },
+      {
+        "ref": "C3",
+        "model": "10nF",
+        "pins": {
+          "1": "COLLAR_C",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JE3",
+        "model": "Electrode C insert",
+        "pins": {
+          "1": "E_C_PLUS",
+          "2": "E_C_MINUS"
+        }
+      },
+      {
+        "ref": "REOL3",
+        "model": "100k DISTAL insert",
+        "pins": {
+          "1": "E_C_PLUS",
+          "2": "E_C_MINUS"
+        }
+      },
+      {
+        "ref": "D3",
+        "model": "Low-leak clamp network / MPN and pinout gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "COLLAR_C",
+          "VDD": "3V3"
+        }
+      },
+      {
+        "ref": "R4P",
+        "model": "47k",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "E_EXT_PLUS"
+        }
+      },
+      {
+        "ref": "R4N",
+        "model": "47k",
+        "pins": {
+          "1": "E_EXT_MINUS",
+          "2": "PROBE_N"
+        }
+      },
+      {
+        "ref": "R4S",
+        "model": "1k",
+        "pins": {
+          "1": "E_EXT_PLUS",
+          "2": "COLLAR_EXT"
+        }
+      },
+      {
+        "ref": "C4",
+        "model": "10nF",
+        "pins": {
+          "1": "COLLAR_EXT",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JE4",
+        "model": "Electrode EXT insert",
+        "pins": {
+          "1": "E_EXT_PLUS",
+          "2": "E_EXT_MINUS"
+        }
+      },
+      {
+        "ref": "REOL4",
+        "model": "100k DISTAL insert",
+        "pins": {
+          "1": "E_EXT_PLUS",
+          "2": "E_EXT_MINUS"
+        }
+      },
+      {
+        "ref": "D4",
+        "model": "Low-leak clamp network / MPN and pinout gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "COLLAR_EXT",
+          "VDD": "3V3"
+        }
+      },
+      {
+        "ref": "R5P",
+        "model": "47k",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "E_BYPASS_PLUS"
+        }
+      },
+      {
+        "ref": "R5N",
+        "model": "47k",
+        "pins": {
+          "1": "E_BYPASS_MINUS",
+          "2": "PROBE_N"
+        }
+      },
+      {
+        "ref": "R5S",
+        "model": "1k",
+        "pins": {
+          "1": "E_BYPASS_PLUS",
+          "2": "COLLAR_BYPASS"
+        }
+      },
+      {
+        "ref": "C5",
+        "model": "10nF",
+        "pins": {
+          "1": "COLLAR_BYPASS",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JE5",
+        "model": "Electrode BYPASS insert",
+        "pins": {
+          "1": "E_BYPASS_PLUS",
+          "2": "E_BYPASS_MINUS"
+        }
+      },
+      {
+        "ref": "REOL5",
+        "model": "100k DISTAL insert",
+        "pins": {
+          "1": "E_BYPASS_PLUS",
+          "2": "E_BYPASS_MINUS"
+        }
+      },
+      {
+        "ref": "D5",
+        "model": "Low-leak clamp network / MPN and pinout gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "COLLAR_BYPASS",
+          "VDD": "3V3"
+        }
+      },
+      {
+        "ref": "JB",
+        "model": "WATCH daughterboard link",
+        "pins": {
+          "1": "PROBE_P",
+          "2": "PROBE_N",
+          "3": "GND",
+          "4": "COLLAR_A",
+          "5": "COLLAR_B",
+          "6": "COLLAR_C",
+          "7": "COLLAR_EXT",
+          "8": "COLLAR_BYPASS",
+          "9": "3V3"
+        }
+      }
+    ],
+    "ear": [
+      {
+        "ref": "U1",
+        "model": "ESP32-S3-DevKitC-1-N8R8",
+        "pins": {
+          "5V": "5V",
+          "3V3": "3V3",
+          "GND": "GND",
+          "GPIO15": "I2S_BCLK_IN",
+          "GPIO16": "I2S_WS_IN",
+          "GPIO17": "I2S_DIN",
+          "GPIO10": "SD_SCK",
+          "GPIO11": "SD_MOSI",
+          "GPIO12": "SD_MISO",
+          "GPIO13": "SD_CS",
+          "GPIO4": "CAPTURE_BUTTON",
+          "GPIO5": "STATUS_LED"
+        }
+      },
+      {
+        "ref": "U2",
+        "model": "PCM1808PW",
+        "pins": {
+          "1": "PCM_VREF",
+          "2": "GND",
+          "3": "5V_ANALOG",
+          "4": "3V3",
+          "5": "GND",
+          "6": "MCLK_12M288",
+          "7": "I2S_WS_IN",
+          "8": "I2S_BCLK_IN",
+          "9": "I2S_DIN",
+          "10": "3V3",
+          "11": "3V3",
+          "12": "GND",
+          "13": "AUDIO_L_ADC",
+          "14": "AUDIO_R_ADC"
+        }
+      },
+      {
+        "ref": "X1",
+        "model": "12.288MHz3.3V CMOS / MPN gate",
+        "pins": {
+          "VDD": "3V3",
+          "GND": "GND",
+          "OUT": "MCLK_OSC",
+          "OE": "3V3"
+        }
+      },
+      {
+        "ref": "RX",
+        "model": "33R",
+        "pins": {
+          "1": "MCLK_OSC",
+          "2": "MCLK_12M288"
+        }
+      },
+      {
+        "ref": "CREF",
+        "model": "10uF",
+        "pins": {
+          "1": "PCM_VREF",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "C5V",
+        "model": "100nF",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "C3V",
+        "model": "100nF",
+        "pins": {
+          "1": "3V3",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "CBULK",
+        "model": "10uF",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "RBIAS1",
+        "model": "10k",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "RBIAS2",
+        "model": "10k",
+        "pins": {
+          "1": "BIAS_2V5",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "CBIAS",
+        "model": "100uF",
+        "pins": {
+          "1": "BIAS_2V5",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JL",
+        "model": "Shielded passive piezo input",
+        "pins": {
+          "1": "L_PICKUP",
+          "2": "GND",
+          "SHIELD": "CHASSIS_STAR"
+        }
+      },
+      {
+        "ref": "RIL",
+        "model": "1k",
+        "pins": {
+          "1": "L_PICKUP",
+          "2": "L_IN_PROTECTED"
+        }
+      },
+      {
+        "ref": "CIL",
+        "model": "1uF",
+        "pins": {
+          "1": "L_IN_PROTECTED",
+          "2": "L_IN_BIASED"
+        }
+      },
+      {
+        "ref": "RBL",
+        "model": "1M",
+        "pins": {
+          "1": "L_IN_BIASED",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "DIL",
+        "model": "Low-leak transient clamp / capacitance and MPN gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "L_IN_PROTECTED",
+          "VDD": "5V_ANALOG"
+        }
+      },
+      {
+        "ref": "UAL",
+        "model": "TLV9064IPWR",
+        "pins": {
+          "1": "L_BUFFER",
+          "2": "L_BUFFER",
+          "3": "L_IN_BIASED",
+          "4": "5V_ANALOG",
+          "5": "L_BUFFER",
+          "6": "L_GAIN_FB",
+          "7": "L_GAIN",
+          "8": "L_LP1_BUFFER",
+          "9": "L_LP1_BUFFER",
+          "10": "L_LP1",
+          "11": "GND",
+          "12": "L_LP2",
+          "13": "L_LP2_BUFFER",
+          "14": "L_LP2_BUFFER"
+        }
+      },
+      {
+        "ref": "RGL",
+        "model": "10k",
+        "pins": {
+          "1": "L_GAIN_FB",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "RFL",
+        "model": "100k",
+        "pins": {
+          "1": "L_GAIN",
+          "2": "L_GAIN_FB"
+        }
+      },
+      {
+        "ref": "R1L",
+        "model": "3.3k",
+        "pins": {
+          "1": "L_GAIN",
+          "2": "L_LP1"
+        }
+      },
+      {
+        "ref": "C1L",
+        "model": "10nF",
+        "pins": {
+          "1": "L_LP1",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "R2L",
+        "model": "3.3k",
+        "pins": {
+          "1": "L_LP1_BUFFER",
+          "2": "L_LP2"
+        }
+      },
+      {
+        "ref": "C2L",
+        "model": "10nF",
+        "pins": {
+          "1": "L_LP2",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "COL",
+        "model": "1uF",
+        "pins": {
+          "1": "L_LP2_BUFFER",
+          "2": "L_OUT_AC"
+        }
+      },
+      {
+        "ref": "ROL",
+        "model": "1k",
+        "pins": {
+          "1": "L_OUT_AC",
+          "2": "AUDIO_L_ADC"
+        }
+      },
+      {
+        "ref": "CUL",
+        "model": "100nF",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JR",
+        "model": "Shielded passive piezo input",
+        "pins": {
+          "1": "R_PICKUP",
+          "2": "GND",
+          "SHIELD": "CHASSIS_STAR"
+        }
+      },
+      {
+        "ref": "RIR",
+        "model": "1k",
+        "pins": {
+          "1": "R_PICKUP",
+          "2": "R_IN_PROTECTED"
+        }
+      },
+      {
+        "ref": "CIR",
+        "model": "1uF",
+        "pins": {
+          "1": "R_IN_PROTECTED",
+          "2": "R_IN_BIASED"
+        }
+      },
+      {
+        "ref": "RBR",
+        "model": "1M",
+        "pins": {
+          "1": "R_IN_BIASED",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "DIR",
+        "model": "Low-leak transient clamp / capacitance and MPN gate",
+        "pins": {
+          "GND": "GND",
+          "SIG": "R_IN_PROTECTED",
+          "VDD": "5V_ANALOG"
+        }
+      },
+      {
+        "ref": "UAR",
+        "model": "TLV9064IPWR",
+        "pins": {
+          "1": "R_BUFFER",
+          "2": "R_BUFFER",
+          "3": "R_IN_BIASED",
+          "4": "5V_ANALOG",
+          "5": "R_BUFFER",
+          "6": "R_GAIN_FB",
+          "7": "R_GAIN",
+          "8": "R_LP1_BUFFER",
+          "9": "R_LP1_BUFFER",
+          "10": "R_LP1",
+          "11": "GND",
+          "12": "R_LP2",
+          "13": "R_LP2_BUFFER",
+          "14": "R_LP2_BUFFER"
+        }
+      },
+      {
+        "ref": "RGR",
+        "model": "10k",
+        "pins": {
+          "1": "R_GAIN_FB",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "RFR",
+        "model": "100k",
+        "pins": {
+          "1": "R_GAIN",
+          "2": "R_GAIN_FB"
+        }
+      },
+      {
+        "ref": "R1R",
+        "model": "3.3k",
+        "pins": {
+          "1": "R_GAIN",
+          "2": "R_LP1"
+        }
+      },
+      {
+        "ref": "C1R",
+        "model": "10nF",
+        "pins": {
+          "1": "R_LP1",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "R2R",
+        "model": "3.3k",
+        "pins": {
+          "1": "R_LP1_BUFFER",
+          "2": "R_LP2"
+        }
+      },
+      {
+        "ref": "C2R",
+        "model": "10nF",
+        "pins": {
+          "1": "R_LP2",
+          "2": "BIAS_2V5"
+        }
+      },
+      {
+        "ref": "COR",
+        "model": "1uF",
+        "pins": {
+          "1": "R_LP2_BUFFER",
+          "2": "R_OUT_AC"
+        }
+      },
+      {
+        "ref": "ROR",
+        "model": "1k",
+        "pins": {
+          "1": "R_OUT_AC",
+          "2": "AUDIO_R_ADC"
+        }
+      },
+      {
+        "ref": "CUR",
+        "model": "100nF",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "GND"
+        }
+      },
+      {
+        "ref": "JSD",
+        "model": "3.3V SPI microSD module",
+        "pins": {
+          "1": "3V3",
+          "2": "GND",
+          "3": "SD_SCK",
+          "4": "SD_MOSI",
+          "5": "SD_MISO",
+          "6": "SD_CS"
+        }
+      },
+      {
+        "ref": "JPWR",
+        "model": "Regulated filtered 5V inputs / board derives3V3",
+        "pins": {
+          "1": "5V_ANALOG",
+          "2": "5V",
+          "3": "GND"
+        }
+      }
+    ],
+    "power": [
+      {
+        "ref": "J1",
+        "model": "Certified isolated24V5A PSU",
+        "pins": {
+          "POS": "RAW24",
+          "NEG": "STAR_GND"
+        }
+      },
+      {
+        "ref": "F1",
+        "model": "Master fuse / inrush rating gate",
+        "pins": {
+          "1": "RAW24",
+          "2": "FUSED24"
+        }
+      },
+      {
+        "ref": "Q1",
+        "model": "Reverse-polarity protection module / MPN gate",
+        "pins": {
+          "IN": "FUSED24",
+          "OUT": "PROTECTED24",
+          "GND": "STAR_GND"
+        }
+      },
+      {
+        "ref": "D1",
+        "model": "TVS / clamp-energy-coordination gate",
+        "pins": {
+          "1": "PROTECTED24",
+          "2": "STAR_GND"
+        }
+      },
+      {
+        "ref": "F2",
+        "model": "Pump branch fuse / rating gate",
+        "pins": {
+          "1": "PROTECTED24",
+          "2": "PUMP_FUSED"
+        }
+      },
+      {
+        "ref": "S1",
+        "model": "Latching DC pump stop / DC contact rating gate",
+        "pins": {
+          "1": "PUMP_FUSED",
+          "2": "PUMP24"
+        }
+      },
+      {
+        "ref": "JPUMP",
+        "model": "SEAFLO SFDP2-012-035-21",
+        "pins": {
+          "POS": "PUMP24",
+          "NEG": "PUMP_RETURN"
+        }
+      },
+      {
+        "ref": "STAR",
+        "model": "Dedicated pump return to supply star",
+        "pins": {
+          "1": "PUMP_RETURN",
+          "2": "STAR_GND"
+        }
+      },
+      {
+        "ref": "F3",
+        "model": "Electronics branch fuse / rating gate",
+        "pins": {
+          "1": "PROTECTED24",
+          "2": "ELEC24"
+        }
+      },
+      {
+        "ref": "U1",
+        "model": "Protected buck24V to5V3A / exact module gate",
+        "pins": {
+          "IN": "ELEC24",
+          "GND": "STAR_GND",
+          "OUT": "REG5"
+        }
+      },
+      {
+        "ref": "F4",
+        "model": "WATCH branch protection",
+        "pins": {
+          "1": "REG5",
+          "2": "WATCH5"
+        }
+      },
+      {
+        "ref": "F5",
+        "model": "EAR branch protection",
+        "pins": {
+          "1": "REG5",
+          "2": "EAR5"
+        }
+      },
+      {
+        "ref": "FB1",
+        "model": "Analog rail ferrite / impedance-current gate",
+        "pins": {
+          "1": "EAR5",
+          "2": "EAR_ANALOG5"
+        }
+      },
+      {
+        "ref": "C1",
+        "model": "100uF / voltage-rating gate",
+        "pins": {
+          "1": "EAR_ANALOG5",
+          "2": "STAR_GND"
+        }
+      },
+      {
+        "ref": "JW",
+        "model": "WATCH JPOWER harness",
+        "pins": {
+          "1": "WATCH5",
+          "2": "STAR_GND"
+        }
+      },
+      {
+        "ref": "JE",
+        "model": "EAR JPWR harness",
+        "pins": {
+          "1": "EAR_ANALOG5",
+          "2": "EAR5",
+          "3": "STAR_GND"
+        }
+      }
+    ]
+  }
+}

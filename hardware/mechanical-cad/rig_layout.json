@@ -1,0 +1,48 @@
+{
+  "status": "DIGITAL DESIGN / NOT PHYSICALLY VALIDATED",
+  "reservoir_l": 75,
+  "pipe_od_mm": 32,
+  "pipe_nominal": "PVC-U PN10 assumed procurement class, actual marking/rating must be verified",
+  "straight_span_m": 12,
+  "sections_m": [
+    3,
+    3,
+    3,
+    3
+  ],
+  "supply_return_additional_m": 3,
+  "joint_positions_m": [
+    3,
+    6,
+    9
+  ],
+  "collar_position_m": 6,
+  "acoustic_endpoints_m": [
+    0,
+    12
+  ],
+  "leak_stations_m": [
+    3,
+    6,
+    9
+  ],
+  "test_points_bar_proposed": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "relief_setting_bar_proposed": 1.8,
+  "pressure_authorized": false,
+  "pump": "SFDP2-012-035-21",
+  "flow_direction": "Reservoir -> strainer ->24V pump -> manifold ->12m span -> valve -> reservoir; relief and adjustable bypass return directly to reservoir",
+  "safety": [
+    "No municipal/drinking-network connection.",
+    "No printed pressure-bearing fittings; all wetted components rated and inspected.",
+    "No valve between pump discharge and mechanical relief; pump switch is not the safety relief.",
+    "Pressure tests prohibited until weakest-part rating, relief flow/setpoint, gauge and pump curve are reviewed.",
+    "Low-voltage wet zone; certified isolated PSU/RCD mains connection by qualified person, no DIY mains wiring.",
+    "Latching DC pump stop, appropriately sized fuse, dry-run protection and independent isolation.",
+    "Leak cartridges are manufactured replaceable lab inserts with containment, not utility-pipe damage.",
+    "Gravimetric leak reference uses catch vessel/scale/timer; bulk meters not microleak reference."
+  ]
+}

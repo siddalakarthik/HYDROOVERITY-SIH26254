@@ -79,3 +79,6 @@ Thumbs.db
 *.mov
 *.webm
 *.avi
+
+/hardware/results/*
+!/hardware/results/README.md

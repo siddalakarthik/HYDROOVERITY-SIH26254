@@ -74,3 +74,9 @@ Benchmark thresholds are fixed in simulations/scenarios/benchmark.json before ev
 ## Approved M02 + M05 integration
 
 The owner approved M02 design at89fb8ff and M05 simulation evidence atad48373. M02 PR#11 merged at63c660b. M05 originally developed independently from main7590a65; integration now merges that approved M02 main into M05 without altering simulation source, configs, thresholds, baselines, results or scientific caveats. The historical pending-review statements above describe their original review gates; this approval resolves the M02 design gate only. No later milestone implementation is authorized. Both independent validation environments remain separate in the combined CI workflow.
+
+## M08 authorized digital engineering — issue #8
+
+M08 uses a separate branch from approved main131e927. Choose a 32mm OD demonstration pipe with assumed maximum45mm OD/60mm long joint envelope; dimensions require actual fitting measurement before fabrication. Use editable CadQuery/OpenCascade solid source and STEP round-trip validation when available; FreeCAD/KiCad binaries were not found. KiCad-compatible schematic source is a draft until native opening/ERC. No purchases, build or pressure operation is authorized. All engineering assets are DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. M05 source, thresholds and results remain unchanged.
+
+Candidate electronics use two3.3V ADS1115 devices,5V voltage-output pressure sensors with dividers, five polarity-reversed current-limited electrode circuits, and a separate PCM1808 stereo ADC with an external common clock and ESP32-S3 slave receiver. Exact board strap, power, coupling, analog stability and timing tests remain release gates. Prices are budget estimates unless a source is explicitly marked verified.
