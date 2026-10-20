@@ -43,7 +43,7 @@ jobs:
       - name: Validate M08 digital engineering contracts
         run: |
           python3 scripts/check_m08.py
-          python3 -m unittest discover -s tests/unit -p test_m08_checks.py -v
+          python3 -m unittest discover -s tests/unit -p 'test_m08*.py' -v
 
   m08-cad-and-figures:
     runs-on: ubuntu-24.04
@@ -59,6 +59,24 @@ jobs:
         run: |
           python3 -m venv "$RUNNER_TEMP/m08-cad"
           "$RUNNER_TEMP/m08-cad/bin/python" -m pip install --only-binary=:all: -r hardware/requirements-m08-cad.txt
+          "$RUNNER_TEMP/m08-cad/bin/python" hardware/electronics/generate_schematics.py
           "$RUNNER_TEMP/m08-cad/bin/python" hardware/mechanical-cad/guard5.py
           "$RUNNER_TEMP/m08-cad/bin/python" hardware/render_m08.py
           "$RUNNER_TEMP/m08-cad/bin/python" scripts/check_m08.py --artifacts
+          "$RUNNER_TEMP/m08-cad/bin/python" hardware/package_m08.py
+          "$RUNNER_TEMP/m08-cad/bin/python" hardware/package_m08.py --verify hardware/results/package/HYDROOVERITY_M08_PPT_ENGINEERING_PACKAGE.zip
+      - name: Upload validated M08 screening package (14 days)
+        id: m08-upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2, official tag verified
+        with:
+          name: HYDROOVERITY_M08_PPT_ENGINEERING_PACKAGE
+          path: |
+            hardware/results/package/HYDROOVERITY_M08_PPT_ENGINEERING_PACKAGE.zip
+            hardware/results/package/HYDROOVERITY_M08_PPT_ENGINEERING_PACKAGE.zip.sha256
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+      - name: Link the uploaded engineering artifact
+        env:
+          M08_ARTIFACT_URL: ${{ steps.m08-upload.outputs.artifact-url }}
+        run: printf '[Download M08 screening package](%s) — retained for 14 days.\n' "$M08_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"

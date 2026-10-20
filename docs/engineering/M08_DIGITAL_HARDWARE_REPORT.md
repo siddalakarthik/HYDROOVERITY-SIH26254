@@ -70,7 +70,7 @@ The validation plan covers pressure/flow calibration, conductivity/temperature, 
 
 `hardware/render_m08.py` regenerates **H01 architecture, H02 assembled/exploded CAD, H03 cutaway/water paths, H04 WATCH, H05 shared-clock EAR, H06 rig, H07 budget**. Each is 2560×1440 PNG plus editable SVG with the proposed/untested label. Captions and per-source SHA256 manifest are generated under `hardware/results/ppt/`. H03 radial panel is a parameter layout; longitudinal panel is an actual BRep material slice. Additional native STEP parts/assembly are under `hardware/mechanical-cad/exports/`. Generated binaries and local figures are intentionally ignored, reproducible and included in the local review bundle.
 
-From repository root, use a separate Python3.12 environment:
+From repository root, use a separate Python3.12 CAD environment. Environment setup, equivalent PowerShell/POSIX commands and the precise generated paths are in [M08 reproduction and retrieval](../../hardware/results/README.md). In that activated CAD environment:
 
 ```text
 python -m pip install --only-binary=:all: -r hardware/requirements-m08-cad.txt
@@ -78,17 +78,37 @@ python hardware/electronics/generate_schematics.py
 python hardware/mechanical-cad/guard5.py
 python hardware/render_m08.py
 python scripts/check_m08.py --artifacts
-python -m unittest discover -s tests/unit -p test_m08_checks.py -v
+python -m unittest discover -s tests/unit -p 'test_m08*.py' -v
+python hardware/package_m08.py
+python hardware/package_m08.py --verify hardware/results/package/HYDROOVERITY_M08_PPT_ENGINEERING_PACKAGE.zip
+```
+
+Run foundation/design checks with the repository's standard Python interpreter:
+
+```text
 python scripts/check_repository.py
 python scripts/check_m02_design.py
 python scripts/test_m02_design_checker.py -v
-python -m openapi_spec_validator --schema 3.1 docs/architecture/openapi-design.json
-python scripts/validate_openapi_design.py
-python -m pytest tests/unit/test_m05.py -q
 git diff --check
 ```
 
+In the separate M02 OpenAPI environment installed from `scripts/openapi-validation-requirements.txt`:
+
+```text
+python -m openapi_spec_validator --schema 3.1 docs/architecture/openapi-design.json
+python scripts/validate_openapi_design.py
+```
+
+In the separate M05 scientific environment installed from `simulations/requirements-m05.txt`:
+
+```text
+python -m pytest tests/unit/test_m05.py -q
+python -m simulations.run_all --profile smoke
+```
+
 Keep OpenAPI, M05 scientific and CAD environments separate; use their existing pinned requirement files. On restricted desktops set MPLCONFIGDIR to a writable local cache. CAD requirements record core resolved versions; optional CadQuery visualization dependencies are not imported by this project. `check_m08.py` checks capacity, pins, rails, clock mode, power arithmetic, cost, rig status, draft connectivity and artifact provenance; nine focused tests reject dangerous consistency changes and undercounted return plumbing. It cannot establish native ERC or physical safety. Actual execution results and CI status are recorded in `hardware/VALIDATION_RESULTS.md` and the PR.
+
+The final review correction adds four archive-integrity tests, an allowlisted ZIP with SHA256 checksums, a seven-figure contact sheet and a CI artifact upload with 14-day retention after successful generation/validation. It changes presentation delivery only. The reviewed design remains based on `3e5fcbb3fba1653b3c6ce3b50a71ecbd958e6986`; no hardware redesign or M05 scientific change is authorized. The ₹130 residual headroom remains a procurement risk, and none of the documented native-ERC, physical-performance or quotation gates is resolved by packaging.
 
 ## 10. Review gate and PPT-safe claims
 

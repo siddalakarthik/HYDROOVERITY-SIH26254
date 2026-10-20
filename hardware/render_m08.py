@@ -30,9 +30,9 @@ def plate(title, subtitle):
     return fig
 def canvas(fig):
     ax=fig.add_axes([.04,.10,.92,.76]);ax.set(xlim=(-2,104),ylim=(-2,104));ax.axis('off');return ax
-def node(ax,x,y,w,h,text,color=BLUE,size=13):
-    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.5,rounding_size=1.4',facecolor='white',edgecolor=color,lw=2))
-    ax.text(x+w/2,y+h/2,text,ha='center',va='center',color=NAVY,fontsize=size)
+def node(ax,x,y,w,h,text,color=BLUE,size=13,zorder=1):
+    ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.5,rounding_size=1.4',facecolor='white',edgecolor=color,lw=2,zorder=zorder))
+    ax.text(x+w/2,y+h/2,text,ha='center',va='center',color=NAVY,fontsize=size,zorder=max(3,zorder+1))
 def arrow(ax,a,b,text='',color=BLUE):
     ax.annotate('',xy=b,xytext=a,arrowprops=dict(arrowstyle='->',lw=2,color=color))
     if text:ax.text((a[0]+b[0])/2,(a[1]+b[1])/2+2,text,ha='center',color=color,fontsize=11)
@@ -134,7 +134,9 @@ def generate():
     node(ax,73,48,26,36,'ESP32-S3 N8R8\nSDA GPIO8 / SCL GPIO9\nFlow GPIO4 / GPIO5\nProbe drive GPIO12 / 13',NAVY,12)
     arrow(ax,(27,80),(36,75));arrow(ax,(27,51),(36,60));arrow(ax,(63,67),(73,67),'I²C')
     node(ax,1,8,26,22,'2 × bulk flow pulses\n5 V interface → NPN translator\nNot a small-leak reference',GOLD,12)
-    arrow(ax,(27,19),(85,48))
+    # Route translated flow pulses around the context-sensor box, not across its label.
+    ax.plot([27,30,30,78],[19,19,41,41],color=BLUE,lw=2)
+    arrow(ax,(78,41),(78,48))
     node(ax,36,8,27,22,'SHT31: 3.3 V I²C\nDS18B20: powered 3.3 V\nContext, not wetness channels',TEAL,12)
     arrow(ax,(63,19),(85,48))
     node(ax,73,8,26,22,'24 V isolated supply\nProtected buck → 5 V\nBoard regulator → 3.3 V',RED,12)
@@ -173,10 +175,10 @@ def generate():
     note(ax,66,93,'12 m span + 12 m return; GUARD-5 at 6 m\nPressure / bulk flow at supply and return',12)
     arrow(ax,(97,56),(97,5));arrow(ax,(97,5),(-1,5));arrow(ax,(-1,5),(-1,45));arrow(ax,(-1,45),(0,45))
     ax.plot([39,39,18,18,7,7],[56,93,93,76,76,69],color=RED,lw=2)
-    node(ax,23,88,12,9,'Relief',RED,10)
+    node(ax,23,88,12,9,'Relief',RED,10,zorder=3)
     ax.plot([37,37,20,20,13,13],[56,80,80,72,72,69],color=GOLD,lw=2)
-    node(ax,25,75,10,9,'Bypass',GOLD,10)
-    note(ax,1,100,'Unisolatable relief + adjustable bypass → reservoir\nNo operating pressure approved; component-rating / relief-flow gate',11,RED)
+    node(ax,25,75,10,9,'Bypass',GOLD,10,zorder=3)
+    note(ax,1,106,'Unisolatable relief + adjustable bypass → reservoir\nNo operating pressure approved; component-rating / relief-flow gate',11,RED)
     note(ax,1,35,'Dry electrical zone:\nCertified isolated 24 V PSU\nDC stop / fuses / strain relief\nQualified mains connection',11)
     save(fig,'H06_test_rig','Conceptual P&ID and positioning; 0.5/1.0/1.5 bar are contingent future points, not authorized conditions.',['hardware/mechanical-cad/rig_layout.json','hardware/bom/m08_bom.json'])
 
