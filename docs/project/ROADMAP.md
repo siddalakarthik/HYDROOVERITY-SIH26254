@@ -18,3 +18,7 @@ The M01 request refines the master context's suggested eight-stage grouping into
 M01 completed and verified. M02 is authorized for design on its feature branch and awaits owner review through issue #2; no M03 implementation is authorized. Later milestones remain planned. M02's complete name is **HYDROOVERITY Website Architecture and Database Design**; its short GitHub title is Website Architecture.
 
 Create one focused planning issue per milestone, avoiding duplicates. M01 may close only with actual setup evidence; future issue creation does not authorize implementation. Labels identify responsibility. The machine-readable [backlog](../../.github/backlog.json) preserves intended milestone/issue definitions if remote configuration is unavailable. Do not invent due dates, assignees or collaborator permissions.
+
+## Approved M02/M05 integration status
+
+M02 design is owner-approved and PR#11 merged. M05 implementation is owner-approved as SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED evidence; its PR#12 integrates the approved M02 main and must pass both validation suites before merging. Earlier pending-review wording records historical gates and does not override this approval. M03/M04/M06/M07/M08/M09/M10 remain unstarted and require separate authorization. No scientific targets or assumptions change through integration.

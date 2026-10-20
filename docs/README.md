@@ -21,7 +21,7 @@ The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved pr
 Research source claims in the master context are inherited, not independently reverified in M01. The original submitted six-slide deck and historic source/test packages are not included. Do not claim they were inspected or rerun.
 
 
-## M02 detailed design — awaiting owner review
+## M02 detailed design — approved and merged
 
 - [Product routes](architecture/PRODUCT_INFORMATION_ARCHITECTURE.md) and [role/action matrix](architecture/ROLE_PERMISSION_MATRIX.md).
 - [UI system](../design/design-system/UI_UX_DESIGN_SYSTEM.md) and [page specifications / ten wireframes](../design/wireframes/PAGE_AND_WIREFRAME_SPECIFICATIONS.md).
@@ -34,3 +34,5 @@ These are proposed implementation contracts, not a running application, executed
 
 - [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): four planned slices following M03–M10; none implemented.
 - [Final M02 review validation](testing/M02_REVIEW_VALIDATION.md): independent OpenAPI tool/version/commands and design-checker mutation evidence.
+
+M05: [executed simulation evidence, limitations and reproduction](testing/M05_SIMULATION_EVIDENCE_REPORT.md).

@@ -60,3 +60,17 @@ P-001/P-002/P-004 software design choices are now proposed in the linked M02 con
 | D-026 | Independent pinned OpenAPI validator plus focused design regression checks | Standards conformance and project security invariants need distinct checks. Isolated review-tool installation is explicitly authorized by the final M02 review request; no application framework/server/database is installed or implemented. |
 
 The four slices in M03_M04_IMPLEMENTATION_SEQUENCE.md sequence the existing M03–M10 roadmap; they do not authorize or claim future milestone implementation.
+
+## M05 authorized simulation decisions (issue #5)
+
+M05 runs independently from stable main7590a65, without merging M02. Python3.12 isolated environment; WNTR1.4/EPANET2.2 PDA and SI emitter leaks; NumPy/SciPy/Pandas/Matplotlib/pytest only as needed, exact resolved versions locked before benchmark execution. No GPU/framework or deployment.
+
+The sector boundary is IN minus C1+C2+C3 terminal customer meter flows. Customer demand is already included at those outlets and is never subtracted again; no storage in the pressurized model. Controlled source head represents a pump/supply-boundary change, not a measured pump curve. OFF/FILLING/DRAINING are labeled state abstractions, not solved two-phase transients.
+
+Acoustics uses fractional delays on a common sample grid, assumed dispersive/attenuating transfer functions and explicit speed uncertainty; no measured plastic-pipe audibility claim. GUARD-5 uses conserved lumped volumes, uncertain collection/rain-transfer assumptions, separate EXT/BYPASS and honest unknown supervision.
+
+Benchmark thresholds are fixed in simulations/scenarios/benchmark.json before evaluation. Development and holdout truth/observation seeds are disjoint; detector interfaces have no truth or generator seed. Any later algorithm change must change its version/hash and rerun all cases, never silently select favorable holdouts. All results remain SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED.
+
+## Approved M02 + M05 integration
+
+The owner approved M02 design at89fb8ff and M05 simulation evidence atad48373. M02 PR#11 merged at63c660b. M05 originally developed independently from main7590a65; integration now merges that approved M02 main into M05 without altering simulation source, configs, thresholds, baselines, results or scientific caveats. The historical pending-review statements above describe their original review gates; this approval resolves the M02 design gate only. No later milestone implementation is authorized. Both independent validation environments remain separate in the combined CI workflow.
