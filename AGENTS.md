@@ -47,3 +47,7 @@ Human task authorization governs scope. Read `docs/project/HYDROOVERITY_MASTER_C
 7. Commit only completed, authorized changes; use short-lived branches and PRs for substantial future work.
 
 M01's single initial commit directly to `main` is explicitly authorized. Do not impose review rules that block the sole maintainer. Do not begin M02 merely because the backlog exists.
+
+## M02 review gate
+
+M02 detailed design documents are indexed in docs/README.md. Follow their canonical OpenAPI, database field catalogue, state and permission contracts after owner review; do not begin M03, merge the M02 PR or close issue #2/milestone M02 without separate owner approval. Run `python scripts/check_m02_design.py` in addition to foundation checks for M02 changes. No API implementation, migration execution or package installation is part of this milestone.

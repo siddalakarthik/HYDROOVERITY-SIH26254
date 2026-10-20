@@ -1,0 +1,675 @@
+{
+  "status": "DESIGN_ONLY",
+  "pages": [
+    {
+      "id": "PAGE-01",
+      "route": "/",
+      "roles": "PUBLIC",
+      "objective": "Understand mission and honest project status",
+      "data": "Understand mission and honest project status",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-02",
+      "route": "/solution",
+      "roles": "PUBLIC",
+      "objective": "Understand evidence-qualified integrated system",
+      "data": "Understand evidence-qualified integrated system",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-03",
+      "route": "/how-it-works",
+      "roles": "PUBLIC",
+      "objective": "Follow WATCH, GUARD-5, EAR and VERIFY",
+      "data": "Follow WATCH, GUARD-5, EAR and VERIFY",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-04",
+      "route": "/solution/guard5",
+      "roles": "PUBLIC",
+      "objective": "Inspect five conceptual channels and unvalidated collector mechanics",
+      "data": "Inspect five conceptual channels and unvalidated collector mechanics",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-05",
+      "route": "/solution/acoustics",
+      "roles": "PUBLIC",
+      "objective": "Understand eligible spans, intervals and abstention",
+      "data": "Understand eligible spans, intervals and abstention",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-06",
+      "route": "/benefits-and-limitations",
+      "roles": "PUBLIC",
+      "objective": "Compare intended benefits with coverage and validation limits",
+      "data": "Compare intended benefits with coverage and validation limits",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-07",
+      "route": "/project-status",
+      "roles": "PUBLIC",
+      "objective": "See designed versus implemented versus physically validated status",
+      "data": "See designed versus implemented versus physically validated status",
+      "operations": [
+        "public_get_public_utilities_slug",
+        "public_get_public_project_status",
+        "public_post_public_contact"
+      ],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-08",
+      "route": "/report",
+      "roles": "PUBLIC",
+      "objective": "Select an enabled utility and sign in to report",
+      "data": "Select an enabled utility and sign in to report",
+      "operations": [
+        "public_get_public_utilities_slug",
+        "public_get_public_project_status",
+        "public_post_public_contact"
+      ],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-09",
+      "route": "/contact",
+      "roles": "PUBLIC",
+      "objective": "Submit a bounded question or feedback",
+      "data": "Submit a bounded question or feedback",
+      "operations": [
+        "public_get_public_utilities_slug",
+        "public_get_public_project_status",
+        "public_post_public_contact"
+      ],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-10",
+      "route": "/privacy",
+      "roles": "PUBLIC",
+      "objective": "Understand data collection, retention and rights contact",
+      "data": "Understand data collection, retention and rights contact",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-11",
+      "route": "/terms",
+      "roles": "PUBLIC",
+      "objective": "Read proposed service and demonstration boundaries",
+      "data": "Read proposed service and demonstration boundaries",
+      "operations": [],
+      "offline": "Previously fetched public text may be cached; forms require online access."
+    },
+    {
+      "id": "PAGE-12",
+      "route": "/login",
+      "roles": "PUBLIC",
+      "objective": "Sign in using the single backend session",
+      "data": "Sign in using the single backend session",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-13",
+      "route": "/register",
+      "roles": "PUBLIC",
+      "objective": "Register as citizen for enabled utility only",
+      "data": "Register as citizen for enabled utility only",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-14",
+      "route": "/forgot-password",
+      "roles": "PUBLIC",
+      "objective": "Request generic account recovery",
+      "data": "Request generic account recovery",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-15",
+      "route": "/reset-password",
+      "roles": "PUBLIC",
+      "objective": "Consume one-use reset token",
+      "data": "Consume one-use reset token",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-16",
+      "route": "/verify-account",
+      "roles": "PUBLIC",
+      "objective": "Verify an account with one-use token",
+      "data": "Verify an account with one-use token",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-17",
+      "route": "/accept-invitation",
+      "roles": "PUBLIC",
+      "objective": "Accept exact tenant staff invitation",
+      "data": "Accept exact tenant staff invitation",
+      "operations": [
+        "authentication_get_auth_csrf",
+        "authentication_post_auth_register",
+        "authentication_post_auth_login",
+        "authentication_post_auth_recovery",
+        "authentication_post_auth_reset",
+        "authentication_post_auth_verify",
+        "authentication_post_auth_invitation_accept",
+        "authentication_post_auth_logout"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-18",
+      "route": "/account",
+      "roles": "ALL",
+      "objective": "Edit own profile and choose membership",
+      "data": "Edit own profile and choose membership",
+      "operations": [
+        "current_user_get_me",
+        "current_user_patch_me",
+        "current_user_get_me_memberships",
+        "current_user_get_me_sessions",
+        "current_user_delete_me_sessions_session_id"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-19",
+      "route": "/account/sessions",
+      "roles": "ALL",
+      "objective": "Inspect and revoke own sessions",
+      "data": "Inspect and revoke own sessions",
+      "operations": [
+        "current_user_get_me",
+        "current_user_patch_me",
+        "current_user_get_me_memberships",
+        "current_user_get_me_sessions",
+        "current_user_delete_me_sessions_session_id"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-20",
+      "route": "/citizen/{org}/reports",
+      "roles": "CITIZEN",
+      "objective": "View only own reports",
+      "data": "View only own reports",
+      "operations": [
+        "complaints_post_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints_complaint_id",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_review"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-21",
+      "route": "/citizen/{org}/reports/new",
+      "roles": "CITIZEN",
+      "objective": "Submit category, description, coarse area and consented photo",
+      "data": "Submit category, description, coarse area and consented photo",
+      "operations": [
+        "complaints_post_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints_complaint_id",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_review"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-22",
+      "route": "/citizen/{org}/reports/{id}",
+      "roles": "CITIZEN",
+      "objective": "Track safe updates, add followup and resolution feedback",
+      "data": "Track safe updates, add followup and resolution feedback",
+      "operations": [
+        "complaints_post_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints_complaint_id",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_review"
+      ],
+      "offline": "Read-only shell; connection required for current data."
+    },
+    {
+      "id": "PAGE-23",
+      "route": "/app/{org}/overview",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Review supply states, active concerns, stale devices and coverage gaps",
+      "data": "Review supply states, active concerns, stale devices and coverage gaps",
+      "operations": [
+        "incidents_get_orgs_organization_id_incidents",
+        "incidents_post_orgs_organization_id_incidents",
+        "incidents_get_orgs_organization_id_incidents_incident_id",
+        "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+        "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+        "incidents_post_orgs_organization_id_incidents_incident_id_links"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-24",
+      "route": "/app/{org}/network",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Explore surveyed graph and instrumented/unobserved spans",
+      "data": "Explore surveyed graph and instrumented/unobserved spans",
+      "operations": [
+        "pipeline_assets_get_orgs_organization_id_junctions",
+        "pipeline_assets_post_orgs_organization_id_junctions",
+        "pipeline_assets_get_orgs_organization_id_junctions_resource_id",
+        "pipeline_assets_patch_orgs_organization_id_junctions_resource_id",
+        "pipeline_assets_get_orgs_organization_id_pipes",
+        "pipeline_assets_post_orgs_organization_id_pipes",
+        "pipeline_assets_get_orgs_organization_id_pipes_resource_id",
+        "pipeline_assets_patch_orgs_organization_id_pipes_resource_id",
+        "pipeline_assets_get_orgs_organization_id_access_points",
+        "pipeline_assets_post_orgs_organization_id_access_points",
+        "pipeline_assets_get_orgs_organization_id_access_points_resource_id",
+        "pipeline_assets_patch_orgs_organization_id_access_points_resource_id",
+        "pipeline_assets_get_orgs_organization_id_coverage"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-25",
+      "route": "/app/{org}/monitoring",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Read fresh and historic observations with explicit provenance",
+      "data": "Read fresh and historic observations with explicit provenance",
+      "operations": [
+        "observations_get_orgs_organization_id_observations",
+        "observations_get_orgs_organization_id_observations_observation_id",
+        "observations_post_orgs_organization_id_manual_observations"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-26",
+      "route": "/app/{org}/devices",
+      "roles": "ENGINEER,SUPERVISOR,ADMIN",
+      "objective": "Find devices by identity, health and source environment",
+      "data": "Find devices by identity, health and source environment",
+      "operations": [
+        "devices_get_orgs_organization_id_devices",
+        "devices_post_orgs_organization_id_devices",
+        "devices_get_orgs_organization_id_devices_device_id",
+        "devices_get_orgs_organization_id_devices_device_id_channels",
+        "devices_get_orgs_organization_id_devices_device_id_configurations",
+        "devices_post_orgs_organization_id_devices_device_id_configurations",
+        "devices_post_orgs_organization_id_devices_device_id_installations",
+        "devices_post_orgs_organization_id_devices_device_id_credentials",
+        "devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-27",
+      "route": "/app/{org}/devices/{id}",
+      "roles": "ENGINEER,SUPERVISOR,ADMIN",
+      "objective": "Inspect permitted device metadata, diagnostics and calibration tabs",
+      "data": "Inspect permitted device metadata, diagnostics and calibration tabs",
+      "operations": [
+        "diagnostics_get_orgs_organization_id_devices_device_id_health_events",
+        "diagnostics_get_orgs_organization_id_devices_device_id_calibrations",
+        "diagnostics_post_orgs_organization_id_devices_device_id_calibrations",
+        "diagnostics_get_orgs_organization_id_collars_device_id_service_tests",
+        "diagnostics_post_orgs_organization_id_collars_device_id_service_tests"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-28",
+      "route": "/app/{org}/collars/{id}",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Inspect five channel timelines, EXT/BYPASS and service receipts",
+      "data": "Inspect five channel timelines, EXT/BYPASS and service receipts",
+      "operations": [
+        "diagnostics_get_orgs_organization_id_devices_device_id_health_events",
+        "diagnostics_get_orgs_organization_id_devices_device_id_calibrations",
+        "diagnostics_post_orgs_organization_id_devices_device_id_calibrations",
+        "diagnostics_get_orgs_organization_id_collars_device_id_service_tests",
+        "diagnostics_post_orgs_organization_id_collars_device_id_service_tests"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-29",
+      "route": "/app/{org}/acoustics",
+      "roles": "ENGINEER",
+      "objective": "Choose authorized capture and eligible span",
+      "data": "Choose authorized capture and eligible span",
+      "operations": [
+        "acoustics_get_orgs_organization_id_acoustic_captures",
+        "acoustics_post_orgs_organization_id_acoustic_captures",
+        "acoustics_get_orgs_organization_id_acoustic_captures_capture_id",
+        "acoustics_post_orgs_organization_id_acoustic_captures_capture_id_estimates",
+        "acoustics_get_orgs_organization_id_acoustic_captures_capture_id_estimates",
+        "acoustics_get_orgs_organization_id_artifacts_artifact_id_download"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-30",
+      "route": "/app/{org}/acoustics/{id}",
+      "roles": "ENGINEER",
+      "objective": "Compare delay baselines, assumptions, interval and unresolved reasons",
+      "data": "Compare delay baselines, assumptions, interval and unresolved reasons",
+      "operations": [
+        "acoustics_get_orgs_organization_id_acoustic_captures",
+        "acoustics_post_orgs_organization_id_acoustic_captures",
+        "acoustics_get_orgs_organization_id_acoustic_captures_capture_id",
+        "acoustics_post_orgs_organization_id_acoustic_captures_capture_id_estimates",
+        "acoustics_get_orgs_organization_id_acoustic_captures_capture_id_estimates",
+        "acoustics_get_orgs_organization_id_artifacts_artifact_id_download"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-31",
+      "route": "/app/{org}/incidents",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Filter and triage concerns without equating severity with confidence",
+      "data": "Filter and triage concerns without equating severity with confidence",
+      "operations": [
+        "incidents_get_orgs_organization_id_incidents",
+        "incidents_post_orgs_organization_id_incidents",
+        "incidents_get_orgs_organization_id_incidents_incident_id",
+        "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+        "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+        "incidents_post_orgs_organization_id_incidents_incident_id_links"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-32",
+      "route": "/app/{org}/incidents/{id}",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Read immutable evidence timeline and authorize next investigation action",
+      "data": "Read immutable evidence timeline and authorize next investigation action",
+      "operations": [
+        "incidents_get_orgs_organization_id_incidents",
+        "incidents_post_orgs_organization_id_incidents",
+        "incidents_get_orgs_organization_id_incidents_incident_id",
+        "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+        "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+        "incidents_post_orgs_organization_id_incidents_incident_id_links"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-33",
+      "route": "/app/{org}/work-orders",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "objective": "Use supervisor board or technician assigned-task list",
+      "data": "Use supervisor board or technician assigned-task list",
+      "operations": [
+        "work_orders_get_orgs_organization_id_work_orders",
+        "work_orders_post_orgs_organization_id_work_orders",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions"
+      ],
+      "offline": "Cached minimal assigned task list only."
+    },
+    {
+      "id": "PAGE-34",
+      "route": "/app/{org}/work-orders/{id}",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "objective": "Investigate, record work and submit for review",
+      "data": "Investigate, record work and submit for review",
+      "operations": [
+        "work_orders_get_orgs_organization_id_work_orders",
+        "work_orders_post_orgs_organization_id_work_orders",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions"
+      ],
+      "offline": "Assigned task briefs and encrypted draft notes/photos only; no assignments, transitions or approvals offline."
+    },
+    {
+      "id": "PAGE-35",
+      "route": "/app/{org}/repairs/{id}/verification",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "objective": "Review comparable before/after evidence and separate outcome",
+      "data": "Review comparable before/after evidence and separate outcome",
+      "operations": [
+        "verification_post_orgs_organization_id_repairs_repair_id_verifications",
+        "verification_get_orgs_organization_id_repairs_repair_id_verifications"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-36",
+      "route": "/app/{org}/complaints",
+      "roles": "SUPERVISOR",
+      "objective": "Review public-safe reports and link evidence without automatic confirmation",
+      "data": "Review public-safe reports and link evidence without automatic confirmation",
+      "operations": [
+        "complaints_post_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints",
+        "complaints_get_orgs_organization_id_complaints_complaint_id",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+        "complaints_post_orgs_organization_id_complaints_complaint_id_review"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-37",
+      "route": "/app/{org}/maintenance",
+      "roles": "SUPERVISOR",
+      "objective": "Review overdue work and assign priorities and due dates",
+      "data": "Review overdue work and assign priorities and due dates",
+      "operations": [
+        "work_orders_get_orgs_organization_id_work_orders",
+        "work_orders_post_orgs_organization_id_work_orders",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+        "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+        "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-38",
+      "route": "/app/{org}/analytics",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Inspect explicit denominators, response time and observable coverage",
+      "data": "Inspect explicit denominators, response time and observable coverage",
+      "operations": [
+        "reports_post_orgs_organization_id_reports",
+        "reports_get_orgs_organization_id_reports_report_id",
+        "reports_get_orgs_organization_id_reports_report_id_download"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-39",
+      "route": "/app/{org}/reports",
+      "roles": "ENGINEER,SUPERVISOR",
+      "objective": "Request scoped CSV/PDF and download authorized completed export",
+      "data": "Request scoped CSV/PDF and download authorized completed export",
+      "operations": [
+        "reports_post_orgs_organization_id_reports",
+        "reports_get_orgs_organization_id_reports_report_id",
+        "reports_get_orgs_organization_id_reports_report_id_download"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-40",
+      "route": "/app/{org}/simulations",
+      "roles": "ENGINEER",
+      "objective": "Select allowed scenario/config and queue a reproducible run",
+      "data": "Select allowed scenario/config and queue a reproducible run",
+      "operations": [
+        "simulations_get_orgs_organization_id_simulations_scenarios",
+        "simulations_post_orgs_organization_id_simulations_runs",
+        "simulations_get_orgs_organization_id_simulations_runs",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id",
+        "simulations_post_orgs_organization_id_simulations_runs_run_id_cancel",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id_outputs",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id_evaluation",
+        "simulations_get_orgs_organization_id_algorithm_configurations"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-41",
+      "route": "/app/{org}/simulations/{id}",
+      "roles": "ENGINEER",
+      "objective": "Inspect status and synthetic outputs; evaluation separately gated",
+      "data": "Inspect status and synthetic outputs; evaluation separately gated",
+      "operations": [
+        "simulations_get_orgs_organization_id_simulations_scenarios",
+        "simulations_post_orgs_organization_id_simulations_runs",
+        "simulations_get_orgs_organization_id_simulations_runs",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id",
+        "simulations_post_orgs_organization_id_simulations_runs_run_id_cancel",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id_outputs",
+        "simulations_get_orgs_organization_id_simulations_runs_run_id_evaluation",
+        "simulations_get_orgs_organization_id_algorithm_configurations"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-42",
+      "route": "/app/{org}/feedback",
+      "roles": "ALL",
+      "objective": "Review own feedback or authorized internal backlog",
+      "data": "Review own feedback or authorized internal backlog",
+      "operations": [
+        "feedback_post_orgs_organization_id_feedback",
+        "feedback_get_orgs_organization_id_feedback",
+        "feedback_post_orgs_organization_id_feedback_feedback_id_review"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-43",
+      "route": "/app/{org}/notifications",
+      "roles": "ALL",
+      "objective": "Read only own safe notifications",
+      "data": "Read only own safe notifications",
+      "operations": [
+        "notifications_get_orgs_organization_id_notifications",
+        "notifications_post_orgs_organization_id_notifications_notification_id_read"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-44",
+      "route": "/app/{org}/admin/users",
+      "roles": "ADMIN",
+      "objective": "Invite, grant primary roles and suspend tenant memberships",
+      "data": "Invite, grant primary roles and suspend tenant memberships",
+      "operations": [
+        "administration_get_orgs_organization_id_memberships",
+        "administration_post_orgs_organization_id_invitations",
+        "administration_put_orgs_organization_id_memberships_membership_id_roles",
+        "administration_post_orgs_organization_id_memberships_membership_id_status",
+        "administration_get_orgs_organization_id_audit_logs",
+        "administration_get_orgs_organization_id_integrations",
+        "administration_put_orgs_organization_id_integrations"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-45",
+      "route": "/app/{org}/admin/settings",
+      "roles": "ADMIN",
+      "objective": "Manage tenant and integration references without returning secrets",
+      "data": "Manage tenant and integration references without returning secrets",
+      "operations": [
+        "organization_get_orgs_organization_id",
+        "organization_patch_orgs_organization_id"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    },
+    {
+      "id": "PAGE-46",
+      "route": "/app/{org}/admin/audit",
+      "roles": "ADMIN",
+      "objective": "Inspect safe privileged-action history",
+      "data": "Inspect safe privileged-action history",
+      "operations": [
+        "administration_get_orgs_organization_id_memberships",
+        "administration_post_orgs_organization_id_invitations",
+        "administration_put_orgs_organization_id_memberships_membership_id_roles",
+        "administration_post_orgs_organization_id_memberships_membership_id_status",
+        "administration_get_orgs_organization_id_audit_logs",
+        "administration_get_orgs_organization_id_integrations",
+        "administration_put_orgs_organization_id_integrations"
+      ],
+      "offline": "Current data and mutations require connection; never silently display cached values as fresh."
+    }
+  ]
+}

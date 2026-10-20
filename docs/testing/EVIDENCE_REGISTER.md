@@ -23,6 +23,10 @@ Future physical targets remain aspirations: GUARD-5 ≥90% event recognition / �
 
 Imported historical artifacts must be inspected, licensed and linked before reproduction claims. New results must retain failures, excluded/unresolved cases, provenance and full evaluation settings. Do not rewrite historic claims as tests this repository passed.
 
+## M02 design evidence
+
+M02 adds DOCUMENTED software architecture, 57-table design (56 original plus the reviewed global project-contact inbox), OpenAPI contracts, role/page specifications and future test plans. Contract/documentation checks are CODE-TESTED tooling only; no endpoint, migration, scientific engine or physical trial executed. M02 design was owner-approved and PR#11 merged; this establishes design acceptance only.
+
 ## M05 software evidence — issue #5
 
-Three simulation engines executed in a separate branch from main7590a65. See [M05 report](M05_SIMULATION_EVIDENCE_REPORT.md) and simulations/evaluation/reference_summary.json for complete denominators and unfavorable outcomes.38 numerical tests passed;8 PNG/SVG figures generated and inspected; repeated PPT numerical outputs matched. This establishes CODE-TESTED software and SIMULATED model results only. Physical collector behavior, passive leak audibility, field reliability and savings remain UNKNOWN/UNESTABLISHED. M05 merge/publication approval is separate; no later milestone begins automatically.
+Three simulation engines executed in a separate branch from main7590a65. See [M05 report](M05_SIMULATION_EVIDENCE_REPORT.md) and simulations/evaluation/reference_summary.json for complete denominators and unfavorable outcomes.38 numerical tests passed;8 PNG/SVG figures generated and inspected; repeated PPT numerical outputs matched. This establishes CODE-TESTED software and SIMULATED model results only. Physical collector behavior, passive leak audibility, field reliability and savings remain UNKNOWN/UNESTABLISHED. M05 was owner-approved as simulation-only evidence for integration, conditional on unchanged methodology/results and combined CI. No later milestone begins automatically.

@@ -20,6 +20,16 @@ jobs:
           persist-credentials: false
       - name: Validate foundation
         run: python3 scripts/check_repository.py
+      - name: Validate M02 design contracts
+        run: python3 scripts/check_m02_design.py
+      - name: Test design checker regression examples
+        run: python3 scripts/test_m02_design_checker.py -v
+      - name: Independently validate OpenAPI 3.1 in isolated environment
+        run: |
+          python3 -m venv "$RUNNER_TEMP/openapi-review"
+          "$RUNNER_TEMP/openapi-review/bin/python" -m pip install --disable-pip-version-check --only-binary=:all: -r scripts/openapi-validation-requirements.txt
+          "$RUNNER_TEMP/openapi-review/bin/python" -m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json
+          "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_openapi_design.py
       - name: Validate scientific simulations
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
@@ -29,4 +39,4 @@ jobs:
           "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m05.py -q
           "$RUNNER_TEMP/m05/bin/python" -m simulations.run_all --profile smoke
       - name: Check whitespace
-        run: git diff-tree --check --root HEAD
+        run: git diff-tree --check --root -m HEAD

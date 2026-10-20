@@ -1,0 +1,2658 @@
+{
+  "status": "DESIGN_ONLY",
+  "operations": [
+    {
+      "id": "authentication_get_auth_csrf",
+      "group": "Authentication",
+      "method": "get",
+      "path": "/auth/csrf",
+      "request": null,
+      "response": "Csrf",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Create/refresh bounded preauth session and synchronizer CSRF verifier; no business mutation.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_register",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/register",
+      "request": "Register",
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Normalize email; transactionally create unverified identity and CITIZEN membership only for enabled utility. Duplicate registration returns generic Message without changing an existing password, identity or grants. Coalesce verification delivery under account/IP limits; no authenticated session issued.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_login",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/login",
+      "request": "Login",
+      "response": "UserView",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Validate current credentials and rate limits on every attempt. Revoke prior presented preauth/authenticated session and rotate session plus CSRF. Never cache or reissue Set-Cookie or a previously issued secret. A lost reply requires fresh CSRF bootstrap and credential validation; any unreachable session expires normally. Revocation is monotonic. Serialize session issuance with password reset/account suspension; recheck current credential version and user state at commit so in-flight old-password login cannot survive reset.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_recovery",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/recovery",
+      "request": "Recovery",
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Generic Message whether account exists or not. Coalesce delivery during cooldown; rate-limit IP and normalized account, never return or retrieve an existing token. Outside cooldown a new bounded token invalidates prior unused reset tokens. Store only token verifier; no authenticated session issued.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_reset",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/reset",
+      "request": "Reset",
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Atomically consume unexpired purpose-bound token once, update password hash and revoke all authenticated sessions. No automatic login. Consumed/expired/invalid token returns uniform 422, including after a lost successful reply; retry by login or new recovery, never cached success or secret.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_verify",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/verify",
+      "request": "TokenAction",
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session",
+      "effects": "Atomically consume purpose-bound email token once and activate only the pending verified identity/allowed citizen membership. No authenticated session or new role grant. Consumed/expired/invalid token returns uniform 422; check account status through login or request bounded support recovery after lost reply.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_invitation_accept",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/invitation-accept",
+      "request": "TokenAction",
+      "response": "Message",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "verified global identity + invited email; server-bound tenant/role",
+      "effects": "Require authenticated verified global identity (active tenant membership not required), exact invited normalized email and server-held organization/role. Atomically consume one-use invitation and apply exact allowed grant; never grant evaluator implicitly. Replayed/expired/invalid token returns uniform 422. After a lost reply query /me/memberships; no cached grant or token response.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "authentication_post_auth_logout",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/logout",
+      "request": null,
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "presented session cleanup only; no active membership required",
+      "effects": "CSRF-protected monotonic revocation; clear cookie and request local-vault purge. Active/preauth or recognized revoked/expired verifier may authorize only this cleanup, never business access. Repeated cleanup succeeds without issuing a session. After cookie clearing bootstrap fresh preauth CSRF for another cleanup; unrecognized cookie fails authentication.",
+      "table": null,
+      "list": false,
+      "permission": "authentication.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "AUTH_NO_CACHE",
+      "authorization_guards": []
+    },
+    {
+      "id": "current_user_get_me",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me",
+      "request": null,
+      "response": "UserView",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self",
+      "effects": "Read identity only.",
+      "table": null,
+      "list": false,
+      "permission": "current_user.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "current_user_patch_me",
+      "group": "Current user",
+      "method": "patch",
+      "path": "/me",
+      "request": "ProfilePatch",
+      "response": "UserView",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self",
+      "effects": "Update display name; audit safe identity change.",
+      "table": null,
+      "list": false,
+      "permission": "current_user.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "GLOBAL_FINAL_STATE",
+      "authorization_guards": []
+    },
+    {
+      "id": "current_user_get_me_memberships",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me/memberships",
+      "request": null,
+      "response": "MembershipView",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self",
+      "effects": "Read active memberships; no other user directory.",
+      "table": null,
+      "list": true,
+      "permission": "current_user.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "current_user_get_me_sessions",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me/sessions",
+      "request": null,
+      "response": "SessionView",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self",
+      "effects": "List own sessions without token verifiers.",
+      "table": null,
+      "list": true,
+      "permission": "current_user.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "current_user_delete_me_sessions_session_id",
+      "group": "Current user",
+      "method": "delete",
+      "path": "/me/sessions/{session_id}",
+      "request": null,
+      "response": "Message",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self",
+      "effects": "Revoke owned session immediately.",
+      "table": null,
+      "list": false,
+      "permission": "current_user.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "GLOBAL_FINAL_STATE",
+      "authorization_guards": []
+    },
+    {
+      "id": "public_get_public_utilities_slug",
+      "group": "Public",
+      "method": "get",
+      "path": "/public/utilities/{slug}",
+      "request": null,
+      "response": "PublicUtility",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "public allowlist",
+      "effects": "Read enabled utility public metadata only.",
+      "table": null,
+      "list": false,
+      "permission": "public.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "public_get_public_project_status",
+      "group": "Public",
+      "method": "get",
+      "path": "/public/project-status",
+      "request": null,
+      "response": "ProjectStatus",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "public allowlist",
+      "effects": "Read editorial evidence status, no field metrics invented.",
+      "table": null,
+      "list": false,
+      "permission": "public.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": []
+    },
+    {
+      "id": "public_post_public_contact",
+      "group": "Public",
+      "method": "post",
+      "path": "/public/contact",
+      "request": "ContactWrite",
+      "response": "Message",
+      "roles": [
+        "PUBLIC"
+      ],
+      "scope": "preauth/session + fixed private project inbox; no tenant selection",
+      "effects": "Insert project_contact_submissions in fixed server-owned HYDROOVERITY project inbox; no organization/member mapping, caller-selected owner or public retrieval. Generic 202 after bounded intake; no automatic reply.",
+      "table": "project_contact_submissions",
+      "list": false,
+      "permission": "public.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "PROJECT_CONTACT",
+      "authorization_guards": []
+    },
+    {
+      "id": "organization_get_orgs_organization_id",
+      "group": "Organization",
+      "method": "get",
+      "path": "/orgs/{organization_id}",
+      "request": null,
+      "response": "OrganizationView",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "active membership",
+      "effects": "Read permitted organization summary.",
+      "table": null,
+      "list": false,
+      "permission": "organization.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "organization_patch_orgs_organization_id",
+      "group": "Organization",
+      "method": "patch",
+      "path": "/orgs/{organization_id}",
+      "request": "OrganizationPatch",
+      "response": "OrganizationView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Update approved settings/retention policy; audit, no cloud provisioning.",
+      "table": null,
+      "list": false,
+      "permission": "organization.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_zones",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/zones",
+      "request": null,
+      "response": "ZoneView",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read internal graph/asset list.",
+      "table": "water_zones",
+      "list": true,
+      "permission": "water_zones.read",
+      "filters": [
+        "zone_id",
+        "bbox"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "water_zones_post_orgs_organization_id_zones",
+      "group": "Water zones",
+      "method": "post",
+      "path": "/orgs/{organization_id}/zones",
+      "request": "ZoneWrite",
+      "response": "ZoneView",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Validate topology/units, insert asset and audit; no physical installation implied.",
+      "table": null,
+      "list": false,
+      "permission": "water_zones.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_zones_resource_id",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/zones/{resource_id}",
+      "request": null,
+      "response": "ZoneView",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read asset or uniform not-found.",
+      "table": null,
+      "list": false,
+      "permission": "water_zones.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "water_zones_patch_orgs_organization_id_zones_resource_id",
+      "group": "Water zones",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/zones/{resource_id}",
+      "request": "ZoneWrite",
+      "response": "ZoneView",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
+      "table": null,
+      "list": false,
+      "permission": "water_zones.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_junctions",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/junctions",
+      "request": null,
+      "response": "Junction",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read internal graph/asset list.",
+      "table": "network_junctions",
+      "list": true,
+      "permission": "pipeline_assets.read",
+      "filters": [
+        "zone_id",
+        "bbox"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_junctions",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/junctions",
+      "request": "JunctionWrite",
+      "response": "Junction",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Validate topology/units, insert asset and audit; no physical installation implied.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_junctions_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/junctions/{resource_id}",
+      "request": null,
+      "response": "Junction",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read asset or uniform not-found.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_junctions_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/junctions/{resource_id}",
+      "request": "JunctionWrite",
+      "response": "Junction",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_pipes",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/pipes",
+      "request": null,
+      "response": "Pipe",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read internal graph/asset list.",
+      "table": "pipe_segments",
+      "list": true,
+      "permission": "pipeline_assets.read",
+      "filters": [
+        "zone_id",
+        "bbox"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_pipes",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/pipes",
+      "request": "PipeWrite",
+      "response": "Pipe",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Validate topology/units, insert asset and audit; no physical installation implied.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_pipes_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/pipes/{resource_id}",
+      "request": null,
+      "response": "Pipe",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read asset or uniform not-found.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_pipes_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/pipes/{resource_id}",
+      "request": "PipeWrite",
+      "response": "Pipe",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_access_points",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/access-points",
+      "request": null,
+      "response": "AccessPoint",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read internal graph/asset list.",
+      "table": "pipe_access_points",
+      "list": true,
+      "permission": "pipeline_assets.read",
+      "filters": [
+        "zone_id",
+        "bbox"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_access_points",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/access-points",
+      "request": "AccessPointWrite",
+      "response": "AccessPoint",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Validate topology/units, insert asset and audit; no physical installation implied.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_access_points_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/access-points/{resource_id}",
+      "request": null,
+      "response": "AccessPoint",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read asset or uniform not-found.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_access_points_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/access-points/{resource_id}",
+      "request": "AccessPointWrite",
+      "response": "AccessPoint",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_coverage",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/coverage",
+      "request": null,
+      "response": "Coverage",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Derive instrumented/eligible coverage and explicit gaps.",
+      "table": null,
+      "list": false,
+      "permission": "pipeline_assets.read",
+      "filters": [
+        "zone_id"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_supply_windows",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/supply-windows",
+      "request": null,
+      "response": "SupplyWindow",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read observed supply history with reasons.",
+      "table": null,
+      "list": true,
+      "permission": "water_zones.read",
+      "filters": [
+        "zone_id",
+        "from_time",
+        "to_time"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices",
+      "request": null,
+      "response": "Device",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR",
+        "ADMIN"
+      ],
+      "scope": "tenant",
+      "effects": "Read permitted device identity/health, not raw telemetry.",
+      "table": null,
+      "list": true,
+      "permission": "devices.read",
+      "filters": [
+        "health",
+        "environment"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices",
+      "request": "DeviceWrite",
+      "response": "Device",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Register reviewed device identity; cannot bypass future physical provisioning gate.",
+      "table": null,
+      "list": false,
+      "permission": "devices.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}",
+      "request": null,
+      "response": "Device",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR",
+        "ADMIN"
+      ],
+      "scope": "tenant",
+      "effects": "Read device metadata.",
+      "table": null,
+      "list": false,
+      "permission": "devices.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id_channels",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/channels",
+      "request": null,
+      "response": "Channel",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read independently identified channels.",
+      "table": null,
+      "list": true,
+      "permission": "devices.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id_configurations",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/configurations",
+      "request": null,
+      "response": "ConfigurationView",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read immutable acquisition configurations.",
+      "table": null,
+      "list": true,
+      "permission": "devices.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_configurations",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/configurations",
+      "request": "DeviceConfigurationWrite",
+      "response": "ConfigurationView",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Append reviewed config; enforce five collar identities and acquisition-clock conditions.",
+      "table": null,
+      "list": false,
+      "permission": "devices.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_installations",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/installations",
+      "request": "InstallationWrite",
+      "response": "Receipt",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Record declared installation metadata; not proof of actual hardware trial.",
+      "table": null,
+      "list": false,
+      "permission": "devices.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_credentials",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/credentials",
+      "request": "CredentialIssue",
+      "response": "CredentialView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Issue one-time scoped credential matching device profile; audit without secret.",
+      "table": null,
+      "list": false,
+      "permission": "devices.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id",
+      "group": "Devices",
+      "method": "delete",
+      "path": "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}",
+      "request": null,
+      "response": "Message",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Revoke only same-device credential and audit.",
+      "table": null,
+      "list": false,
+      "permission": "devices.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_devices_device_id_health_events",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/health-events",
+      "request": null,
+      "response": "HealthEvent",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read health evidence; do not infer dry/disconnected without supervision.",
+      "table": null,
+      "list": true,
+      "permission": "diagnostics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_devices_device_id_calibrations",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/calibrations",
+      "request": null,
+      "response": "Calibration",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read calibration history.",
+      "table": null,
+      "list": true,
+      "permission": "diagnostics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "diagnostics_post_orgs_organization_id_devices_device_id_calibrations",
+      "group": "Diagnostics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/calibrations",
+      "request": "CalibrationWrite",
+      "response": "Calibration",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Append actual/calibration design record with explicit validity/provenance; no default successful calibration.",
+      "table": null,
+      "list": false,
+      "permission": "diagnostics.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_collars_device_id_service_tests",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/collars/{device_id}/service-tests",
+      "request": null,
+      "response": "ServiceTest",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read external challenge receipts, channel response and limitations.",
+      "table": null,
+      "list": true,
+      "permission": "diagnostics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "diagnostics_post_orgs_organization_id_collars_device_id_service_tests",
+      "group": "Diagnostics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/collars/{device_id}/service-tests",
+      "request": "ServiceTestWrite",
+      "response": "ServiceTest",
+      "roles": [
+        "TECHNICIAN"
+      ],
+      "scope": "assigned work order + matching device",
+      "effects": "Append assigned technician manual service receipt; no injection into pipeline.",
+      "table": null,
+      "list": false,
+      "permission": "diagnostics.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "observations_get_orgs_organization_id_observations",
+      "group": "Observations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/observations",
+      "request": null,
+      "response": "Observation",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read provenance-preserving limited observations; never truth.",
+      "table": null,
+      "list": true,
+      "permission": "observations.read",
+      "filters": [
+        "channel_id",
+        "from_time",
+        "to_time",
+        "workspace_mode",
+        "environment",
+        "run_id"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "observations_get_orgs_organization_id_observations_observation_id",
+      "group": "Observations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/observations/{observation_id}",
+      "request": null,
+      "response": "Observation",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read one qualified source receipt.",
+      "table": null,
+      "list": false,
+      "permission": "observations.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "observations_post_orgs_organization_id_manual_observations",
+      "group": "Observations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/manual-observations",
+      "request": "ManualObservationWrite",
+      "response": "Observation",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Append MANUAL/MANUAL observation; cannot manufacture calibrated field sensor data.",
+      "table": null,
+      "list": false,
+      "permission": "observations.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "ingestion_post_ingest_hardware_observations",
+      "group": "Ingestion",
+      "method": "post",
+      "path": "/ingest/hardware/observations",
+      "request": "ObservationBatch",
+      "response": "BatchReceipt",
+      "roles": [
+        "DEVICE"
+      ],
+      "scope": "credential-bound organization/device/environment",
+      "effects": "Atomically deduplicate hardware events; server assigns LABORATORY/FIELD profile.",
+      "table": null,
+      "list": false,
+      "permission": "ingestion.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": []
+    },
+    {
+      "id": "ingestion_post_ingest_simulation_observations",
+      "group": "Ingestion",
+      "method": "post",
+      "path": "/ingest/simulation/observations",
+      "request": "SimulationObservationBatch",
+      "response": "BatchReceipt",
+      "roles": [
+        "SIMULATOR"
+      ],
+      "scope": "credential-bound tenant + active run lease",
+      "effects": "Atomically append SIMULATION-only output, verify run and virtual channels.",
+      "table": null,
+      "list": false,
+      "permission": "ingestion.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": []
+    },
+    {
+      "id": "evidence_get_orgs_organization_id_evidence_assessments",
+      "group": "Evidence",
+      "method": "get",
+      "path": "/orgs/{organization_id}/evidence-assessments",
+      "request": null,
+      "response": "Evidence",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read explanations with immutable source links.",
+      "table": null,
+      "list": true,
+      "permission": "evidence.read",
+      "filters": [
+        "workspace_mode",
+        "incident_id"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "evidence_get_orgs_organization_id_evidence_assessments_assessment_id",
+      "group": "Evidence",
+      "method": "get",
+      "path": "/orgs/{organization_id}/evidence-assessments/{assessment_id}",
+      "request": null,
+      "response": "Evidence",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read assessment reasons, alternatives and source IDs.",
+      "table": null,
+      "list": false,
+      "permission": "evidence.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "evidence_post_orgs_organization_id_evidence_assessments",
+      "group": "Evidence",
+      "method": "post",
+      "path": "/orgs/{organization_id}/evidence-assessments",
+      "request": "AssessmentWrite",
+      "response": "Evidence",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Append reviewed interpretation, preserve competing explanations.",
+      "table": null,
+      "list": false,
+      "permission": "evidence.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures",
+      "request": null,
+      "response": "AcousticCapture",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read capture metadata, not waveform on live stream.",
+      "table": null,
+      "list": true,
+      "permission": "acoustics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_post_orgs_organization_id_acoustic_captures",
+      "group": "Acoustics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/acoustic-captures",
+      "request": "CaptureWrite",
+      "response": "AcousticCapture",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + provenance-bound artifact",
+      "effects": "Validate authorized artifact and endpoint/clock metadata; do not relabel source environment.",
+      "table": null,
+      "list": false,
+      "permission": "acoustics.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures_capture_id",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}",
+      "request": null,
+      "response": "AcousticCapture",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read capture and signal-quality metadata.",
+      "table": null,
+      "list": false,
+      "permission": "acoustics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_post_orgs_organization_id_acoustic_captures_capture_id_estimates",
+      "group": "Acoustics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}/estimates",
+      "request": "EstimateRequest",
+      "response": "Receipt",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Queue bounded future analysis; no analysis implementation in M02.",
+      "table": null,
+      "list": false,
+      "permission": "acoustics.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures_capture_id_estimates",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}/estimates",
+      "request": null,
+      "response": "AcousticEstimate",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read baseline/qualified interval or abstention results.",
+      "table": null,
+      "list": true,
+      "permission": "acoustics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_artifacts_artifact_id_download",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/artifacts/{artifact_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + nontruth artifact ACL",
+      "effects": "Authorized bounded/range raw artifact download; no public URL or truth namespace.",
+      "table": null,
+      "list": false,
+      "permission": "acoustics.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "ARTIFACT_CLASS_NONTRUTH",
+        "ARTIFACT_PARENT_ACL"
+      ]
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents",
+      "request": null,
+      "response": "Incident",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "List concerns separate from evidence confidence.",
+      "table": null,
+      "list": true,
+      "permission": "incidents.read",
+      "filters": [
+        "status",
+        "severity",
+        "zone_id",
+        "workspace_mode"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents",
+      "request": "IncidentWrite",
+      "response": "Incident",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Create concern with same-mode evidence links and NEW event.",
+      "table": null,
+      "list": false,
+      "permission": "incidents.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents_incident_id",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}",
+      "request": null,
+      "response": "Incident",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read concern and allowed operational state.",
+      "table": null,
+      "list": false,
+      "permission": "incidents.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+      "request": null,
+      "response": "TimelineEvent",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Read immutable source/status/assignment history.",
+      "table": null,
+      "list": true,
+      "permission": "incidents.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+      "request": "IncidentTransition",
+      "response": "Incident",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Validate state guard; append event/audit/outbox in one transaction.",
+      "table": null,
+      "list": false,
+      "permission": "incidents.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+      "request": "IncidentLinkWrite",
+      "response": "Receipt",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Link duplicates/related concerns with provenance; no history deletion.",
+      "table": null,
+      "list": false,
+      "permission": "incidents.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders",
+      "request": null,
+      "response": "WorkOrder",
+      "roles": [
+        "SUPERVISOR",
+        "ENGINEER",
+        "TECHNICIAN"
+      ],
+      "scope": "tenant; TECHNICIAN assigned only",
+      "effects": "Read task board, not scientific verification.",
+      "table": null,
+      "list": true,
+      "permission": "work_orders.read",
+      "filters": [
+        "status",
+        "assignee_id",
+        "due_before",
+        "workspace_mode"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders",
+      "request": "WorkOrderWrite",
+      "response": "WorkOrder",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant",
+      "effects": "Create task for accepted concern; no automatic verified leak status.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}",
+      "request": null,
+      "response": "WorkOrder",
+      "roles": [
+        "SUPERVISOR",
+        "ENGINEER",
+        "TECHNICIAN"
+      ],
+      "scope": "tenant; TECHNICIAN assigned only",
+      "effects": "Read task.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/brief",
+      "request": null,
+      "response": "WorkerBrief",
+      "roles": [
+        "TECHNICIAN"
+      ],
+      "scope": "current assigned membership",
+      "effects": "Issue minimal safe task cache and 12-hour offline lease.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/assignment",
+      "request": "AssignmentWrite",
+      "response": "WorkOrder",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Assign active technician, increment assignment_version, notify/deduplicate.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/actions",
+      "request": "WorkerAction",
+      "response": "Receipt",
+      "roles": [
+        "TECHNICIAN"
+      ],
+      "scope": "assigned + version/assignment checks",
+      "effects": "Append offline-compatible note/material/photo references, operation ID deduplication.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
+      "request": "WorkTransition",
+      "response": "WorkOrder",
+      "roles": [
+        "SUPERVISOR",
+        "TECHNICIAN"
+      ],
+      "scope": "tenant; worker assigned + permitted edge",
+      "effects": "Apply authorized transition; only supervisor completes/cancels; never scientific PASSED.",
+      "table": null,
+      "list": false,
+      "permission": "work_orders.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "repairs_post_orgs_organization_id_work_orders_work_order_id_repairs",
+      "group": "Repairs",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+      "request": "RepairWrite",
+      "response": "Repair",
+      "roles": [
+        "TECHNICIAN"
+      ],
+      "scope": "assigned + If-Match",
+      "effects": "Append manual repair receipt and immutable evidence; no claimed success.",
+      "table": null,
+      "list": false,
+      "permission": "repairs.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "repairs_get_orgs_organization_id_work_orders_work_order_id_repairs",
+      "group": "Repairs",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+      "request": null,
+      "response": "Repair",
+      "roles": [
+        "SUPERVISOR",
+        "ENGINEER",
+        "TECHNICIAN"
+      ],
+      "scope": "tenant; worker assigned only",
+      "effects": "Read repair records.",
+      "table": null,
+      "list": true,
+      "permission": "repairs.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "verification_post_orgs_organization_id_repairs_repair_id_verifications",
+      "group": "Verification",
+      "method": "post",
+      "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+      "request": "VerificationWrite",
+      "response": "Verification",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + If-Match + comparable evidence",
+      "effects": "Record explicit PASSED/FAILED/NOT_VERIFIABLE; require engineer review for technical comparability uncertainty.",
+      "table": null,
+      "list": false,
+      "permission": "verification.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "verification_get_orgs_organization_id_repairs_repair_id_verifications",
+      "group": "Verification",
+      "method": "get",
+      "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+      "request": null,
+      "response": "Verification",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR",
+        "TECHNICIAN"
+      ],
+      "scope": "tenant; worker assigned parent only",
+      "effects": "Read verification outcomes, independent of completed task.",
+      "table": null,
+      "list": true,
+      "permission": "verification.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "TECHNICIAN_ASSIGNED"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints",
+      "request": "ComplaintWrite",
+      "response": "CitizenComplaint",
+      "roles": [
+        "CITIZEN"
+      ],
+      "scope": "self in enabled reporting tenant",
+      "effects": "Create own report/tracking number with validated consent and safe updates.",
+      "table": null,
+      "list": false,
+      "permission": "complaints.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "CITIZEN_OWNED"
+      ]
+    },
+    {
+      "id": "complaints_get_orgs_organization_id_complaints",
+      "group": "Complaints",
+      "method": "get",
+      "path": "/orgs/{organization_id}/complaints",
+      "request": null,
+      "response": "CitizenComplaint",
+      "roles": [
+        "CITIZEN",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant; citizen owned only",
+      "effects": "Read citizen-safe projection even for supervisor; private review is separate.",
+      "table": null,
+      "list": true,
+      "permission": "complaints.read",
+      "filters": [
+        "status"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "CITIZEN_OWNED"
+      ]
+    },
+    {
+      "id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+      "group": "Complaints",
+      "method": "get",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+      "request": null,
+      "response": "CitizenComplaint",
+      "roles": [
+        "CITIZEN",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant; citizen owned only",
+      "effects": "Return own report; guessed IDs return uniform 404.",
+      "table": null,
+      "list": false,
+      "permission": "complaints.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "CITIZEN_OWNED"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+      "request": "ComplaintFollowup",
+      "response": "Receipt",
+      "roles": [
+        "CITIZEN"
+      ],
+      "scope": "owned complaint + If-Match",
+      "effects": "Append own followup; no internal notes disclosed.",
+      "table": null,
+      "list": false,
+      "permission": "complaints.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT",
+        "CITIZEN_OWNED"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+      "request": "ComplaintReview",
+      "response": "Receipt",
+      "roles": [
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Write public-safe status event and optional internal incident link; do not confirm leak automatically.",
+      "table": null,
+      "list": false,
+      "permission": "complaints.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "feedback_post_orgs_organization_id_feedback",
+      "group": "Feedback",
+      "method": "post",
+      "path": "/orgs/{organization_id}/feedback",
+      "request": "FeedbackWrite",
+      "response": "Feedback",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "tenant; citizen owns complaint if linked",
+      "effects": "Create feedback; safe acknowledgment.",
+      "table": null,
+      "list": false,
+      "permission": "feedback.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "feedback_get_orgs_organization_id_feedback",
+      "group": "Feedback",
+      "method": "get",
+      "path": "/orgs/{organization_id}/feedback",
+      "request": null,
+      "response": "Feedback",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "tenant; citizen own only; internal staff per role",
+      "effects": "List own or permitted internal feedback.",
+      "table": null,
+      "list": true,
+      "permission": "feedback.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "feedback_post_orgs_organization_id_feedback_feedback_id_review",
+      "group": "Feedback",
+      "method": "post",
+      "path": "/orgs/{organization_id}/feedback/{feedback_id}/review",
+      "request": "FeedbackReview",
+      "response": "Feedback",
+      "roles": [
+        "SUPERVISOR",
+        "ADMIN"
+      ],
+      "scope": "tenant + If-Match",
+      "effects": "Append triage/resolution and optional existing GitHub issue link; no automatic external message.",
+      "table": null,
+      "list": false,
+      "permission": "feedback.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "uploads_post_orgs_organization_id_attachments",
+      "group": "Uploads",
+      "method": "post",
+      "path": "/orgs/{organization_id}/attachments",
+      "request": "UploadStart",
+      "response": "UploadTicket",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "owned complaint/draft or authorized assigned task",
+      "effects": "Reserve scoped quota/ticket; clean source not yet downloadable.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "uploads_put_orgs_organization_id_attachments_attachment_id_content",
+      "group": "Uploads",
+      "method": "put",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/content",
+      "request": "BINARY",
+      "response": "Attachment",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "ticket owner + target authorization",
+      "effects": "Write bounded private quarantine bytes; content hash and size checked.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "uploads_post_orgs_organization_id_attachments_attachment_id_complete",
+      "group": "Uploads",
+      "method": "post",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/complete",
+      "request": "UploadComplete",
+      "response": "Attachment",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "ticket owner + target authorization",
+      "effects": "Finalize checksum; decode, strip metadata/reencode, quarantine/scan; fail closed.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "uploads_get_orgs_organization_id_attachments_attachment_id",
+      "group": "Uploads",
+      "method": "get",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}",
+      "request": null,
+      "response": "Attachment",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "parent resource ACL + own citizen restriction",
+      "effects": "Read allowed upload processing status.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "CLEAN_ATTACHMENT",
+        "ATTACHMENT_PARENT_ACL"
+      ]
+    },
+    {
+      "id": "uploads_get_orgs_organization_id_attachments_attachment_id_download",
+      "group": "Uploads",
+      "method": "get",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "CLEAN + parent ACL rechecked",
+      "effects": "Serve private safe derivative with nosniff/no-store; originals never served.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "CLEAN_ATTACHMENT",
+        "ATTACHMENT_PARENT_ACL"
+      ]
+    },
+    {
+      "id": "uploads_delete_orgs_organization_id_attachments_attachment_id",
+      "group": "Uploads",
+      "method": "delete",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}",
+      "request": null,
+      "response": "Message",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "owner + evidence-pin/retention check",
+      "effects": "Request permitted erasure/redaction; preserve safe evidence tombstone.",
+      "table": null,
+      "list": false,
+      "permission": "uploads.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_scenarios",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/scenarios",
+      "request": null,
+      "response": "Scenario",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read allowed scenario metadata without source truth.",
+      "table": null,
+      "list": true,
+      "permission": "simulations.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_post_orgs_organization_id_simulations_runs",
+      "group": "Simulations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/simulations/runs",
+      "request": "RunWrite",
+      "response": "SimulationRun",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant + allowed scenario",
+      "effects": "Create QUEUED run/noise seed; generator truth seed sealed separately.",
+      "table": null,
+      "list": false,
+      "permission": "simulations.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs",
+      "request": null,
+      "response": "SimulationRun",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read run status/manifests, not truth.",
+      "table": null,
+      "list": true,
+      "permission": "simulations.read",
+      "filters": [
+        "status"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}",
+      "request": null,
+      "response": "SimulationRun",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read progress/assumptions without restricted truth.",
+      "table": null,
+      "list": false,
+      "permission": "simulations.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_post_orgs_organization_id_simulations_runs_run_id_cancel",
+      "group": "Simulations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/cancel",
+      "request": null,
+      "response": "SimulationRun",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant; creator or simulation control grant",
+      "effects": "Request cancellation; preserve partial results explicitly.",
+      "table": null,
+      "list": false,
+      "permission": "simulations.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id_outputs",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/outputs",
+      "request": null,
+      "response": "RunOutput",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read nontruth outputs/manifests.",
+      "table": null,
+      "list": true,
+      "permission": "simulations.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id_evaluation",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/evaluation",
+      "request": null,
+      "response": "EvaluationResult",
+      "roles": [
+        "ENGINEER+EVALUATOR"
+      ],
+      "scope": "tenant + sealed completed run + audited evaluation grant",
+      "effects": "Separately authorized evaluation, forbidden to detector/ordinary monitoring.",
+      "table": null,
+      "list": false,
+      "permission": "simulations.read",
+      "filters": [],
+      "restricted": true,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT",
+        "ENGINEER_AND_EVALUATOR",
+        "SEALED_TERMINAL_RUN",
+        "AUDITED_TRUTH_ACCESS"
+      ]
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_algorithm_configurations",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/algorithm-configurations",
+      "request": null,
+      "response": "AlgorithmConfiguration",
+      "roles": [
+        "ENGINEER"
+      ],
+      "scope": "tenant",
+      "effects": "Read published immutable scientific method configurations.",
+      "table": null,
+      "list": true,
+      "permission": "simulations.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "notifications_get_orgs_organization_id_notifications",
+      "group": "Notifications",
+      "method": "get",
+      "path": "/orgs/{organization_id}/notifications",
+      "request": null,
+      "response": "Notification",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self membership only",
+      "effects": "Read safe in-app messages.",
+      "table": null,
+      "list": true,
+      "permission": "notifications.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "notifications_post_orgs_organization_id_notifications_notification_id_read",
+      "group": "Notifications",
+      "method": "post",
+      "path": "/orgs/{organization_id}/notifications/{notification_id}/read",
+      "request": null,
+      "response": "Receipt",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "self membership only",
+      "effects": "Idempotently mark owned message read.",
+      "table": null,
+      "list": false,
+      "permission": "notifications.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "reports_post_orgs_organization_id_reports",
+      "group": "Reports",
+      "method": "post",
+      "path": "/orgs/{organization_id}/reports",
+      "request": "ReportWrite",
+      "response": "ReportJob",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "tenant + projection-specific permission",
+      "effects": "Queue scoped CSV/PDF, exclude simulation from operational defaults, preserve provenance.",
+      "table": null,
+      "list": false,
+      "permission": "reports.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "reports_get_orgs_organization_id_reports_report_id",
+      "group": "Reports",
+      "method": "get",
+      "path": "/orgs/{organization_id}/reports/{report_id}",
+      "request": null,
+      "response": "ReportJob",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "creator + current grants",
+      "effects": "Read authorized export status; use simulation_outputs manifest or outbox job metadata, no new warehouse.",
+      "table": null,
+      "list": false,
+      "permission": "reports.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "reports_get_orgs_organization_id_reports_report_id_download",
+      "group": "Reports",
+      "method": "get",
+      "path": "/orgs/{organization_id}/reports/{report_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "roles": [
+        "ENGINEER",
+        "SUPERVISOR"
+      ],
+      "scope": "creator + current grants + not expired",
+      "effects": "Download private time-limited export; neutralize spreadsheet formula injection.",
+      "table": null,
+      "list": false,
+      "permission": "reports.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_get_orgs_organization_id_memberships",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/memberships",
+      "request": null,
+      "response": "MembershipView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh session",
+      "effects": "Read tenant membership directory without credential material.",
+      "table": null,
+      "list": true,
+      "permission": "administration.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_post_orgs_organization_id_invitations",
+      "group": "Administration",
+      "method": "post",
+      "path": "/orgs/{organization_id}/invitations",
+      "request": "InviteWrite",
+      "response": "Receipt",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Create bounded one-use staff invitation; no existing credentials disclosed.",
+      "table": null,
+      "list": false,
+      "permission": "administration.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_put_orgs_organization_id_memberships_membership_id_roles",
+      "group": "Administration",
+      "method": "put",
+      "path": "/orgs/{organization_id}/memberships/{membership_id}/roles",
+      "request": "RoleWrite",
+      "response": "MembershipView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth + last-admin guard",
+      "effects": "Replace allowed primary grants, audit; cannot grant EVALUATOR here.",
+      "table": null,
+      "list": false,
+      "permission": "administration.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_post_orgs_organization_id_memberships_membership_id_status",
+      "group": "Administration",
+      "method": "post",
+      "path": "/orgs/{organization_id}/memberships/{membership_id}/status",
+      "request": "MemberStatusWrite",
+      "response": "MembershipView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth + last-admin guard",
+      "effects": "Suspend/reactivate tenant membership; revoke tenant authorization immediately.",
+      "table": null,
+      "list": false,
+      "permission": "administration.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_get_orgs_organization_id_audit_logs",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/audit-logs",
+      "request": null,
+      "response": "AuditEvent",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + security permission",
+      "effects": "Read safe significant-change audit, no secret/IP dumps.",
+      "table": null,
+      "list": true,
+      "permission": "administration.read",
+      "filters": [
+        "from_time",
+        "to_time",
+        "action"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_get_orgs_organization_id_integrations",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/integrations",
+      "request": null,
+      "response": "IntegrationView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant",
+      "effects": "Read configured status only.",
+      "table": null,
+      "list": true,
+      "permission": "administration.read",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "administration_put_orgs_organization_id_integrations",
+      "group": "Administration",
+      "method": "put",
+      "path": "/orgs/{organization_id}/integrations",
+      "request": "IntegrationWrite",
+      "response": "IntegrationView",
+      "roles": [
+        "ADMIN"
+      ],
+      "scope": "tenant + fresh reauth",
+      "effects": "Change approved configuration references; no provider purchase or secret value in API.",
+      "table": null,
+      "list": false,
+      "permission": "administration.write",
+      "filters": [],
+      "restricted": false,
+      "retry_policy": "TENANT_7_DAY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "realtime_get_orgs_organization_id_events",
+      "group": "Realtime",
+      "method": "get",
+      "path": "/orgs/{organization_id}/events",
+      "request": null,
+      "response": "SSE",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "tenant + per-event current permission",
+      "effects": "Read bounded safe SSE; no implicit access to all tenant events.",
+      "table": null,
+      "list": false,
+      "permission": "realtime.read",
+      "filters": [
+        "workspace_mode"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    },
+    {
+      "id": "realtime_get_orgs_organization_id_events_history",
+      "group": "Realtime",
+      "method": "get",
+      "path": "/orgs/{organization_id}/events/history",
+      "request": null,
+      "response": "EventEnvelope",
+      "roles": [
+        "ALL"
+      ],
+      "scope": "tenant + per-event current permission",
+      "effects": "Poll/recover authorized missed event summaries with opaque cursor.",
+      "table": null,
+      "list": true,
+      "permission": "realtime.read",
+      "filters": [
+        "workspace_mode"
+      ],
+      "restricted": false,
+      "retry_policy": "READ_ONLY",
+      "authorization_guards": [
+        "TENANT"
+      ]
+    }
+  ]
+}

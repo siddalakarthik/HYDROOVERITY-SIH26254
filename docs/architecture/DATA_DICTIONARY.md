@@ -41,3 +41,7 @@ Ground-truth source position/labels must never appear in detector observation pa
 ## Outstanding semantics
 
 Choose canonical NOT_VERIFIABLE versus UNVERIFIABLE terminology; separate evidence, incident and task enums. Define water-sector measurement boundaries, comparability, time aggregation, missing data, uncertainty representation, idempotent event IDs, upload retention and conflict policy before migrations. No accuracy or confidence numeric threshold is invented here.
+
+## M02 detailed design authority
+
+The M01 text above is preserved as the baseline. M02 resolves its software choices in [DATABASE_DESIGN.md](DATABASE_DESIGN.md) and the linked M02 documents; these detailed contracts supersede provisional software statements above, subject to owner PR review. Hardware/scientific unknowns remain deferred. No implementation is claimed.
