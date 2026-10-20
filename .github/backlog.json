@@ -1,0 +1,161 @@
+{
+  "repository": "siddalakarthik/HYDROOVERITY-SIH26254",
+  "labels": [
+    {
+      "name": "frontend",
+      "color": "1d76db",
+      "description": "Web UI and user workflows"
+    },
+    {
+      "name": "backend",
+      "color": "0052cc",
+      "description": "API, persistence and ingestion"
+    },
+    {
+      "name": "simulation",
+      "color": "5319e7",
+      "description": "Reproducible scientific software"
+    },
+    {
+      "name": "hardware",
+      "color": "d4c5f9",
+      "description": "Digital mechanical, electrical and embedded engineering"
+    },
+    {
+      "name": "documentation",
+      "color": "0075ca",
+      "description": "Project, evidence and engineering documentation"
+    },
+    {
+      "name": "bug",
+      "color": "d73a4a",
+      "description": "Reproducible incorrect behavior"
+    },
+    {
+      "name": "enhancement",
+      "color": "a2eeef",
+      "description": "Proposed improvement"
+    },
+    {
+      "name": "security",
+      "color": "b60205",
+      "description": "Security work; never post sensitive disclosure details"
+    },
+    {
+      "name": "testing",
+      "color": "0e8a16",
+      "description": "Executed validation and test infrastructure"
+    },
+    {
+      "name": "blocked",
+      "color": "fbca04",
+      "description": "Dependency or decision prevents progress"
+    }
+  ],
+  "milestones": [
+    {
+      "title": "M01 — GitHub Foundation",
+      "description": "Repository, documentation, workflow checks and issue organization.",
+      "issue_title": "M01 — GitHub Foundation",
+      "issue_body": "Repository, documentation, workflow checks and issue organization.\n\nAcceptance: Required source/docs/paths reviewed; integrity passes; private remote synchronized and CI outcome verified.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "documentation",
+        "testing"
+      ]
+    },
+    {
+      "title": "M02 — Website Architecture",
+      "description": "Design system, role definitions, API contracts and database schema.",
+      "issue_title": "M02 — Website Architecture",
+      "issue_body": "Design system, role definitions, API contracts and database schema.\n\nAcceptance: Approve role/tenant matrix, UX/data/API contracts, security/offline model and compatible stack without silently resolving open choices.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "frontend",
+        "backend",
+        "documentation"
+      ]
+    },
+    {
+      "title": "M03 — Backend Foundation",
+      "description": "Authentication, organization data, pipeline records and incident management.",
+      "issue_title": "M03 — Backend Foundation",
+      "issue_body": "Authentication, organization data, pipeline records and incident management.\n\nAcceptance: Persistent backend with role/tenant deny tests, validation, recovery/session design and audit evidence.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "backend",
+        "security"
+      ]
+    },
+    {
+      "title": "M04 — Frontend Foundation",
+      "description": "Navigation, user-specific dashboards and responsive interface.",
+      "issue_title": "M04 — Frontend Foundation",
+      "issue_body": "Navigation, user-specific dashboards and responsive interface.\n\nAcceptance: Integrated role-aware workflows with real backend, accessible loading/error/empty states and browser checks.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "frontend",
+        "testing"
+      ]
+    },
+    {
+      "title": "M05 — Scientific Simulations",
+      "description": "Hydraulic, acoustic and GUARD-5 simulation engines.",
+      "issue_title": "M05 — Scientific Simulations",
+      "issue_body": "Hydraulic, acoustic and GUARD-5 simulation engines.\n\nAcceptance: Reproducible seeds/configs, hidden truth, holdouts, competent baselines and honest coverage/error metrics.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "simulation",
+        "testing"
+      ]
+    },
+    {
+      "title": "M06 — Simulation Integration",
+      "description": "Connect simulation outputs to the actual backend and monitoring interface.",
+      "issue_title": "M06 — Simulation Integration",
+      "issue_body": "Connect simulation outputs to the actual backend and monitoring interface.\n\nAcceptance: Explicit synthetic ingestion/stream/replay, globally visible simulation mode and truth-leakage deny tests.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "simulation",
+        "backend",
+        "frontend"
+      ]
+    },
+    {
+      "title": "M07 — Maintenance Operations",
+      "description": "Citizen complaints, work orders, repair verification and reporting.",
+      "issue_title": "M07 — Maintenance Operations",
+      "issue_body": "Citizen complaints, work orders, repair verification and reporting.\n\nAcceptance: Tenant-aware complaint-to-repair loop, offline retries, comparable verification/unverifiable outcomes and exports.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "frontend",
+        "backend",
+        "testing"
+      ]
+    },
+    {
+      "title": "M08 — Digital Hardware Engineering",
+      "description": "Mechanical CAD, electronics schematics, firmware and final BOM.",
+      "issue_title": "M08 — Digital Hardware Engineering",
+      "issue_body": "Mechanical CAD, electronics schematics, firmware and final BOM.\n\nAcceptance: Reviewed buildable digital source, clock/channel/fit plans, safety/calibration/power/BOM within cap; untested status retained.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "hardware",
+        "documentation"
+      ]
+    },
+    {
+      "title": "M09 — Full-System Testing",
+      "description": "Security, correctness, simulation validity, performance and workflow verification.",
+      "issue_title": "M09 — Full-System Testing",
+      "issue_body": "Security, correctness, simulation validity, performance and workflow verification.\n\nAcceptance: Executed cross-role/E2E/security/accessibility/scientific checks with reproducible evidence and limitations.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "testing",
+        "security"
+      ]
+    },
+    {
+      "title": "M10 — Final Demonstration",
+      "description": "Professional video, engineering visuals, recorded website demonstration and SIH presentation.",
+      "issue_title": "M10 — Final Demonstration",
+      "issue_body": "Professional video, engineering visuals, recorded website demonstration and SIH presentation.\n\nAcceptance: Labeled 2–3 minute concept animation and genuine software capture, honest evidence ledger and final PPT.\n\nScope is planning only until separately authorized by the owner. Preserve the frozen architecture and explicit evidence provenance. No hardware/field results are implied.",
+      "labels": [
+        "documentation",
+        "frontend",
+        "hardware"
+      ]
+    }
+  ]
+}

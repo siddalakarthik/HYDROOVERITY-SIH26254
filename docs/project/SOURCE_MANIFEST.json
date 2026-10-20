@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "path": "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+      "sha256": "a9f2e8c42f19b151b09cfd5df1f7acfa54ccd2261ae9336b276cd3261140025a",
+      "provenance": "Owner-supplied project specification",
+      "normalization": "Byte-for-byte source copy; Git normalizes CRLF to LF in text blobs",
+      "git_text_sha256": "a9f2e8c42f19b151b09cfd5df1f7acfa54ccd2261ae9336b276cd3261140025a"
+    },
+    {
+      "path": "docs/project/MILESTONE_01_REQUEST.md",
+      "sha256": "d93643a59f1f0a89eb6ba95f2cd0510ecd9ac879d6b637d9906197cf57c9dcd1",
+      "provenance": "Owner-supplied M01 authorization and requirements",
+      "normalization": "Byte-for-byte source copy; Git normalizes CRLF to LF in text blobs",
+      "git_text_sha256": "50c88282447825028cbebb2c5eb53a285da552ae572fc2c2df8328475674830c"
+    }
+  ]
+}

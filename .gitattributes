@@ -1,0 +1,19 @@
+* text=auto eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+.env.example text eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.FCStd binary
+*.step binary
+*.mp4 binary
+# Preserve the owner-supplied Markdown hard breaks in the authoritative source.
+docs/project/HYDROOVERITY_MASTER_CONTEXT.md whitespace=-blank-at-eol
