@@ -32,3 +32,13 @@ Baseline date: 20 October 2026. Record owner-approved changes with rationale, al
 | P-009 | Software/assets license and public-release terms | Explicit owner choice before public release |
 
 No Docker Compose services, database migrations, stack packages or detailed hardware designs are created in M01. Local foundation tooling uses Python standard library only. The new roadmap keeps dependent milestones independently authorized.
+
+## M05 authorized simulation decisions (issue #5)
+
+M05 runs independently from stable main7590a65, without merging M02. Python3.12 isolated environment; WNTR1.4/EPANET2.2 PDA and SI emitter leaks; NumPy/SciPy/Pandas/Matplotlib/pytest only as needed, exact resolved versions locked before benchmark execution. No GPU/framework or deployment.
+
+The sector boundary is IN minus C1+C2+C3 terminal customer meter flows. Customer demand is already included at those outlets and is never subtracted again; no storage in the pressurized model. Controlled source head represents a pump/supply-boundary change, not a measured pump curve. OFF/FILLING/DRAINING are labeled state abstractions, not solved two-phase transients.
+
+Acoustics uses fractional delays on a common sample grid, assumed dispersive/attenuating transfer functions and explicit speed uncertainty; no measured plastic-pipe audibility claim. GUARD-5 uses conserved lumped volumes, uncertain collection/rain-transfer assumptions, separate EXT/BYPASS and honest unknown supervision.
+
+Benchmark thresholds are fixed in simulations/scenarios/benchmark.json before evaluation. Development and holdout truth/observation seeds are disjoint; detector interfaces have no truth or generator seed. Any later algorithm change must change its version/hash and rerun all cases, never silently select favorable holdouts. All results remain SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED.

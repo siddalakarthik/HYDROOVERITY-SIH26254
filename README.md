@@ -10,13 +10,13 @@ HYDROOVERITY proposes affordable, indigenous, evidence-qualified leak detection,
 
 ## Current status
 
-This repository starts with **M01: documentation, organization and repository checks only**. There is no runnable website, backend, simulator, CAD assembly, PCB or firmware implementation here yet. No license has been selected. The repository is intended to remain private until the owner explicitly authorizes release.
+This repository starts with **M01: documentation, organization and repository checks only**. M05 now adds three executable scientific simulation engines, numerical tests and presentation figures; see the M05 evidence report. Website/backend/CAD/PCB/firmware remain future work. No license has been selected. The repository is intended to remain private until the owner explicitly authorizes release.
 
 | Evidence category | Current status |
 | --- | --- |
 | Designed | Functional concept frozen; detailed hardware design and component qualification pending |
-| Implemented in software | Repository-integrity tooling only; application implementation pending |
-| Simulated | Historical results reported by the supplied context; original artifacts not reproduced here |
+| Implemented in software | Repository tooling and three M05 simulation engines; application implementation pending |
+| Simulated | M05 primary synthetic benchmarks executed; historic results remain separately attributed |
 | Physically tested | No physical prototype or trials established; context reports 0 physical trials |
 | Field validated | Context reports 0 field trials |
 
@@ -83,3 +83,5 @@ The validator checks tracked/unignored files, required paths, local documentatio
 M01 GitHub foundation -> M02 website architecture and database design -> M03 backend -> M04 frontend -> M05 scientific simulations -> M06 simulation integration -> M07 maintenance operations -> M08 digital hardware -> M09 system testing -> M10 final demonstration.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md), [SECURITY.md](SECURITY.md), the [documentation index](docs/README.md) and [roadmap](docs/project/ROADMAP.md). Use focused branches and PRs, record decisions, and distinguish executed tests from plans. Follow the [master context](docs/project/HYDROOVERITY_MASTER_CONTEXT.md); its onboarding-only stop instructions are historical and the separate M01 request authorizes this foundation.
+
+[M05 simulation results and reproduction](docs/testing/M05_SIMULATION_EVIDENCE_REPORT.md) include eight presentation figures, accepted/unresolved acoustic coverage and unfavorable collar comparisons.

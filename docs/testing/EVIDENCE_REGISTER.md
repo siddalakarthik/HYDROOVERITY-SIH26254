@@ -22,3 +22,7 @@ Use DOCUMENTED, SIMULATED, CODE-TESTED, HARDWARE-TESTED, FIELD-VALIDATED and UNK
 Future physical targets remain aspirations: GUARD-5 ≥90% event recognition / ≤5% misleading environmental declarations under a declared trial; accepted acoustic ≥80% within 1 m on a qualified approximately 10–15 m physical span with useful coverage and low confident error. No such results exist here.
 
 Imported historical artifacts must be inspected, licensed and linked before reproduction claims. New results must retain failures, excluded/unresolved cases, provenance and full evaluation settings. Do not rewrite historic claims as tests this repository passed.
+
+## M05 software evidence — issue #5
+
+Three simulation engines executed in a separate branch from main7590a65. See [M05 report](M05_SIMULATION_EVIDENCE_REPORT.md) and simulations/evaluation/reference_summary.json for complete denominators and unfavorable outcomes.38 numerical tests passed;8 PNG/SVG figures generated and inspected; repeated PPT numerical outputs matched. This establishes CODE-TESTED software and SIMULATED model results only. Physical collector behavior, passive leak audibility, field reliability and savings remain UNKNOWN/UNESTABLISHED. M05 merge/publication approval is separate; no later milestone begins automatically.

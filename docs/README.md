@@ -19,3 +19,5 @@ The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved pr
 | [THREAT_MODEL](architecture/THREAT_MODEL.md) | Initial assets, trust boundaries and planned controls |
 
 Research source claims in the master context are inherited, not independently reverified in M01. The original submitted six-slide deck and historic source/test packages are not included. Do not claim they were inspected or rerun.
+
+M05: [executed simulation evidence, limitations and reproduction](testing/M05_SIMULATION_EVIDENCE_REPORT.md).

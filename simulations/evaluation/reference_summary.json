@@ -1,0 +1,407 @@
+{
+  "label": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+  "profile": "ppt",
+  "hydraulics": {
+    "fixed": {
+      "n": 96,
+      "tp": 24,
+      "fp": 56,
+      "fn": 8,
+      "tn": 8,
+      "precision": 0.3,
+      "recall": 0.75,
+      "f1": 0.42857142857142855,
+      "median_detected_delay_s": 0.0,
+      "unresolved_fraction_mean": null,
+      "pre_event_alarm_samples": 80,
+      "nonleak_observed_hours": 64,
+      "false_alarm_unit": "Scenario/cycle events, not independent per-sample alarms"
+    },
+    "watch": {
+      "n": 96,
+      "tp": 24,
+      "fp": 8,
+      "fn": 8,
+      "tn": 56,
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1": 0.75,
+      "median_detected_delay_s": 120.0,
+      "unresolved_fraction_mean": 0.2103825136612022,
+      "pre_event_alarm_samples": 0,
+      "nonleak_observed_hours": 64,
+      "false_alarm_unit": "Scenario/cycle events, not independent per-sample alarms"
+    }
+  },
+  "acoustics": {
+    "eligible": 264,
+    "accepted": 190,
+    "unresolved": 74,
+    "coverage": 0.7196969696969697,
+    "coverage_ci95": [
+      0.6626642498943998,
+      0.7704277759284437
+    ],
+    "accepted_median_error_m": 0.0007966093102349525,
+    "accepted_p95_error_m": 0.9285140857917137,
+    "accepted_within_1m": 184,
+    "correct_all_eligible": 0.696969696969697,
+    "correct_all_ci95": [
+      0.6390346879764629,
+      0.7492547144853968
+    ],
+    "confidently_wrong_intervals": 20,
+    "unresolved_error_policy": "No point error imputed: report accepted errors and correct/ALL eligible; unresolved count as not located.",
+    "cc_median_error_m": 0.0007803841003859446,
+    "phat_median_error_m": 0.0014428761391931388
+  },
+  "guard": {
+    "unfavorable": {
+      "pad": {
+        "n": 168,
+        "tp": 84,
+        "fp": 36,
+        "fn": 12,
+        "tn": 36,
+        "precision": 0.7,
+        "recall": 0.875,
+        "f1": 0.7777777777777778
+      },
+      "multizone": {
+        "n": 168,
+        "tp": 84,
+        "fp": 24,
+        "fn": 12,
+        "tn": 48,
+        "precision": 0.7777777777777778,
+        "recall": 0.875,
+        "f1": 0.8235294117647058
+      },
+      "guard5": {
+        "n": 168,
+        "tp": 35,
+        "fp": 12,
+        "fn": 61,
+        "tn": 60,
+        "precision": 0.7446808510638298,
+        "recall": 0.3645833333333333,
+        "f1": 0.48951048951048953
+      },
+      "diagnostics": {
+        "n": 168,
+        "unknown_health_fraction": 1.0,
+        "blockage_true_positive": 3,
+        "blockage_missed": 21,
+        "service_outcomes": {
+          "RESPONSE_OBSERVED": 12,
+          "COLLECTION_OR_SENSOR_UNRESOLVED": 0
+        }
+      }
+    },
+    "nominal": {
+      "pad": {
+        "n": 168,
+        "tp": 84,
+        "fp": 36,
+        "fn": 12,
+        "tn": 36,
+        "precision": 0.7,
+        "recall": 0.875,
+        "f1": 0.7777777777777778
+      },
+      "multizone": {
+        "n": 168,
+        "tp": 84,
+        "fp": 24,
+        "fn": 12,
+        "tn": 48,
+        "precision": 0.7777777777777778,
+        "recall": 0.875,
+        "f1": 0.8235294117647058
+      },
+      "guard5": {
+        "n": 168,
+        "tp": 60,
+        "fp": 12,
+        "fn": 36,
+        "tn": 60,
+        "precision": 0.8333333333333334,
+        "recall": 0.625,
+        "f1": 0.7142857142857143
+      },
+      "diagnostics": {
+        "n": 168,
+        "unknown_health_fraction": 1.0,
+        "blockage_true_positive": 0,
+        "blockage_missed": 24,
+        "service_outcomes": {
+          "RESPONSE_OBSERVED": 12,
+          "COLLECTION_OR_SENSOR_UNRESOLVED": 0
+        }
+      }
+    },
+    "favorable": {
+      "pad": {
+        "n": 168,
+        "tp": 84,
+        "fp": 36,
+        "fn": 12,
+        "tn": 36,
+        "precision": 0.7,
+        "recall": 0.875,
+        "f1": 0.7777777777777778
+      },
+      "multizone": {
+        "n": 168,
+        "tp": 84,
+        "fp": 24,
+        "fn": 12,
+        "tn": 48,
+        "precision": 0.7777777777777778,
+        "recall": 0.875,
+        "f1": 0.8235294117647058
+      },
+      "guard5": {
+        "n": 168,
+        "tp": 60,
+        "fp": 12,
+        "fn": 36,
+        "tn": 60,
+        "precision": 0.8333333333333334,
+        "recall": 0.625,
+        "f1": 0.7142857142857143
+      },
+      "diagnostics": {
+        "n": 168,
+        "unknown_health_fraction": 1.0,
+        "blockage_true_positive": 0,
+        "blockage_missed": 24,
+        "service_outcomes": {
+          "RESPONSE_OBSERVED": 12,
+          "COLLECTION_OR_SENSOR_UNRESOLVED": 0
+        }
+      }
+    }
+  },
+  "solver_failures": 0,
+  "max_hydraulic_balance_error_lpm": 3.0994415283203125e-06,
+  "max_guard_mass_error_ml": 1.7454093725888242e-13,
+  "integrated": [
+    {
+      "case": "comparable_repair",
+      "source": "SIMULATION",
+      "events": [
+        {
+          "time_s": 180,
+          "event": "FILLING state abstraction"
+        },
+        {
+          "time_s": 660,
+          "event": "STEADY"
+        },
+        {
+          "time_s": 900,
+          "event": "Scenario intervention: modeled emitter enabled"
+        },
+        {
+          "time_s": 1200,
+          "event": "UNEXPLAINED_LOSS_SUSPECTED"
+        },
+        {
+          "time_s": 1320,
+          "event": "GUARD-5: LOCAL_SUSPECT"
+        },
+        {
+          "time_s": 1380,
+          "event": "EAR: QUALIFIED_CANDIDATE"
+        },
+        {
+          "time_s": 1500,
+          "event": "SIMULATED incident / investigation"
+        },
+        {
+          "time_s": 2400,
+          "event": "SIMULATED repair intervention"
+        },
+        {
+          "time_s": 3000,
+          "event": "PASSED"
+        }
+      ],
+      "verification": "PASSED",
+      "before_residual_lpm": 4.549776561292769,
+      "after_residual_lpm": -0.04917656995038899,
+      "acoustic": {
+        "outcome": "QUALIFIED_CANDIDATE",
+        "interval_m": [
+          1.2554006297636122,
+          2.346279387203079
+        ],
+        "position_m": 1.8008400084833456,
+        "cc_m": 1.8009058935761706,
+        "phat_m": 1.8016633060205196,
+        "lag_s": 0.03597131890296155,
+        "peak_correlation": 0.9016509179040222,
+        "peak_ratio": 16.37691915255073
+      },
+      "guard5": {
+        "local_suspect": true,
+        "outcome": "LOCAL_SUSPECT",
+        "health": [
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN"
+        ],
+        "blockage_suspected": false,
+        "service": "NOT_PERFORMED"
+      },
+      "integration_limit": "Independent engine scenario outputs joined for demonstration; not a coupled fluid-acoustic model or backend workflow."
+    },
+    {
+      "case": "missing_post_evidence",
+      "source": "SIMULATION",
+      "events": [
+        {
+          "time_s": 180,
+          "event": "FILLING state abstraction"
+        },
+        {
+          "time_s": 660,
+          "event": "STEADY"
+        },
+        {
+          "time_s": 900,
+          "event": "Scenario intervention: modeled emitter enabled"
+        },
+        {
+          "time_s": 1200,
+          "event": "UNEXPLAINED_LOSS_SUSPECTED"
+        },
+        {
+          "time_s": 1320,
+          "event": "GUARD-5: LOCAL_SUSPECT"
+        },
+        {
+          "time_s": 1380,
+          "event": "EAR: QUALIFIED_CANDIDATE"
+        },
+        {
+          "time_s": 1500,
+          "event": "SIMULATED incident / investigation"
+        },
+        {
+          "time_s": 2400,
+          "event": "SIMULATED repair intervention"
+        },
+        {
+          "time_s": 3000,
+          "event": "NOT_VERIFIABLE"
+        }
+      ],
+      "verification": "NOT_VERIFIABLE",
+      "before_residual_lpm": 4.549776561292769,
+      "after_residual_lpm": null,
+      "acoustic": {
+        "outcome": "QUALIFIED_CANDIDATE",
+        "interval_m": [
+          1.2554006297636122,
+          2.346279387203079
+        ],
+        "position_m": 1.8008400084833456,
+        "cc_m": 1.8009058935761706,
+        "phat_m": 1.8016633060205196,
+        "lag_s": 0.03597131890296155,
+        "peak_correlation": 0.9016509179040222,
+        "peak_ratio": 16.37691915255073
+      },
+      "guard5": {
+        "local_suspect": true,
+        "outcome": "LOCAL_SUSPECT",
+        "health": [
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN"
+        ],
+        "blockage_suspected": false,
+        "service": "NOT_PERFORMED"
+      },
+      "integration_limit": "Independent engine scenario outputs joined for demonstration; not a coupled fluid-acoustic model or backend workflow."
+    },
+    {
+      "case": "incomplete_repair",
+      "source": "SIMULATION",
+      "events": [
+        {
+          "time_s": 180,
+          "event": "FILLING state abstraction"
+        },
+        {
+          "time_s": 660,
+          "event": "STEADY"
+        },
+        {
+          "time_s": 900,
+          "event": "Scenario intervention: modeled emitter enabled"
+        },
+        {
+          "time_s": 1200,
+          "event": "UNEXPLAINED_LOSS_SUSPECTED"
+        },
+        {
+          "time_s": 1320,
+          "event": "GUARD-5: LOCAL_SUSPECT"
+        },
+        {
+          "time_s": 1380,
+          "event": "EAR: QUALIFIED_CANDIDATE"
+        },
+        {
+          "time_s": 1500,
+          "event": "SIMULATED incident / investigation"
+        },
+        {
+          "time_s": 2400,
+          "event": "SIMULATED repair intervention"
+        },
+        {
+          "time_s": 3000,
+          "event": "FAILED"
+        }
+      ],
+      "verification": "FAILED",
+      "before_residual_lpm": 4.549776561292769,
+      "after_residual_lpm": 2.6577154435994155,
+      "acoustic": {
+        "outcome": "QUALIFIED_CANDIDATE",
+        "interval_m": [
+          1.2554006297636122,
+          2.346279387203079
+        ],
+        "position_m": 1.8008400084833456,
+        "cc_m": 1.8009058935761706,
+        "phat_m": 1.8016633060205196,
+        "lag_s": 0.03597131890296155,
+        "peak_correlation": 0.9016509179040222,
+        "peak_ratio": 16.37691915255073
+      },
+      "guard5": {
+        "local_suspect": true,
+        "outcome": "LOCAL_SUSPECT",
+        "health": [
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN",
+          "UNKNOWN"
+        ],
+        "blockage_suspected": false,
+        "service": "NOT_PERFORMED"
+      },
+      "integration_limit": "Independent engine scenario outputs joined for demonstration; not a coupled fluid-acoustic model or backend workflow."
+    }
+  ]
+}

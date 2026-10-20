@@ -1,6 +1,6 @@
 # Simulation plan
 
-Status: engines not implemented. All future outputs are software experiments labeled **SIMULATION**. [Master context](../project/HYDROOVERITY_MASTER_CONTEXT.md), section 10, controls scope.
+Status: M05 engines and primary software experiments are implemented/executed; see [M05 evidence](M05_SIMULATION_EVIDENCE_REPORT.md). All outputs are **SIMULATION**, with physical performance unvalidated. [Master context](../project/HYDROOVERITY_MASTER_CONTEXT.md), section 10, controls scope.
 
 ## Engines
 
@@ -28,4 +28,4 @@ Report event precision/recall and false positives/negatives; false alarms per ob
 
 Future physical aspirations only: GUARD-5 recognition ≥90% with ≤5% misleading environmental declarations under a predeclared controlled trial; acoustic accepted locations ≥80% within 1 m on a roughly 10–15 m qualified physical span, with useful coverage and low confident error. These are not M01 acceptance results or guaranteed targets for synthetic generation.
 
-Commit small configs/manifests and reviewed summary tables; raw generated results follow the [artifact policy](../engineering/ARTIFACT_POLICY.md). No experiment results are created in this milestone.
+Commit small configs/manifests and reviewed summary tables; raw generated results follow the [artifact policy](../engineering/ARTIFACT_POLICY.md). M01 created no experiment results. M05 results and their limitations are documented in the linked evidence report.

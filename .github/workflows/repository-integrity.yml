@@ -12,7 +12,7 @@ permissions:
 jobs:
   repository-integrity:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6, official ref resolved during M01
@@ -20,5 +20,13 @@ jobs:
           persist-credentials: false
       - name: Validate foundation
         run: python3 scripts/check_repository.py
+      - name: Validate scientific simulations
+        env:
+          MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
+        run: |
+          python3 -m venv "$RUNNER_TEMP/m05"
+          "$RUNNER_TEMP/m05/bin/python" -m pip install --only-binary=:all: -r simulations/requirements-m05.txt
+          "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m05.py -q
+          "$RUNNER_TEMP/m05/bin/python" -m simulations.run_all --profile smoke
       - name: Check whitespace
         run: git diff-tree --check --root HEAD
