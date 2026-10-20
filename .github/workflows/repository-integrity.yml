@@ -20,5 +20,7 @@ jobs:
           persist-credentials: false
       - name: Validate foundation
         run: python3 scripts/check_repository.py
+      - name: Validate M02 design contracts
+        run: python3 scripts/check_m02_design.py
       - name: Check whitespace
         run: git diff-tree --check --root HEAD

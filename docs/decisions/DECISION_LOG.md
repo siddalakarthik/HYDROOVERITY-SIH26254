@@ -32,3 +32,21 @@ Baseline date: 20 October 2026. Record owner-approved changes with rationale, al
 | P-009 | Software/assets license and public-release terms | Explicit owner choice before public release |
 
 No Docker Compose services, database migrations, stack packages or detailed hardware designs are created in M01. Local foundation tooling uses Python standard library only. The new roadmap keeps dependent milestones independently authorized.
+
+## M02 proposed decisions — issue #2, awaiting owner design review
+
+| ID | Choice and reason | Alternative / consequence |
+| --- | --- | --- |
+| D-013 | Global user + tenant memberships + explicit scoped grants | Per-tenant duplicate identities rejected; no global super-admin UI |
+| D-014 | FastAPI opaque server sessions, same-origin proxy, CSRF | Independent NextAuth/JWT store rejected to avoid competing auth |
+| D-015 | PostgreSQL17/PostGIS3.5 normalized graph and composite tenant FKs; RLS defense in depth | Client filtering rejected; pool/runtime-role complexity must be tested |
+| D-016 | NOT_VERIFIABLE canonical; evidence/incident/task/outcome separate | Closing work never means passed science; M01 terms mapped in state document |
+| D-017 | Credential-derived origin + restricted truth schema/object roles and sealed truth seed | Writable source field/public seed reconstructing truth rejected |
+| D-018 | SSE + bounded durable replay, polling fallback | WebSocket bidirectionality unnecessary initially |
+| D-019 | Minimal encrypted offline assigned-task drafts, current authorization on sync | Full offline GIS and distributed last-write-wins rejected |
+| D-020 | Private quarantined uploads, safe derivatives, per-parent ACL | Public buckets/original image serving rejected |
+| D-021 | Same-origin web/API, one DB and optional leased worker, private objects | Mandatory ingestion/notification microservices rejected |
+| D-022 | OpenAPI3.1 JSON, UUID IDs, typed errors, idempotency/version guards | Duplicate YAML contract and arbitrary status PATCH rejected |
+| D-023 | Role-focused dense accessible light UI, ten structured wireframes | Decorative metrics, fake live data and unlicensed copied assets rejected |
+
+P-001/P-002/P-004 software design choices are now proposed in the linked M02 contracts, awaiting review before M03. P-003 boundary accounting design excludes customer demand already included in measured outflow; actual sector metering remains future configuration. P-005/P-006/P-007/P-008/P-009 remain unresolved for their hardware/science/source/license gates. No physical threshold, sensor model, wave speed, collector performance or detection accuracy was frozen here. Deployment providers/recurring budget, final retention/legal policy, evaluator grant procedure, tile license and exact patched dependency lockfiles need review before their real deployment/implementation use. No actual grants/purchases occur in M02.

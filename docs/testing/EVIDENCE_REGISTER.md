@@ -22,3 +22,7 @@ Use DOCUMENTED, SIMULATED, CODE-TESTED, HARDWARE-TESTED, FIELD-VALIDATED and UNK
 Future physical targets remain aspirations: GUARD-5 ≥90% event recognition / ≤5% misleading environmental declarations under a declared trial; accepted acoustic ≥80% within 1 m on a qualified approximately 10–15 m physical span with useful coverage and low confident error. No such results exist here.
 
 Imported historical artifacts must be inspected, licensed and linked before reproduction claims. New results must retain failures, excluded/unresolved cases, provenance and full evaluation settings. Do not rewrite historic claims as tests this repository passed.
+
+## M02 design evidence
+
+M02 adds DOCUMENTED software architecture, 56-table design, OpenAPI contracts, role/page specifications and future test plans. Contract/documentation checks are CODE-TESTED tooling only; no endpoint, migration, scientific engine or physical trial executed. The M02 PR remains an owner review gate.

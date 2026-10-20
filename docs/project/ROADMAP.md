@@ -15,6 +15,6 @@ The M01 request refines the master context's suggested eight-stage grouping into
 | M09 — Full-System Testing | Security, correctness, simulation validity, performance and workflow verification. | Executed cross-role/E2E/security/accessibility/scientific checks with reproducible evidence and limitations. |
 | M10 — Final Demonstration | Professional video, engineering visuals, recorded website demonstration and SIH presentation. | Labeled 2–3 minute concept animation and genuine software capture, honest evidence ledger and final PPT. |
 
-M01 remains in progress until remote synchronization and validation are verified. Later milestones are planned, not started. M02's complete name is **HYDROOVERITY Website Architecture and Database Design**; its short GitHub title is Website Architecture.
+M01 completed and verified. M02 is authorized for design on its feature branch and awaits owner review through issue #2; no M03 implementation is authorized. Later milestones remain planned. M02's complete name is **HYDROOVERITY Website Architecture and Database Design**; its short GitHub title is Website Architecture.
 
 Create one focused planning issue per milestone, avoiding duplicates. M01 may close only with actual setup evidence; future issue creation does not authorize implementation. Labels identify responsibility. The machine-readable [backlog](../../.github/backlog.json) preserves intended milestone/issue definitions if remote configuration is unavailable. Do not invent due dates, assignees or collaborator permissions.
