@@ -117,6 +117,10 @@ def run(artifacts=False):
     assert observation['additionalProperties'] is False and set(observation['required'])=={'event_id','channel_id','collection_time','unit','value','device_configuration_id','quality'}
     for name in ('hardware/calibration/VALIDATION_PLAN.md','hardware/firmware/INTERFACE_READINESS.md','docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md'):
         assert 'DIGITAL DESIGN / NOT PHYSICALLY VALIDATED' in (ROOT/name).read_text('utf-8')
+    for name in ('hardware/bom/M08_BOM.md','hardware/README.md','hardware/VALIDATION_RESULTS.md','docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md','docs/engineering/HARDWARE_STATUS.md'):
+        content=(ROOT/name).read_text('utf-8')
+        assert f'₹{b["grand_total_inr"]:,}' in content,'document budget drift: '+name
+        assert not any(marker in content for marker in ('\u00c3','\u00c2','\u00e2\u20ac')),'text encoding corruption: '+name
     if artifacts:verify_artifacts()
     return {'bom_inr':b['grand_total_inr'],'headroom_inr':b['headroom_inr'],'schematic_drafts':len(n),'pin_net_connections':len(csvrows),'artifacts_checked':artifacts,'native_erc':'UNAVAILABLE','physical_tests':'NOT PERFORMED'}
 

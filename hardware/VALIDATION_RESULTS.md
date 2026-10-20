@@ -5,9 +5,9 @@ DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. Local execution on 2026-10-20, Window
 | Check | Actual result |
 |---|---|
 | CadQuery 2.8.0 / OpenCascade 7.9.3.1.1 | 25 valid one-solid parts, genuine STEP export/reimport; preserved solid count, volume and bbox within documented numerical tolerance |
-| Part / pipe interference | Zero pairs and zero pressure-pipe/fitting reference intersection above 0.0001mmÃ‚Â³ |
-| Access / opening / drain | ÃƒËœ8 driver envelope clears; sampled half opening clears; independent tube outlet lumens open. No physical motion/flow proof |
-| Electrical / BOM contract checker | 2 ADCs, 8 inputs, 5 distinct wetness paths, GPIO reservations, clock mode, voltage/power arithmetic, 41 unique BOM lines;24m full-loop pipe and2 leak stations, total Ã¢â€šÂ¹59,330 / headroom Ã¢â€šÂ¹670 |
+| Part / pipe interference | Zero pairs and zero pressure-pipe/fitting reference intersection above 0.0001mm³ |
+| Access / opening / drain | Ø8 driver envelope clears; sampled half opening clears; independent tube outlet lumens open. No physical motion/flow proof |
+| Electrical / BOM contract checker | 2 ADCs, 8 inputs, 5 distinct wetness paths, GPIO reservations, clock mode, voltage/power arithmetic, 41 unique BOM lines;24m full-loop pipe and2 leak stations, total ₹59,870 / headroom ₹130 |
 | Four schematic drafts | Structural parser, component counts, labels, exact 371 pin/net ledger and selected converter pin maps agree. Native opening/ERC unavailable |
 | Focused negative tests | 9 passed: baseline and rejection of sixth channel, GPIO collision, bad clock, over-cap cost, pressure overvoltage, unauthorized rig operation, undercounted return line, broken schematic structure |
 | Foundation integrity / limited secret hygiene | Passed; scanned actual tracked/unignored files and local documentation links |
@@ -15,7 +15,7 @@ DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. Local execution on 2026-10-20, Window
 | Independent OpenAPI | openapi-spec-validator0.9.0, jsonschema4.26.0: OpenAPI3.1 and154 component metaschemas pass; tuple positive/negative checks pass |
 | M05 numerical regression | 38 passed. Initial run had8 temp-directory PermissionErrors/30passes; after TEMP/TMP pointed to workspace, all38passed. No simulation source or assertion changed |
 | Approved M05 preservation | Git diff against approved main is empty for simulations, tests/unit/test_m05.py and M05 evidence report |
-| Figures / provenance | Seven2560Ãƒâ€”1440 PNG/SVG plates plus supplementary IÃ‚Â²S timing detail; SHA256 source manifest, visual review and artifact consistency check passed |
+| Figures / provenance | Seven2560×1440 PNG/SVG plates plus supplementary I²S timing detail; SHA256 source manifest, visual review and artifact consistency check passed |
 | Whitespace | git diff --check passed before publication |
 
 Unavailable / not performed: FreeCAD-native validation, native KiCad open/ERC, PCB checks, real firmware build/capture, print fit/retention/strength, pressure safety and all physical/field performance experiments. Some exact protection parts/module details are explicitly unselected. These are approval gates, not passed tests. No failed physical trial has been concealed because no such trial occurred.

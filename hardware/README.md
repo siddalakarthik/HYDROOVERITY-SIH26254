@@ -10,9 +10,9 @@ Status: M08 digital package prepared for review; physical trials 0, field trials
 | `mechanical-cad/` | Editable collar/rig CAD and drawings; exports separate. |
 | `electronics/` | Editable KiCad schematics/PCB; exports separate. |
 | `firmware/` | Future buildable ESP32 device source, pin/protocol and simulation/HIL plans. |
-| `bom/` | Estimated materials and later supplier/quotation ledger; â‚¹60,000 cap. |
+| `bom/` | Estimated materials and later supplier/quotation ledger; ₹60,000 cap. |
 | `calibration/` | Future measurement/probe/acoustic calibration and service procedures. |
 
 Follow [AGENTS.md](../AGENTS.md) and the [documentation index](../docs/README.md) before development.
 
-M08 supplies editable [parametric CAD](mechanical-cad/guard5.py), [mechanical parameters](guard5-collar/envelope.json), four generated [schematic drafts and netlists](electronics/netlist.json), [pin/clock map](electronics/interfaces.json), [firmware readiness](firmware/INTERFACE_READINESS.md), [calibration plan](calibration/VALIDATION_PLAN.md), [rig layout](mechanical-cad/rig_layout.json), [itemized BOM](bom/M08_BOM.md), and [seven-figure renderer](render_m08.py). All are DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. No executable firmware, PCB fabrication release, physical build or purchase. Revised â‚¹59,330 materials estimate includes â‚¹5,000 reserve; no prices are vendor-verified. Native KiCad opening/ERC, exact protection/module details and physical fit/performance remain gates.
+M08 supplies editable [parametric CAD](mechanical-cad/guard5.py), [mechanical parameters](guard5-collar/envelope.json), four generated [schematic drafts and netlists](electronics/netlist.json), [pin/clock map](electronics/interfaces.json), [firmware readiness](firmware/INTERFACE_READINESS.md), [calibration plan](calibration/VALIDATION_PLAN.md), [rig layout](mechanical-cad/rig_layout.json), [itemized BOM](bom/M08_BOM.md), and [seven-figure renderer](render_m08.py). All are DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. No executable firmware, PCB fabrication release, physical build or purchase. Revised ₹59,870 materials estimate includes ₹5,000 reserve; no prices are vendor-verified. Native KiCad opening/ERC, exact protection/module details and physical fit/performance remain gates.
