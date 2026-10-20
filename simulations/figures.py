@@ -55,7 +55,8 @@ def render(out):
     axes[1].plot(cases,err,'o-',color='#0284c7');axes[1].set_ylabel('Accepted median error (m)');save(fig,4,'A04 weak SNR; A05 wrong speed; A06 pump; A07 multipath; A08 multiple sources. Missing error means abstention.')
     fig,axes=new('06  Five independent GUARD-5 channels',4)
     for ax,case in zip(axes,('G02','G04','G06','G12')):
-        e=examples[case];wet=np.array(e['observed']['wet']);ax.imshow(wet.T,aspect='auto',origin='lower',extent=[0,len(wet),-.5,4.5],cmap='Blues',vmin=0,vmax=1);ax.set_yticks(range(5),[k.replace('COLLAR_','') for k in CHANNELS]);ax.set_title(case+'  '+e['predicted']['outcome'],fontsize=13);ax.set_xlabel('Time (s)')
+        e=examples[case];wet=np.array(e['observed']['wet']);ax.imshow(wet.T,aspect='auto',origin='lower',extent=[0,len(wet),-.5,4.5],cmap='Blues',vmin=0,vmax=1);ax.set_yticks(range(5),[k.replace('COLLAR_','') for k in CHANNELS]);ax.set_title(case+'  '+e['predicted']['outcome'],fontsize=13)
+    axes[-1].set_xlabel('Time (s), shared scale across all panels');fig.subplots_adjust(hspace=.8)
     save(fig,5,'Local leak, rain and service challenge; assumed volume transfer/activation thresholds. Dry and disconnected remain indistinguishable.')
     fig,(ax,)=new('07  GUARD-5 comparison across uncertain collection assumptions')
     x=np.arange(3);regimes=list(summary['guard']);colors=['#64748b','#0284c7','#d97706']
