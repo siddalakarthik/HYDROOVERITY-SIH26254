@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-20",
+  "status": "DIGITAL DESIGN / NOT PHYSICALLY VALIDATED",
+  "sources": {
+    "ADS1115": {
+      "url": "https://www.ti.com/lit/ds/symlink/ads1115.pdf",
+      "verified": "4 multiplexed single-ended inputs; VDD2..5.5V; max860SPS; analog input within GND..VDD for normal operation; PGA range does not expand rails."
+    },
+    "PCM1808": {
+      "url": "https://www.ti.com/lit/ds/symlink/pcm1808.pdf",
+      "verified": "5V analog,3.3V digital;3Vp-p full scale centered on2.5V; MD1=MD0=HIGH master256fs; FMT=LOW24-bit I2S;64BCK/frame."
+    },
+    "ESP32-S3": {
+      "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/i2s.html",
+      "verified": "Standard I2S RX/slave supported; external BCLK/WS; exact firmware/DMA configuration still requires build and timing capture."
+    },
+    "DevKitC-1": {
+      "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide.html",
+      "verified": "ESP32-S3-DevKitC-1 N8R8 candidate; avoid flash/PSRAM GPIO35..37, boot straps0/3/45/46 and nativeUSB19/20."
+    },
+    "SEN0257": {
+      "url": "https://www.dfrobot.com/product-1675.html",
+      "verified": "5V supply;0.5..4.5V output;0..1.6MPa;G1/4 connection;0.5..1%FS vendor accuracy. Too wide a range for high-confidence low-pressure inference without calibration."
+    },
+    "SEN0217": {
+      "url": "https://wiki.dfrobot.com/sen0217/",
+      "verified": "Water flow meter1..30L/min; pulse output. Treat as5V interface and translate; calibration K-factor and exact purchased output topology must be confirmed."
+    },
+    "TLV9064": {
+      "url": "https://www.ti.com/lit/ds/symlink/tlv9062.pdf",
+      "verified": "TLV906x family RRIO CMOS op amps1.8..5.5V,10MHz; selected5V TLV9064IPWR quad stages require stability/noise bench validation."
+    },
+    "SHT31-DIS-B": {
+      "url": "https://sensirion.com/products/catalog/SHT31-DIS-B",
+      "verified": "Digital I2C contextual temperature/humidity; use3.3V board/pullups; not a wetness channel."
+    },
+    "DS18B20": {
+      "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/DS18B20.pdf",
+      "verified": "3.0..5.5V externally powered1-Wire; use3.3V and4.7k pullup. Encapsulated probe thermal lag/waterproof rating not verified."
+    },
+    "SFDP2-012-035-21": {
+      "url": "https://www.seaflousa.com/product/21-series-diaphragm-water-pumps/",
+      "verified": "Vendor catalog24V,1.2GPM free flow,2A max,35PSI shutoff. Do not infer flow at pressure from free flow; curve/relief compatibility is a purchase gate."
+    },
+    "7BB-27-4L0": {
+      "url": "https://www.murata.com/en-global/search/productsearch?cate=cgsubDiaphragms&partno=7BB-27-4L0",
+      "verified": "Passive piezo diaphragm candidate, not a calibrated contact-acoustic leak sensor. Mount/capacitance/sensitivity must be qualified; published resonance not claimed as leak bandwidth."
+    }
+  },
+  "price_verification": "No INR supplier quotations verified; source URLs are technical references only.",
+  "tools": "No FreeCAD/OpenSCAD/KiCad/Blender executable found; supported CadQuery wheel installation selected. Official KiCad Windows installer requires separate native setup; ERC not claimed."
+}

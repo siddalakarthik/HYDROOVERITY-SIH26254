@@ -1,0 +1,126 @@
+{
+  "status": "DIGITAL DESIGN / NOT PHYSICALLY VALIDATED",
+  "watch_mcu": "ESP32-S3-DevKitC-1-N8R8",
+  "ear_mcu": "ESP32-S3-DevKitC-1-N8R8",
+  "watch_gpio": {
+    "I2C_SDA": 8,
+    "I2C_SCL": 9,
+    "FLOW_IN": 4,
+    "FLOW_OUT": 5,
+    "DS18B20": 6,
+    "PROBE_P": 12,
+    "PROBE_N": 13,
+    "STATUS_LED": 14
+  },
+  "ear_gpio": {
+    "I2S_BCLK_IN": 15,
+    "I2S_WS_IN": 16,
+    "I2S_DIN": 17,
+    "SD_SCK": 10,
+    "SD_MOSI": 11,
+    "SD_MISO": 12,
+    "SD_CS": 13,
+    "CAPTURE_BUTTON": 4,
+    "STATUS_LED": 5
+  },
+  "adc_map": {
+    "0x48": {
+      "AIN0": "PRESSURE_IN",
+      "AIN1": "PRESSURE_OUT",
+      "AIN2": "COLLAR_A",
+      "AIN3": "COLLAR_B"
+    },
+    "0x49": {
+      "AIN0": "COLLAR_C",
+      "AIN1": "COLLAR_EXT",
+      "AIN2": "COLLAR_BYPASS",
+      "AIN3": "V3V3_MONITOR"
+    }
+  },
+  "i2c_addresses": {
+    "ADC1": "0x48",
+    "ADC2": "0x49",
+    "SHT31": "0x44"
+  },
+  "rails": {
+    "pump": 24.0,
+    "sensor": 5.0,
+    "logic": 3.3
+  },
+  "pressure": {
+    "model": "SEN0257",
+    "count": 2,
+    "output_range_v": [
+      0.5,
+      4.5
+    ],
+    "divider_top_ohm": 20000,
+    "divider_bottom_ohm": 20000,
+    "adc_fsr_v": 4.096,
+    "filter_c_f": 1e-06,
+    "output_short_5v_safe": true,
+    "calibration_required": true
+  },
+  "wetness": {
+    "channels": [
+      "A",
+      "B",
+      "C",
+      "EXT",
+      "BYPASS"
+    ],
+    "series_each_ohm": 47000,
+    "distal_eol_ohm": 100000,
+    "excitation_v": 3.3,
+    "polarity": "Drive P=3.3/N=0 then P=0/N=3.3; both0 between scans",
+    "scan_hz": 1,
+    "settle_ms_per_phase": 50,
+    "adc_sps": 128,
+    "eol_interpretation": "EOL path observed, not proof of electrode health. Cut probe after EOL, fouling, corrosion and wet cable can remain ambiguous."
+  },
+  "acoustic": {
+    "adc": "PCM1808PW",
+    "clock_hz": 12288000,
+    "sample_rate_hz": 48000,
+    "mclk_ratio": 256,
+    "bclk_ratio": 64,
+    "md1": 1,
+    "md0": 1,
+    "fmt": 0,
+    "adc_analog_v": 5.0,
+    "adc_digital_v": 3.3,
+    "sample_bits": 24,
+    "slot_bits": 32,
+    "channels": 2,
+    "capture_s": 10,
+    "dma_buffer_bytes": 65536,
+    "mcu_mode": "I2S standard RX slave; MCU MCLK disabled",
+    "oscillator": "3.3V CMOS12.288MHz oscillator; exact MPN/module/jitter qualification gate",
+    "adc_module": "Custom PCM1808PW breakout/verified module exposing MD0/MD1/FMT and separate rails; unexamined marketplace board not approved",
+    "front_end": {
+      "opamp": "TLV9064IPWR",
+      "quads": 2,
+      "supply_v": 5.0,
+      "bias_v": 2.5,
+      "bias_divider_ohm": 10000,
+      "bias_cap_uf": 100,
+      "input_bias_resistor_ohm": 1000000,
+      "gain_resistor_ohm": 10000,
+      "feedback_resistor_ohm": 100000,
+      "lowpass_r_ohm": 3300,
+      "lowpass_c_f": 1e-08,
+      "output_coupling_uf": 1.0,
+      "output_series_ohm": 1000,
+      "stages": "High-Z biased follower; noninverting gain11; buffered RC; buffered RC. Identical channel values. Gain/filter not physically optimized."
+    }
+  },
+  "power_budget": {
+    "watch_5v_peak_a": 0.65,
+    "ear_5v_peak_a": 0.85,
+    "combined_5v_w": 7.5,
+    "buck_efficiency_assumed": 0.85,
+    "pump_24v_max_a": 2.0,
+    "supply_24v_a": 5.0,
+    "notes": "Peak allowances, not measured consumption. Pump/sensor returns separate until supply star; do not mix5V andUSB supplies without isolation/selection."
+  }
+}

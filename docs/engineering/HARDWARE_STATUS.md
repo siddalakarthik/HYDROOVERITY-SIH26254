@@ -1,5 +1,7 @@
 # Hardware status
 
+M08 update: [digital engineering package](M08_DIGITAL_HARDWARE_REPORT.md) prepared for review with executed CadQuery/STEP checks, four editable connectivity drafts, seven figures, interface/calibration/rig plans and a ₹59,870 estimated BOM. Native KiCad/ERC, manufacturing details and all physical qualification remain incomplete. Physical trials **0**, field trials **0**. The original baseline below is retained as historical context; no purchase or build is authorized.
+
 As of the M01 baseline: **functional concept documented; physical prototype unbuilt; physical trials 0; field trials 0**, according to the supplied master context. No finished CAD, PCB/Gerbers, firmware implementation, component readings or laboratory results are delivered in M01.
 
 | Subsystem | Documented proposal | Required before validation |

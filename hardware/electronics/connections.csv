@@ -1,0 +1,372 @@
+sheet,reference,model,pin,net
+watch,U1,ESP32-S3-DevKitC-1-N8R8,5V,5V
+watch,U1,ESP32-S3-DevKitC-1-N8R8,3V3,3V3
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GND,GND
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO8,I2C_SDA
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO9,I2C_SCL
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO4,FLOW_IN
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO5,FLOW_OUT
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO6,DS18B20
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO12,PROBE_P
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO13,PROBE_N
+watch,U1,ESP32-S3-DevKitC-1-N8R8,GPIO14,STATUS_LED
+watch,U2,ADS1115IDGST 0x48,1,GND
+watch,U2,ADS1115IDGST 0x48,2,ADC1_ALERT_NC
+watch,U2,ADS1115IDGST 0x48,3,GND
+watch,U2,ADS1115IDGST 0x48,8,3V3
+watch,U2,ADS1115IDGST 0x48,9,I2C_SDA
+watch,U2,ADS1115IDGST 0x48,10,I2C_SCL
+watch,U2,ADS1115IDGST 0x48,4,PRESSURE_IN
+watch,U2,ADS1115IDGST 0x48,5,PRESSURE_OUT
+watch,U2,ADS1115IDGST 0x48,6,COLLAR_A
+watch,U2,ADS1115IDGST 0x48,7,COLLAR_B
+watch,C1,100nF,1,3V3
+watch,C1,100nF,2,GND
+watch,U3,ADS1115IDGST 0x49,1,3V3
+watch,U3,ADS1115IDGST 0x49,2,ADC2_ALERT_NC
+watch,U3,ADS1115IDGST 0x49,3,GND
+watch,U3,ADS1115IDGST 0x49,8,3V3
+watch,U3,ADS1115IDGST 0x49,9,I2C_SDA
+watch,U3,ADS1115IDGST 0x49,10,I2C_SCL
+watch,U3,ADS1115IDGST 0x49,4,COLLAR_C
+watch,U3,ADS1115IDGST 0x49,5,COLLAR_EXT
+watch,U3,ADS1115IDGST 0x49,6,COLLAR_BYPASS
+watch,U3,ADS1115IDGST 0x49,7,V3V3_MONITOR
+watch,C2,100nF,1,3V3
+watch,C2,100nF,2,GND
+watch,R1,4.7k,1,I2C_SDA
+watch,R1,4.7k,2,3V3
+watch,R2,4.7k,1,I2C_SCL
+watch,R2,4.7k,2,3V3
+watch,JP1,SEN0257 / lot pinout verify,1,P_IN_RAW
+watch,JP1,SEN0257 / lot pinout verify,2,5V
+watch,JP1,SEN0257 / lot pinout verify,3,GND
+watch,RP1A,20k 0.1%,1,P_IN_RAW
+watch,RP1A,20k 0.1%,2,PRESSURE_IN
+watch,RP1B,20k 0.1%,1,PRESSURE_IN
+watch,RP1B,20k 0.1%,2,GND
+watch,CP1,1uF,1,PRESSURE_IN
+watch,CP1,1uF,2,GND
+watch,JF1,SEN0217 / lot pinout verify,1,FLOW_IN_RAW
+watch,JF1,SEN0217 / lot pinout verify,2,5V
+watch,JF1,SEN0217 / lot pinout verify,3,GND
+watch,RF1A,47k,1,FLOW_IN_RAW
+watch,RF1A,47k,2,FLOW_IN_BASE
+watch,RF1B,10k,1,FLOW_IN
+watch,RF1B,10k,2,3V3
+watch,RF1C,10k,1,FLOW_IN_RAW
+watch,RF1C,10k,2,5V
+watch,RF1D,100k,1,FLOW_IN_BASE
+watch,RF1D,100k,2,GND
+watch,Q1,2N3904 pinout candidate,1,GND
+watch,Q1,2N3904 pinout candidate,2,FLOW_IN_BASE
+watch,Q1,2N3904 pinout candidate,3,FLOW_IN
+watch,JP2,SEN0257 / lot pinout verify,1,P_OUT_RAW
+watch,JP2,SEN0257 / lot pinout verify,2,5V
+watch,JP2,SEN0257 / lot pinout verify,3,GND
+watch,RP2A,20k 0.1%,1,P_OUT_RAW
+watch,RP2A,20k 0.1%,2,PRESSURE_OUT
+watch,RP2B,20k 0.1%,1,PRESSURE_OUT
+watch,RP2B,20k 0.1%,2,GND
+watch,CP2,1uF,1,PRESSURE_OUT
+watch,CP2,1uF,2,GND
+watch,JF2,SEN0217 / lot pinout verify,1,FLOW_OUT_RAW
+watch,JF2,SEN0217 / lot pinout verify,2,5V
+watch,JF2,SEN0217 / lot pinout verify,3,GND
+watch,RF2A,47k,1,FLOW_OUT_RAW
+watch,RF2A,47k,2,FLOW_OUT_BASE
+watch,RF2B,10k,1,FLOW_OUT
+watch,RF2B,10k,2,3V3
+watch,RF2C,10k,1,FLOW_OUT_RAW
+watch,RF2C,10k,2,5V
+watch,RF2D,100k,1,FLOW_OUT_BASE
+watch,RF2D,100k,2,GND
+watch,Q2,2N3904 pinout candidate,1,GND
+watch,Q2,2N3904 pinout candidate,2,FLOW_OUT_BASE
+watch,Q2,2N3904 pinout candidate,3,FLOW_OUT
+watch,JH,SHT31-DIS-B breakout,1,3V3
+watch,JH,SHT31-DIS-B breakout,2,GND
+watch,JH,SHT31-DIS-B breakout,3,I2C_SDA
+watch,JH,SHT31-DIS-B breakout,4,I2C_SCL
+watch,JT,DS18B20 externally powered,1,GND
+watch,JT,DS18B20 externally powered,2,DS18B20
+watch,JT,DS18B20 externally powered,3,3V3
+watch,RT,4.7k,1,DS18B20
+watch,RT,4.7k,2,3V3
+watch,RV1,200k,1,3V3
+watch,RV1,200k,2,V3V3_MONITOR
+watch,RV2,100k,1,V3V3_MONITOR
+watch,RV2,100k,2,GND
+watch,JPOWER,Protected regulated 5V input,1,5V
+watch,JPOWER,Protected regulated 5V input,2,GND
+watch,JW,Five-channel daughterboard,1,PROBE_P
+watch,JW,Five-channel daughterboard,2,PROBE_N
+watch,JW,Five-channel daughterboard,3,GND
+watch,JW,Five-channel daughterboard,4,COLLAR_A
+watch,JW,Five-channel daughterboard,5,COLLAR_B
+watch,JW,Five-channel daughterboard,6,COLLAR_C
+watch,JW,Five-channel daughterboard,7,COLLAR_EXT
+watch,JW,Five-channel daughterboard,8,COLLAR_BYPASS
+watch,JW,Five-channel daughterboard,9,3V3
+wetness,R1P,47k,1,PROBE_P
+wetness,R1P,47k,2,E_A_PLUS
+wetness,R1N,47k,1,E_A_MINUS
+wetness,R1N,47k,2,PROBE_N
+wetness,R1S,1k,1,E_A_PLUS
+wetness,R1S,1k,2,COLLAR_A
+wetness,C1,10nF,1,COLLAR_A
+wetness,C1,10nF,2,GND
+wetness,JE1,Electrode A insert,1,E_A_PLUS
+wetness,JE1,Electrode A insert,2,E_A_MINUS
+wetness,REOL1,100k DISTAL insert,1,E_A_PLUS
+wetness,REOL1,100k DISTAL insert,2,E_A_MINUS
+wetness,D1,Low-leak clamp network / MPN and pinout gate,GND,GND
+wetness,D1,Low-leak clamp network / MPN and pinout gate,SIG,COLLAR_A
+wetness,D1,Low-leak clamp network / MPN and pinout gate,VDD,3V3
+wetness,R2P,47k,1,PROBE_P
+wetness,R2P,47k,2,E_B_PLUS
+wetness,R2N,47k,1,E_B_MINUS
+wetness,R2N,47k,2,PROBE_N
+wetness,R2S,1k,1,E_B_PLUS
+wetness,R2S,1k,2,COLLAR_B
+wetness,C2,10nF,1,COLLAR_B
+wetness,C2,10nF,2,GND
+wetness,JE2,Electrode B insert,1,E_B_PLUS
+wetness,JE2,Electrode B insert,2,E_B_MINUS
+wetness,REOL2,100k DISTAL insert,1,E_B_PLUS
+wetness,REOL2,100k DISTAL insert,2,E_B_MINUS
+wetness,D2,Low-leak clamp network / MPN and pinout gate,GND,GND
+wetness,D2,Low-leak clamp network / MPN and pinout gate,SIG,COLLAR_B
+wetness,D2,Low-leak clamp network / MPN and pinout gate,VDD,3V3
+wetness,R3P,47k,1,PROBE_P
+wetness,R3P,47k,2,E_C_PLUS
+wetness,R3N,47k,1,E_C_MINUS
+wetness,R3N,47k,2,PROBE_N
+wetness,R3S,1k,1,E_C_PLUS
+wetness,R3S,1k,2,COLLAR_C
+wetness,C3,10nF,1,COLLAR_C
+wetness,C3,10nF,2,GND
+wetness,JE3,Electrode C insert,1,E_C_PLUS
+wetness,JE3,Electrode C insert,2,E_C_MINUS
+wetness,REOL3,100k DISTAL insert,1,E_C_PLUS
+wetness,REOL3,100k DISTAL insert,2,E_C_MINUS
+wetness,D3,Low-leak clamp network / MPN and pinout gate,GND,GND
+wetness,D3,Low-leak clamp network / MPN and pinout gate,SIG,COLLAR_C
+wetness,D3,Low-leak clamp network / MPN and pinout gate,VDD,3V3
+wetness,R4P,47k,1,PROBE_P
+wetness,R4P,47k,2,E_EXT_PLUS
+wetness,R4N,47k,1,E_EXT_MINUS
+wetness,R4N,47k,2,PROBE_N
+wetness,R4S,1k,1,E_EXT_PLUS
+wetness,R4S,1k,2,COLLAR_EXT
+wetness,C4,10nF,1,COLLAR_EXT
+wetness,C4,10nF,2,GND
+wetness,JE4,Electrode EXT insert,1,E_EXT_PLUS
+wetness,JE4,Electrode EXT insert,2,E_EXT_MINUS
+wetness,REOL4,100k DISTAL insert,1,E_EXT_PLUS
+wetness,REOL4,100k DISTAL insert,2,E_EXT_MINUS
+wetness,D4,Low-leak clamp network / MPN and pinout gate,GND,GND
+wetness,D4,Low-leak clamp network / MPN and pinout gate,SIG,COLLAR_EXT
+wetness,D4,Low-leak clamp network / MPN and pinout gate,VDD,3V3
+wetness,R5P,47k,1,PROBE_P
+wetness,R5P,47k,2,E_BYPASS_PLUS
+wetness,R5N,47k,1,E_BYPASS_MINUS
+wetness,R5N,47k,2,PROBE_N
+wetness,R5S,1k,1,E_BYPASS_PLUS
+wetness,R5S,1k,2,COLLAR_BYPASS
+wetness,C5,10nF,1,COLLAR_BYPASS
+wetness,C5,10nF,2,GND
+wetness,JE5,Electrode BYPASS insert,1,E_BYPASS_PLUS
+wetness,JE5,Electrode BYPASS insert,2,E_BYPASS_MINUS
+wetness,REOL5,100k DISTAL insert,1,E_BYPASS_PLUS
+wetness,REOL5,100k DISTAL insert,2,E_BYPASS_MINUS
+wetness,D5,Low-leak clamp network / MPN and pinout gate,GND,GND
+wetness,D5,Low-leak clamp network / MPN and pinout gate,SIG,COLLAR_BYPASS
+wetness,D5,Low-leak clamp network / MPN and pinout gate,VDD,3V3
+wetness,JB,WATCH daughterboard link,1,PROBE_P
+wetness,JB,WATCH daughterboard link,2,PROBE_N
+wetness,JB,WATCH daughterboard link,3,GND
+wetness,JB,WATCH daughterboard link,4,COLLAR_A
+wetness,JB,WATCH daughterboard link,5,COLLAR_B
+wetness,JB,WATCH daughterboard link,6,COLLAR_C
+wetness,JB,WATCH daughterboard link,7,COLLAR_EXT
+wetness,JB,WATCH daughterboard link,8,COLLAR_BYPASS
+wetness,JB,WATCH daughterboard link,9,3V3
+ear,U1,ESP32-S3-DevKitC-1-N8R8,5V,5V
+ear,U1,ESP32-S3-DevKitC-1-N8R8,3V3,3V3
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GND,GND
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO15,I2S_BCLK_IN
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO16,I2S_WS_IN
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO17,I2S_DIN
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO10,SD_SCK
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO11,SD_MOSI
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO12,SD_MISO
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO13,SD_CS
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO4,CAPTURE_BUTTON
+ear,U1,ESP32-S3-DevKitC-1-N8R8,GPIO5,STATUS_LED
+ear,U2,PCM1808PW,1,PCM_VREF
+ear,U2,PCM1808PW,2,GND
+ear,U2,PCM1808PW,3,5V_ANALOG
+ear,U2,PCM1808PW,4,3V3
+ear,U2,PCM1808PW,5,GND
+ear,U2,PCM1808PW,6,MCLK_12M288
+ear,U2,PCM1808PW,7,I2S_WS_IN
+ear,U2,PCM1808PW,8,I2S_BCLK_IN
+ear,U2,PCM1808PW,9,I2S_DIN
+ear,U2,PCM1808PW,10,3V3
+ear,U2,PCM1808PW,11,3V3
+ear,U2,PCM1808PW,12,GND
+ear,U2,PCM1808PW,13,AUDIO_L_ADC
+ear,U2,PCM1808PW,14,AUDIO_R_ADC
+ear,X1,12.288MHz3.3V CMOS / MPN gate,VDD,3V3
+ear,X1,12.288MHz3.3V CMOS / MPN gate,GND,GND
+ear,X1,12.288MHz3.3V CMOS / MPN gate,OUT,MCLK_OSC
+ear,X1,12.288MHz3.3V CMOS / MPN gate,OE,3V3
+ear,RX,33R,1,MCLK_OSC
+ear,RX,33R,2,MCLK_12M288
+ear,CREF,10uF,1,PCM_VREF
+ear,CREF,10uF,2,GND
+ear,C5V,100nF,1,5V_ANALOG
+ear,C5V,100nF,2,GND
+ear,C3V,100nF,1,3V3
+ear,C3V,100nF,2,GND
+ear,CBULK,10uF,1,5V_ANALOG
+ear,CBULK,10uF,2,GND
+ear,RBIAS1,10k,1,5V_ANALOG
+ear,RBIAS1,10k,2,BIAS_2V5
+ear,RBIAS2,10k,1,BIAS_2V5
+ear,RBIAS2,10k,2,GND
+ear,CBIAS,100uF,1,BIAS_2V5
+ear,CBIAS,100uF,2,GND
+ear,JL,Shielded passive piezo input,1,L_PICKUP
+ear,JL,Shielded passive piezo input,2,GND
+ear,JL,Shielded passive piezo input,SHIELD,CHASSIS_STAR
+ear,RIL,1k,1,L_PICKUP
+ear,RIL,1k,2,L_IN_PROTECTED
+ear,CIL,1uF,1,L_IN_PROTECTED
+ear,CIL,1uF,2,L_IN_BIASED
+ear,RBL,1M,1,L_IN_BIASED
+ear,RBL,1M,2,BIAS_2V5
+ear,DIL,Low-leak transient clamp / capacitance and MPN gate,GND,GND
+ear,DIL,Low-leak transient clamp / capacitance and MPN gate,SIG,L_IN_PROTECTED
+ear,DIL,Low-leak transient clamp / capacitance and MPN gate,VDD,5V_ANALOG
+ear,UAL,TLV9064IPWR,1,L_BUFFER
+ear,UAL,TLV9064IPWR,2,L_BUFFER
+ear,UAL,TLV9064IPWR,3,L_IN_BIASED
+ear,UAL,TLV9064IPWR,4,5V_ANALOG
+ear,UAL,TLV9064IPWR,5,L_BUFFER
+ear,UAL,TLV9064IPWR,6,L_GAIN_FB
+ear,UAL,TLV9064IPWR,7,L_GAIN
+ear,UAL,TLV9064IPWR,8,L_LP1_BUFFER
+ear,UAL,TLV9064IPWR,9,L_LP1_BUFFER
+ear,UAL,TLV9064IPWR,10,L_LP1
+ear,UAL,TLV9064IPWR,11,GND
+ear,UAL,TLV9064IPWR,12,L_LP2
+ear,UAL,TLV9064IPWR,13,L_LP2_BUFFER
+ear,UAL,TLV9064IPWR,14,L_LP2_BUFFER
+ear,RGL,10k,1,L_GAIN_FB
+ear,RGL,10k,2,BIAS_2V5
+ear,RFL,100k,1,L_GAIN
+ear,RFL,100k,2,L_GAIN_FB
+ear,R1L,3.3k,1,L_GAIN
+ear,R1L,3.3k,2,L_LP1
+ear,C1L,10nF,1,L_LP1
+ear,C1L,10nF,2,BIAS_2V5
+ear,R2L,3.3k,1,L_LP1_BUFFER
+ear,R2L,3.3k,2,L_LP2
+ear,C2L,10nF,1,L_LP2
+ear,C2L,10nF,2,BIAS_2V5
+ear,COL,1uF,1,L_LP2_BUFFER
+ear,COL,1uF,2,L_OUT_AC
+ear,ROL,1k,1,L_OUT_AC
+ear,ROL,1k,2,AUDIO_L_ADC
+ear,CUL,100nF,1,5V_ANALOG
+ear,CUL,100nF,2,GND
+ear,JR,Shielded passive piezo input,1,R_PICKUP
+ear,JR,Shielded passive piezo input,2,GND
+ear,JR,Shielded passive piezo input,SHIELD,CHASSIS_STAR
+ear,RIR,1k,1,R_PICKUP
+ear,RIR,1k,2,R_IN_PROTECTED
+ear,CIR,1uF,1,R_IN_PROTECTED
+ear,CIR,1uF,2,R_IN_BIASED
+ear,RBR,1M,1,R_IN_BIASED
+ear,RBR,1M,2,BIAS_2V5
+ear,DIR,Low-leak transient clamp / capacitance and MPN gate,GND,GND
+ear,DIR,Low-leak transient clamp / capacitance and MPN gate,SIG,R_IN_PROTECTED
+ear,DIR,Low-leak transient clamp / capacitance and MPN gate,VDD,5V_ANALOG
+ear,UAR,TLV9064IPWR,1,R_BUFFER
+ear,UAR,TLV9064IPWR,2,R_BUFFER
+ear,UAR,TLV9064IPWR,3,R_IN_BIASED
+ear,UAR,TLV9064IPWR,4,5V_ANALOG
+ear,UAR,TLV9064IPWR,5,R_BUFFER
+ear,UAR,TLV9064IPWR,6,R_GAIN_FB
+ear,UAR,TLV9064IPWR,7,R_GAIN
+ear,UAR,TLV9064IPWR,8,R_LP1_BUFFER
+ear,UAR,TLV9064IPWR,9,R_LP1_BUFFER
+ear,UAR,TLV9064IPWR,10,R_LP1
+ear,UAR,TLV9064IPWR,11,GND
+ear,UAR,TLV9064IPWR,12,R_LP2
+ear,UAR,TLV9064IPWR,13,R_LP2_BUFFER
+ear,UAR,TLV9064IPWR,14,R_LP2_BUFFER
+ear,RGR,10k,1,R_GAIN_FB
+ear,RGR,10k,2,BIAS_2V5
+ear,RFR,100k,1,R_GAIN
+ear,RFR,100k,2,R_GAIN_FB
+ear,R1R,3.3k,1,R_GAIN
+ear,R1R,3.3k,2,R_LP1
+ear,C1R,10nF,1,R_LP1
+ear,C1R,10nF,2,BIAS_2V5
+ear,R2R,3.3k,1,R_LP1_BUFFER
+ear,R2R,3.3k,2,R_LP2
+ear,C2R,10nF,1,R_LP2
+ear,C2R,10nF,2,BIAS_2V5
+ear,COR,1uF,1,R_LP2_BUFFER
+ear,COR,1uF,2,R_OUT_AC
+ear,ROR,1k,1,R_OUT_AC
+ear,ROR,1k,2,AUDIO_R_ADC
+ear,CUR,100nF,1,5V_ANALOG
+ear,CUR,100nF,2,GND
+ear,JSD,3.3V SPI microSD module,1,3V3
+ear,JSD,3.3V SPI microSD module,2,GND
+ear,JSD,3.3V SPI microSD module,3,SD_SCK
+ear,JSD,3.3V SPI microSD module,4,SD_MOSI
+ear,JSD,3.3V SPI microSD module,5,SD_MISO
+ear,JSD,3.3V SPI microSD module,6,SD_CS
+ear,JPWR,Regulated filtered 5V inputs / board derives3V3,1,5V_ANALOG
+ear,JPWR,Regulated filtered 5V inputs / board derives3V3,2,5V
+ear,JPWR,Regulated filtered 5V inputs / board derives3V3,3,GND
+power,J1,Certified isolated24V5A PSU,POS,RAW24
+power,J1,Certified isolated24V5A PSU,NEG,STAR_GND
+power,F1,Master fuse / inrush rating gate,1,RAW24
+power,F1,Master fuse / inrush rating gate,2,FUSED24
+power,Q1,Reverse-polarity protection module / MPN gate,IN,FUSED24
+power,Q1,Reverse-polarity protection module / MPN gate,OUT,PROTECTED24
+power,Q1,Reverse-polarity protection module / MPN gate,GND,STAR_GND
+power,D1,TVS / clamp-energy-coordination gate,1,PROTECTED24
+power,D1,TVS / clamp-energy-coordination gate,2,STAR_GND
+power,F2,Pump branch fuse / rating gate,1,PROTECTED24
+power,F2,Pump branch fuse / rating gate,2,PUMP_FUSED
+power,S1,Latching DC pump stop / DC contact rating gate,1,PUMP_FUSED
+power,S1,Latching DC pump stop / DC contact rating gate,2,PUMP24
+power,JPUMP,SEAFLO SFDP2-012-035-21,POS,PUMP24
+power,JPUMP,SEAFLO SFDP2-012-035-21,NEG,PUMP_RETURN
+power,STAR,Dedicated pump return to supply star,1,PUMP_RETURN
+power,STAR,Dedicated pump return to supply star,2,STAR_GND
+power,F3,Electronics branch fuse / rating gate,1,PROTECTED24
+power,F3,Electronics branch fuse / rating gate,2,ELEC24
+power,U1,Protected buck24V to5V3A / exact module gate,IN,ELEC24
+power,U1,Protected buck24V to5V3A / exact module gate,GND,STAR_GND
+power,U1,Protected buck24V to5V3A / exact module gate,OUT,REG5
+power,F4,WATCH branch protection,1,REG5
+power,F4,WATCH branch protection,2,WATCH5
+power,F5,EAR branch protection,1,REG5
+power,F5,EAR branch protection,2,EAR5
+power,FB1,Analog rail ferrite / impedance-current gate,1,EAR5
+power,FB1,Analog rail ferrite / impedance-current gate,2,EAR_ANALOG5
+power,C1,100uF / voltage-rating gate,1,EAR_ANALOG5
+power,C1,100uF / voltage-rating gate,2,STAR_GND
+power,JW,WATCH JPOWER harness,1,WATCH5
+power,JW,WATCH JPOWER harness,2,STAR_GND
+power,JE,EAR JPWR harness,1,EAR_ANALOG5
+power,JE,EAR JPWR harness,2,EAR5
+power,JE,EAR JPWR harness,3,STAR_GND

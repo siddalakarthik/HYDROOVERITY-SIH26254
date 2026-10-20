@@ -1,0 +1,56 @@
+{
+  "label": "DIGITAL DESIGN / NOT PHYSICALLY VALIDATED",
+  "units": "mm",
+  "pipe_od": 32.0,
+  "fitting_od_max": 45.0,
+  "fitting_length_max": 60.0,
+  "shell_outer_r": 38.0,
+  "shell_inner_r": 35.5,
+  "shell_length": 112.0,
+  "end_bore_r": 16.8,
+  "end_lip_thickness": 4.0,
+  "split_gap": 0.6,
+  "tray_inner_r": 24.0,
+  "tray_outer_r": 34.0,
+  "tray_length": 70.0,
+  "tray_wall": 1.5,
+  "pockets": {
+    "A": [
+      10,
+      80
+    ],
+    "B": [
+      100,
+      170
+    ],
+    "C": [
+      235,
+      305
+    ]
+  },
+  "drain_bore_r": 2.7,
+  "drain_tube_od": 5.0,
+  "drain_tube_id": 3.0,
+  "drain_z": 30.0,
+  "drain_x": 28.0,
+  "drain_bottom_y": -45.0,
+  "bolt_x": 47.0,
+  "bolt_z": 44.0,
+  "bolt_clearance_r": 2.2,
+  "bolt_diameter": 4.0,
+  "electrode_thickness": 0.8,
+  "challenge_bore_diameter": 3.0,
+  "gravity": [
+    0,
+    -1,
+    0
+  ],
+  "pipe_axis": "Z horizontal; Y up",
+  "assumptions": [
+    "Actual pipe/fitting caliper survey required.",
+    "No pressure contact; removable end pads on bare pipe only.",
+    "Pockets cover selected sectors; gaps and imperfect wetting are explicit risks.",
+    "Normal drains discharge at Z30 into separate tubing; BYPASS witness at Z0 is independent.",
+    "No validated seal, collection, rain exclusion or fastening load rating."
+  ]
+}
