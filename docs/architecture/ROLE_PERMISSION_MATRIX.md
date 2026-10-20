@@ -14,8 +14,8 @@ Endpoint operations are the canonical fine-grained matrix below. The permission 
 | `POST /auth/recovery` | PUBLIC | `authentication.write` | preauth/session |
 | `POST /auth/reset` | PUBLIC | `authentication.write` | preauth/session |
 | `POST /auth/verify` | PUBLIC | `authentication.write` | preauth/session |
-| `POST /auth/invitation-accept` | PUBLIC | `authentication.write` | preauth/session |
-| `POST /auth/logout` | ALL | `authentication.write` | self |
+| `POST /auth/invitation-accept` | ALL | `authentication.write` | verified global identity + invited email; server-bound tenant/role |
+| `POST /auth/logout` | PUBLIC | `authentication.write` | presented session cleanup only, CSRF required; no membership prerequisite |
 | `GET /me` | ALL | `current_user.read` | self |
 | `PATCH /me` | ALL | `current_user.write` | self |
 | `GET /me/memberships` | ALL | `current_user.read` | self |
@@ -23,7 +23,7 @@ Endpoint operations are the canonical fine-grained matrix below. The permission 
 | `DELETE /me/sessions/{session_id}` | ALL | `current_user.write` | self |
 | `GET /public/utilities/{slug}` | PUBLIC | `public.read` | public allowlist |
 | `GET /public/project-status` | PUBLIC | `public.read` | public allowlist |
-| `POST /public/contact` | PUBLIC | `public.write` | preauth/session |
+| `POST /public/contact` | PUBLIC | `public.write` | preauth/session + fixed private project inbox; no tenant selection |
 | `GET /orgs/{organization_id}` | ALL | `organization.read` | active membership |
 | `PATCH /orgs/{organization_id}` | ADMIN | `organization.write` | tenant + fresh reauth |
 | `GET /orgs/{organization_id}/zones` | ENGINEER, SUPERVISOR | `water_zones.read` | tenant |
@@ -125,3 +125,7 @@ Endpoint operations are the canonical fine-grained matrix below. The permission 
 | `PUT /orgs/{organization_id}/integrations` | ADMIN | `administration.write` | tenant + fresh reauth |
 | `GET /orgs/{organization_id}/events` | ALL | `realtime.read` | tenant + per-event current permission |
 | `GET /orgs/{organization_id}/events/history` | ALL | `realtime.read` | tenant + per-event current permission |
+
+## Review guard metadata
+
+OpenAPI x-authorization-guards and inventory authorization_guards explicitly carry TENANT, CITIZEN_OWNED, TECHNICIAN_ASSIGNED, nontruth artifact classification/parent ACL and sealed ENGINEER_AND_EVALUATOR checks. They are service requirements, not implemented middleware or proof of enforcement. Citizen-safe DTOs remain separate from internal incident/device/topology views. Every lookup, filtered list, nested reference, export, SSE reconnect and retry repeats current authorization. Do not infer an ADMIN wildcard from a UI portal. Ordinary artifact manifests/listings must exclude restricted truth IDs as well as their contents; evaluation requires its separate sealed-run route and restricted principal.

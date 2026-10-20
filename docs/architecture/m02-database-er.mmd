@@ -325,3 +325,7 @@ erDiagram
   }
   organization_memberships ||--o{ background_jobs : requested_by_id
   observation_artifacts ||--o{ background_jobs : result_artifact_id
+  project_contact_submissions {
+    uuid id PK
+    timestamptz expires_at
+  }

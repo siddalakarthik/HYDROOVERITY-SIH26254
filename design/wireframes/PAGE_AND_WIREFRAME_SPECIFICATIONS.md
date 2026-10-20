@@ -773,3 +773,7 @@ No hidden leak source position in ordinary form/output. Evaluation gate is expli
 ```
 
 Historical evidence remains immutable; reopens append. Public complaint updates are authored separately from private timeline text.
+
+## Review corrections for PAGE-09 and PAGE-12–19
+
+PAGE-09 is the private HYDROOVERITY project contact form, not a utility complaint. Show30-day text/email retention, no utility selector, no public tracking number, safe generic202 and throttled/uncertain-send states; no automatic retry loop. A lost response may duplicate intake. PAGE-12–17 use preauth CSRF and no auth Idempotency-Key; do not automatically replay login/reset/invitation requests. Reset/verify/invite token replay422 prompts the documented account-state/recovery path. Invitation acceptance requires login as the verified invited email, even with no active tenant membership. PAGE-18–19 global final-state writes need self ownership/CSRF, no tenant business receipt. Login/session responses are never browser/service-worker cached; logout clears local vault even if a retry is needed.

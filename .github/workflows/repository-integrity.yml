@@ -22,5 +22,13 @@ jobs:
         run: python3 scripts/check_repository.py
       - name: Validate M02 design contracts
         run: python3 scripts/check_m02_design.py
+      - name: Test design checker regression examples
+        run: python3 scripts/test_m02_design_checker.py -v
+      - name: Independently validate OpenAPI 3.1 in isolated environment
+        run: |
+          python3 -m venv "$RUNNER_TEMP/openapi-review"
+          "$RUNNER_TEMP/openapi-review/bin/python" -m pip install --disable-pip-version-check --only-binary=:all: -r scripts/openapi-validation-requirements.txt
+          "$RUNNER_TEMP/openapi-review/bin/python" -m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json
+          "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_openapi_design.py
       - name: Check whitespace
         run: git diff-tree --check --root HEAD

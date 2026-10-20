@@ -4360,7 +4360,7 @@
     },
     {
       "name": "idempotency_records",
-      "purpose": "Scoped request fingerprint and stable result reference",
+      "purpose": "Tenant business writes only: scoped canonical nonsecret request fingerprint and result reference/status; excludes authentication, global /me and public contact",
       "scope": "tenant",
       "columns": [
         {
@@ -4435,7 +4435,12 @@
       "privacy": "SECURITY",
       "retention": "idempotency",
       "lifecycle": "append_only",
-      "evidence": "No direct scientific source; operational metadata only."
+      "evidence": "No direct scientific source; operational metadata only.",
+      "invariants": [
+        "No auth operation or password/token-derived request hash; no raw request/response body, passwords, session/recovery/invitation tokens or one_time_secret.",
+        "Reauthorize active tenant and resource ACL before replay; revoked principals never regain access.",
+        "Credential issuance receipt stores identity/status only; same-key replay returns 409 without redisclosing secret."
+      ]
     },
     {
       "name": "notification_delivery_attempts",
@@ -4705,6 +4710,73 @@
       "retention": "simulation",
       "lifecycle": "mutable",
       "evidence": "Payload is typed by REPORT/ACOUSTIC_ANALYSIS/SIMULATION; no hidden truth in general queue payload. Creator and current role checks govern downloads."
+    },
+    {
+      "name": "project_contact_submissions",
+      "purpose": "Fixed server-owned private HYDROOVERITY project-team inbox, independent of utility tenants",
+      "scope": "global",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "nullable": false
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "nullable": false
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "nullable": false
+        },
+        {
+          "name": "category",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "message",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "reply_email",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "nullable": false
+        }
+      ],
+      "foreign_keys": [],
+      "unique": [],
+      "indexes": [
+        "expires_at",
+        "status,created_at"
+      ],
+      "privacy": "PERSONAL",
+      "retention": "project_contact",
+      "lifecycle": "mutable",
+      "evidence": "Contact text is not scientific evidence or a citizen leak complaint.",
+      "invariants": [
+        "No organization_id or fabricated member/author; server repository chooses fixed project inbox.",
+        "Only designated project operator through restricted support procedure; no tenant ADMIN access and no public read API.",
+        "category IN (QUESTION,FEEDBACK); status IN (NEW,REVIEWED); message length 10..2000; reply_email optional <=254; expires_at=created_at+30 days."
+      ]
     }
   ],
   "enums": {
@@ -4840,8 +4912,9 @@
     "artifacts": "30 days unreferenced raw captures; evidence pins override to 2 years; truth namespace never public; secure purge by policy.",
     "simulation": "90 days bulk outputs by default, configs/manifests and curated reproducibility summaries 2 years; holdout truth always restricted.",
     "audit": "1 year append-only security audit by pilot default; redact accidental personal payloads through controlled auditable procedure.",
-    "idempotency": "7 days server receipts; offline drafts expire at 72 h, so retries are covered. Tombstone keys without personal request bodies.",
+    "idempotency": "7 days tenant business receipts only; 72 h offline drafts covered. No authentication, global self-service or project-contact receipts. No secret bodies or credential fingerprints; expire keys and minimize metadata.",
     "notifications": "In-app messages/delivery metadata 90 days; no full complaint/photo content in external messages.",
-    "events": "7 days replay outbox; business history remains in incident/work-order/audit tables beyond replay retention."
+    "events": "7 days replay outbox; business history remains in incident/work-order/audit tables beyond replay retention.",
+    "project_contact": "Delete private message/reply email and inbox row after 30 days; no automatic indefinite hold. Rate buckets use daily-rotating HMAC, discarded within 24 h; no raw IP or abuse identifiers in inbox rows."
   }
 }

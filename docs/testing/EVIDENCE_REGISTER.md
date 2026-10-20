@@ -25,4 +25,4 @@ Imported historical artifacts must be inspected, licensed and linked before repr
 
 ## M02 design evidence
 
-M02 adds DOCUMENTED software architecture, 56-table design, OpenAPI contracts, role/page specifications and future test plans. Contract/documentation checks are CODE-TESTED tooling only; no endpoint, migration, scientific engine or physical trial executed. The M02 PR remains an owner review gate.
+M02 adds DOCUMENTED software architecture, 57-table design (56 original plus the reviewed global project-contact inbox), OpenAPI contracts, role/page specifications and future test plans. Contract/documentation checks are CODE-TESTED tooling only; no endpoint, migration, scientific engine or physical trial executed. The M02 PR remains an owner review gate.

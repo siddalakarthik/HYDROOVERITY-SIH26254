@@ -31,3 +31,6 @@ Research source claims in the master context are inherited, not independently re
 - [Deployment/versions](deployment/DEPLOYMENT_AND_STACK_DECISIONS.md) and [future acceptance plan](testing/M02_ACCEPTANCE_AND_TEST_PLAN.md).
 
 These are proposed implementation contracts, not a running application, executed migration or measured sensor result.
+
+- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): four planned slices following M03–M10; none implemented.
+- [Final M02 review validation](testing/M02_REVIEW_VALIDATION.md): independent OpenAPI tool/version/commands and design-checker mutation evidence.

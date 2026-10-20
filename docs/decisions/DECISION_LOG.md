@@ -50,3 +50,13 @@ No Docker Compose services, database migrations, stack packages or detailed hard
 | D-023 | Role-focused dense accessible light UI, ten structured wireframes | Decorative metrics, fake live data and unlicensed copied assets rejected |
 
 P-001/P-002/P-004 software design choices are now proposed in the linked M02 contracts, awaiting review before M03. P-003 boundary accounting design excludes customer demand already included in measured outflow; actual sector metering remains future configuration. P-005/P-006/P-007/P-008/P-009 remain unresolved for their hardware/science/source/license gates. No physical threshold, sensor model, wave speed, collector performance or detection accuracy was frozen here. Deployment providers/recurring budget, final retention/legal policy, evaluator grant procedure, tile license and exact patched dependency lockfiles need review before their real deployment/implementation use. No actual grants/purchases occur in M02.
+
+## M02 final review corrections — awaiting owner merge approval
+
+| ID | Decision | Rationale / deployment gate |
+| --- | --- | --- |
+| D-024 | Authentication has operation-specific noncached retry semantics, global identity scope and single-use token consumption; tenant business receipts exclude auth and secrets | Prevent session resurrection/token bypass; M03 must prove race, lost-response, CSRF and replay behavior. Global self-service uses reauthorized final-state updates. Credential issuance rejects secret replay. |
+| D-025 | Public contact is one global private project-team inbox, one proposed table, 30-day deletion | Anonymous messages cannot fabricate tenant memberships. Fixed server ownership, no public retrieval; designated operator/access/retention procedure must be configured before enabling intake. |
+| D-026 | Independent pinned OpenAPI validator plus focused design regression checks | Standards conformance and project security invariants need distinct checks. Isolated review-tool installation is explicitly authorized by the final M02 review request; no application framework/server/database is installed or implemented. |
+
+The four slices in M03_M04_IMPLEMENTATION_SEQUENCE.md sequence the existing M03–M10 roadmap; they do not authorize or claim future milestone implementation.

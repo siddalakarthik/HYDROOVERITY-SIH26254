@@ -39,7 +39,7 @@ Use application authorization plus PostgreSQL RLS on tenant tables as defense in
 
 Begin with one database and tenant-leading B-tree/GiST indexes listed below. Stable cursor pagination uses (timestamp,id), limit 50/max 100. No Timescale, Kafka, Redis cluster or sharding now. Measure observation volume/EXPLAIN plans before partitioning by time; preserve global event-id uniqueness if partitioning is later introduced. Backups include PostGIS metadata and private objects, encrypted with restore tests. Retention defaults below are proposed pilot policy, not a claim of legal compliance; owner review precedes a real deployment.
 
-## Entity catalogue — 56 retained tables
+## Entity catalogue — 57 retained tables
 
 ### organizations
 
@@ -667,14 +667,14 @@ Append-only safe security/administration audit
 
 ### idempotency_records
 
-Scoped request fingerprint and stable result reference
+Tenant business writes only: scoped canonical nonsecret request fingerprint and result reference/status; excludes authentication, global /me and public contact
 
 - Ownership/classification: tenant / SECURITY. Lifecycle: append_only.
 - Columns: `id uuid NOT NULL`; `organization_id uuid NOT NULL`; `created_at timestamptz NOT NULL`; `actor_scope text NOT NULL`; `operation_key uuid NOT NULL`; `method text NOT NULL`; `route_template text NOT NULL`; `request_hash text NOT NULL`; `result_resource_id uuid NULL`; `result_status integer NULL`; `expires_at timestamptz NOT NULL`.
 - Foreign keys: organization_id -> organizations (global reference).
 - Uniqueness beyond PK/tenant identity: organization_id,actor_scope,method,route_template,operation_key
 - Indexes: expires_at
-- Retention: 7 days server receipts; offline drafts expire at 72 h, so retries are covered. Tombstone keys without personal request bodies.
+- Retention: 7 days tenant business receipts only; authentication/global self-service/contact excluded; no raw secret bodies or credential fingerprints. Offline drafts expire at72h.
 - Evidence relationship: No direct scientific source; operational metadata only.
 
 ### notification_delivery_attempts
@@ -722,3 +722,11 @@ All retained entities serve listed identity, graph, evidence, operations or deli
 All purge operations honor evidence pins and explicit holds, operate in bounded tenant-scoped batches and write safe audit receipts. Ordinary APIs retire/redact records instead of destructive cascade deletion. Personal erasure and evidence preservation may conflict: escalate a documented policy decision rather than claiming universal retention compliance.
 
 Primary references: [PostgreSQL row security](https://www.postgresql.org/docs/17/ddl-rowsecurity.html), [PostGIS installation requirements](https://postgis.net/docs/manual-3.5/postgis_installation.html). Related: [provenance contracts](DATA_CONTRACTS_AND_PROVENANCE.md), [security](AUTH_SECURITY_AND_PRIVACY.md), [state machines](DOMAIN_STATE_MACHINES.md).
+
+## M02 review correction: receipts and project contact
+
+`idempotency_records` is exclusively for tenant business writes/credential-bound ingest. Never insert auth, `/me` or contact requests, even as password/token-derived fingerprints; never store raw request/response bodies or any issued secret. Reauthorize before reading a receipt. Credential-issuance retries return409 without a secret. Seven-day retention applies only here, not to one-use tokens or session validity.
+
+### project_contact_submissions
+
+Global private project-team inbox, no tenant/member foreign keys. Columns: `id uuid`, `created_at timestamptz`, `updated_at timestamptz`, `version bigint`, `category text`, `message text`, `reply_email text ?`, `status text`, `expires_at timestamptz`. Only reply_email is nullable. Common primary ID/version rules apply. Constraints: category QUESTION/FEEDBACK; status NEW/REVIEWED; message10..2000; reply_email<=254; expires_at=created_at+30days. Indexes: expires_at; (status,created_at). Server derives fixed HYDROOVERITY project inbox from its repository, never from caller organization/author/assignee fields. No public read API, organization ADMIN grant, fabricated membership, or automatic message forwarding. Restricted operator support procedure only; escaped text, no fetched links. Delete row/text/email at30days; rate-limit HMAC buckets expire<=24h and never store raw IP in this table. This is a planned table, not an executed migration.

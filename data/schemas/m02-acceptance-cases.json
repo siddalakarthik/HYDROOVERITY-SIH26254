@@ -196,6 +196,90 @@
       "workflow": "States",
       "given_when": "Exercise loading, no permitted records, permission/error/offline forms",
       "then": "Useful distinct states; every visible mutation tied to actual API receipt"
+    },
+    {
+      "id": "A01",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Registration retries",
+      "given_when": "Duplicate/racing registration and arbitrary role/tenant fields",
+      "then": "Generic result, unique identity/CITIZEN-only membership; existing password/grants unchanged; bounded verification delivery"
+    },
+    {
+      "id": "A02",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Login lost response and logout",
+      "given_when": "Lose login reply, retry credentials, revoke session, replay old request/cookie; race login session issuance against password reset/suspension",
+      "then": "Fresh validation/CSRF and rotation only; revoked session never resurrected or previous secret redisclosed; commit-time credential-version/user-state check prevents an in-flight old-password session surviving reset"
+    },
+    {
+      "id": "A03",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Logout retry",
+      "given_when": "Retry logout with active/preauth/recognized revoked or expired verifier; missing/wrong CSRF",
+      "then": "Monotonic cleanup with no new auth token; unknown verifier401, wrong CSRF403; no access granted by cleanup verifier"
+    },
+    {
+      "id": "A04",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Recovery retry",
+      "given_when": "Repeat recovery for known/unknown user during cooldown and later",
+      "then": "Generic no-store response, no old token exposure; later new token invalidates unused prior reset token; no fake tenant/job"
+    },
+    {
+      "id": "A05",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "One-use reset race",
+      "given_when": "Two reset submissions race, including lost successful response",
+      "then": "Exactly one password update/token consumption; sessions revoked; loser/replay uniform422; no auto-login/cache"
+    },
+    {
+      "id": "A06",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Verification retry",
+      "given_when": "Replay consumed email token or repeated still-unverified registration",
+      "then": "No extra activation/grants/session; token replay422; resend only to same account under cooldown, no secret response"
+    },
+    {
+      "id": "A07",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Invitation retry",
+      "given_when": "Wrong verified email, no active membership, racing/replayed token, altered requested role",
+      "then": "Matching verified user accepts exact server grant once without membership prerequisite; replay422, status via /me/memberships; wrong identity denied"
+    },
+    {
+      "id": "A08",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Business versus auth receipts",
+      "given_when": "Submit auth/global/contact Idempotency-Key; inspect receipts and logs; retry device-key issuance",
+      "then": "Header400 on exempt writes; no credentials or their fingerprints/bodies; tenant business dedup preserved; issuance retry409 with no secret"
+    },
+    {
+      "id": "C01",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Project contact ownership",
+      "given_when": "Anonymous preauth sends contact plus arbitrary tenant/member IDs, then guesses inbox ID",
+      "then": "Unknown fields422; only fixed private global inbox receives valid payload; no public retrieval or tenant ADMIN access"
+    },
+    {
+      "id": "C02",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Project contact abuse/retention",
+      "given_when": "Exceed session/IP-HMAC/email/body/storage limits, inject HTML, advance30days",
+      "then": "429/413/503 as appropriate; escaped review with no URL fetch; no raw IP; rate buckets<=24h, message/email/row removed30days; uncertain retry may duplicate"
+    },
+    {
+      "id": "P07",
+      "milestone": "M05/M06/M09",
+      "workflow": "Artifact and truth isolation",
+      "given_when": "Same/cross tenant asks ordinary manifests/downloads/exports/SSE for restricted object or truth seed",
+      "then": "Current membership plus nontruth classification/parent ACL checked; no truth IDs/content; evaluator requires sealed run and explicit grant"
+    },
+    {
+      "id": "S07",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Authorization on retry",
+      "given_when": "Revoke membership/change assignment after successful business write; repeat key",
+      "then": "No cached response bypass of current tenant/own/assigned rights; ADMIN still lacks engineer/evaluator privileges"
     }
   ]
 }
