@@ -44,6 +44,10 @@ def check_data(d,b,p,rig):
     assert p['tray_inner_r']>p['fitting_od_max']/2 and p['shell_inner_r']>p['tray_outer_r'],'collector clearance'
     assert p['bolt_clearance_r']*2>p['bolt_diameter'] and p['gravity']==[0,-1,0],'fastener/gravity'
     assert rig['pressure_authorized'] is False and sum(rig['sections_m'])==rig['straight_span_m']==12,'rig authorization/span'
+    pipe=next(x for x in b['items'] if x['id']=='PIPE')
+    assert pipe['quantity']>=rig['straight_span_m']+rig['supply_return_additional_m'],'full return pipe allowance'
+    assert rig['supply_return_additional_m']>=rig['straight_span_m'],'straight rig return length'
+    assert len(rig['leak_stations_m'])>=2 and next(x for x in b['items'] if x['id']=='LEAK')['quantity']==len(rig['leak_stations_m']),'multiple controlled stations'
 
 def parse_sexpr(text):
     """Structural parser only: no KiCad semantic/ERC claim."""

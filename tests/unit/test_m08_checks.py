@@ -30,6 +30,9 @@ class EngineeringChecks(unittest.TestCase):
     def test_operation_authority_rejected(self):
         self.r['pressure_authorized']=True
         with self.assertRaisesRegex(AssertionError,'authorization'):self.check()
+    def test_undercounted_return_rejected(self):
+        self.r['supply_return_additional_m']=3
+        with self.assertRaisesRegex(AssertionError,'return length'):self.check()
     def test_broken_schematic_rejected(self):
         with self.assertRaisesRegex(AssertionError,'incomplete'):m.parse_sexpr('(kicad_sch (version 20230121)')
 

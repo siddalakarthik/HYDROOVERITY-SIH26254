@@ -4,11 +4,11 @@ DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. All prices ESTIMATED_NOT_QUOTED; no v
 
 | ID | Part / model | Qty | Unit INR | Extended INR |
 |---|---|---:|---:|---:|
-| PIPE | PVC-U PN10 OD32 pipe | 15 m | 180 | 2,700 |
+| PIPE | PVC-U PN10 OD32 pipe | 24 m | 180 | 4,320 |
 | ELBOW | OD32 pressure elbows | 4 each | 150 | 600 |
-| TEE | OD32 pressure tees | 6 each | 180 | 1,080 |
+| TEE | OD32 pressure tees | 5 each | 180 | 900 |
 | UNION | OD32 service unions | 4 each | 250 | 1,000 |
-| VALVE | Rated isolation/control ball valves | 6 each | 250 | 1,500 |
+| VALVE | Rated isolation/control ball valves | 4 each | 250 | 1,000 |
 | RELIEF | Mechanical relief and gauge adapter set | 1 set | 1,400 | 1,400 |
 | TANK | 75L vented HDPE reservoir | 1 each | 1,400 | 1,400 |
 | PUMP | SEAFLO SFDP2-012-035-21 candidate | 1 each | 6,500 | 6,500 |
@@ -43,11 +43,13 @@ DIGITAL DESIGN / NOT PHYSICALLY VALIDATED. All prices ESTIMATED_NOT_QUOTED; no v
 | DEBUG | Isolated/selected USB service interface | 1 set | 1,000 | 1,000 |
 | SCALE | 500g0.01g-resolution balance candidate | 1 each | 1,600 | 1,600 |
 | REF | Check weights/catch cups/timer/materials | 1 set | 900 | 900 |
-| LEAK | Three contained rated leak/dummy cartridges | 1 set | 1,300 | 1,300 |
+| LEAK | Contained rated leak/dummy cartridge | 2 each | 450 | 900 |
 | CONS | Rated seals/PTFE/clamps/consumables | 1 set | 900 | 900 |
 
-Components **₹54,330** + contingency **₹5,000** = **₹59,330**, against **₹60,000**; remaining **₹670**. Previous allocation ₹56,750: revised +₹2,580. Reserve is not already spent. Tax/shipping uncertainty must fit reserve plus headroom; review quotations before procurement. Architecture feasibility at actual prices remains unconfirmed. No purchase authorized.
+Components **₹54,870** + contingency **₹5,000** = **₹59,870**, against **₹60,000**; remaining **₹130**. Previous allocation ₹56,750: revised +₹3,120. Reserve is not already spent. Tax/shipping uncertainty must fit reserve plus headroom; actual affordability is unconfirmed. No purchase authorized.
 
-CSV/JSON hold specification, source, pricing date/status, necessity and substitution review for every item. All listed lines essential to this proposed complete demonstrator. Any future cost reduction must retain five channels, common-clock EAR and pressure/electrical safety; reuse existing suitable frame/reservoir or shorten ancillary runs only after explicit measurement and review. Do not remove safety provisions to fit the ceiling.
+Loop correction: the initial M08 draft undercounted return pipe. A full12m return requires24m total hardpipe, adding₹1,620 over the15m draft. Retain two controlled leak stations at6/9m (multiple stations), one fewer tee and two fewer valves: no inlet service valve and one fewer station valve. Savings:₹180 tee +₹500 valves +₹400 cartridge allowance. Cartridge unit allowance rises conservatively to₹450, rather than lowering an assumed vendor price. Revised net increase₹540 over draft₹59,330. Before intake service, empty/depressurize the system; retain return throttle, adjustable bypass, independent relief and all electrical protection. No safety-relief deletion or change to five wetness/shared-clock architecture.
 
-Recurring outside cap: local software ₹0/month; assumed electricity 4.68kWh/month × ₹8 = ₹37.44/month (48W pump2h/day +7.5W electronics8h/day,30days); optional data ₹100–300/month; consumables ₹500/quarter. Estimates exclude labour, hosted deployment and actual tariff variation.
+CSV/JSON hold specification, source, date/status, necessity and substitution review for all41 lines. Every remaining line is essential to this proposed complete demonstrator. Actual cut lengths/fittings, ratings, quotations and taxes/shipping require review; ₹130 is a narrow residual margin. Further overrun requires owner tradeoff review, not invented lower quotes.
+
+Recurring outside cap: local software ₹0/month; assumed electricity4.68kWh/month ×₹8 =₹37.44/month (48W pump2h/day +7.5W electronics8h/day,30days); optional data₹100–300/month; consumables₹500/quarter. Estimates exclude labour, hosted deployment and actual tariff variation.

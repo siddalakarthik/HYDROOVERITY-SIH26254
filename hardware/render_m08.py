@@ -170,7 +170,7 @@ def generate():
     node(ax,51,13,39,16,'Contained leak cups → balance + timer\n0.01 g display resolution ≠ accuracy',TEAL,11)
     for m in rig['acoustic_endpoints_m']:
         x=43+54*m/12;node(ax,x-3,70,9,12,'EAR '+('L' if m==0 else 'R'),TEAL,10);arrow(ax,(x+1,70),(x,58))
-    note(ax,66,93,'4 × 3 m OD32 sections; GUARD-5 at 6 m\nPressure / bulk flow at supply and return',12)
+    note(ax,66,93,'12 m span + 12 m return; GUARD-5 at 6 m\nPressure / bulk flow at supply and return',12)
     arrow(ax,(97,56),(97,5));arrow(ax,(97,5),(-1,5));arrow(ax,(-1,5),(-1,45));arrow(ax,(-1,45),(0,45))
     ax.plot([39,39,18,18,7,7],[56,93,93,76,76,69],color=RED,lw=2)
     node(ax,23,88,12,9,'Relief',RED,10)
@@ -190,7 +190,7 @@ def generate():
     fig.text(.60,.74,f'₹{b["grand_total_inr"]:,}',fontsize=38,color=NAVY,weight='bold')
     fig.text(.60,.65,f'Components ₹{b["component_total_inr"]:,} + reserve ₹{b["contingency_inr"]:,}\nCeiling ₹{b["cap_inr"]:,} • remaining ₹{b["headroom_inr"]:,}',fontsize=15,color=NAVY,linespacing=1.7)
     fig.text(.60,.39,'READY FOR ENGINEERING REVIEW\nParametric CAD + STEP checks\nEditable circuit connectivity drafts\nPower / clocks / calibration / rig plans\n\nGATES: quotations, real fit, native ERC,\npressure ratings and all physical tests',fontsize=14,color=NAVY,linespacing=1.65)
-    fig.text(.09,.12,'Previous allocation ₹56,750 → revised ₹59,330 (+₹2,580). Tax / shipping uncertainty must fit reserve and headroom.',fontsize=12,color=RED)
+    fig.text(.09,.12,f'Previous allocation ₹56,750 → revised ₹{b["grand_total_inr"]:,} (+₹{b["grand_total_inr"]-b["previous_allocation_inr"]:,}). Tax / shipping must fit reserve and headroom.',fontsize=12,color=RED)
     save(fig,'H07_budget','Complete materials estimate reconciles previous allocation; narrow residual margin is a procurement risk, not proof of affordability.',['hardware/bom/m08_bom.json','hardware/electronics/interfaces.json'])
     # Supplementary timing detail: one I2S stereo frame, measured in BCLK periods.
     details=OUT.parent/'details';details.mkdir(exist_ok=True)

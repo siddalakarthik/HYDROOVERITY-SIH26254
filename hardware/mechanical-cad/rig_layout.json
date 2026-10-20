@@ -10,7 +10,7 @@
     3,
     3
   ],
-  "supply_return_additional_m": 3,
+  "supply_return_additional_m": 12,
   "joint_positions_m": [
     3,
     6,
@@ -22,7 +22,6 @@
     12
   ],
   "leak_stations_m": [
-    3,
     6,
     9
   ],
@@ -43,6 +42,9 @@
     "Low-voltage wet zone; certified isolated PSU/RCD mains connection by qualified person, no DIY mains wiring.",
     "Latching DC pump stop, appropriately sized fuse, dry-run protection and independent isolation.",
     "Leak cartridges are manufactured replaceable lab inserts with containment, not utility-pipe damage.",
-    "Gravimetric leak reference uses catch vessel/scale/timer; bulk meters not microleak reference."
-  ]
+    "Gravimetric leak reference uses catch vessel/scale/timer; bulk meters not microleak reference.",
+    "No inlet service isolation in cap variant: completely drain and depressurize before strainer/intake service. No operation authorized."
+  ],
+  "pump_bypass_hose_m": 3,
+  "return_geometry": "Full12m return parallel to12m span, endpoints close to tank/pump at0m.24m hardpipe total plus3m local pump/bypass hose. Nominal lengths exclude fitting take-up; survey before procurement."
 }
