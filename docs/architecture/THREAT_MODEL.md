@@ -14,3 +14,7 @@ Status: M01 design notes only; controls below are requirements, not implemented 
 | Digital design -> real infrastructure | Unsafe actuation or pressure/potable boundary violated | No control implementation in M01; explicit authorization and engineering safety review before physical work |
 
 No new production identities, cloud resources, secrets, public pages or device endpoints are configured. GitHub repository stays private and collaborators are not invited. This is not a penetration test. Follow [SECURITY.md](../../SECURITY.md) for reporting and exposure response.
+
+## M02 detailed design authority
+
+The M01 text above is preserved as the baseline. M02 resolves its software choices in [AUTH_SECURITY_AND_PRIVACY.md](AUTH_SECURITY_AND_PRIVACY.md) and the linked M02 documents; these detailed contracts supersede provisional software statements above, subject to owner PR review. Hardware/scientific unknowns remain deferred. No implementation is claimed.

@@ -17,3 +17,4 @@
 *.mp4 binary
 # Preserve the owner-supplied Markdown hard breaks in the authoritative source.
 docs/project/HYDROOVERITY_MASTER_CONTEXT.md whitespace=-blank-at-eol
+docs/project/MILESTONE_02_REQUEST.md whitespace=-blank-at-eol

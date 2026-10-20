@@ -19,3 +19,18 @@ The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved pr
 | [THREAT_MODEL](architecture/THREAT_MODEL.md) | Initial assets, trust boundaries and planned controls |
 
 Research source claims in the master context are inherited, not independently reverified in M01. The original submitted six-slide deck and historic source/test packages are not included. Do not claim they were inspected or rerun.
+
+
+## M02 detailed design — awaiting owner review
+
+- [Product routes](architecture/PRODUCT_INFORMATION_ARCHITECTURE.md) and [role/action matrix](architecture/ROLE_PERMISSION_MATRIX.md).
+- [UI system](../design/design-system/UI_UX_DESIGN_SYSTEM.md) and [page specifications / ten wireframes](../design/wireframes/PAGE_AND_WIREFRAME_SPECIFICATIONS.md).
+- [Database](architecture/DATABASE_DESIGN.md), [ER source](architecture/m02-database-er.mmd), [provenance](architecture/DATA_CONTRACTS_AND_PROVENANCE.md).
+- [API inventory](architecture/API_CONTRACTS.md) and canonical [OpenAPI3.1 JSON](architecture/openapi-design.json).
+- [State machines](architecture/DOMAIN_STATE_MACHINES.md), [security](architecture/AUTH_SECURITY_AND_PRIVACY.md), [realtime/offline](architecture/REALTIME_OFFLINE_AND_NOTIFICATIONS.md).
+- [Deployment/versions](deployment/DEPLOYMENT_AND_STACK_DECISIONS.md) and [future acceptance plan](testing/M02_ACCEPTANCE_AND_TEST_PLAN.md).
+
+These are proposed implementation contracts, not a running application, executed migration or measured sensor result.
+
+- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): four planned slices following M03–M10; none implemented.
+- [Final M02 review validation](testing/M02_REVIEW_VALIDATION.md): independent OpenAPI tool/version/commands and design-checker mutation evidence.

@@ -38,3 +38,7 @@ Choose SSE or WebSocket with polling/reconnect fallback during M02. MQTT is an o
 ## Cross-cutting contracts
 
 All observations retain identity, collection/receipt timestamps, units, quality/freshness, calibration and explicit source environment. Simulation config/run IDs identify synthetic records; hidden truth is stored and authorized separately. UTC internally; Asia/Kolkata and India-relevant units in presentation. Sensitive citizen and infrastructure information must not cross public trust boundaries. See [data dictionary](DATA_DICTIONARY.md) and [threat model](THREAT_MODEL.md).
+
+## M02 detailed design authority
+
+The M01 text above is preserved as the baseline. M02 resolves its software choices in [DEPLOYMENT](../deployment/DEPLOYMENT_AND_STACK_DECISIONS.md) and the linked M02 documents; these detailed contracts supersede provisional software statements above, subject to owner PR review. Hardware/scientific unknowns remain deferred. No implementation is claimed.

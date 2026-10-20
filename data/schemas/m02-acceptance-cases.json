@@ -1,0 +1,285 @@
+{
+  "status": "FUTURE_TESTS_NOT_EXECUTED",
+  "cases": [
+    {
+      "id": "F01",
+      "milestone": "M03/M07",
+      "workflow": "Citizen creates report",
+      "given_when": "Verified citizen of enabled utility submits valid complaint twice with same key",
+      "then": "One complaint/tracking number and public receipt, one notification; different body same key409"
+    },
+    {
+      "id": "F02",
+      "milestone": "M03/M07",
+      "workflow": "Citizen ownership",
+      "given_when": "Citizen B requests A report ID/list/followups/photo",
+      "then": "Uniform404 and no row/content disclosure"
+    },
+    {
+      "id": "F03",
+      "milestone": "M03/M07",
+      "workflow": "Triage",
+      "given_when": "Supervisor moves NEW concern through reviewed acceptance",
+      "then": "Guarded versioned transition, immutable event/audit and same-mode evidence links"
+    },
+    {
+      "id": "F04",
+      "milestone": "M03/M07",
+      "workflow": "Assignment",
+      "given_when": "Supervisor assigns active technician then reassigns while worker offline",
+      "then": "Assignment version increments; old worker sync denied without discarding local draft"
+    },
+    {
+      "id": "F05",
+      "milestone": "M07",
+      "workflow": "Worker repair",
+      "given_when": "Assigned technician records notes/materials/photos/repair and submits",
+      "then": "Persistent immutable receipts and review state; no scientific PASSED invented"
+    },
+    {
+      "id": "F06",
+      "milestone": "M07",
+      "workflow": "Verification",
+      "given_when": "Supervisor reviews comparable versus missing-calibration before/after sets",
+      "then": "PASSED/FAILED only comparable; otherwise NOT_VERIFIABLE; work completion independent"
+    },
+    {
+      "id": "F07",
+      "milestone": "M07",
+      "workflow": "Reopen",
+      "given_when": "Resolved incident recurs with new evidence",
+      "then": "New reopen event; prior repairs/evidence preserved"
+    },
+    {
+      "id": "S01",
+      "milestone": "M03",
+      "workflow": "No authentication",
+      "given_when": "Anonymous calls internal API/stream/download",
+      "then": "401, no private data or hidden side effects"
+    },
+    {
+      "id": "S02",
+      "milestone": "M03/M09",
+      "workflow": "Tenant isolation",
+      "given_when": "Tenant A engineer references B IDs through API/FK/pool reuse",
+      "then": "Uniform denial; composite FK and RLS deny cross-tenant reads/writes; context reset"
+    },
+    {
+      "id": "S03",
+      "milestone": "M03",
+      "workflow": "CSRF/session",
+      "given_when": "Missing/wrong token, cross-origin mutation, expired/revoked session",
+      "then": "403/401; login rotates; reset revokes sessions; no cookie/token in logs"
+    },
+    {
+      "id": "S04",
+      "milestone": "M03/M09",
+      "workflow": "Role/resource checks",
+      "given_when": "Worker guesses unassigned work; ADMIN requests raw telemetry/truth",
+      "then": "Deny; no ADMIN wildcard or evaluator self-grant"
+    },
+    {
+      "id": "S05",
+      "milestone": "M03/M07",
+      "workflow": "Uploads",
+      "given_when": "Oversize/type spoof/polyglot/decompression/missing-consent/quarantined download",
+      "then": "Reject413/422 or quarantine; no original/EXIF/public object exposure"
+    },
+    {
+      "id": "S06",
+      "milestone": "M03",
+      "workflow": "Audit",
+      "given_when": "Sensitive role/retention/device-key action succeeds or denied",
+      "then": "Safe actor/action/resource/time/request evidence; no credentials or private bodies"
+    },
+    {
+      "id": "P01",
+      "milestone": "M05/M06",
+      "workflow": "Truth exclusion",
+      "given_when": "Inspect detector input, API schemas, ordinary outputs/streams/exports",
+      "then": "No actual labels/positions/private truth seed; ordinary DB/object roles denied"
+    },
+    {
+      "id": "P02",
+      "milestone": "M06",
+      "workflow": "Origin integrity",
+      "given_when": "Simulator sends hardware/environment fields or different tenant/run",
+      "then": "Reject; server-derived SIMULATION survives queries and export"
+    },
+    {
+      "id": "P03",
+      "milestone": "M06",
+      "workflow": "Lab versus field",
+      "given_when": "Ingest authorized lab and field adapters plus manual note",
+      "then": "Distinct immutable acquisition environments; no source relabeling by UI"
+    },
+    {
+      "id": "P04",
+      "milestone": "M05/M06",
+      "workflow": "Acoustic abstention",
+      "given_when": "Zero pressure/weak signal/ambiguous path cases",
+      "then": "No fake pinpoint; reasons and empty candidate list for abstention"
+    },
+    {
+      "id": "P05",
+      "milestone": "M05/M06",
+      "workflow": "Guard wetness",
+      "given_when": "EXT-first/bypass-only/disconnected-supervision-unsupported scenario",
+      "then": "Competing explanations; no automatic joint-confirmed state; unsupported health UNKNOWN"
+    },
+    {
+      "id": "P06",
+      "milestone": "M06",
+      "workflow": "Staleness",
+      "given_when": "Late/out-of-order/invalid observations arrive during filling",
+      "then": "Retain quality/freshness; no routine false attribution; urgent/fault lane retained"
+    },
+    {
+      "id": "R01",
+      "milestone": "M03/M06",
+      "workflow": "Idempotency",
+      "given_when": "Duplicate events/keys and changed payload collision",
+      "then": "One stable receipt; conflicts reject atomically, no duplicated incident side effects"
+    },
+    {
+      "id": "R02",
+      "milestone": "M06",
+      "workflow": "Realtime recovery",
+      "given_when": "Drop SSE between snapshot and subscription; replay cursor expires",
+      "then": "Watermark/replay or reset snapshot; no lost authorized event; bounded queue; no waveform"
+    },
+    {
+      "id": "R03",
+      "milestone": "M04/M07",
+      "workflow": "Offline vault",
+      "given_when": "Lost connectivity, quota eviction, expired lease, logout, wrong unlock",
+      "then": "Clear safe error/expiry/purge behavior; no plaintext cached keys/data or false synced badge"
+    },
+    {
+      "id": "R04",
+      "milestone": "M07",
+      "workflow": "Offline conflict",
+      "given_when": "Replay note after role removal/task reassignment/stale version",
+      "then": "Current authorization and versions checked; conflict preserved for reconciliation, not last-write-wins"
+    },
+    {
+      "id": "R05",
+      "milestone": "M06/M07",
+      "workflow": "Jobs and delivery",
+      "given_when": "Worker crash/lease expiry/cancel race/provider timeout",
+      "then": "Bounded retries; partial outputs incomplete; notification deduplication/failed status visible"
+    },
+    {
+      "id": "U01",
+      "milestone": "M04/M09",
+      "workflow": "Responsive UI",
+      "given_when": "320px Android-like width, desktop and zoom200/400%",
+      "then": "Readable labeled data, usable task controls, no obscured focus; map/table alternative"
+    },
+    {
+      "id": "U02",
+      "milestone": "M04/M09",
+      "workflow": "Accessible forms",
+      "given_when": "Keyboard/screen reader login/complaint/errors/dialogs",
+      "then": "Labels, error summary, focus restore and no drag/color-only action; password paste allowed"
+    },
+    {
+      "id": "U03",
+      "milestone": "M04/M06",
+      "workflow": "Mode/freshness",
+      "given_when": "Navigate/filter/export synthetic records and disconnect feed",
+      "then": "Persistent SIMULATED DATA and timestamps; no synthetic field-performance savings"
+    },
+    {
+      "id": "U04",
+      "milestone": "M04",
+      "workflow": "States",
+      "given_when": "Exercise loading, no permitted records, permission/error/offline forms",
+      "then": "Useful distinct states; every visible mutation tied to actual API receipt"
+    },
+    {
+      "id": "A01",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Registration retries",
+      "given_when": "Duplicate/racing registration and arbitrary role/tenant fields",
+      "then": "Generic result, unique identity/CITIZEN-only membership; existing password/grants unchanged; bounded verification delivery"
+    },
+    {
+      "id": "A02",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Login lost response and logout",
+      "given_when": "Lose login reply, retry credentials, revoke session, replay old request/cookie; race login session issuance against password reset/suspension",
+      "then": "Fresh validation/CSRF and rotation only; revoked session never resurrected or previous secret redisclosed; commit-time credential-version/user-state check prevents an in-flight old-password session surviving reset"
+    },
+    {
+      "id": "A03",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Logout retry",
+      "given_when": "Retry logout with active/preauth/recognized revoked or expired verifier; missing/wrong CSRF",
+      "then": "Monotonic cleanup with no new auth token; unknown verifier401, wrong CSRF403; no access granted by cleanup verifier"
+    },
+    {
+      "id": "A04",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Recovery retry",
+      "given_when": "Repeat recovery for known/unknown user during cooldown and later",
+      "then": "Generic no-store response, no old token exposure; later new token invalidates unused prior reset token; no fake tenant/job"
+    },
+    {
+      "id": "A05",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "One-use reset race",
+      "given_when": "Two reset submissions race, including lost successful response",
+      "then": "Exactly one password update/token consumption; sessions revoked; loser/replay uniform422; no auto-login/cache"
+    },
+    {
+      "id": "A06",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Verification retry",
+      "given_when": "Replay consumed email token or repeated still-unverified registration",
+      "then": "No extra activation/grants/session; token replay422; resend only to same account under cooldown, no secret response"
+    },
+    {
+      "id": "A07",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Invitation retry",
+      "given_when": "Wrong verified email, no active membership, racing/replayed token, altered requested role",
+      "then": "Matching verified user accepts exact server grant once without membership prerequisite; replay422, status via /me/memberships; wrong identity denied"
+    },
+    {
+      "id": "A08",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Business versus auth receipts",
+      "given_when": "Submit auth/global/contact Idempotency-Key; inspect receipts and logs; retry device-key issuance",
+      "then": "Header400 on exempt writes; no credentials or their fingerprints/bodies; tenant business dedup preserved; issuance retry409 with no secret"
+    },
+    {
+      "id": "C01",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Project contact ownership",
+      "given_when": "Anonymous preauth sends contact plus arbitrary tenant/member IDs, then guesses inbox ID",
+      "then": "Unknown fields422; only fixed private global inbox receives valid payload; no public retrieval or tenant ADMIN access"
+    },
+    {
+      "id": "C02",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Project contact abuse/retention",
+      "given_when": "Exceed session/IP-HMAC/email/body/storage limits, inject HTML, advance30days",
+      "then": "429/413/503 as appropriate; escaped review with no URL fetch; no raw IP; rate buckets<=24h, message/email/row removed30days; uncertain retry may duplicate"
+    },
+    {
+      "id": "P07",
+      "milestone": "M05/M06/M09",
+      "workflow": "Artifact and truth isolation",
+      "given_when": "Same/cross tenant asks ordinary manifests/downloads/exports/SSE for restricted object or truth seed",
+      "then": "Current membership plus nontruth classification/parent ACL checked; no truth IDs/content; evaluator requires sealed run and explicit grant"
+    },
+    {
+      "id": "S07",
+      "milestone": "M03/M04/M07/M09",
+      "workflow": "Authorization on retry",
+      "given_when": "Revoke membership/change assignment after successful business write; repeat key",
+      "then": "No cached response bypass of current tenant/own/assigned rights; ADMIN still lacks engineer/evaluator privileges"
+    }
+  ]
+}

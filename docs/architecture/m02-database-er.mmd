@@ -1,0 +1,331 @@
+erDiagram
+  organizations {
+    uuid id PK
+  }
+  users {
+    uuid id PK
+  }
+  organization_memberships {
+    uuid id PK
+    uuid organization_id FK
+  }
+  users ||--o{ organization_memberships : user_id
+  roles {
+    uuid id PK
+  }
+  permissions {
+    uuid id PK
+  }
+  role_permissions {
+    uuid id PK
+  }
+  roles ||--o{ role_permissions : role_id
+  permissions ||--o{ role_permissions : permission_id
+  role_assignments {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ role_assignments : membership_id
+  roles ||--o{ role_assignments : role_id
+  organization_memberships ||--o{ role_assignments : granted_by_id
+  sessions {
+    uuid id PK
+  }
+  users ||--o{ sessions : user_id
+  invitations {
+    uuid id PK
+    uuid organization_id FK
+  }
+  roles ||--o{ invitations : role_id
+  organization_memberships ||--o{ invitations : invited_by_id
+  account_recovery_tokens {
+    uuid id PK
+  }
+  users ||--o{ account_recovery_tokens : user_id
+  water_zones {
+    uuid id PK
+    uuid organization_id FK
+  }
+  network_junctions {
+    uuid id PK
+    uuid organization_id FK
+  }
+  water_zones ||--o{ network_junctions : zone_id
+  pipe_segments {
+    uuid id PK
+    uuid organization_id FK
+  }
+  water_zones ||--o{ pipe_segments : zone_id
+  network_junctions ||--o{ pipe_segments : from_junction_id
+  network_junctions ||--o{ pipe_segments : to_junction_id
+  supply_windows {
+    uuid id PK
+    uuid organization_id FK
+  }
+  water_zones ||--o{ supply_windows : zone_id
+  algorithm_configurations ||--o{ supply_windows : algorithm_configuration_id
+  pipe_access_points {
+    uuid id PK
+    uuid organization_id FK
+  }
+  pipe_segments ||--o{ pipe_access_points : segment_id
+  device_installations {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ device_installations : device_id
+  pipe_access_points ||--o{ device_installations : access_point_id
+  devices {
+    uuid id PK
+    uuid organization_id FK
+  }
+  sensor_channels {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ sensor_channels : device_id
+  device_configuration_versions {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ device_configuration_versions : device_id
+  calibration_records {
+    uuid id PK
+    uuid organization_id FK
+  }
+  sensor_channels ||--o{ calibration_records : channel_id
+  observation_artifacts ||--o{ calibration_records : artifact_id
+  device_health_events {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ device_health_events : device_id
+  sensor_channels ||--o{ device_health_events : channel_id
+  sensor_observations ||--o{ device_health_events : observation_id
+  device_credentials {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ device_credentials : device_id
+  collar_service_tests {
+    uuid id PK
+    uuid organization_id FK
+  }
+  devices ||--o{ collar_service_tests : device_id
+  work_orders ||--o{ collar_service_tests : work_order_id
+  organization_memberships ||--o{ collar_service_tests : performed_by_id
+  observation_artifacts {
+    uuid id PK
+    uuid organization_id FK
+  }
+  sensor_observations {
+    uuid id PK
+    uuid organization_id FK
+  }
+  sensor_channels ||--o{ sensor_observations : channel_id
+  observation_artifacts ||--o{ sensor_observations : artifact_id
+  device_configuration_versions ||--o{ sensor_observations : device_configuration_id
+  calibration_records ||--o{ sensor_observations : calibration_id
+  simulation_runs ||--o{ sensor_observations : simulation_run_id
+  organization_memberships ||--o{ sensor_observations : manual_actor_id
+  acoustic_captures {
+    uuid id PK
+    uuid organization_id FK
+  }
+  pipe_access_points ||--o{ acoustic_captures : endpoint_a_id
+  pipe_access_points ||--o{ acoustic_captures : endpoint_b_id
+  observation_artifacts ||--o{ acoustic_captures : artifact_id
+  simulation_runs ||--o{ acoustic_captures : simulation_run_id
+  device_configuration_versions ||--o{ acoustic_captures : device_configuration_id
+  acoustic_location_estimates {
+    uuid id PK
+    uuid organization_id FK
+  }
+  acoustic_captures ||--o{ acoustic_location_estimates : capture_id
+  pipe_segments ||--o{ acoustic_location_estimates : segment_id
+  algorithm_configurations ||--o{ acoustic_location_estimates : algorithm_configuration_id
+  evidence_records {
+    uuid id PK
+    uuid organization_id FK
+  }
+  sensor_observations ||--o{ evidence_records : observation_id
+  acoustic_captures ||--o{ evidence_records : capture_id
+  citizen_complaints ||--o{ evidence_records : complaint_id
+  repair_records ||--o{ evidence_records : repair_id
+  organization_memberships ||--o{ evidence_records : manual_actor_id
+  evidence_records ||--o{ evidence_records : supersedes_id
+  evidence_assessments {
+    uuid id PK
+    uuid organization_id FK
+  }
+  algorithm_configurations ||--o{ evidence_assessments : algorithm_configuration_id
+  organization_memberships ||--o{ evidence_assessments : reviewer_id
+  acoustic_location_estimates ||--o{ evidence_assessments : acoustic_estimate_id
+  simulation_runs ||--o{ evidence_assessments : simulation_run_id
+  evidence_assessments ||--o{ evidence_assessments : supersedes_id
+  assessment_evidence {
+    uuid id PK
+    uuid organization_id FK
+  }
+  evidence_assessments ||--o{ assessment_evidence : assessment_id
+  evidence_records ||--o{ assessment_evidence : evidence_record_id
+  incidents {
+    uuid id PK
+    uuid organization_id FK
+  }
+  water_zones ||--o{ incidents : zone_id
+  organization_memberships ||--o{ incidents : owner_id
+  simulation_runs ||--o{ incidents : simulation_run_id
+  incident_events {
+    uuid id PK
+    uuid organization_id FK
+  }
+  incidents ||--o{ incident_events : incident_id
+  organization_memberships ||--o{ incident_events : actor_id
+  incident_evidence {
+    uuid id PK
+    uuid organization_id FK
+  }
+  incidents ||--o{ incident_evidence : incident_id
+  evidence_assessments ||--o{ incident_evidence : assessment_id
+  incident_links {
+    uuid id PK
+    uuid organization_id FK
+  }
+  incidents ||--o{ incident_links : source_incident_id
+  incidents ||--o{ incident_links : target_incident_id
+  organization_memberships ||--o{ incident_links : actor_id
+  work_orders {
+    uuid id PK
+    uuid organization_id FK
+  }
+  incidents ||--o{ work_orders : incident_id
+  organization_memberships ||--o{ work_orders : assignee_id
+  work_order_actions {
+    uuid id PK
+    uuid organization_id FK
+  }
+  work_orders ||--o{ work_order_actions : work_order_id
+  organization_memberships ||--o{ work_order_actions : actor_id
+  repair_records {
+    uuid id PK
+    uuid organization_id FK
+  }
+  work_orders ||--o{ repair_records : work_order_id
+  organization_memberships ||--o{ repair_records : recorded_by_id
+  repair_records ||--o{ repair_records : supersedes_id
+  verification_records {
+    uuid id PK
+    uuid organization_id FK
+  }
+  repair_records ||--o{ verification_records : repair_id
+  organization_memberships ||--o{ verification_records : reviewer_id
+  verification_records ||--o{ verification_records : supersedes_id
+  verification_evidence {
+    uuid id PK
+    uuid organization_id FK
+  }
+  verification_records ||--o{ verification_evidence : verification_id
+  evidence_records ||--o{ verification_evidence : evidence_record_id
+  citizen_complaints {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ citizen_complaints : reporter_id
+  incidents ||--o{ citizen_complaints : incident_id
+  complaint_status_events {
+    uuid id PK
+    uuid organization_id FK
+  }
+  citizen_complaints ||--o{ complaint_status_events : complaint_id
+  organization_memberships ||--o{ complaint_status_events : actor_id
+  feedback_items {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ feedback_items : author_id
+  citizen_complaints ||--o{ feedback_items : complaint_id
+  organization_memberships ||--o{ feedback_items : assignee_id
+  feedback_events {
+    uuid id PK
+    uuid organization_id FK
+  }
+  feedback_items ||--o{ feedback_events : feedback_id
+  organization_memberships ||--o{ feedback_events : actor_id
+  attachments {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ attachments : owner_id
+  attachment_links {
+    uuid id PK
+    uuid organization_id FK
+  }
+  attachments ||--o{ attachment_links : attachment_id
+  citizen_complaints ||--o{ attachment_links : complaint_id
+  work_orders ||--o{ attachment_links : work_order_id
+  repair_records ||--o{ attachment_links : repair_id
+  collar_service_tests ||--o{ attachment_links : service_test_id
+  feedback_items ||--o{ attachment_links : feedback_id
+  notifications {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ notifications : recipient_id
+  domain_events ||--o{ notifications : event_id
+  simulation_scenarios {
+    uuid id PK
+    uuid organization_id FK
+  }
+  simulation_runs {
+    uuid id PK
+    uuid organization_id FK
+  }
+  simulation_scenarios ||--o{ simulation_runs : scenario_id
+  organization_memberships ||--o{ simulation_runs : requested_by_id
+  algorithm_configurations ||--o{ simulation_runs : algorithm_configuration_id
+  background_jobs ||--o{ simulation_runs : job_id
+  simulation_outputs {
+    uuid id PK
+    uuid organization_id FK
+  }
+  simulation_runs ||--o{ simulation_outputs : run_id
+  observation_artifacts ||--o{ simulation_outputs : artifact_id
+  restricted_simulation_truth {
+    uuid id PK
+    uuid organization_id FK
+  }
+  simulation_runs ||--o{ restricted_simulation_truth : run_id
+  observation_artifacts ||--o{ restricted_simulation_truth : truth_artifact_id
+  algorithm_configurations {
+    uuid id PK
+    uuid organization_id FK
+  }
+  audit_logs {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ audit_logs : actor_id
+  idempotency_records {
+    uuid id PK
+    uuid organization_id FK
+  }
+  notification_delivery_attempts {
+    uuid id PK
+    uuid organization_id FK
+  }
+  notifications ||--o{ notification_delivery_attempts : notification_id
+  domain_events {
+    uuid id PK
+    uuid organization_id FK
+  }
+  background_jobs {
+    uuid id PK
+    uuid organization_id FK
+  }
+  organization_memberships ||--o{ background_jobs : requested_by_id
+  observation_artifacts ||--o{ background_jobs : result_artifact_id
+  project_contact_submissions {
+    uuid id PK
+    timestamptz expires_at
+  }
