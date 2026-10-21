@@ -12,7 +12,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -26,7 +26,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -40,7 +40,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -54,7 +54,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -68,7 +68,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -82,7 +82,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -114,7 +114,7 @@
         "mobile"
       ],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -146,7 +146,7 @@
         "mobile"
       ],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -160,7 +160,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -174,7 +174,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -188,7 +188,7 @@
       "data_boundary": "Editorial or allow-listed public projection only",
       "states": ["informational", "mobile"],
       "component": "public",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -226,7 +226,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -264,7 +264,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -302,7 +302,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -340,7 +340,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -378,7 +378,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -416,7 +416,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -476,7 +476,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -536,7 +536,7 @@
         "mobile"
       ],
       "component": "auth",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -596,7 +596,7 @@
         "mobile"
       ],
       "component": "complaints",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -656,7 +656,7 @@
         "mobile"
       ],
       "component": "complaints",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -716,7 +716,7 @@
         "mobile"
       ],
       "component": "complaints",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -854,7 +854,7 @@
         "mobile"
       ],
       "component": "incidents",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -992,7 +992,7 @@
         "mobile"
       ],
       "component": "network",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1010,7 +1010,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1028,7 +1028,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1046,7 +1046,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1064,7 +1064,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1082,7 +1082,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1100,7 +1100,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1214,7 +1214,7 @@
         "mobile"
       ],
       "component": "incidents",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1298,7 +1298,7 @@
         "mobile"
       ],
       "component": "incidents",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1370,7 +1370,7 @@
         "mobile"
       ],
       "component": "work",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1454,7 +1454,7 @@
         "mobile"
       ],
       "component": "work",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1496,7 +1496,7 @@
         "mobile"
       ],
       "component": "work",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1592,7 +1592,7 @@
         "mobile"
       ],
       "component": "complaints",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1610,7 +1610,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1628,7 +1628,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1646,7 +1646,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1664,7 +1664,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1682,7 +1682,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1700,7 +1700,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1718,7 +1718,7 @@
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
       "component": "unavailable",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
     },
     {
@@ -1772,7 +1772,7 @@
         "mobile"
       ],
       "component": "administration",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1814,7 +1814,7 @@
         "mobile"
       ],
       "component": "administration",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     },
     {
@@ -1850,7 +1850,7 @@
         "mobile"
       ],
       "component": "administration",
-      "browser_evidence": "Pending execution; see M04 test ledger",
+      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
     }
   ]

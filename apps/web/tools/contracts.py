@@ -55,7 +55,7 @@ def outputs():
                       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03" if private else "Editorial or allow-listed public projection only",
                       "states": ["loading", "empty", "error", "denied", "expired", "pending", "receipt", "stale", "rate-limited", "mobile"] if status.startswith("ACTIVE") else ["informational", "mobile"],
                       "component": "public" if number <= 11 else "auth" if number <= 19 else "complaints" if number in [20, 21, 22, 36] else "network" if number == 24 else "incidents" if number in [23, 31, 32] else "work" if number in [33, 34, 35] else "administration" if number in [44, 45, 46] else "unavailable",
-                      "browser_evidence": "Pending execution; see M04 test ledger",
+                      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
                       "future_dependency": "Deferred M03 operation; no active navigation" if status == "DEFERRED" else "Attachments, telemetry, offline queue and scientific integration remain disabled"})
     assert len(pages) == 46 and len(implemented) == 58
     return {WEB / "contracts/implemented.openapi.json": contract,

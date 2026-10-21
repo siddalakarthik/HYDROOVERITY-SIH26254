@@ -23,7 +23,7 @@ Use exact Next.js 16 / React 19 stable packages, strict TypeScript 5.9 (compatib
 
 ## Delivery status
 
-IN PROGRESS. This file is a durable implementation record, not acceptance evidence. No M04 browser, accessibility, performance or CI pass is claimed until execution is recorded. Hardware remains physically untested; M05 results and M08 digital-only caveats are unchanged.
+Implementation delivered for owner review in PR #16. Local executable and browser evidence is recorded below and in the execution ledger; actual CI results are tracked on the PR. Owner acceptance and merge remain pending. Hardware remains physically untested; M05 results and M08 digital-only caveats are unchanged.
 
 ## Implemented scope
 
