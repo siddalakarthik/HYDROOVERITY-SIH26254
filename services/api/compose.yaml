@@ -1,0 +1,89 @@
+name: hydrooverity-m03-local
+services:
+  db:
+    image: postgis/postgis:17-3.6@sha256:d7053f57b0d62c427ffbf412208b6625317124d62eebf40672e990fea81e9d53
+    environment:
+      POSTGRES_USER: hydro_operator
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/database_root
+    secrets: [database_root]
+    volumes: [postgres:/var/lib/postgresql/data]
+    command: [postgres, -c, log_statement=none, -c, log_min_error_statement=panic, -c, log_parameter_max_length_on_error=0]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U hydro_operator -d postgres]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    networks:
+      pilot:
+        ipv4_address: 172.30.83.4
+  initialize:
+    build:
+      context: ../..
+      dockerfile: services/api/Dockerfile
+      target: runtime
+    user: "0:0"
+    command: [python, -m, hydro.container_init]
+    environment:
+      HYDRO_INIT_DATABASE: ${HYDRO_INIT_DATABASE:-hydro_local_m03}
+    secrets: [database_root]
+    volumes:
+      - ${HYDRO_PRIVATE_DIRECTORY:?Set a dedicated private directory outside Git}:/private
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [pilot]
+  api:
+    build:
+      context: ../..
+      dockerfile: services/api/Dockerfile
+      target: runtime
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    volumes:
+      - ${HYDRO_PRIVATE_DIRECTORY:?Set a dedicated private directory outside Git}:/private
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+    networks:
+      pilot:
+        ipv4_address: 172.30.83.3
+  proxy:
+    image: caddy:2@sha256:685ae3d7c34d9b5f8caeddc5d14051db7bbd88ff1f5a2fa0c16bd8ca328fb7af
+    ports: ["127.0.0.1:8443:8443"]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy:/data
+    depends_on: [api]
+    networks:
+      pilot:
+        ipv4_address: 172.30.83.2
+  backend-check:
+    profiles: [tools]
+    build:
+      context: ../..
+      dockerfile: services/api/Dockerfile
+      target: development
+    user: "0:0"
+    environment:
+      HYDRO_SOURCE_COMMIT: ${HYDRO_SOURCE_COMMIT:-UNAVAILABLE}
+    command: [python, services/api/tools/verify_backend.py, --operator-config, /private/operator/operator.json, --runtime-config, /private/runtime/runtime.json, --confirm-disposable-database, hydro_disposable_m03, --evidence-directory, /private/evidence]
+    volumes:
+      - ${HYDRO_PRIVATE_DIRECTORY:?Set a dedicated private directory outside Git}:/private
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+    networks: [pilot]
+secrets:
+  database_root:
+    file: ${HYDRO_DATABASE_SECRET_FILE:?Set a private random database-password file}
+volumes:
+  postgres:
+  caddy:
+networks:
+  pilot:
+    ipam:
+      config:
+        - subnet: 172.30.83.0/24

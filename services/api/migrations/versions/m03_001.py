@@ -1,5 +1,7 @@
 """M03 selected operational tables, tenant constraints and restricted runtime grants."""
+
 from pathlib import Path
+
 from alembic import op
 
 revision = "m03_001"
@@ -17,4 +19,6 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    raise RuntimeError("M03 is forward-only. Restore the tested disposable snapshot; never drop populated history.")
+    raise RuntimeError(
+        "M03 is forward-only. Restore the tested disposable snapshot; never drop populated history."
+    )

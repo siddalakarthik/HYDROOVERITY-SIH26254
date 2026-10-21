@@ -1,5 +1,7 @@
 """Only the explicit migration URL is accepted; runtime credentials cannot migrate."""
+
 import os
+
 from alembic import context
 from sqlalchemy import create_engine
 

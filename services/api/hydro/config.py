@@ -1,4 +1,5 @@
 """Fail-closed process configuration. Secrets are never included in errors."""
+
 import os
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -22,20 +23,32 @@ class Settings(BaseModel):
         url = urlsplit(self.origin)
         if url.scheme != "https" or url.path or url.query or url.fragment or url.username:
             raise ValueError("A single HTTPS origin without path is required")
-        if not self.database_url.get_secret_value().startswith("postgresql+psycopg://"):
+        if (
+            "__SET_" in self.database_url.get_secret_value()
+            or not self.database_url.get_secret_value().startswith("postgresql+psycopg://")
+        ):
             raise ValueError("PostgreSQL psycopg connection required")
-        if len(self.hmac_key.get_secret_value()) < 32:
+        if (
+            self.hmac_key.get_secret_value().startswith("__SET_")
+            or len(self.hmac_key.get_secret_value()) < 32
+        ):
             raise ValueError("A private random HMAC key of at least 32 characters is required")
+        if self.mail_directory.resolve().is_relative_to(ROOT):
+            raise ValueError("Private authentication delivery must be outside the repository")
         if not self.development:
-            raise ValueError("Public release disabled pending delivery/shared-rate/operations review")
+            raise ValueError(
+                "Public release disabled pending delivery/shared-rate/operations review"
+            )
         if url.hostname not in {"localhost", "127.0.0.1"}:
             raise ValueError("M03 supports private loopback development only")
         return self
 
     @classmethod
     def from_environment(cls) -> "Settings":
-        return cls(database_url=os.environ["HYDRO_DATABASE_URL"],
-                   hmac_key=os.environ["HYDRO_HMAC_KEY"],
-                   origin=os.environ.get("HYDRO_ORIGIN", "https://localhost:8443"),
-                   mail_directory=Path(os.environ["HYDRO_PRIVATE_MAIL_DIR"]),
-                   development=os.environ.get("HYDRO_ENV", "development") == "development")
+        return cls(
+            database_url=os.environ["HYDRO_DATABASE_URL"],
+            hmac_key=os.environ["HYDRO_HMAC_KEY"],
+            origin=os.environ.get("HYDRO_ORIGIN", "https://localhost:8443"),
+            mail_directory=Path(os.environ["HYDRO_PRIVATE_MAIL_DIR"]),
+            development=os.environ.get("HYDRO_ENV", "development") == "development",
+        )

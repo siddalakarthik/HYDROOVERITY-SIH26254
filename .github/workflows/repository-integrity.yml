@@ -80,3 +80,100 @@ jobs:
         env:
           M08_ARTIFACT_URL: ${{ steps.m08-upload.outputs.artifact-url }}
         run: printf '[Download M08 screening package](%s) — retained for 14 days.\n' "$M08_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
+
+  m03-backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      HYDRO_INIT_DATABASE: hydro_disposable_m03
+      HYDRO_SOURCE_COMMIT: ${{ github.sha }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Prepare private disposable configuration
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, secrets
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])
+          private=root/'m03-compose'
+          private.mkdir(mode=0o700)
+          password=root/'m03-database-root.txt'
+          password.write_text(secrets.token_urlsafe(40))
+          password.chmod(0o600)
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write(f'HYDRO_PRIVATE_DIRECTORY={private}\n')
+              f.write(f'HYDRO_DATABASE_SECRET_FILE={password}\n')
+          PY
+      - name: Build and start private Compose API, HTTPS and PostGIS
+        run: |
+          docker compose -f services/api/compose.yaml --profile tools config --quiet
+          docker compose -f services/api/compose.yaml --profile tools build
+          docker compose -f services/api/compose.yaml up -d api proxy
+          for attempt in $(seq 1 60); do
+            if docker compose -f services/api/compose.yaml exec -T api python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/internal/health/ready',timeout=1)" >/dev/null 2>&1; then
+              break
+            fi
+            sleep 2
+          done
+          docker compose -f services/api/compose.yaml exec -T api python -c "import os,urllib.request; assert os.getuid()==10001; assert not os.access('/private/operator/operator.json',os.R_OK); assert urllib.request.urlopen('http://127.0.0.1:8000/internal/health/ready',timeout=2).status==200"
+      - name: Real database, auth, role, workflow and migration acceptance
+        run: docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+      - name: Backend source quality and dependency compatibility
+        run: |
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m ruff check services/api
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m ruff format --check services/api
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pip check
+      - name: Independently validate implemented OpenAPI in an isolated environment
+        run: docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/validate_runtime_openapi.py
+      - name: Complete real HTTPS workflow and actual API restart
+        run: >-
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+          python services/api/tools/demo_backend.py
+          --operator-config /private/operator/operator.json
+          --runtime-config /private/runtime/runtime.json
+          --confirm-disposable-database hydro_disposable_m03_demo
+          --output-directory /private/https-demo
+      - name: Verify Compose TLS, secure cookie and private probe boundary
+        run: |
+          for attempt in $(seq 1 30); do
+            if docker compose -f services/api/compose.yaml exec -T proxy test -f /data/caddy/pki/authorities/local/root.crt; then
+              break
+            fi
+            sleep 1
+          done
+          docker compose -f services/api/compose.yaml cp proxy:/data/caddy/pki/authorities/local/root.crt "$RUNNER_TEMP/m03-ca.crt"
+          python3 - <<'PY'
+          import os,pathlib,ssl,urllib.request,urllib.error
+          context=ssl.create_default_context(cafile=str(pathlib.Path(os.environ['RUNNER_TEMP'])/'m03-ca.crt'))
+          with urllib.request.urlopen('https://localhost:8443/api/v1/auth/csrf',context=context,timeout=5) as response:
+              cookie=response.headers['Set-Cookie'].lower()
+              assert response.status==200
+              assert all(x in cookie for x in ['__host-hydro_session=','secure','httponly','samesite=lax','path=/'])
+              assert 'domain=' not in cookie
+              assert response.headers['Cache-Control']=='no-store'
+          try:
+              urllib.request.urlopen('https://localhost:8443/internal/health/ready',context=context,timeout=5)
+              raise AssertionError('Private probe exposed by proxy')
+          except urllib.error.HTTPError as error:
+              assert error.code==404
+          print('PASS: Compose certificate verification, secure cookie and private-probe denial')
+          PY
+      - name: Collect sanitized backend evidence only
+        run: |
+          docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/evidence/acceptance-summary.json > "$RUNNER_TEMP/m03-acceptance-summary.json"
+          docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/https-demo/https-workflow-summary.json > "$RUNNER_TEMP/m03-https-workflow-summary.json"
+      - name: Upload sanitized M03 acceptance evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE
+          path: |
+            ${{ runner.temp }}/m03-acceptance-summary.json
+            ${{ runner.temp }}/m03-https-workflow-summary.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Stop isolated CI services while preserving local volumes
+        if: always()
+        run: docker compose -f services/api/compose.yaml down

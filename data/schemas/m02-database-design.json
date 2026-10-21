@@ -3380,6 +3380,11 @@
           "name": "occurred_at",
           "type": "timestamptz",
           "nullable": false
+        },
+        {
+          "name": "internal_reason",
+          "type": "text",
+          "nullable": true
         }
       ],
       "foreign_keys": [

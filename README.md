@@ -10,12 +10,12 @@ HYDROOVERITY proposes affordable, indigenous, evidence-qualified leak detection,
 
 ## Current status
 
-This repository starts with **M01: documentation, organization and repository checks only**. M05 now adds three executable scientific simulation engines, numerical tests and presentation figures; see the M05 evidence report. Website/backend/CAD/PCB/firmware remain future work. No license has been selected. The repository is intended to remain private until the owner explicitly authorizes release.
+M01/M02/M05/M08 are merged foundations. M05 supplies three scientific simulation engines with documented unfavorable results; M08 supplies digitally checked hardware designs and presentation figures. M03 adds a private, persistent backend foundation on its feature branch for owner review: [startup and tests](services/api/README.md), [implementation report](docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md). Frontend, live ingestion, field firmware and physical testing remain future work. No project license has been selected. The repository remains private unless the owner authorizes release.
 
 | Evidence category | Current status |
 | --- | --- |
-| Designed | Functional concept frozen; detailed hardware design and component qualification pending |
-| Implemented in software | Repository tooling and three M05 simulation engines; application implementation pending |
+| Designed | M02 architecture and M08 digital designs reviewed; physical qualification pending |
+| Implemented in software | Repository tooling, M05 engines and M03 backend foundation under review |
 | Simulated | M05 primary synthetic benchmarks executed; historic results remain separately attributed |
 | Physically tested | No physical prototype or trials established; context reports 0 physical trials |
 | Field validated | Context reports 0 field trials |
@@ -76,7 +76,7 @@ python scripts/check_repository.py
 git diff --check
 ```
 
-The validator checks tracked/unignored files, required paths, local documentation links, source integrity, ignore rules and common credential patterns without printing matched secret values. It is a limited hygiene check, not a comprehensive security audit. There is no application startup command yet.
+The validator checks tracked/unignored files, required paths, local documentation links, source integrity, ignore rules and common credential patterns without printing matched secret values. It is a limited hygiene check, not a comprehensive security audit. M03 application startup and disposable database checks are documented in [the backend guide](services/api/README.md).
 
 ## Roadmap and contributions
 

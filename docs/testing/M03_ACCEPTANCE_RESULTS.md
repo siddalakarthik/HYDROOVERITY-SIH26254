@@ -1,24 +1,50 @@
-# M03 acceptance results — in progress
+# M03 executed acceptance results
 
-Issue #3. These are executed software checks against explicitly synthetic disposable data. M03 is not complete or production certified. Hardware and field validation remain unestablished.
+Issue #3; private development software evidence, 21 October 2026. All fixture identities and operational records are SYNTHETIC_INTEGRATION_ONLY. Physical trials: **0**; field trials: **0**. Owner review and merge are pending. M05/M08 scientific results and limitations are unchanged.
 
-## Foundation checkpoint
+## Native environment actually exercised
 
-Executed 21 October 2026 on Windows, Python 3.12.14, PostgreSQL 17.11 and PostGIS 3.6.2. Separate `hydro_migrator` owner and restricted `hydro_app` runtime; private loopback port 55432. The official PostgreSQL archive passed complete ZIP CRC validation; SHA256 `80379b2c04d51c30225532e0ae04509899141e9957ed096fe749d7fd9df8f82f`. Core PostGIS DLLs and extension SQL came from the official OSGeo bundle. Native execution only; Docker is absent.
+Windows, Python 3.12.14, FastAPI 0.156.1, Pydantic 2.14.1, SQLAlchemy 2.1.5 (supported pure-Python build), Alembic 1.20.0, psycopg 3.3.6, Argon2 25.1.0, PostgreSQL 17.11 and PostGIS 3.6.2. HTTPS uses the included bounded Python loopback reverse proxy and an explicitly trusted temporary localhost certificate. Full versions are in services/api/requirements-lock.txt; direct-license/runtime decisions are recorded separately.
 
-| Check | Actual result |
+Official EDB PostgreSQL archive: complete ZIP CRC verified; SHA256 `80379b2c04d51c30225532e0ae04509899141e9957ed096fe749d7fd9df8f82f`. PostGIS extension/DLLs came from the official OSGeo bundle. Migration owner and runtime are separate non-superuser identities; runtime is nonowner and NOBYPASSRLS. Local port 55432 is loopback-only. Docker is absent on this host; native results do not establish container execution.
+
+## Observed validation
+
+| Check | Status and executed evidence |
 | --- | --- |
-| Fresh isolated Python environment, resolved dependency lock and pip compatibility | PASS |
-| Native PostgreSQL/PostGIS connection and extension creation | PASS |
-| Alembic fresh upgrade to m03_001 | PASS |
-| Non-owner/NOBYPASSRLS runtime, database/migration readiness | PASS |
-| Direct SQL A/B RLS denial and transaction-local context reset | PASS |
-| Cross-tenant composite FK rejection and runtime audit mutation denial | PASS |
-| Foundation pytest snapshot | PASS: 3 tests |
-| Repository integrity and Git whitespace | PASS |
-| Docker/container execution | NOT TESTED: unavailable on this host |
-| Full authentication, operational workflows, migration recovery and CI | NOT TESTED at this checkpoint; implementation continues |
+| Backend acceptance against real PostgreSQL/PostGIS | PASS: **45 tests**, 0 failures, 0 errors, 0 skips |
+| Canonical positive response conformance | PASS: all **58** implemented operations; requests also use canonical validation |
+| Traceability | PASS: 117 = 58 CODE_TESTED + 59 DEFERRED; 30/57 application tables migrated |
+| Migrations | PASS: fresh upgrade, populated downgrade/upgrade, head m03_004, guarded destructive downgrade refusal |
+| RLS and integrity | PASS: direct runtime SQL cross-tenant read/write denial, transaction-local pool context, composite FKs, append-only audit/history |
+| Auth | PASS: Origin/CSRF/no-store/cookie flags; duplicate/concurrent registration; single-use tokens; reset/login race; recovery cooldown; session rotation/expiry/revocation; matching invitations and pending-grant invalidation |
+| Governance | PASS: ADMIN has no engineer/evaluator inheritance; exact grants, reauthentication, last administrator, version and immediate suspension/revocation |
+| Operational workflow | PASS: complaint -> review -> incident -> assignment -> repair -> independent NOT_VERIFIABLE; tenant/owner/assignment/self-review denial; actual persistent restart |
+| Idempotency | PASS: concurrent one-mutation/one-receipt/one-event, conflicting fingerprint, current authorization replay, fault rollback, expiry |
+| Private mail and logs | PASS: bounded private adapter, generic delivery failure, no token HTTP retrieval, no credential/body/cookie/token log values |
+| Actual loopback HTTPS example | PASS: verified TLS, complete persisted workflow, separate API/proxy processes, actual API restart; scripts stop only their own children |
+| Database outage probes | PASS: readiness 503 in 3.001 s; liveness 200; recovered readiness 200 |
+| Argon2id local timing smoke | PASS: 7 hash-plus-verify samples; median 84.176 ms, maximum 89.756 ms. Not a load/performance guarantee |
+| Independent canonical OpenAPI | PASS: openapi-spec-validator 0.9.0; 154 component metaschemas |
+| Independent implemented OpenAPI | PASS: same isolated validator, implemented paths/components only |
+| M02 design consistency | PASS: 57 tables, 117 operations, 46 routes, ten wireframes; 0 errors |
+| M02 checker regression | PASS: 2 unittest methods including 33 deliberate invalid-design mutations |
+| M05 regression | PASS: 38 numerical tests; earlier M03 smoke profile also passed, eight figures generated. No M05 source/config/result changes |
+| M08 regression | PASS: 13 focused tests and artifact contract check; estimate INR59,870/headroom INR130 retained. Native ERC/physical tests remain unperformed |
+| Dependency compatibility | PASS: pip check |
+| Source quality | PASS: Ruff check and format check |
+| Repository integrity / whitespace | PASS after final-newline normalization; repeat at publication |
+| Native Docker/Caddy execution | NOT TESTED locally: Docker unavailable; separate CI job must actually exercise Compose |
+| Remote branch/PR/CI | NOT TESTED at this local snapshot; publication evidence is recorded below after verification |
 
-The working tree also passed two initial authentication smoke tests before this foundation snapshot: secure preauth/CSRF/anonymous denial and real administrator login/no engineer inheritance. Their complete source and broader acceptance remain the next checkpoint.
+The final local backend run took 54.60 seconds. Its source digest was `dfe4fb156e15dcc5b198a122783a25983ba1553360646f1da2afe2ec0d5ef38b`; the HEAD at execution was the earlier foundation checkpoint `7049cd20e34e19de4c4e3a3dcf58c5c085723be1` with the completed working tree under test. CI records the exact published head/merge candidate separately. Do not equate that earlier checkpoint alone with the tested full implementation.
 
-Disposable reset requires matching `HYDRO_TEST_DATABASE_CONFIRM` and a database name beginning `hydro_disposable_`; test fixtures refuse unknown databases. Database credentials and private development mail are outside Git.
+Private local evidence is under the existing workspace's `work/m03-acceptance` and `work/m03-private/https-demo`, outside Git. Only sanitized summary JSON files are eligible for the 14-day CI artifact. Database DSNs, passwords, action tokens, cookies, private mail, certificates/keys and raw scientific truth are never included. The operation matrix contains test names and schemas, no fixture IDs or personal data.
+
+One initial M05 regression invocation used the sandbox default temporary directory: 8 tests failed with file-access errors and 30 passed. Rerunning with the dedicated writable TEMP/TMP directory passed all 38; no scientific source or parameter was changed. An ad hoc Windows probe helper used inherited subprocess output pipes and was replaced with bounded waits/DEVNULL; the separate completed outage probe above is the accepted result. A missing final newline in the copied M03 request was corrected before repository validation passed. These intermediate failures are not presented as successful runs.
+
+## Deliberate limits
+
+DEFERRED: the 59 unregistered operations, uploads/photos, external mail, scientific verification/ingestion, evaluation truth, simulation jobs, exports, durable background delivery, multi-instance shared limits and subsequent milestones. NOT TESTED: public deployment, production backup/restore drill, load/soak tests, independent penetration assessment and physical hardware. No security-critical acceptance failure is concealed by these labels. The application refuses production/public configuration.
+
+The minimal workflow accepts only manual source data and NOT_VERIFIABLE verification; it does not attest measured comparability, leak detection accuracy or repair success. Windows processes share one local OS identity; Linux container credential ownership is tested separately in CI. RLS is tenant defense in depth, with ownership/assignment enforced in services. See the [implementation report](../engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md) and [reproduction guide](../../services/api/README.md).

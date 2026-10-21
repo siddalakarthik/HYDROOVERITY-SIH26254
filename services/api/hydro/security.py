@@ -1,4 +1,5 @@
 """Opaque sessions, bounded privacy-preserving throttles and private local mail."""
+
 import hashlib
 import hmac
 import json
@@ -41,6 +42,7 @@ def password_matches(encoded: str, password: str) -> bool:
 
 class Limits:
     """Single-process pilot only. Saturation fails closed, never evicts active limits."""
+
     def __init__(self, key: str):
         self.key = key.encode()
         self.buckets: OrderedDict[str, tuple[float, int]] = OrderedDict()
@@ -48,17 +50,21 @@ class Limits:
 
     def hit(self, action: str, identity: str, maximum: int, window: int) -> None:
         instant = time.time()
-        daily = hmac.digest(self.key, str(int(instant//86400)).encode(), "sha256")
-        bucket = hmac.new(daily, (action+":"+identity).encode(), "sha256").hexdigest()
+        daily = hmac.digest(self.key, str(int(instant // 86400)).encode(), "sha256")
+        bucket = hmac.new(daily, (action + ":" + identity).encode(), "sha256").hexdigest()
         with self.lock:
-            expired = [k for k,(until,_) in self.buckets.items() if until <= instant]
+            expired = [k for k, (until, _) in self.buckets.items() if until <= instant]
             for k in expired:
                 del self.buckets[k]
-            require(bucket in self.buckets or len(self.buckets)<10000,503,"RATE_CAPACITY",
-                    "Rate limiter capacity reached")
-            until,count = self.buckets.get(bucket,(instant+min(window,86400),0))
-            self.buckets[bucket]=(until,count+1)
-            require(count<maximum,429,"RATE_LIMITED","Please retry after the limit window")
+            require(
+                bucket in self.buckets or len(self.buckets) < 10000,
+                503,
+                "RATE_CAPACITY",
+                "Rate limiter capacity reached",
+            )
+            until, count = self.buckets.get(bucket, (instant + min(window, 86400), 0))
+            self.buckets[bucket] = (until, count + 1)
+            require(count < maximum, 429, "RATE_LIMITED", "Please retry after the limit window")
 
 
 class PrivateMail:
@@ -68,25 +74,41 @@ class PrivateMail:
     directory/file modes are 0700/0600. Windows inherits the operator directory ACL.
     No external message was sent. Expired files are deleted before each delivery.
     """
+
     def __init__(self, directory: Path):
         self.directory = directory.resolve()
         self.lock = threading.Lock()
 
     def deliver(self, purpose: str, recipient: str, token: str) -> None:
         with self.lock:
-            self.directory.mkdir(parents=True,exist_ok=True,mode=0o700)
-            files=list(self.directory.glob("*.json"))
-            for p in files:
-                if time.time()-p.stat().st_mtime>1800:
-                    p.unlink()
-            if len(list(self.directory.glob("*.json")))>=100:
-                return
-            p=self.directory/(str(uuid4())+".json")
             try:
-                with p.open("x",encoding="utf-8") as f:
-                    p.chmod(0o600)
-                    json.dump({"development_only":True,"purpose":purpose,"recipient":recipient,
-                               "token":token,"expires_at":(now()+timedelta(minutes=30)).isoformat()},f)
+                self._deliver(purpose, recipient, token)
             except OSError:
-                # Token never enters a log or the tenant outbox; retry after cooldown.
+                # A failed local delivery never changes the generic committed reply.
                 return
+
+    def _deliver(self, purpose: str, recipient: str, token: str) -> None:
+        self.directory.mkdir(parents=True, exist_ok=True, mode=0o700)
+        files = list(self.directory.glob("*.json"))
+        for p in files:
+            if time.time() - p.stat().st_mtime > 1800:
+                p.unlink()
+        if len(list(self.directory.glob("*.json"))) >= 100:
+            return
+        p = self.directory / (str(uuid4()) + ".json")
+        try:
+            with p.open("x", encoding="utf-8") as f:
+                p.chmod(0o600)
+                json.dump(
+                    {
+                        "development_only": True,
+                        "purpose": purpose,
+                        "recipient": recipient,
+                        "token": token,
+                        "expires_at": (now() + timedelta(minutes=30)).isoformat(),
+                    },
+                    f,
+                )
+        except OSError:
+            # Token never enters a log or the tenant outbox; retry after cooldown.
+            return
