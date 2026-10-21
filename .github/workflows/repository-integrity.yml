@@ -119,10 +119,14 @@ jobs:
           done
           docker compose -f services/api/compose.yaml exec -T api python -c "import os,urllib.request; assert os.getuid()==10001; assert not os.access('/private/operator/operator.json',os.R_OK); assert urllib.request.urlopen('http://127.0.0.1:8000/internal/health/ready',timeout=2).status==200"
       - name: Real database, auth, role, workflow and migration acceptance
-        run: docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+        run: |
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/verify_backend.py --operator-config /private/operator/operator.json --runtime-config /private/runtime/runtime.json --confirm-disposable-database hydro_disposable_m03 --evidence-directory /private/evidence-repeat
       - name: Backend source quality and dependency compatibility
         run: |
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence-repeat/acceptance-summary.json
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pytest services/api/traceability_tests -q --acceptance-evidence /private/evidence/acceptance-summary.json --acceptance-evidence /private/evidence-repeat/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m ruff check services/api
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m ruff format --check services/api
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pip check
@@ -164,6 +168,7 @@ jobs:
       - name: Collect sanitized backend evidence only
         run: |
           docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/evidence/acceptance-summary.json > "$RUNNER_TEMP/m03-acceptance-summary.json"
+          docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/evidence-repeat/acceptance-summary.json > "$RUNNER_TEMP/m03-acceptance-repeat-summary.json"
           docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/https-demo/https-workflow-summary.json > "$RUNNER_TEMP/m03-https-workflow-summary.json"
       - name: Upload sanitized M03 acceptance evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -171,6 +176,7 @@ jobs:
           name: HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE
           path: |
             ${{ runner.temp }}/m03-acceptance-summary.json
+            ${{ runner.temp }}/m03-acceptance-repeat-summary.json
             ${{ runner.temp }}/m03-https-workflow-summary.json
           if-no-files-found: error
           retention-days: 14

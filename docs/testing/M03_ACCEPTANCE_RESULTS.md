@@ -60,3 +60,7 @@ Actual Linux container acceptance: 45 tests, 0 failures/errors/skips; all 58 pos
 Additional native reproduction check: the documented operator CLI reused explicitly bound restricted roles, created a new disposable database, applied the full fresh m03_001 -> m03_004 chain and executed the private bootstrap CLI twice. The second bootstrap left the existing password unchanged. No privileged DSN or password was printed.
 
 No unresolved merge conflict or security-critical acceptance failure remains. Native Windows Docker, external delivery, shared-rate infrastructure and the deferred/untested limits above remain unchanged. This evidence update changes documentation only; the final PR head's CI is verified separately before handoff.
+
+## Post-merge CI correction under review
+
+Main cb7e9bd1e0bcb2be5489b15342ce18606b2382e4 passed 45 backend tests/58 operation projections but failed the subsequent traceability comparison in run 39547948759. The [focused recovery report](M03_POST_MERGE_CI_RECOVERY.md) documents an unchanged-source reproduction and the correction. Original counts and scientific limitations remain unchanged. The correction PR requires two independent accepted runs, negative checker regressions and all original CI jobs. Issue #3 remains open pending owner review; this addendum does not retroactively mark the failed main run successful.

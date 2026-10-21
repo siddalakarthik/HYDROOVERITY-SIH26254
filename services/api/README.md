@@ -121,3 +121,15 @@ git diff --check
 ```
 
 M05 and M08 retain their own isolated environments, requirements and reproduction commands. They must not be installed into this backend environment. Generated raw scientific truth and seeds stay outside ordinary APIs, dashboard artifacts and this acceptance evidence. Private development mail is bounded and post-commit; external delivery, shared multi-instance limits, upload handling, ingestion, live scientific verification and production operations require separately authorized work.
+
+## Traceability recovery checks
+
+The [post-merge recovery report](../../docs/testing/M03_POST_MERGE_CI_RECOVERY.md) records the reproduced race-dependent reference and focused correction. Acceptance still executes the original 45 tests. Run it twice with separate evidence directories, then check both outputs and the negative regressions:
+
+```powershell
+& $py services/api/tools/traceability.py --check --evidence "$private/evidence/acceptance-summary.json"
+& $py services/api/tools/traceability.py --check --evidence "$private/evidence-repeat/acceptance-summary.json"
+& $py -m pytest services/api/traceability_tests -q --acceptance-evidence "$private/evidence/acceptance-summary.json" --acceptance-evidence "$private/evidence-repeat/acceptance-summary.json"
+```
+
+The separate regression suite requires actual fresh acceptance evidence. It does not generate or certify artificial passing coverage. `--diagnose --evidence <file>` prints a read-only safe matrix diff; `--check` remains strict and fails on real drift. Current evidence includes the actual collected test IDs; older files remain usable for diagnosis but must be regenerated before certification.
