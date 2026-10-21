@@ -75,8 +75,8 @@ $operator = Get-Content (Join-Path $private 'operator.json') | ConvertFrom-Json
 $env:HYDRO_MIGRATION_URL = $operator.migration_url
 & $py -m alembic -c services/api/alembic.ini upgrade head
 Remove-Item Env:HYDRO_MIGRATION_URL
-# This acceptance command resets the confirmed disposable database, including
-# the synthetic bootstrap above. Never substitute your operational database.
+# Acceptance resets the confirmed disposable database and creates its own
+# synthetic fixtures. Never substitute an operational database.
 & $py services/api/tools/verify_backend.py --operator-config (Join-Path $private 'operator.json') --runtime-config (Join-Path $private 'runtime.json') --confirm-disposable-database hydro_disposable_m03 --evidence-directory (Join-Path $private 'evidence')
 # Create your known local account after acceptance has reset its fixtures.
 $env:HYDRO_MIGRATION_URL = $operator.migration_url
