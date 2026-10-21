@@ -228,6 +228,15 @@ export function Workspace({ segments }: { segments: string[] }) {
     );
   const root = `/app/${org}`;
   const common = { org, roles: member.roles };
+  const breadcrumb =
+    scope === "citizen"
+      ? "My reports"
+      : tail[0] === "repairs"
+        ? "Repair verification"
+        : (navItems.find(
+            (item) =>
+              suffix === item.suffix || suffix.startsWith(item.suffix + "/"),
+          )?.label ?? "Workspace");
   const content = () => {
     if (route.status === "DEFERRED")
       return (
@@ -396,7 +405,7 @@ export function Workspace({ segments }: { segments: string[] }) {
         <main id="main" className="workspace-content">
           <p className="breadcrumbs">
             <Link href="/account">Account</Link> /{" "}
-            {organization.data?.name ?? "Utility"} / {route.title}
+            {organization.data?.name ?? "Utility"} / {breadcrumb}
           </p>
           <ResourceState {...organization}>
             <Notice>

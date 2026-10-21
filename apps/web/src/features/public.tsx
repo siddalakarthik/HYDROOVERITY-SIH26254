@@ -59,10 +59,6 @@ export function Home() {
             This is a proposed system in development. Hardware connection and
             field validation remain pending.
           </p>
-          <Link href="/project-status">
-            Review current status
-            <ArrowRight size={14} aria-hidden="true" />
-          </Link>
         </section>
       </section>
       <section id="evidence" className="evidence-section">

@@ -112,10 +112,10 @@ button:disabled {
   top: 12px;
 }
 .site-header {
-  min-height: 88px;
+  min-height: 72px;
   max-width: 1920px;
   margin: auto;
-  padding: 16px 32px;
+  padding: 12px 32px;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -252,7 +252,7 @@ button:disabled {
   margin-top: 12px;
 }
 .home-main {
-  padding: 32px 24px;
+  padding: 24px;
 }
 .mission {
   display: grid;
@@ -262,8 +262,8 @@ button:disabled {
   margin-bottom: 24px;
 }
 .mission h1 {
-  font-size: 36px;
-  line-height: 1.25;
+  font-size: 40px;
+  line-height: 1.2;
   letter-spacing: -1.2px;
   margin: 12px 0 16px;
 }
@@ -353,14 +353,14 @@ button:disabled {
   background: white;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 20px;
 }
 .evidence-section > p {
   color: var(--muted);
   margin-top: 6px;
 }
 .architecture {
-  padding: 24px 0 0;
+  padding: 16px 0 0;
 }
 .observation-row {
   display: grid;
@@ -373,7 +373,7 @@ button:disabled {
   align-items: center;
   border: 2px solid var(--brand);
   border-radius: 6px;
-  padding: 16px;
+  padding: 12px;
   background: white;
 }
 .architecture section > svg {
@@ -401,11 +401,11 @@ button:disabled {
   border-color: #a66e00;
 }
 .diagram-connector {
-  height: 28px;
+  height: 20px;
   text-align: center;
   color: var(--brand);
   font-size: 24px;
-  line-height: 28px;
+  line-height: 20px;
 }
 .observation-connectors {
   display: grid;
@@ -437,8 +437,8 @@ button:disabled {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin: 24px 0;
-  padding: 16px 0;
+  margin: 16px 0;
+  padding: 8px 0;
 }
 .two-stories article {
   display: flex;
@@ -1258,4 +1258,8 @@ td {
   text-decoration: underline;
   text-align: left;
   min-height: 44px;
+}
+
+.home-main > .notice {
+  margin: 16px 0 0;
 }

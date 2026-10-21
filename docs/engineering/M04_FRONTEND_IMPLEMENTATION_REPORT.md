@@ -24,3 +24,17 @@ Use exact Next.js 16 / React 19 stable packages, strict TypeScript 5.9 (compatib
 ## Delivery status
 
 IN PROGRESS. This file is a durable implementation record, not acceptance evidence. No M04 browser, accessibility, performance or CI pass is claimed until execution is recorded. Hardware remains physically untested; M05 results and M08 digital-only caveats are unchanged.
+
+## Implemented scope
+
+The frontend implements coherent public pages; real identity/account/session flows; role-scoped citizen, supervisor, engineer, technician and administration workspaces; manual incident/work/repair/NOT_VERIFIABLE workflows; authorized network asset entry/editing and MapLibre; membership invitations/status/role editors and safe audit views. The [route/API matrix](../testing/M04_ROUTE_AND_API_MATRIX.md) lists all 46 routes and all 58 implemented operation integrations. Nine routes are informational, four read only, twenty functional and thirteen explicitly deferred.
+
+Security uses generated M03 schemas, fixed same-origin paths, memory-only CSRF/idempotency values, secure backend cookies, serialized writes and ETag preconditions. Tenant/session changes invalidate private state and queued writes. No second identity service, persistent private drafts, external tiles/geocoder, telemetry, scientific job API or public deployment was introduced.
+
+## Executed frontend evidence and review risks
+
+Exact cached installation, generated contracts, strict application typecheck, zero-warning ESLint, formatting, sixteen unit/component tests and Webpack production build have passed. Two real Chrome browser scenarios passed in 1.9 minutes after correcting demonstrated defects. Tests use isolated PostgreSQL/PostGIS and random private fixture credentials, not mock-only acceptance. Additional post-review responsive-map/screenshot/keyboard checks are being verified before publication; final CI and artifacts must be checked on the pushed head.
+
+Local audit has one unpatched HIGH development-only braces advisory through the official Next lint plugin; no clean-audit claim. License inventory records 302 installed entries and native Sharp LGPL notices. The standalone API production gate remains unchanged. All scientific/hardware source and results remain unchanged.
+
+Known contract limitations are explicit: administrator-provided technician membership IDs, no raw-evidence discovery, complete reviewed zone-accounting input, private development identity delivery, manual NOT_VERIFIABLE only and no offline writes. Local measurements describe loopback performance, not field-device or internet performance. Automated axe checks do not by themselves certify WCAG conformance.

@@ -1,12 +1,12 @@
 # HYDROOVERITY M04 web application
 
-IN PROGRESS: the source is under active implementation. Do not treat this guide as executed acceptance evidence until the M04 test ledger records results.
+M04 private-development frontend. See the [execution ledger](../../docs/testing/M04_EXECUTION_LEDGER.md) for actual validation and the [route/API matrix](../../docs/testing/M04_ROUTE_AND_API_MATRIX.md) for delivered and deferred scope. Owner engineering review is required before merge.
 
 Run commands from this repository root unless a command explicitly changes directory. The application uses the 58 implemented M03 operations. FastAPI remains the identity and domain authority. No public deployment is authorized or supported by M03 configuration.
 
 ## Install and compile
 
-Requires Node 24 LTS and pnpm 11.25.0. Exact dependencies and the lockfile belong to `apps/web`; scientific Python packages remain in their existing isolated environments.
+Validated locally with Node 24.21.0 and pnpm 11.25.0. Exact dependencies and the lockfile belong to `apps/web`; scientific Python packages remain in their existing isolated environments.
 
 ```powershell
 Set-Location apps/web
@@ -18,6 +18,8 @@ pnpm run test
 pnpm run build
 pnpm run start
 ```
+
+The build explicitly selects Next’s supported Webpack builder after a reproducible local Turbopack PostCSS-worker failure. The production build does not require network fonts.
 
 Next listens on `127.0.0.1:3000`. The public pages can be previewed there. For real authentication, use the optional HTTPS proxy below; Secure cookies must not be weakened to make HTTP login appear functional. The Next API rewrite has one fixed loopback upstream and is not a general proxy.
 
@@ -47,6 +49,9 @@ $env:HYDRO_M04_SCREENSHOTS = "$m04Evidence/screenshots"
 Set-Location apps/web
 pnpm exec playwright install chromium
 pnpm run test:browser
+# Optional local fallback only when the pinned browser download is unavailable:
+# $env:HYDRO_M04_BROWSER_CHANNEL = "chrome"
+# pnpm run test:browser
 ```
 
 The fixture contains only synthetic local identities, with a random private test password. It is never copied to a public directory, source tree, browser bundle or Actions artifact. Playwright traces/video/automatic failure screenshots are disabled to avoid capturing entered identity secrets. Explicit captures use synthetic records after login, not token/password entry. Screenshots are development test evidence, not field observations.
@@ -70,3 +75,11 @@ Sessions remain Secure/HttpOnly/SameSite cookies. CSRF values and safe mutation 
 ## Engineering assets
 
 `public/engineering/guard5.png` is the reviewed M08 H02 PNG, copied without altering its geometry. `ear.svg` is the reviewed M08 H05 SVG. They retain proposed-design/not-physically-tested labels. The semantic architecture diagram follows M02/M08 with WATCH hydraulic context, exactly five GUARD-5 wetness channels and one physical acoustic clock. It is an explanatory diagram, not a photograph or a live system state.
+
+## Dependency review and limitations
+
+[Installed third-party notices](THIRD_PARTY_NOTICES.md) preserve the exact Windows dependency license inventory. Optional native Sharp binaries declare LGPL-3.0-or-later alongside Apache-2.0; upstream notices and redistribution obligations must be retained. Project licensing is still undecided.
+
+The actual registry audit reported one high-severity development-only `braces <=3.0.3` advisory through the official Next ESLint plugin (GHSA-vfj7-8cjw-p6xm); no published patch was reported. It is not a public application dependency or an arbitrary user-pattern endpoint, but remains a review risk. No audit exception is silently suppressed.
+
+No complete field firmware, physically validated acoustic recorder, supplier-quoted budget, native KiCad ERC or physical GUARD-5 collection performance is claimed. Public pressure-sensor and INR130 procurement-margin limitations are retained. M05 unfavorable simulation results are unchanged.

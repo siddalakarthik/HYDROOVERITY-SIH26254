@@ -19,6 +19,7 @@ export default function NetworkMap({
   const select = useRef(onSelect);
   const selection = useRef(selected);
   const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     select.current = onSelect;
   }, [onSelect]);
@@ -44,6 +45,16 @@ export default function NetworkMap({
       .then((m) => {
         if (disposed || !container.current) return;
         try {
+          setReady(false);
+          setFailed(false);
+          // Webpack emits the pinned package worker as a same-origin hashed asset.
+          // MapLibre's import.meta.url default becomes empty inside the app bundle.
+          m.setWorkerUrl(
+            new URL(
+              "maplibre-gl/dist/maplibre-gl-worker.mjs",
+              import.meta.url,
+            ).toString(),
+          );
           map = new m.Map({
             container: container.current,
             style: {
@@ -125,6 +136,14 @@ export default function NetworkMap({
                 bounds.extend(c as [number, number]);
             if (!bounds.isEmpty())
               map.fitBounds(bounds, { padding: 64, maxZoom: 18, duration: 0 });
+            map.on("resize", () => {
+              if (!bounds.isEmpty())
+                map?.fitBounds(bounds, {
+                  padding: 64,
+                  maxZoom: 18,
+                  duration: 0,
+                });
+            });
             for (const layer of ["pipes", "junctions"]) {
               map.on("click", layer, (e) => {
                 const id = e.features?.[0]?.properties?.id;
@@ -138,6 +157,9 @@ export default function NetworkMap({
                 if (map) map.getCanvas().style.cursor = "";
               });
             }
+            map.once("idle", () => {
+              if (!disposed) setReady(true);
+            });
           });
         } catch {
           setFailed(true);
@@ -161,6 +183,7 @@ export default function NetworkMap({
         <div
           ref={container}
           className="map-canvas"
+          data-rendered={ready && !failed ? "true" : "false"}
           role="region"
           aria-label="Authorized network geometry; equivalent asset list follows"
         />

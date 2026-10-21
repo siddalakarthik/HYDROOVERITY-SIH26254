@@ -59,3 +59,19 @@ Installed license inventory contains 302 package entries, with no unknown/unlice
 Actual registry audit: one HIGH development-only `braces <=3.0.3` finding through `@next/eslint-plugin-next > fast-glob > micromatch`, GHSA-vfj7-8cjw-p6xm; registry reported no published patched version. The lint command uses repository-owned fixed patterns; no public runtime glob endpoint is exposed. This remains an explicit owner-review risk, not a clean-audit claim. No finding is suppressed.
 
 Browser rerun passed the citizen create/follow-up/ownership projections and supervisor overview accessibility, then stopped on an ambiguous test locator shared by the filter and create forms. The locator was scoped to the actual incident creation form. No passing workflow is claimed yet.
+
+## Browser execution and rendering corrections
+
+The cross-role workflow passed on installed official Chrome 155.0.8059.85 against the certificate-verified loopback application and real PostgreSQL. The run covers resident create/follow-up/ownership, supervisor triage/link/review, assignment, mobile technician actions/repair/submission, independent NOT_VERIFIABLE, governance/tenant switching, logout/back navigation and security denials. No unexpected console or page errors remained. The browser-safe summary is outside Git in the dedicated evidence directory.
+
+The first map run exposed MapLibre 6's bundled `import.meta.url` worker fallback; a visible canvas alone was insufficient. The package worker is now emitted as a same-origin hashed Webpack asset. A post-fix screenshot shows the authorized synthetic line and its two junctions; the test waits for the map's rendered-idle marker. No external basemap is used.
+
+The second browser scenario has executed real zone/two-junction/pipe creation, versioned pipe edit, offline read recovery, forced WebGL fallback, not-found and deferred route behavior. Account registration/verification reached a preserved rate limit; the test now handles this explicitly instead of waiting forever for a login POST blocked by CSRF bootstrap. Full second-scenario acceptance remains pending.
+
+Browser tooling: pinned Playwright 1.64.1 Chromium 156 download is still completing. Local Chrome fallback is explicit in configuration and documentation; CI retains the pinned Chromium default. These browser versions are not conflated.
+
+## Completed local browser acceptance
+
+Both expanded real-browser scenarios passed in 1.9 minutes. Account coverage includes actual utility lookup, citizen registration, private token verification, login, profile edit, current-session revocation, recovery/reset and invitation acceptance. Real asset creation/edit, offline read recovery and forced WebGL fallback passed. The backend rate limit was observed and waited out; no limiter was disabled. All records remain synthetic.
+
+The final production build also includes the demonstrated mobile geometry refit and concise workspace breadcrumbs. The first scenario passed again with keyboard skip/navigation/Escape checks and mobile report-form accessibility. A final loaded-directory capture was independently inspected. Actual main remains e0122f5ee4146e49ae6113a1aa6a5ee444b25973 and issue #4 remains open. Final branch publication/CI and artifact verification follow; no merge is authorized.

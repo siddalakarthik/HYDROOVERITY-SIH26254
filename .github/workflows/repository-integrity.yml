@@ -110,6 +110,9 @@ jobs:
           pnpm run format:check
           pnpm run test
           pnpm run build
+      - name: Check published production dependency advisories
+        working-directory: apps/web
+        run: pnpm audit --prod
       - name: Prepare isolated real PostGIS and synthetic browser fixture
         run: |
           python3 -m venv "$RUNNER_TEMP/m04-python"
@@ -160,12 +163,17 @@ jobs:
           pnpm exec playwright install --with-deps chromium
           pnpm run test:browser
       - name: Upload sanitized synthetic M04 visual evidence
+        id: m04-upload
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: HYDROOVERITY_M04_BROWSER_EVIDENCE
           path: ${{ runner.temp }}/m04-evidence
           if-no-files-found: error
           retention-days: 14
+      - name: Link the uploaded M04 visual evidence
+        env:
+          M04_ARTIFACT_URL: ${{ steps.m04-upload.outputs.artifact-url }}
+        run: printf '[Download M04 synthetic browser evidence](%s) — retained for 14 days.\n' "$M04_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
       - name: Stop isolated M04 database
         if: always()
         run: docker stop hydro-m04-db || true

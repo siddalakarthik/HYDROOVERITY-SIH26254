@@ -1,7 +1,14 @@
 import { test, expect, type BrowserContext, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import {
+  readFileSync,
+  mkdirSync,
+  writeFileSync,
+  readdirSync,
+  statSync,
+} from "node:fs";
+import { join, dirname } from "node:path";
+import { request as httpsRequest } from "node:https";
 const fixture = JSON.parse(
   readFileSync(process.env.HYDRO_M04_BROWSER_FIXTURE!, "utf8"),
 ) as {
@@ -21,7 +28,13 @@ const output = process.env.HYDRO_M04_SCREENSHOTS;
 if (!output)
   throw new Error("Set a dedicated synthetic screenshot output directory.");
 mkdirSync(output, { recursive: true });
+test.describe.configure({ mode: "serial" });
+let savedAdmin: Awaited<ReturnType<BrowserContext["storageState"]>>;
+let savedEngineer: Awaited<ReturnType<BrowserContext["storageState"]>>;
 async function capture(page: Page, name: string) {
+  if (/^\/(app|citizen)\//.test(new URL(page.url()).pathname))
+    await expect(page.locator(".workspace-content h1")).toBeVisible();
+  await expect(page.locator(".loading:visible")).toHaveCount(0);
   await page.screenshot({ path: join(output!, `${name}.png`), fullPage: true });
 }
 async function a11y(page: Page) {
@@ -118,6 +131,11 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   const publicPage = await publicContext.newPage();
   observe(publicPage);
   await publicPage.goto("/");
+  await publicPage.keyboard.press("Tab");
+  await expect(
+    publicPage.getByRole("link", { name: "Skip to content" }),
+  ).toBeFocused();
+  await publicPage.keyboard.press("Enter");
   await expect(
     publicPage.getByRole("heading", {
       name: "Evidence before conclusions",
@@ -126,6 +144,34 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   ).toBeVisible();
   await capture(publicPage, "home-desktop");
   await a11y(publicPage);
+  writeFileSync(
+    join(output!, "local-home-performance.json"),
+    JSON.stringify(
+      await publicPage.evaluate(() => {
+        const n = performance.getEntriesByType(
+          "navigation",
+        )[0] as PerformanceNavigationTiming;
+        const scripts = performance
+          .getEntriesByType("resource")
+          .filter(
+            (r) => (r as PerformanceResourceTiming).initiatorType === "script",
+          ) as PerformanceResourceTiming[];
+        return {
+          environment: "LOCAL_LOOPBACK_PRODUCTION_BUILD_NO_THROTTLING",
+          ttfb_ms: n.responseStart - n.requestStart,
+          dom_content_loaded_ms: n.domContentLoadedEventEnd,
+          load_ms: n.loadEventEnd,
+          javascript_requests: scripts.length,
+          javascript_encoded_bytes: scripts.reduce(
+            (sum, r) => sum + r.encodedBodySize,
+            0,
+          ),
+        };
+      }),
+      null,
+      2,
+    ),
+  );
   await publicPage.goto("/how-it-works");
   await capture(publicPage, "how-it-works-desktop");
   await a11y(publicPage);
@@ -147,6 +193,11 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
       ).toBeVisible();
       await capture(publicPage, "home-mobile-menu");
       await a11y(publicPage);
+      await publicPage.keyboard.press("Tab");
+      await publicPage.keyboard.press("Escape");
+      await expect(
+        publicPage.getByRole("button", { name: "Open navigation" }),
+      ).toBeFocused();
     }
   }
   const citizen = await actor("citizen@example.invalid");
@@ -160,6 +211,10 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   await citizen.getByLabel("Rough area or landmark").fill("SYNTHETIC locality");
   await capture(citizen, "citizen-report-form-desktop");
   await a11y(citizen);
+  await citizen.setViewportSize({ width: 390, height: 844 });
+  await capture(citizen, "citizen-report-form-mobile");
+  await a11y(citizen);
+  await citizen.setViewportSize({ width: 1440, height: 1000 });
   await citizen.getByRole("button", { name: "Submit report" }).click();
   await expect(
     citizen.getByRole("heading", { name: "Your report", exact: true }),
@@ -225,6 +280,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     supervisor.getByRole("heading", {
       name: "SYNTHETIC browser investigation concern",
       exact: true,
+      level: 1,
     }),
   ).toBeVisible();
   const incidentId = new URL(supervisor.url()).pathname.split("/").at(-1)!;
@@ -254,10 +310,25 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     .fill(
       "SYNTHETIC private reason that must never appear in citizen projections.",
     );
-  await supervisor.getByRole("button", { name: "Publish safe update" }).click();
-  await expect(supervisor.locator(".record-top .badge").first()).toHaveText(
-    "Investigating",
+  const reviewResponse = supervisor.waitForResponse(
+    (response) =>
+      response.url().endsWith(`/complaints/${complaintId}/review`) &&
+      response.request().method() === "POST",
   );
+  await supervisor.getByRole("button", { name: "Publish safe update" }).click();
+  const reviewed = await reviewResponse;
+  expect({
+    status: reviewed.status(),
+    error: (await reviewed.json()).error?.code,
+  }).toEqual({ status: 200, error: undefined });
+  await expect(
+    supervisor
+      .locator(".panel")
+      .filter({
+        has: supervisor.getByRole("heading", { name: tracking, exact: true }),
+      })
+      .locator(".record-top .badge"),
+  ).toHaveText("Investigating");
   const safe = await raw(
     citizen,
     `/orgs/${fixture.org}/complaints/${complaintId}`,
@@ -342,9 +413,15 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     .fill(
       "SYNTHETIC inspection note; no sensor measurement or physical experiment.",
     );
+  const versionBeforeNote = await technician
+    .locator(".record-top .meta")
+    .innerText();
   await technician
     .getByRole("button", { name: "Save inspection note" })
     .click();
+  await expect(technician.locator(".record-top .meta")).not.toHaveText(
+    versionBeforeNote,
+  );
   await expect(
     technician.getByRole("heading", { name: "Record a repair receipt" }),
   ).toBeVisible();
@@ -433,11 +510,18 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     technician.getByRole("button", { name: "Record NOT_VERIFIABLE" }),
   ).toHaveCount(0);
   const engineer = await actor("engineer@example.invalid");
+  expect((await raw(engineer, `/orgs/${fixture.org}/memberships`)).status).toBe(
+    403,
+  );
   await engineer.goto(`/app/${fixture.org}/network`);
   await expect(
     engineer.getByRole("heading", { name: "Network explorer" }),
   ).toBeVisible();
   await expect(engineer.locator(".map-canvas canvas")).toBeVisible();
+  await expect(engineer.locator(".map-canvas")).toHaveAttribute(
+    "data-rendered",
+    "true",
+  );
   await capture(engineer, "network-desktop");
   await a11y(engineer);
   await engineer.setViewportSize({ width: 390, height: 844 });
@@ -453,6 +537,9 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   );
   const admin = await actor("admin-a@example.invalid");
   await admin.goto(`/app/${fixture.org}/admin/users`);
+  await expect(
+    admin.getByRole("heading", { name: "Current membership directory" }),
+  ).toBeVisible();
   await capture(admin, "administration-desktop");
   await a11y(admin);
   await admin.goto(`/app/${fixture.org}/admin/audit`);
@@ -552,24 +639,48 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   expect(
     (await raw(citizen, "/public/project-status")).headers["cache-control"],
   ).toBe("no-store");
-  // A forged Origin reaches the same real API through browser interception.
-  await supervisor.route("**/api/v1/me", async (route) =>
-    route.continue({
-      headers: { ...route.request().headers(), origin: "https://evil.invalid" },
-    }),
-  );
-  expect(
-    (
-      await raw(
-        supervisor,
-        "/me",
-        "PATCH",
-        { display_name: "SYNTHETIC rejected origin" },
-        { "If-Match": '"1"' },
-      )
-    ).status,
-  ).toBe(403);
-  await supervisor.unroute("**/api/v1/me");
+  // Browsers control Origin. Exercise a hostile client over verified TLS with
+  // the disposable browser cookie jar; no product code reads HttpOnly cookies.
+  const csrfForOrigin = (await raw(supervisor, "/auth/csrf")).data
+    .csrf_token as string;
+  const cookieForOrigin = (
+    await supervisor.context().cookies("https://localhost:8443")
+  )
+    .map((cookie) => `${cookie.name}=${cookie.value}`)
+    .join("; ");
+  const originStatus = await new Promise<number>((resolve, reject) => {
+    const body = JSON.stringify({ display_name: "SYNTHETIC rejected origin" });
+    const request = httpsRequest(
+      {
+        hostname: "localhost",
+        port: 8443,
+        path: "/api/v1/me",
+        method: "PATCH",
+        ca: readFileSync(
+          join(
+            dirname(process.env.HYDRO_M04_BROWSER_FIXTURE!),
+            "localhost.crt",
+          ),
+        ),
+        rejectUnauthorized: true,
+        headers: {
+          Cookie: cookieForOrigin,
+          Origin: "https://evil.invalid",
+          "X-CSRF-Token": csrfForOrigin,
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body),
+          "If-Match": '"1"',
+        },
+      },
+      (response) => {
+        response.resume();
+        response.on("end", () => resolve(response.statusCode!));
+      },
+    );
+    request.on("error", reject);
+    request.end(body);
+  });
+  expect(originStatus).toBe(403);
   const seededWork = (
     await raw(supervisor, `${base}/work-orders/${fixture.work_order}`)
   ).data;
@@ -641,7 +752,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
         },
       )
     ).status,
-  ).toBe(200);
+  ).toBe(201);
   expect((await raw(technician, "/me")).status).toBe(401);
   await technician.evaluate(() => window.dispatchEvent(new Event("focus")));
   await expect(
@@ -680,5 +791,308 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
       2,
     ),
   );
+  savedAdmin = await admin.context().storageState();
+  savedEngineer = await engineer.context().storageState();
   for (const context of contexts) await context.close();
+});
+
+test("real account lifecycle, asset editing, offline recovery and map fallback", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    baseURL: "https://localhost:8443",
+    storageState: savedEngineer,
+  });
+  const engineer = await context.newPage();
+  await engineer.goto(`/app/${fixture.org}/network`);
+  await expect(
+    engineer.getByRole("heading", { name: "Network explorer" }),
+  ).toBeVisible();
+  await engineer
+    .getByRole("button", { name: "Create zone", exact: true })
+    .click();
+  await engineer
+    .getByLabel("Zone name", { exact: true })
+    .fill("SYNTHETIC browser-created zone");
+  await engineer
+    .getByLabel("Demand-boundary version")
+    .fill("synthetic-browser-v1");
+  await engineer
+    .getByLabel("Does measured outflow include customer demand?")
+    .selectOption("yes");
+  await engineer.getByLabel("Is storage change observed?").selectOption("no");
+  await engineer
+    .getByLabel("Accounting assumptions and limitations")
+    .fill(
+      "SYNTHETIC manual accounting definition. No physical instrument observations.",
+    );
+  const zoneResponse = engineer.waitForResponse(
+    (r) => r.url().endsWith("/zones") && r.request().method() === "POST",
+  );
+  await engineer.getByRole("button", { name: "Create asset record" }).click();
+  const zoneCreated = await zoneResponse;
+  expect(zoneCreated.status()).toBe(201);
+  const zone = (await zoneCreated.json()).id as string;
+  await expect(
+    engineer.getByRole("heading", {
+      name: "SYNTHETIC browser-created zone",
+      exact: true,
+    }),
+  ).toBeVisible();
+  const junctions: string[] = [];
+  for (const [ref, lon] of [
+    ["SYNTHETIC-BROWSER-J1", "78.002"],
+    ["SYNTHETIC-BROWSER-J2", "78.003"],
+  ]) {
+    await engineer
+      .getByRole("button", { name: "Junctions", exact: true })
+      .click();
+    await engineer
+      .getByRole("button", { name: "Create junction", exact: true })
+      .click();
+    await engineer.getByLabel("Authorized zone ID", { exact: true }).fill(zone);
+    await engineer.getByLabel("Junction reference").fill(ref);
+    await engineer.getByLabel("Longitude (WGS84 degrees)").fill(lon);
+    await engineer.getByLabel("Latitude (WGS84 degrees)").fill("17.001");
+    const received = engineer.waitForResponse(
+      (r) => r.url().endsWith("/junctions") && r.request().method() === "POST",
+    );
+    await engineer.getByRole("button", { name: "Create asset record" }).click();
+    const response = await received;
+    expect(response.status()).toBe(201);
+    junctions.push((await response.json()).id);
+    await expect(
+      engineer.getByRole("heading", { name: ref, exact: true }),
+    ).toBeVisible();
+  }
+  await engineer.getByRole("button", { name: "Pipes", exact: true }).click();
+  await engineer
+    .getByRole("button", { name: "Create pipe", exact: true })
+    .click();
+  await engineer.getByLabel("Authorized zone ID", { exact: true }).fill(zone);
+  await engineer.getByLabel("From junction ID").fill(junctions[0]);
+  await engineer.getByLabel("To junction ID").fill(junctions[1]);
+  await engineer
+    .getByLabel("WGS84 coordinates: longitude, latitude; one pair per line")
+    .fill("78.002,17.001\n78.003,17.001");
+  await engineer
+    .getByLabel("Pipe material", { exact: true })
+    .fill("SYNTHETIC browser PVC");
+  await engineer.getByLabel("Diameter (mm)").fill("32");
+  const pipeResponse = engineer.waitForResponse(
+    (r) => r.url().endsWith("/pipes") && r.request().method() === "POST",
+  );
+  await engineer.getByRole("button", { name: "Create asset record" }).click();
+  const pipeCreated = await pipeResponse;
+  expect(pipeCreated.status()).toBe(201);
+  const pipe = (await pipeCreated.json()).id as string;
+  const row = engineer.getByRole("listitem").filter({ hasText: pipe });
+  await expect(row).toBeVisible();
+  await row.getByRole("button", { name: "Inspect pipe" }).click();
+  await engineer
+    .getByLabel("Pipe material", { exact: true })
+    .fill("SYNTHETIC browser PVC reviewed");
+  const edited = engineer.waitForResponse(
+    (r) =>
+      r.url().endsWith(`/pipes/${pipe}`) && r.request().method() === "PATCH",
+  );
+  await engineer
+    .getByRole("button", { name: "Save reviewed asset edit" })
+    .click();
+  expect((await edited).status()).toBe(200);
+  await expect(
+    engineer.getByRole("heading", {
+      name: "SYNTHETIC browser PVC reviewed · 32 mm",
+    }),
+  ).toBeVisible();
+  await capture(engineer, "network-after-real-asset-edit");
+  await context.setOffline(true);
+  await engineer
+    .getByRole("button", { name: "Refresh network", exact: true })
+    .click();
+  await expect(
+    engineer
+      .getByText(
+        "Connection unavailable. No receipt was confirmed. Check your connection before deliberately retrying.",
+      )
+      .first(),
+  ).toBeVisible();
+  await capture(engineer, "network-offline-recovery");
+  await context.setOffline(false);
+  await engineer
+    .getByRole("button", { name: "Refresh network", exact: true })
+    .click();
+  await expect(engineer.locator(".map-canvas canvas")).toBeVisible();
+  const fallback = await context.newPage();
+  await fallback.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      ...args: Parameters<typeof original>
+    ) {
+      if (String(args[0]).startsWith("webgl")) return null;
+      return original.apply(this, args);
+    } as typeof original;
+  });
+  await fallback.goto(`/app/${fixture.org}/network`);
+  await expect(
+    fallback.getByText(
+      "Map rendering is unavailable in this browser. Use the equivalent authorized asset list below.",
+    ),
+  ).toBeVisible();
+  await expect(
+    fallback.getByRole("heading", { name: "Zones · accessible list" }),
+  ).toBeVisible();
+  await capture(fallback, "network-webgl-fallback");
+  await fallback.goto("/missing-m04-route");
+  await expect(
+    fallback.getByRole("heading", { name: "Page unavailable" }),
+  ).toBeVisible();
+  await fallback.goto(`/app/${fixture.org}/devices`);
+  await expect(
+    fallback.getByText(
+      "Hardware connection, monitoring, scientific integration and offline synchronization are pending. No records or successful actions are fabricated here.",
+    ),
+  ).toBeVisible();
+  const visitor = await browser.newContext({
+    baseURL: "https://localhost:8443",
+  });
+  const page = await visitor.newPage();
+  const email = `synthetic-browser-${crypto.randomUUID()}@example.invalid`;
+  const mailRoot = join(
+    dirname(process.env.HYDRO_M04_BROWSER_FIXTURE!),
+    "mail",
+  );
+  function privateToken(purpose: string) {
+    for (const file of readdirSync(mailRoot)
+      .map((name) => join(mailRoot, name))
+      .sort((a, b) => statSync(b).mtimeMs - statSync(a).mtimeMs)) {
+      const message = JSON.parse(readFileSync(file, "utf8"));
+      if (message.purpose === purpose && message.recipient === email) {
+        if (process.env.GITHUB_ACTIONS)
+          process.stdout.write(`::add-mask::${message.token}\n`);
+        return message.token as string;
+      }
+    }
+    throw new Error("Private synthetic identity delivery was not found");
+  }
+  async function acknowledge() {
+    await page.getByRole("button", { name: "Submit identity request" }).click();
+    await expect(
+      page.getByRole("heading", { name: "Request acknowledged" }),
+    ).toBeVisible();
+  }
+  async function signIn(password: string) {
+    await page.goto("/login");
+    await page.getByLabel("Email address").fill(email);
+    await page.getByLabel("Password", { exact: true }).fill(password);
+    await page.getByRole("button", { name: "Sign in", exact: true }).click();
+    const destination = page.getByRole("heading", {
+      name: "Choose your workspace",
+    });
+    await expect(destination.or(page.locator(".error-panel"))).toBeVisible();
+    if (!(await destination.isVisible())) {
+      await expect(page.locator(".error-panel")).toContainText(
+        "Wait 60 seconds",
+      );
+      await page.waitForTimeout(30000);
+      await page.waitForTimeout(30000);
+      await page.getByRole("button", { name: "Sign in", exact: true }).click();
+    }
+    await expect(
+      page.getByRole("heading", { name: "Choose your workspace" }),
+    ).toBeVisible();
+  }
+  await page.goto("/report");
+  await page.getByLabel("Utility code").fill("synthetic-utility-a");
+  await page.getByRole("button", { name: "Find utility" }).click();
+  await expect(
+    page.getByRole("heading", { name: "SYNTHETIC integration utility A" }),
+  ).toBeVisible();
+  await page
+    .getByRole("link", { name: "Create a citizen account", exact: true })
+    .click();
+  await expect(page.getByLabel("Utility code")).toHaveValue(
+    "synthetic-utility-a",
+  );
+  await page.getByLabel("Display name").fill("SYNTHETIC browser account");
+  await page.getByLabel("Email address").fill(email);
+  await page.getByLabel("New password", { exact: true }).fill(fixture.password);
+  await page.getByRole("button", { name: "Create citizen account" }).click();
+  await expect(
+    page.getByRole("heading", { name: "Request acknowledged" }),
+  ).toBeVisible();
+  await page.goto("/verify-account");
+  await page.getByLabel("Private token").fill(privateToken("VERIFY"));
+  await acknowledge();
+  await signIn(fixture.password);
+  await page.getByLabel("Display name").fill("SYNTHETIC updated profile");
+  await page.getByRole("button", { name: "Save display name" }).click();
+  await expect(
+    page.getByText(/Signed in as SYNTHETIC updated profile/),
+  ).toBeVisible();
+  await page.goto("/account/sessions");
+  await expect(
+    page.getByRole("heading", { name: "Active sessions" }),
+  ).toBeVisible();
+  await a11y(page);
+  await page
+    .getByRole("button", { name: "Revoke this session", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Sign in to your workspace" }),
+  ).toBeVisible();
+  await page.goto("/forgot-password");
+  await page.getByLabel("Email address").fill(email);
+  await acknowledge();
+  await page.goto("/reset-password");
+  await page.getByLabel("Private token").fill(privateToken("RESET"));
+  const newPassword = fixture.password + "-reset";
+  if (process.env.GITHUB_ACTIONS)
+    process.stdout.write(`::add-mask::${newPassword}\n`);
+  await page.getByLabel("New password", { exact: true }).fill(newPassword);
+  await acknowledge();
+  await signIn(newPassword);
+  const adminContext = await browser.newContext({
+    baseURL: "https://localhost:8443",
+    storageState: savedAdmin,
+  });
+  const admin = await adminContext.newPage();
+  await admin.goto(`/app/${fixture.org}/admin/users`);
+  await admin.getByLabel("Invited email address").fill(email);
+  await admin.getByLabel("Exact invited role").selectOption("ENGINEER");
+  const invitation = admin.waitForResponse(
+    (r) => r.url().endsWith("/invitations") && r.request().method() === "POST",
+  );
+  await admin
+    .getByRole("button", { name: "Create invitation", exact: true })
+    .click();
+  expect((await invitation).status()).toBe(200);
+  await page.goto("/accept-invitation");
+  await page.getByLabel("Private token").fill(privateToken("INVITATION"));
+  await acknowledge();
+  await signIn(newPassword);
+  await expect(
+    page.getByText("CITIZEN · ENGINEER", { exact: true }),
+  ).toBeVisible();
+  await capture(page, "account-after-real-invitation");
+  writeFileSync(
+    join(output!, "account-asset-safe-summary.json"),
+    JSON.stringify(
+      {
+        result: "PASS",
+        provenance: "SYNTHETIC_BROWSER_INTEGRATION_ONLY",
+        identity_delivery: "PRIVATE_LOCAL_FILES_ONLY",
+        asset_crud: "REAL_POSTGIS",
+        map_fallback: true,
+        offline_recovery: true,
+        physical_trials: 0,
+      },
+      null,
+      2,
+    ),
+  );
+  await context.close();
+  await visitor.close();
+  await adminContext.close();
 });
