@@ -1,0 +1,10 @@
+.next
+node_modules
+src/lib/generated.ts
+contracts/implemented.openapi.json
+package-lock.json
+pnpm-lock.yaml
+next-env.d.ts
+public/engineering
+test-results
+playwright-report

@@ -1,0 +1,1857 @@
+{
+  "milestone": "M04",
+  "pages": [
+    {
+      "id": "PAGE-01",
+      "route": "/",
+      "roles": "PUBLIC",
+      "title": "Understand mission and honest project status",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-02",
+      "route": "/solution",
+      "roles": "PUBLIC",
+      "title": "Understand evidence-qualified integrated system",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-03",
+      "route": "/how-it-works",
+      "roles": "PUBLIC",
+      "title": "Follow WATCH, GUARD-5, EAR and VERIFY",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-04",
+      "route": "/solution/guard5",
+      "roles": "PUBLIC",
+      "title": "Inspect five conceptual channels and unvalidated collector mechanics",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-05",
+      "route": "/solution/acoustics",
+      "roles": "PUBLIC",
+      "title": "Understand eligible spans, intervals and abstention",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-06",
+      "route": "/benefits-and-limitations",
+      "roles": "PUBLIC",
+      "title": "Compare intended benefits with coverage and validation limits",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-07",
+      "route": "/project-status",
+      "roles": "PUBLIC",
+      "title": "See designed versus implemented versus physically validated status",
+      "status": "ACTIVE_READ_ONLY",
+      "operations": [
+        {
+          "operation_id": "public_get_public_project_status",
+          "method": "GET",
+          "path": "/public/project-status",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-08",
+      "route": "/report",
+      "roles": "PUBLIC",
+      "title": "Select an enabled utility and sign in to report",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "public_get_public_utilities_slug",
+          "method": "GET",
+          "path": "/public/utilities/{slug}",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-09",
+      "route": "/contact",
+      "roles": "PUBLIC",
+      "title": "Submit a bounded question or feedback",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-10",
+      "route": "/privacy",
+      "roles": "PUBLIC",
+      "title": "Understand data collection, retention and rights contact",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-11",
+      "route": "/terms",
+      "roles": "PUBLIC",
+      "title": "Read proposed service and demonstration boundaries",
+      "status": "INFORMATIONAL",
+      "operations": [],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": ["informational", "mobile"],
+      "component": "public",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-12",
+      "route": "/login",
+      "roles": "PUBLIC",
+      "title": "Sign in using the single backend session",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_login",
+          "method": "POST",
+          "path": "/auth/login",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-13",
+      "route": "/register",
+      "roles": "PUBLIC",
+      "title": "Register as citizen for enabled utility only",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_register",
+          "method": "POST",
+          "path": "/auth/register",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-14",
+      "route": "/forgot-password",
+      "roles": "PUBLIC",
+      "title": "Request generic account recovery",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_recovery",
+          "method": "POST",
+          "path": "/auth/recovery",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-15",
+      "route": "/reset-password",
+      "roles": "PUBLIC",
+      "title": "Consume one-use reset token",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_reset",
+          "method": "POST",
+          "path": "/auth/reset",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-16",
+      "route": "/verify-account",
+      "roles": "PUBLIC",
+      "title": "Verify an account with one-use token",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_verify",
+          "method": "POST",
+          "path": "/auth/verify",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-17",
+      "route": "/accept-invitation",
+      "roles": "PUBLIC",
+      "title": "Accept exact tenant staff invitation",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "authentication_get_auth_csrf",
+          "method": "GET",
+          "path": "/auth/csrf",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "authentication_post_auth_invitation_accept",
+          "method": "POST",
+          "path": "/auth/invitation-accept",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [],
+      "data_boundary": "Editorial or allow-listed public projection only",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-18",
+      "route": "/account",
+      "roles": "ALL",
+      "title": "Edit own profile and choose membership",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "current_user_get_me",
+          "method": "GET",
+          "path": "/me",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_patch_me",
+          "method": "PATCH",
+          "path": "/me",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_get_me_memberships",
+          "method": "GET",
+          "path": "/me/memberships",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_get_me_sessions",
+          "method": "GET",
+          "path": "/me/sessions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_delete_me_sessions_session_id",
+          "method": "DELETE",
+          "path": "/me/sessions/{session_id}",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-19",
+      "route": "/account/sessions",
+      "roles": "ALL",
+      "title": "Inspect and revoke own sessions",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "current_user_get_me",
+          "method": "GET",
+          "path": "/me",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_patch_me",
+          "method": "PATCH",
+          "path": "/me",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_get_me_memberships",
+          "method": "GET",
+          "path": "/me/memberships",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_get_me_sessions",
+          "method": "GET",
+          "path": "/me/sessions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "current_user_delete_me_sessions_session_id",
+          "method": "DELETE",
+          "path": "/me/sessions/{session_id}",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "auth",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-20",
+      "route": "/citizen/{org}/reports",
+      "roles": "CITIZEN",
+      "title": "View only own reports",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "complaints",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-21",
+      "route": "/citizen/{org}/reports/new",
+      "roles": "CITIZEN",
+      "title": "Submit category, description, coarse area and consented photo",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "complaints",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-22",
+      "route": "/citizen/{org}/reports/{id}",
+      "roles": "CITIZEN",
+      "title": "Track safe updates, add followup and resolution feedback",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "complaints",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-23",
+      "route": "/app/{org}/overview",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Review supply states, active concerns, stale devices and coverage gaps",
+      "status": "ACTIVE_READ_ONLY",
+      "operations": [
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_post_orgs_organization_id_zones",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_patch_orgs_organization_id_zones_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_supply_windows",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/supply-windows",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/brief",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/assignment",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/actions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "incidents",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-24",
+      "route": "/app/{org}/network",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Explore surveyed graph and instrumented/unobserved spans",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_post_orgs_organization_id_zones",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_patch_orgs_organization_id_zones_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_junctions",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/junctions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_post_orgs_organization_id_junctions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/junctions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_junctions_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/junctions/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_patch_orgs_organization_id_junctions_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/junctions/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_pipes",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/pipes",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_post_orgs_organization_id_pipes",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/pipes",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_pipes_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/pipes/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_patch_orgs_organization_id_pipes_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/pipes/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_access_points",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/access-points",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "pipeline_assets_post_orgs_organization_id_access_points",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/access-points",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_access_points_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/access-points/{resource_id}",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "pipeline_assets_patch_orgs_organization_id_access_points_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/access-points/{resource_id}",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "pipeline_assets_get_orgs_organization_id_coverage",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/coverage",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_supply_windows",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/supply-windows",
+          "status": "DEFERRED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "network",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-25",
+      "route": "/app/{org}/monitoring",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Read fresh and historic observations with explicit provenance",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-26",
+      "route": "/app/{org}/devices",
+      "roles": "ENGINEER,SUPERVISOR,ADMIN",
+      "title": "Find devices by identity, health and source environment",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-27",
+      "route": "/app/{org}/devices/{id}",
+      "roles": "ENGINEER,SUPERVISOR,ADMIN",
+      "title": "Inspect permitted device metadata, diagnostics and calibration tabs",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-28",
+      "route": "/app/{org}/collars/{id}",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Inspect five channel timelines, EXT/BYPASS and service receipts",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-29",
+      "route": "/app/{org}/acoustics",
+      "roles": "ENGINEER",
+      "title": "Choose authorized capture and eligible span",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-30",
+      "route": "/app/{org}/acoustics/{id}",
+      "roles": "ENGINEER",
+      "title": "Compare delay baselines, assumptions, interval and unresolved reasons",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-31",
+      "route": "/app/{org}/incidents",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Filter and triage concerns without equating severity with confidence",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_post_orgs_organization_id_zones",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/zones",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_zones_resource_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_patch_orgs_organization_id_zones_resource_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}/zones/{resource_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "water_zones_get_orgs_organization_id_supply_windows",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/supply-windows",
+          "status": "DEFERRED"
+        },
+        {
+          "operation_id": "evidence_get_orgs_organization_id_evidence_assessments",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/evidence-assessments",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "evidence_get_orgs_organization_id_evidence_assessments_assessment_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/evidence-assessments/{assessment_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "evidence_post_orgs_organization_id_evidence_assessments",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/evidence-assessments",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "incidents",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-32",
+      "route": "/app/{org}/incidents/{id}",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Read immutable evidence timeline and authorize next investigation action",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "evidence_get_orgs_organization_id_evidence_assessments",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/evidence-assessments",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "evidence_get_orgs_organization_id_evidence_assessments_assessment_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/evidence-assessments/{assessment_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "evidence_post_orgs_organization_id_evidence_assessments",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/evidence-assessments",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "incidents",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-33",
+      "route": "/app/{org}/work-orders",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "title": "Use supervisor board or technician assigned-task list",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/brief",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/assignment",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/actions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "work",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-34",
+      "route": "/app/{org}/work-orders/{id}",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "title": "Investigate, record work and submit for review",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/brief",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/assignment",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/actions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "repairs_post_orgs_organization_id_work_orders_work_order_id_repairs",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "repairs_get_orgs_organization_id_work_orders_work_order_id_repairs",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "work",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-35",
+      "route": "/app/{org}/repairs/{id}/verification",
+      "roles": "ENGINEER,SUPERVISOR,TECHNICIAN",
+      "title": "Review comparable before/after evidence and separate outcome",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "verification_post_orgs_organization_id_repairs_repair_id_verifications",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "verification_get_orgs_organization_id_repairs_repair_id_verifications",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "work",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-36",
+      "route": "/app/{org}/complaints",
+      "roles": "SUPERVISOR",
+      "title": "Review public-safe reports and link evidence without automatic confirmation",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "complaints",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-37",
+      "route": "/app/{org}/maintenance",
+      "roles": "SUPERVISOR",
+      "title": "Review overdue work and assign priorities and due dates",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-38",
+      "route": "/app/{org}/analytics",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Inspect explicit denominators, response time and observable coverage",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-39",
+      "route": "/app/{org}/reports",
+      "roles": "ENGINEER,SUPERVISOR",
+      "title": "Request scoped CSV/PDF and download authorized completed export",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-40",
+      "route": "/app/{org}/simulations",
+      "roles": "ENGINEER",
+      "title": "Select allowed scenario/config and queue a reproducible run",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-41",
+      "route": "/app/{org}/simulations/{id}",
+      "roles": "ENGINEER",
+      "title": "Inspect status and synthetic outputs; evaluation separately gated",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-42",
+      "route": "/app/{org}/feedback",
+      "roles": "ALL",
+      "title": "Review own feedback or authorized internal backlog",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-43",
+      "route": "/app/{org}/notifications",
+      "roles": "ALL",
+      "title": "Read only own safe notifications",
+      "status": "DEFERRED",
+      "operations": [],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": ["informational", "mobile"],
+      "component": "unavailable",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Deferred M03 operation; no active navigation"
+    },
+    {
+      "id": "PAGE-44",
+      "route": "/app/{org}/admin/users",
+      "roles": "ADMIN",
+      "title": "Invite, grant primary roles and suspend tenant memberships",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "administration_get_orgs_organization_id_memberships",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/memberships",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "administration_post_orgs_organization_id_invitations",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/invitations",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "administration_put_orgs_organization_id_memberships_membership_id_roles",
+          "method": "PUT",
+          "path": "/orgs/{organization_id}/memberships/{membership_id}/roles",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "administration_post_orgs_organization_id_memberships_membership_id_status",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/memberships/{membership_id}/status",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "administration",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-45",
+      "route": "/app/{org}/admin/settings",
+      "roles": "ADMIN",
+      "title": "Manage tenant and integration references without returning secrets",
+      "status": "ACTIVE_READ_ONLY",
+      "operations": [
+        {
+          "operation_id": "organization_get_orgs_organization_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "organization_patch_orgs_organization_id",
+          "method": "PATCH",
+          "path": "/orgs/{organization_id}",
+          "status": "DEFERRED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "administration",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-46",
+      "route": "/app/{org}/admin/audit",
+      "roles": "ADMIN",
+      "title": "Inspect safe privileged-action history",
+      "status": "ACTIVE_READ_ONLY",
+      "operations": [
+        {
+          "operation_id": "administration_get_orgs_organization_id_audit_logs",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/audit-logs",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "shared_operations": [
+        "GET /me",
+        "GET /me/memberships",
+        "GET /orgs/{organization_id}"
+      ],
+      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "denied",
+        "expired",
+        "pending",
+        "receipt",
+        "stale",
+        "rate-limited",
+        "mobile"
+      ],
+      "component": "administration",
+      "browser_evidence": "Pending execution; see M04 test ledger",
+      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    }
+  ]
+}

@@ -10,7 +10,7 @@ HYDROOVERITY proposes affordable, indigenous, evidence-qualified leak detection,
 
 ## Current status
 
-M01/M02/M05/M08 are merged foundations. M05 supplies three scientific simulation engines with documented unfavorable results; M08 supplies digitally checked hardware designs and presentation figures. M03 adds a private, persistent backend foundation on its feature branch for owner review: [startup and tests](services/api/README.md), [implementation report](docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md). Frontend, live ingestion, field firmware and physical testing remain future work. No project license has been selected. The repository remains private unless the owner authorizes release.
+M01/M02/M03/M05/M08 and M03 recovery are merged foundations. M05 supplies three scientific simulation engines with documented unfavorable results; M08 supplies digitally checked hardware designs and presentation figures. M03 supplies a private, persistent backend: [startup and tests](services/api/README.md), [implementation report](docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md). M04 frontend implementation is in progress on its feature branch: [web guide](apps/web/README.md), [execution ledger](docs/testing/M04_EXECUTION_LEDGER.md). Live ingestion, field firmware and physical testing remain future work. No project license has been selected. The repository remains private unless the owner authorizes release.
 
 | Evidence category | Current status |
 | --- | --- |

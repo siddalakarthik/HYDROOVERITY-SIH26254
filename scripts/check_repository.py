@@ -14,6 +14,12 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+# M04 reuses this exact reviewed M08 PNG for the public engineering explanation.
+# All other binary files still require explicit review; the 1 MiB limit remains.
+REVIEWED_BINARY = {
+    "apps/web/public/engineering/guard5.png":
+        "e21d3a341c8dd65f6f54409c647abd7656342748c98a2ac76baa8d09865220c7",
+}
 REQUIRED_DIRS = """
 apps/web services/api services/ingestion services/notifications
 packages/shared-types packages/shared-config
@@ -95,6 +101,12 @@ def validate() -> list[str]:
             errors.append(f"Artifact exceeds 1 MiB review gate: {name}")
             continue
         raw = path.read_bytes()
+        if name in REVIEWED_BINARY:
+            if hashlib.sha256(raw).hexdigest() != REVIEWED_BINARY[name]:
+                errors.append(f"Reviewed binary checksum changed: {name}")
+            if not raw.startswith(b"\x89PNG\r\n\x1a\n"):
+                errors.append(f"Reviewed PNG signature changed: {name}")
+            continue
         try:
             text = raw.decode("utf-8")
         except UnicodeDecodeError:

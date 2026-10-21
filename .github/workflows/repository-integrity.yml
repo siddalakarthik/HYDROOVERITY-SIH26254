@@ -81,6 +81,95 @@ jobs:
           M08_ARTIFACT_URL: ${{ steps.m08-upload.outputs.artifact-url }}
         run: printf '[Download M08 screening package](%s) — retained for 14 days.\n' "$M08_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
 
+  m04-frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Node 24
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # official v6 ref resolved for M04
+        with:
+          node-version: "24.21.0"
+      - name: Install exact frontend dependencies
+        working-directory: apps/web
+        run: |
+          npm install --global pnpm@11.25.0
+          pnpm install --frozen-lockfile --ignore-scripts
+      - name: Compile, test and build frontend
+        working-directory: apps/web
+        run: |
+          pnpm run contracts
+          git diff --exit-code -- src/lib/generated.ts
+          pnpm run typecheck
+          pnpm run lint
+          pnpm run format:check
+          pnpm run test
+          pnpm run build
+      - name: Prepare isolated real PostGIS and synthetic browser fixture
+        run: |
+          python3 -m venv "$RUNNER_TEMP/m04-python"
+          "$RUNNER_TEMP/m04-python/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
+          "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/contracts.py --check
+          python3 - <<'PY'
+          import os,pathlib,secrets
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])
+          secret=root/'m04-database-root.txt'
+          secret.write_text(secrets.token_urlsafe(40));secret.chmod(0o600)
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write(f'HYDRO_M04_BROWSER_FIXTURE={root}/m04-private/browser.json\n')
+              f.write(f'HYDRO_M04_SCREENSHOTS={root}/m04-evidence\n')
+          PY
+          docker run -d --name hydro-m04-db -e POSTGRES_PASSWORD_FILE=/run/secrets/root -v "$RUNNER_TEMP/m04-database-root.txt:/run/secrets/root:ro" -p 127.0.0.1:55432:5432 postgis/postgis:17-3.6@sha256:d7053f57b0d62c427ffbf412208b6625317124d62eebf40672e990fea81e9d53
+          for attempt in $(seq 1 30); do
+            if docker exec hydro-m04-db pg_isready -U postgres >/dev/null 2>&1; then break; fi
+            sleep 1
+          done
+          "$RUNNER_TEMP/m04-python/bin/python" - <<'PY'
+          import os,pathlib,sys
+          root=pathlib.Path(os.environ['RUNNER_TEMP'])
+          sys.path.insert(0,'services/api')
+          from hydro.operator import prepare
+          os.environ['HYDRO_OPERATOR_DSN']='host=127.0.0.1 port=55432 dbname=postgres user=postgres password='+ (root/'m04-database-root.txt').read_text()
+          prepare('hydro_disposable_m04_setup','hydro_disposable_m04_setup',root/'m04-source-private')
+          PY
+          "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/prepare_browser_fixture.py --operator-config "$RUNNER_TEMP/m04-source-private/operator.json" --runtime-config "$RUNNER_TEMP/m04-source-private/runtime.json" --private-directory "$RUNNER_TEMP/m04-private" --confirm-disposable-database hydro_disposable_m04
+          python3 - <<'PY'
+          import json,os,pathlib
+          # Mask the random disposable test password if a browser assertion logs input.
+          value=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'m04-private/browser.json').read_text())
+          print('::add-mask::'+value['password'])
+          PY
+      - name: Start private application and verify HTTPS
+        run: |
+          PYTHONPATH=services/api "$RUNNER_TEMP/m04-python/bin/python" -m hydro.local api --runtime-config "$RUNNER_TEMP/m04-private/runtime.json" > "$RUNNER_TEMP/m04-private/api.log" 2>&1 &
+          "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/local_proxy.py --certificate "$RUNNER_TEMP/m04-private/localhost.crt" --key "$RUNNER_TEMP/m04-private/localhost.key" > "$RUNNER_TEMP/m04-private/proxy.log" 2>&1 &
+          (cd apps/web && pnpm run start) > "$RUNNER_TEMP/m04-private/web.log" 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --cacert "$RUNNER_TEMP/m04-private/localhost.crt" https://localhost:8443/ >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent --cacert "$RUNNER_TEMP/m04-private/localhost.crt" https://localhost:8443/api/v1/public/project-status >/dev/null
+      - name: Real browser workflow, denials, mobile and accessibility
+        working-directory: apps/web
+        run: |
+          pnpm exec playwright install --with-deps chromium
+          pnpm run test:browser
+      - name: Upload sanitized synthetic M04 visual evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M04_BROWSER_EVIDENCE
+          path: ${{ runner.temp }}/m04-evidence
+          if-no-files-found: error
+          retention-days: 14
+      - name: Stop isolated M04 database
+        if: always()
+        run: docker stop hydro-m04-db || true
+
   m03-backend:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
