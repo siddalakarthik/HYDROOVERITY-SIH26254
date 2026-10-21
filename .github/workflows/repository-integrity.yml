@@ -128,16 +128,22 @@ jobs:
               f.write(f'HYDRO_M04_SCREENSHOTS={root}/m04-evidence\n')
           PY
           docker run -d --name hydro-m04-db -e POSTGRES_PASSWORD_FILE=/run/secrets/root -v "$RUNNER_TEMP/m04-database-root.txt:/run/secrets/root:ro" -p 127.0.0.1:55432:5432 postgis/postgis:17-3.6@sha256:d7053f57b0d62c427ffbf412208b6625317124d62eebf40672e990fea81e9d53
-          for attempt in $(seq 1 30); do
-            if docker exec hydro-m04-db pg_isready -U postgres >/dev/null 2>&1; then break; fi
-            sleep 1
-          done
           "$RUNNER_TEMP/m04-python/bin/python" - <<'PY'
-          import os,pathlib,sys
+          import os,pathlib,sys,time,psycopg
           root=pathlib.Path(os.environ['RUNNER_TEMP'])
           sys.path.insert(0,'services/api')
           from hydro.operator import prepare
           os.environ['HYDRO_OPERATOR_DSN']='host=127.0.0.1 port=55432 dbname=postgres user=postgres password='+ (root/'m04-database-root.txt').read_text()
+          # The image's temporary Unix-socket initialization server can make
+          # pg_isready succeed before the final TCP listener is available.
+          for attempt in range(30):
+              try:
+                  with psycopg.connect(os.environ['HYDRO_OPERATOR_DSN'],connect_timeout=2) as connection:
+                      assert connection.execute('SELECT 1').fetchone()==(1,)
+                  break
+              except psycopg.OperationalError:
+                  if attempt==29: raise SystemExit('M04 disposable database did not become ready over authenticated TCP')
+                  time.sleep(1)
           prepare('hydro_disposable_m04_setup','hydro_disposable_m04_setup',root/'m04-source-private')
           PY
           "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/prepare_browser_fixture.py --operator-config "$RUNNER_TEMP/m04-source-private/operator.json" --runtime-config "$RUNNER_TEMP/m04-source-private/runtime.json" --private-directory "$RUNNER_TEMP/m04-private" --confirm-disposable-database hydro_disposable_m04
