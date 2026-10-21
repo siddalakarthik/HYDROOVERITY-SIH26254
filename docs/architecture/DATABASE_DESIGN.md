@@ -526,7 +526,7 @@ Citizen-owned coarse report and safe public status
 Public-safe updates separate from internal technician notes
 
 - Ownership/classification: tenant / PERSONAL. Lifecycle: append_only.
-- Columns: `id uuid NOT NULL`; `organization_id uuid NOT NULL`; `created_at timestamptz NOT NULL`; `complaint_id uuid NOT NULL`; `actor_id uuid NULL`; `status ComplaintStatus NOT NULL`; `public_message text NOT NULL`; `occurred_at timestamptz NOT NULL`.
+- Columns: `id uuid NOT NULL`; `organization_id uuid NOT NULL`; `created_at timestamptz NOT NULL`; `complaint_id uuid NOT NULL`; `actor_id uuid NULL`; `status ComplaintStatus NOT NULL`; `public_message text NOT NULL`; `internal_reason text NULL`; `occurred_at timestamptz NOT NULL`.
 - Foreign keys: organization_id -> organizations (global reference); complaint_id -> citizen_complaints (composite same-tenant); actor_id -> organization_memberships (composite same-tenant).
 - Uniqueness beyond PK/tenant identity: None; immutable IDs distinguish events.
 - Indexes: organization_id,id via tenant uniqueness; referenced FKs indexed as needed

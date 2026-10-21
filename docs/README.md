@@ -32,9 +32,11 @@ Research source claims in the master context are inherited, not independently re
 
 These are proposed implementation contracts, not a running application, executed migration or measured sensor result.
 
-- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): four planned slices following M03–M10; none implemented.
+- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): original planning sequence; M03's current implementation is documented below. M04 remains unstarted.
 - [Final M02 review validation](testing/M02_REVIEW_VALIDATION.md): independent OpenAPI tool/version/commands and design-checker mutation evidence.
 
 M05: [executed simulation evidence, limitations and reproduction](testing/M05_SIMULATION_EVIDENCE_REPORT.md).
 
 M08: [digital hardware engineering report](engineering/M08_DIGITAL_HARDWARE_REPORT.md), [hardware source index](../hardware/README.md), [estimated materials ledger](../hardware/bom/M08_BOM.md). Review package only; no physical validation.
+
+M03: [backend implementation report](engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [runtime decisions](decisions/M03_RUNTIME_DECISIONS.md), [acceptance results](testing/M03_ACCEPTANCE_RESULTS.md), [PowerShell/Compose reproduction](../services/api/README.md) and [117-operation/57-table traceability](../data/schemas/m03-implementation-matrix.json). Published for owner review; not merged automatically. No public deployment or physical validation.

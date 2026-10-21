@@ -1,6 +1,6 @@
-# Future Python service responsibilities
+# Python service responsibilities
 
-Status: planned; M01 creates organization only. No implementation or validation is implied.
+M03 implements the private [API foundation](api/README.md). Ingestion and external notifications remain deferred. Executed checks and limitations are in the [M03 acceptance report](../docs/testing/M03_ACCEPTANCE_RESULTS.md).
 
 | Folder | Responsibility |
 | --- | --- |
@@ -10,4 +10,4 @@ Status: planned; M01 creates organization only. No implementation or validation 
 
 Follow [AGENTS.md](../AGENTS.md) and the [documentation index](../docs/README.md) before development.
 
-These logical folders do not mandate separate deployable microservices. M02 will settle deployment boundaries.
+These logical folders do not mandate separate deployable microservices. M03 uses one API process, private PostgreSQL/PostGIS and an HTTPS proxy.

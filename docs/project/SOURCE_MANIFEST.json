@@ -13,6 +13,13 @@
       "provenance": "Owner-supplied M01 authorization and requirements",
       "normalization": "Byte-for-byte source copy; Git normalizes CRLF to LF in text blobs",
       "git_text_sha256": "50c88282447825028cbebb2c5eb53a285da552ae572fc2c2df8328475674830c"
+    },
+    {
+      "path": "docs/project/MILESTONE_03_REQUEST.md",
+      "sha256": "0bba6da2e10ff266430c2579f163aa8af8146b3f2d16c8e4c5026d222aabef4b",
+      "provenance": "Owner-supplied M03 implementation authorization and requirements",
+      "normalization": "CRLF to LF; final newline added; no substantive edits",
+      "git_text_sha256": "26a3d3eee75e216e2915acb18eee98b83d84422ee3c6de2ef6ee6c091913d301"
     }
   ]
 }

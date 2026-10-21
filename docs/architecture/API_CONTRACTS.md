@@ -4,6 +4,12 @@ Issue #2; **no endpoints implemented**. [OpenAPI 3.1 JSON](openapi-design.json) 
 
 ## Conventions
 
+M03 complaint-history correction: PublicUpdate.message allows 2000 characters, matching the existing ComplaintFollowup.description limit. Full owner-authored follow-ups are retained in the complaint event ledger. Private supervisor review reasons are persisted separately in complaint_status_events.internal_reason and are never included in CitizenComplaint/PublicUpdate projections. This adds no route or role.
+
+M03 implementation clarification (issue #3): administrator membership-directory items include the optional `MembershipView.version` integer. Membership governance requires If-Match but has no individual membership GET route; this field makes the existing precondition usable without inventing another endpoint. Global self-membership lists may omit it. Asset detail and profile GETs return ETag for their existing versioned edits.
+
+The existing If-Match on POST repair verifications refers to the immutable repair receipt, whose stable receipt version is 1. Send `If-Match: "1"`. A correction creates another repair ID; reviews append/supersede earlier reviews and never mutate the repair. Current resource authorization and transactional review ordering still apply.
+
 Base `/api/v1`; UUID resource IDs; RFC3339 UTC times ending Z; explicit units. All tenant paths include organization_id, validated against current membership. Never trust a client role, arbitrary organization header or source_environment field. ADMIN has only listed governance actions, not implicit telemetry/truth access. ALL means authenticated active membership on tenant endpoints; global /me/session endpoints require only the authenticated identity and ownership, even without an active membership. It never means any visitor. DEVICE/SIMULATOR are scoped nonhuman principals. ENGINEER+EVALUATOR requires both grants and a sealed terminal run. Own/assigned restrictions apply in addition to role and organization checks. Missing/inaccessible object -> uniform 404; do not reveal existence cross-tenant.
 
 GETs do not mutate business state. `GET /auth/csrf` is a documented bounded preauth-cookie bootstrap and rate-limited. Cookie mutations require session-bound X-CSRF-Token plus validated Origin; login/register/recovery use preauth session. Same-origin proxy means no credentialed wildcard CORS. Bearer ingestion rejects human cookies and is not CSRF-authenticated.

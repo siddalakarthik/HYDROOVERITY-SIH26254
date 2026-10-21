@@ -1,0 +1,1964 @@
+{
+  "milestone": "M03",
+  "provenance": "SYNTHETIC_INTEGRATION_ONLY; no physical or field trials",
+  "canonical_operations": 117,
+  "implemented_operations": 58,
+  "deferred_operations": 59,
+  "implemented_by_domain": {
+    "Administration": 5,
+    "Authentication": 8,
+    "Complaints": 5,
+    "Current user": 5,
+    "Evidence": 3,
+    "Incidents": 6,
+    "Organization": 1,
+    "Pipeline assets": 8,
+    "Public": 2,
+    "Repairs": 2,
+    "Verification": 2,
+    "Water zones": 4,
+    "Work orders": 7
+  },
+  "operations": [
+    {
+      "id": "authentication_get_auth_csrf",
+      "group": "Authentication",
+      "method": "get",
+      "path": "/auth/csrf",
+      "request": null,
+      "response": "Csrf",
+      "permission": "authentication.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_enabled_request_contracts_reject_unknown_writable_fields",
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_auth.py::test_concurrent_reset_consumes_once",
+        "services/api/tests/test_auth.py::test_login_rotates_and_logout_cleanup_is_monotonic",
+        "services/api/tests/test_auth.py::test_origin_csrf_idempotency_and_no_store",
+        "services/api/tests/test_auth.py::test_private_delivery_failure_remains_generic_and_retry_uses_new_verifier",
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions",
+        "services/api/tests/test_auth.py::test_rate_limits_are_bounded_hmac_and_failures_count",
+        "services/api/tests/test_auth.py::test_recovery_cooldown_replaces_old_token_and_reset_is_single_use",
+        "services/api/tests/test_auth.py::test_registration_generic_duplicate_no_credential_or_membership_change",
+        "services/api/tests/test_auth.py::test_registration_unknown_fields_and_no_staff_self_grant",
+        "services/api/tests/test_auth.py::test_reset_login_race_never_leaves_old_password_session",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[absolute]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[idle]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[revoked]",
+        "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
+        "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_structured_logs_omit_credentials_cookie_csrf_and_personal_payload",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_foundation.py::test_preauth_cookie_csrf_and_anonymous_denial",
+        "services/api/tests/test_foundation.py::test_real_login_and_admin_no_engineer_inheritance",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_last_admin_version_precondition_and_evaluator_denial",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_recent_reauthentication_and_safe_audit",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_concurrent_registration_has_one_identity_and_citizen_grant",
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_schema_boundaries.py::test_nul_text_rejected_without_changing_password_rules",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_register",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/register",
+      "request": "Register",
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_auth.py::test_private_delivery_failure_remains_generic_and_retry_uses_new_verifier",
+        "services/api/tests/test_auth.py::test_registration_generic_duplicate_no_credential_or_membership_change",
+        "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
+        "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_concurrent_registration_has_one_identity_and_citizen_grant",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_login",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/login",
+      "request": "Login",
+      "response": "UserView",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_enabled_request_contracts_reject_unknown_writable_fields",
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_auth.py::test_login_rotates_and_logout_cleanup_is_monotonic",
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions",
+        "services/api/tests/test_auth.py::test_recovery_cooldown_replaces_old_token_and_reset_is_single_use",
+        "services/api/tests/test_auth.py::test_registration_generic_duplicate_no_credential_or_membership_change",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[absolute]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[idle]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[revoked]",
+        "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
+        "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_structured_logs_omit_credentials_cookie_csrf_and_personal_payload",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_foundation.py::test_real_login_and_admin_no_engineer_inheritance",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_last_admin_version_precondition_and_evaluator_denial",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_recent_reauthentication_and_safe_audit",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_recovery",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/recovery",
+      "request": "Recovery",
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_concurrent_reset_consumes_once",
+        "services/api/tests/test_auth.py::test_recovery_cooldown_replaces_old_token_and_reset_is_single_use",
+        "services/api/tests/test_auth.py::test_reset_login_race_never_leaves_old_password_session"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_reset",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/reset",
+      "request": "Reset",
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_concurrent_reset_consumes_once",
+        "services/api/tests/test_auth.py::test_recovery_cooldown_replaces_old_token_and_reset_is_single_use",
+        "services/api/tests/test_auth.py::test_reset_login_race_never_leaves_old_password_session"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_verify",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/verify",
+      "request": "TokenAction",
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_auth.py::test_private_delivery_failure_remains_generic_and_retry_uses_new_verifier",
+        "services/api/tests/test_auth.py::test_registration_generic_duplicate_no_credential_or_membership_change",
+        "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
+        "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_invitation_accept",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/invitation-accept",
+      "request": "TokenAction",
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "authentication_post_auth_logout",
+      "group": "Authentication",
+      "method": "post",
+      "path": "/auth/logout",
+      "request": null,
+      "response": "Message",
+      "permission": "authentication.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_login_rotates_and_logout_cleanup_is_monotonic",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[absolute]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[idle]",
+        "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[revoked]"
+      ]
+    },
+    {
+      "id": "current_user_get_me",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me",
+      "request": null,
+      "response": "UserView",
+      "permission": "current_user.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions",
+        "services/api/tests/test_foundation.py::test_real_login_and_admin_no_engineer_inheritance",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay"
+      ]
+    },
+    {
+      "id": "current_user_patch_me",
+      "group": "Current user",
+      "method": "patch",
+      "path": "/me",
+      "request": "ProfilePatch",
+      "response": "UserView",
+      "permission": "current_user.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions"
+      ]
+    },
+    {
+      "id": "current_user_get_me_memberships",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me/memberships",
+      "request": null,
+      "response": "MembershipView",
+      "permission": "current_user.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "current_user_get_me_sessions",
+      "group": "Current user",
+      "method": "get",
+      "path": "/me/sessions",
+      "request": null,
+      "response": "SessionView",
+      "permission": "current_user.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions"
+      ]
+    },
+    {
+      "id": "current_user_delete_me_sessions_session_id",
+      "group": "Current user",
+      "method": "delete",
+      "path": "/me/sessions/{session_id}",
+      "request": null,
+      "response": "Message",
+      "permission": "current_user.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions"
+      ]
+    },
+    {
+      "id": "public_get_public_utilities_slug",
+      "group": "Public",
+      "method": "get",
+      "path": "/public/utilities/{slug}",
+      "request": null,
+      "response": "PublicUtility",
+      "permission": "public.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "public_get_public_project_status",
+      "group": "Public",
+      "method": "get",
+      "path": "/public/project-status",
+      "request": null,
+      "response": "ProjectStatus",
+      "permission": "public.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "public_post_public_contact",
+      "group": "Public",
+      "method": "post",
+      "path": "/public/contact",
+      "request": "ContactWrite",
+      "response": "Message",
+      "permission": "public.write",
+      "table": "project_contact_submissions",
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "organization_get_orgs_organization_id",
+      "group": "Organization",
+      "method": "get",
+      "path": "/orgs/{organization_id}",
+      "request": null,
+      "response": "OrganizationView",
+      "permission": "organization.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "organization_patch_orgs_organization_id",
+      "group": "Organization",
+      "method": "patch",
+      "path": "/orgs/{organization_id}",
+      "request": "OrganizationPatch",
+      "response": "OrganizationView",
+      "permission": "organization.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_zones",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/zones",
+      "request": null,
+      "response": "ZoneView",
+      "permission": "water_zones.read",
+      "table": "water_zones",
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope"
+      ]
+    },
+    {
+      "id": "water_zones_post_orgs_organization_id_zones",
+      "group": "Water zones",
+      "method": "post",
+      "path": "/orgs/{organization_id}/zones",
+      "request": "ZoneWrite",
+      "response": "ZoneView",
+      "permission": "water_zones.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_zones_resource_id",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/zones/{resource_id}",
+      "request": null,
+      "response": "ZoneView",
+      "permission": "water_zones.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "water_zones_patch_orgs_organization_id_zones_resource_id",
+      "group": "Water zones",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/zones/{resource_id}",
+      "request": "ZoneWrite",
+      "response": "ZoneView",
+      "permission": "water_zones.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_junctions",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/junctions",
+      "request": null,
+      "response": "Junction",
+      "permission": "pipeline_assets.read",
+      "table": "network_junctions",
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_junctions",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/junctions",
+      "request": "JunctionWrite",
+      "response": "Junction",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_junctions_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/junctions/{resource_id}",
+      "request": null,
+      "response": "Junction",
+      "permission": "pipeline_assets.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_junctions_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/junctions/{resource_id}",
+      "request": "JunctionWrite",
+      "response": "Junction",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_pipes",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/pipes",
+      "request": null,
+      "response": "Pipe",
+      "permission": "pipeline_assets.read",
+      "table": "pipe_segments",
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_pipes",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/pipes",
+      "request": "PipeWrite",
+      "response": "Pipe",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_pipes_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/pipes/{resource_id}",
+      "request": null,
+      "response": "Pipe",
+      "permission": "pipeline_assets.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_pipes_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/pipes/{resource_id}",
+      "request": "PipeWrite",
+      "response": "Pipe",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity"
+      ]
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_access_points",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/access-points",
+      "request": null,
+      "response": "AccessPoint",
+      "permission": "pipeline_assets.read",
+      "table": "pipe_access_points",
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "pipeline_assets_post_orgs_organization_id_access_points",
+      "group": "Pipeline assets",
+      "method": "post",
+      "path": "/orgs/{organization_id}/access-points",
+      "request": "AccessPointWrite",
+      "response": "AccessPoint",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_access_points_resource_id",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/access-points/{resource_id}",
+      "request": null,
+      "response": "AccessPoint",
+      "permission": "pipeline_assets.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "pipeline_assets_patch_orgs_organization_id_access_points_resource_id",
+      "group": "Pipeline assets",
+      "method": "patch",
+      "path": "/orgs/{organization_id}/access-points/{resource_id}",
+      "request": "AccessPointWrite",
+      "response": "AccessPoint",
+      "permission": "pipeline_assets.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "pipeline_assets_get_orgs_organization_id_coverage",
+      "group": "Pipeline assets",
+      "method": "get",
+      "path": "/orgs/{organization_id}/coverage",
+      "request": null,
+      "response": "Coverage",
+      "permission": "pipeline_assets.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "water_zones_get_orgs_organization_id_supply_windows",
+      "group": "Water zones",
+      "method": "get",
+      "path": "/orgs/{organization_id}/supply-windows",
+      "request": null,
+      "response": "SupplyWindow",
+      "permission": "water_zones.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices",
+      "request": null,
+      "response": "Device",
+      "permission": "devices.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices",
+      "request": "DeviceWrite",
+      "response": "Device",
+      "permission": "devices.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}",
+      "request": null,
+      "response": "Device",
+      "permission": "devices.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id_channels",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/channels",
+      "request": null,
+      "response": "Channel",
+      "permission": "devices.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_get_orgs_organization_id_devices_device_id_configurations",
+      "group": "Devices",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/configurations",
+      "request": null,
+      "response": "ConfigurationView",
+      "permission": "devices.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_configurations",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/configurations",
+      "request": "DeviceConfigurationWrite",
+      "response": "ConfigurationView",
+      "permission": "devices.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_installations",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/installations",
+      "request": "InstallationWrite",
+      "response": "Receipt",
+      "permission": "devices.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_post_orgs_organization_id_devices_device_id_credentials",
+      "group": "Devices",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/credentials",
+      "request": "CredentialIssue",
+      "response": "CredentialView",
+      "permission": "devices.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id",
+      "group": "Devices",
+      "method": "delete",
+      "path": "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}",
+      "request": null,
+      "response": "Message",
+      "permission": "devices.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_devices_device_id_health_events",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/health-events",
+      "request": null,
+      "response": "HealthEvent",
+      "permission": "diagnostics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_devices_device_id_calibrations",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/devices/{device_id}/calibrations",
+      "request": null,
+      "response": "Calibration",
+      "permission": "diagnostics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "diagnostics_post_orgs_organization_id_devices_device_id_calibrations",
+      "group": "Diagnostics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/devices/{device_id}/calibrations",
+      "request": "CalibrationWrite",
+      "response": "Calibration",
+      "permission": "diagnostics.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "diagnostics_get_orgs_organization_id_collars_device_id_service_tests",
+      "group": "Diagnostics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/collars/{device_id}/service-tests",
+      "request": null,
+      "response": "ServiceTest",
+      "permission": "diagnostics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "diagnostics_post_orgs_organization_id_collars_device_id_service_tests",
+      "group": "Diagnostics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/collars/{device_id}/service-tests",
+      "request": "ServiceTestWrite",
+      "response": "ServiceTest",
+      "permission": "diagnostics.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "observations_get_orgs_organization_id_observations",
+      "group": "Observations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/observations",
+      "request": null,
+      "response": "Observation",
+      "permission": "observations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "observations_get_orgs_organization_id_observations_observation_id",
+      "group": "Observations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/observations/{observation_id}",
+      "request": null,
+      "response": "Observation",
+      "permission": "observations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "observations_post_orgs_organization_id_manual_observations",
+      "group": "Observations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/manual-observations",
+      "request": "ManualObservationWrite",
+      "response": "Observation",
+      "permission": "observations.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "ingestion_post_ingest_hardware_observations",
+      "group": "Ingestion",
+      "method": "post",
+      "path": "/ingest/hardware/observations",
+      "request": "ObservationBatch",
+      "response": "BatchReceipt",
+      "permission": "ingestion.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "ingestion_post_ingest_simulation_observations",
+      "group": "Ingestion",
+      "method": "post",
+      "path": "/ingest/simulation/observations",
+      "request": "SimulationObservationBatch",
+      "response": "BatchReceipt",
+      "permission": "ingestion.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "evidence_get_orgs_organization_id_evidence_assessments",
+      "group": "Evidence",
+      "method": "get",
+      "path": "/orgs/{organization_id}/evidence-assessments",
+      "request": null,
+      "response": "Evidence",
+      "permission": "evidence.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "evidence_get_orgs_organization_id_evidence_assessments_assessment_id",
+      "group": "Evidence",
+      "method": "get",
+      "path": "/orgs/{organization_id}/evidence-assessments/{assessment_id}",
+      "request": null,
+      "response": "Evidence",
+      "permission": "evidence.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "evidence_post_orgs_organization_id_evidence_assessments",
+      "group": "Evidence",
+      "method": "post",
+      "path": "/orgs/{organization_id}/evidence-assessments",
+      "request": "AssessmentWrite",
+      "response": "Evidence",
+      "permission": "evidence.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures",
+      "request": null,
+      "response": "AcousticCapture",
+      "permission": "acoustics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "acoustics_post_orgs_organization_id_acoustic_captures",
+      "group": "Acoustics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/acoustic-captures",
+      "request": "CaptureWrite",
+      "response": "AcousticCapture",
+      "permission": "acoustics.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures_capture_id",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}",
+      "request": null,
+      "response": "AcousticCapture",
+      "permission": "acoustics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "acoustics_post_orgs_organization_id_acoustic_captures_capture_id_estimates",
+      "group": "Acoustics",
+      "method": "post",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}/estimates",
+      "request": "EstimateRequest",
+      "response": "Receipt",
+      "permission": "acoustics.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_acoustic_captures_capture_id_estimates",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/acoustic-captures/{capture_id}/estimates",
+      "request": null,
+      "response": "AcousticEstimate",
+      "permission": "acoustics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "acoustics_get_orgs_organization_id_artifacts_artifact_id_download",
+      "group": "Acoustics",
+      "method": "get",
+      "path": "/orgs/{organization_id}/artifacts/{artifact_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "permission": "acoustics.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents",
+      "request": null,
+      "response": "Incident",
+      "permission": "incidents.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents",
+      "request": "IncidentWrite",
+      "response": "Incident",
+      "permission": "incidents.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents_incident_id",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}",
+      "request": null,
+      "response": "Incident",
+      "permission": "incidents.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
+      "group": "Incidents",
+      "method": "get",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/timeline",
+      "request": null,
+      "response": "TimelineEvent",
+      "permission": "incidents.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/transitions",
+      "request": "IncidentTransition",
+      "response": "Incident",
+      "permission": "incidents.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "incidents_post_orgs_organization_id_incidents_incident_id_links",
+      "group": "Incidents",
+      "method": "post",
+      "path": "/orgs/{organization_id}/incidents/{incident_id}/links",
+      "request": "IncidentLinkWrite",
+      "response": "Receipt",
+      "permission": "incidents.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders",
+      "request": null,
+      "response": "WorkOrder",
+      "permission": "work_orders.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders",
+      "request": "WorkOrderWrite",
+      "response": "WorkOrder",
+      "permission": "work_orders.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}",
+      "request": null,
+      "response": "WorkOrder",
+      "permission": "work_orders.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ]
+    },
+    {
+      "id": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
+      "group": "Work orders",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/brief",
+      "request": null,
+      "response": "WorkerBrief",
+      "permission": "work_orders.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/assignment",
+      "request": "AssignmentWrite",
+      "response": "WorkOrder",
+      "permission": "work_orders.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/actions",
+      "request": "WorkerAction",
+      "response": "Receipt",
+      "permission": "work_orders.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ]
+    },
+    {
+      "id": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
+      "group": "Work orders",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
+      "request": "WorkTransition",
+      "response": "WorkOrder",
+      "permission": "work_orders.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ]
+    },
+    {
+      "id": "repairs_post_orgs_organization_id_work_orders_work_order_id_repairs",
+      "group": "Repairs",
+      "method": "post",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+      "request": "RepairWrite",
+      "response": "Repair",
+      "permission": "repairs.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "repairs_get_orgs_organization_id_work_orders_work_order_id_repairs",
+      "group": "Repairs",
+      "method": "get",
+      "path": "/orgs/{organization_id}/work-orders/{work_order_id}/repairs",
+      "request": null,
+      "response": "Repair",
+      "permission": "repairs.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "verification_post_orgs_organization_id_repairs_repair_id_verifications",
+      "group": "Verification",
+      "method": "post",
+      "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+      "request": "VerificationWrite",
+      "response": "Verification",
+      "permission": "verification.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "verification_get_orgs_organization_id_repairs_repair_id_verifications",
+      "group": "Verification",
+      "method": "get",
+      "path": "/orgs/{organization_id}/repairs/{repair_id}/verifications",
+      "request": null,
+      "response": "Verification",
+      "permission": "verification.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints",
+      "request": "ComplaintWrite",
+      "response": "CitizenComplaint",
+      "permission": "complaints.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
+        "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "complaints_get_orgs_organization_id_complaints",
+      "group": "Complaints",
+      "method": "get",
+      "path": "/orgs/{organization_id}/complaints",
+      "request": null,
+      "response": "CitizenComplaint",
+      "permission": "complaints.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination"
+      ]
+    },
+    {
+      "id": "complaints_get_orgs_organization_id_complaints_complaint_id",
+      "group": "Complaints",
+      "method": "get",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}",
+      "request": null,
+      "response": "CitizenComplaint",
+      "permission": "complaints.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups",
+      "request": "ComplaintFollowup",
+      "response": "Receipt",
+      "permission": "complaints.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
+      "group": "Complaints",
+      "method": "post",
+      "path": "/orgs/{organization_id}/complaints/{complaint_id}/review",
+      "request": "ComplaintReview",
+      "response": "Receipt",
+      "permission": "complaints.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ]
+    },
+    {
+      "id": "feedback_post_orgs_organization_id_feedback",
+      "group": "Feedback",
+      "method": "post",
+      "path": "/orgs/{organization_id}/feedback",
+      "request": "FeedbackWrite",
+      "response": "Feedback",
+      "permission": "feedback.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "feedback_get_orgs_organization_id_feedback",
+      "group": "Feedback",
+      "method": "get",
+      "path": "/orgs/{organization_id}/feedback",
+      "request": null,
+      "response": "Feedback",
+      "permission": "feedback.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "feedback_post_orgs_organization_id_feedback_feedback_id_review",
+      "group": "Feedback",
+      "method": "post",
+      "path": "/orgs/{organization_id}/feedback/{feedback_id}/review",
+      "request": "FeedbackReview",
+      "response": "Feedback",
+      "permission": "feedback.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_post_orgs_organization_id_attachments",
+      "group": "Uploads",
+      "method": "post",
+      "path": "/orgs/{organization_id}/attachments",
+      "request": "UploadStart",
+      "response": "UploadTicket",
+      "permission": "uploads.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_put_orgs_organization_id_attachments_attachment_id_content",
+      "group": "Uploads",
+      "method": "put",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/content",
+      "request": "BINARY",
+      "response": "Attachment",
+      "permission": "uploads.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_post_orgs_organization_id_attachments_attachment_id_complete",
+      "group": "Uploads",
+      "method": "post",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/complete",
+      "request": "UploadComplete",
+      "response": "Attachment",
+      "permission": "uploads.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_get_orgs_organization_id_attachments_attachment_id",
+      "group": "Uploads",
+      "method": "get",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}",
+      "request": null,
+      "response": "Attachment",
+      "permission": "uploads.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_get_orgs_organization_id_attachments_attachment_id_download",
+      "group": "Uploads",
+      "method": "get",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "permission": "uploads.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "uploads_delete_orgs_organization_id_attachments_attachment_id",
+      "group": "Uploads",
+      "method": "delete",
+      "path": "/orgs/{organization_id}/attachments/{attachment_id}",
+      "request": null,
+      "response": "Message",
+      "permission": "uploads.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_scenarios",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/scenarios",
+      "request": null,
+      "response": "Scenario",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_post_orgs_organization_id_simulations_runs",
+      "group": "Simulations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/simulations/runs",
+      "request": "RunWrite",
+      "response": "SimulationRun",
+      "permission": "simulations.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs",
+      "request": null,
+      "response": "SimulationRun",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}",
+      "request": null,
+      "response": "SimulationRun",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_post_orgs_organization_id_simulations_runs_run_id_cancel",
+      "group": "Simulations",
+      "method": "post",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/cancel",
+      "request": null,
+      "response": "SimulationRun",
+      "permission": "simulations.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id_outputs",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/outputs",
+      "request": null,
+      "response": "RunOutput",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_simulations_runs_run_id_evaluation",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/simulations/runs/{run_id}/evaluation",
+      "request": null,
+      "response": "EvaluationResult",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "simulations_get_orgs_organization_id_algorithm_configurations",
+      "group": "Simulations",
+      "method": "get",
+      "path": "/orgs/{organization_id}/algorithm-configurations",
+      "request": null,
+      "response": "AlgorithmConfiguration",
+      "permission": "simulations.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "notifications_get_orgs_organization_id_notifications",
+      "group": "Notifications",
+      "method": "get",
+      "path": "/orgs/{organization_id}/notifications",
+      "request": null,
+      "response": "Notification",
+      "permission": "notifications.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "notifications_post_orgs_organization_id_notifications_notification_id_read",
+      "group": "Notifications",
+      "method": "post",
+      "path": "/orgs/{organization_id}/notifications/{notification_id}/read",
+      "request": null,
+      "response": "Receipt",
+      "permission": "notifications.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "reports_post_orgs_organization_id_reports",
+      "group": "Reports",
+      "method": "post",
+      "path": "/orgs/{organization_id}/reports",
+      "request": "ReportWrite",
+      "response": "ReportJob",
+      "permission": "reports.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "reports_get_orgs_organization_id_reports_report_id",
+      "group": "Reports",
+      "method": "get",
+      "path": "/orgs/{organization_id}/reports/{report_id}",
+      "request": null,
+      "response": "ReportJob",
+      "permission": "reports.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "reports_get_orgs_organization_id_reports_report_id_download",
+      "group": "Reports",
+      "method": "get",
+      "path": "/orgs/{organization_id}/reports/{report_id}/download",
+      "request": null,
+      "response": "BINARY",
+      "permission": "reports.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "administration_get_orgs_organization_id_memberships",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/memberships",
+      "request": null,
+      "response": "MembershipView",
+      "permission": "administration.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_last_admin_version_precondition_and_evaluator_denial",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles"
+      ]
+    },
+    {
+      "id": "administration_post_orgs_organization_id_invitations",
+      "group": "Administration",
+      "method": "post",
+      "path": "/orgs/{organization_id}/invitations",
+      "request": "InviteWrite",
+      "response": "Receipt",
+      "permission": "administration.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
+        "services/api/tests/test_assets_contracts.py::test_postgis_assets_geodesic_length_versions_and_spatial_integrity",
+        "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
+        "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_governance.py::test_invitation_no_existing_membership_required",
+        "services/api/tests/test_governance.py::test_invitation_verified_matching_identity_exact_role_and_replay",
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
+        "services/api/tests/test_governance.py::test_recent_reauthentication_and_safe_audit",
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+        "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
+      ]
+    },
+    {
+      "id": "administration_put_orgs_organization_id_memberships_membership_id_roles",
+      "group": "Administration",
+      "method": "put",
+      "path": "/orgs/{organization_id}/memberships/{membership_id}/roles",
+      "request": "RoleWrite",
+      "response": "MembershipView",
+      "permission": "administration.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
+        "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles"
+      ]
+    },
+    {
+      "id": "administration_post_orgs_organization_id_memberships_membership_id_status",
+      "group": "Administration",
+      "method": "post",
+      "path": "/orgs/{organization_id}/memberships/{membership_id}/status",
+      "request": "MemberStatusWrite",
+      "response": "MembershipView",
+      "permission": "administration.write",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies"
+      ]
+    },
+    {
+      "id": "administration_get_orgs_organization_id_audit_logs",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/audit-logs",
+      "request": null,
+      "response": "AuditEvent",
+      "permission": "administration.read",
+      "table": null,
+      "status": "CODE_TESTED",
+      "positive_response_tests": [
+        "services/api/tests/test_governance.py::test_recent_reauthentication_and_safe_audit"
+      ]
+    },
+    {
+      "id": "administration_get_orgs_organization_id_integrations",
+      "group": "Administration",
+      "method": "get",
+      "path": "/orgs/{organization_id}/integrations",
+      "request": null,
+      "response": "IntegrationView",
+      "permission": "administration.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "administration_put_orgs_organization_id_integrations",
+      "group": "Administration",
+      "method": "put",
+      "path": "/orgs/{organization_id}/integrations",
+      "request": "IntegrationWrite",
+      "response": "IntegrationView",
+      "permission": "administration.write",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "realtime_get_orgs_organization_id_events",
+      "group": "Realtime",
+      "method": "get",
+      "path": "/orgs/{organization_id}/events",
+      "request": null,
+      "response": "SSE",
+      "permission": "realtime.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    },
+    {
+      "id": "realtime_get_orgs_organization_id_events_history",
+      "group": "Realtime",
+      "method": "get",
+      "path": "/orgs/{organization_id}/events/history",
+      "request": null,
+      "response": "EventEnvelope",
+      "permission": "realtime.read",
+      "table": null,
+      "status": "DEFERRED",
+      "positive_response_tests": []
+    }
+  ],
+  "tables": [
+    {
+      "name": "organizations",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "users",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "organization_memberships",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "roles",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "permissions",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "role_permissions",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "role_assignments",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "sessions",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "invitations",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "account_recovery_tokens",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "water_zones",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "network_junctions",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "pipe_segments",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "supply_windows",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "pipe_access_points",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "device_installations",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "devices",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "sensor_channels",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "device_configuration_versions",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "calibration_records",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "device_health_events",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "device_credentials",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "collar_service_tests",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "observation_artifacts",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "sensor_observations",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "acoustic_captures",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "acoustic_location_estimates",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "evidence_records",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "evidence_assessments",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "assessment_evidence",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "incidents",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "incident_events",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "incident_evidence",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "incident_links",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "work_orders",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "work_order_actions",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "repair_records",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "verification_records",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "verification_evidence",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "citizen_complaints",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "complaint_status_events",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "feedback_items",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "feedback_events",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "attachments",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "attachment_links",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "notifications",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "simulation_scenarios",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "simulation_runs",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "simulation_outputs",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "restricted_simulation_truth",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "algorithm_configurations",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "audit_logs",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "idempotency_records",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "notification_delivery_attempts",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "domain_events",
+      "status": "MIGRATED"
+    },
+    {
+      "name": "background_jobs",
+      "status": "DEFERRED"
+    },
+    {
+      "name": "project_contact_submissions",
+      "status": "DEFERRED"
+    }
+  ]
+}
