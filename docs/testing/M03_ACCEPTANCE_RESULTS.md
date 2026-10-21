@@ -34,17 +34,29 @@ Official EDB PostgreSQL archive: complete ZIP CRC verified; SHA256 `80379b2c04d5
 | Dependency compatibility | PASS: pip check |
 | Source quality | PASS: Ruff check and format check |
 | Repository integrity / whitespace | PASS after final-newline normalization; repeat at publication |
-| Native Docker/Caddy execution | NOT TESTED locally: Docker unavailable; separate CI job must actually exercise Compose |
-| Remote branch/PR/CI | NOT TESTED at this local snapshot; publication evidence is recorded below after verification |
+| Docker/Caddy execution | PASS in actual Ubuntu CI: Compose build/start, PostGIS migrations, nonroot API/operator-file denial, verified Caddy TLS and private probe denial. NOT TESTED on this Windows host |
+| Remote branch/PR/CI | PASS: PR #14, implementation-head run linked below; all three jobs succeeded |
 
 The final local backend run took 54.60 seconds. Its source digest was `dfe4fb156e15dcc5b198a122783a25983ba1553360646f1da2afe2ec0d5ef38b`; the HEAD at execution was the earlier foundation checkpoint `7049cd20e34e19de4c4e3a3dcf58c5c085723be1` with the completed working tree under test. CI records the exact published head/merge candidate separately. Do not equate that earlier checkpoint alone with the tested full implementation.
 
 Private local evidence is under the existing workspace's `work/m03-acceptance` and `work/m03-private/https-demo`, outside Git. Only sanitized summary JSON files are eligible for the 14-day CI artifact. Database DSNs, passwords, action tokens, cookies, private mail, certificates/keys and raw scientific truth are never included. The operation matrix contains test names and schemas, no fixture IDs or personal data.
 
-One initial M05 regression invocation used the sandbox default temporary directory: 8 tests failed with file-access errors and 30 passed. Rerunning with the dedicated writable TEMP/TMP directory passed all 38; no scientific source or parameter was changed. An ad hoc Windows probe helper used inherited subprocess output pipes and was replaced with bounded waits/DEVNULL; the separate completed outage probe above is the accepted result. A missing final newline in the copied M03 request was corrected before repository validation passed. These intermediate failures are not presented as successful runs.
+One initial M05 regression invocation used the sandbox default temporary directory: 8 tests failed with file-access errors and 30 passed. Rerunning with the dedicated writable TEMP/TMP directory passed all 38; no scientific source or parameter was changed. An initial ad hoc Windows outage probe helper failed an assertion; a separately bounded rerun completed successfully and is the accepted outage result above. A missing final newline in the copied M03 request was corrected before repository validation passed. These intermediate failures are not presented as successful runs.
 
 ## Deliberate limits
 
 DEFERRED: the 59 unregistered operations, uploads/photos, external mail, scientific verification/ingestion, evaluation truth, simulation jobs, exports, durable background delivery, multi-instance shared limits and subsequent milestones. NOT TESTED: public deployment, production backup/restore drill, load/soak tests, independent penetration assessment and physical hardware. No security-critical acceptance failure is concealed by these labels. The application refuses production/public configuration.
 
 The minimal workflow accepts only manual source data and NOT_VERIFIABLE verification; it does not attest measured comparability, leak detection accuracy or repair success. Windows processes share one local OS identity; Linux container credential ownership is tested separately in CI. RLS is tenant defense in depth, with ownership/assignment enforced in services. See the [implementation report](../engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md) and [reproduction guide](../../services/api/README.md).
+
+## Published implementation evidence
+
+[PR #14](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/pull/14) is open for owner review; issue #3 remains open. Implementation head `18f7a2a3ca27943132d1e4c927b06d09d5764daa` passed [workflow 39545900642](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39545900642): **repository-integrity**, **m03-backend**, **m08-cad-and-figures**, all SUCCESS. CI tested the PR merge candidate `af18a0b806773d2df36e9f41b50a930069e3ed85`; this does not mean main was merged. CI backend source SHA256: `bd6448bf5a7be751a86781d2e5780c7aa6b30a6e4775beb351cad36d34f5b69b`.
+
+Actual Linux container acceptance: 45 tests, 0 failures/errors/skips; all 58 positive operation projections; independent runtime OpenAPI; full HTTPS workflow and actual API restart; verified Caddy certificate/cookie/Origin boundary; nonroot runtime cannot read owner configuration. Existing M02/M05 checks and full M08 CAD/figure regeneration/package verification also passed. The M03 artifact contains exactly two sanitized JSON summaries: no mail, tokens, credentials, certificates, database exports or scientific truth.
+
+[Download sanitized M03 evidence](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39545900642/artifacts/12321752138), retained for 14 days (expires 4 November 2026). The downloaded ZIP was opened and checked: SHA256 `42c0905111ca6b89a5b741a7d46eced4b62768f80662a714c6f57013e43112b6`, matching GitHub's digest. A convenient local copy is in the existing workspace at `work/m03-ci-39545900642/evidence.zip`, outside Git. [M08 presentation artifact](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39545900642/artifacts/12320629358) was also confirmed uploaded and unexpired.
+
+Additional native reproduction check: the documented operator CLI reused explicitly bound restricted roles, created a new disposable database, applied the full fresh m03_001 -> m03_004 chain and executed the private bootstrap CLI twice. The second bootstrap left the existing password unchanged. No privileged DSN or password was printed.
+
+No unresolved merge conflict or security-critical acceptance failure remains. Native Windows Docker, external delivery, shared-rate infrastructure and the deferred/untested limits above remain unchanged. This evidence update changes documentation only; the final PR head's CI is verified separately before handoff.
