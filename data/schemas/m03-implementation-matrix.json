@@ -122,6 +122,7 @@
         "services/api/tests/test_auth.py::test_profile_etag_self_revoke_and_global_retry_exceptions",
         "services/api/tests/test_auth.py::test_recovery_cooldown_replaces_old_token_and_reset_is_single_use",
         "services/api/tests/test_auth.py::test_registration_generic_duplicate_no_credential_or_membership_change",
+        "services/api/tests/test_auth.py::test_reset_login_race_never_leaves_old_password_session",
         "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[absolute]",
         "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[idle]",
         "services/api/tests/test_auth.py::test_session_expiry_and_recognized_cleanup[revoked]",

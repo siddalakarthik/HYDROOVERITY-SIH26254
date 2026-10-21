@@ -45,6 +45,7 @@ def pytest_sessionfinish(session, exitstatus):
             "collected": session.testscollected,
             "failed": session.testsfailed,
             "exit_status": int(exitstatus),
+            "collected_tests": [item.nodeid for item in session.items],
             "operation_tests": {k: sorted(v) for k, v in sorted(COVERAGE.items())},
         }
         (directory / "pytest-summary.json").write_text(json.dumps(report, indent=2))

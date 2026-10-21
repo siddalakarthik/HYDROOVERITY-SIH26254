@@ -214,6 +214,16 @@ def test_reset_login_race_never_leaves_old_password_session(env):
         expect(reset.result(), 200)
         assert issue.result().status_code in {200, 401}
     expect(old_login.request("GET", "/api/v1/me"), 401)
+    # Both legal race outcomes must end with the new credential usable. This
+    # also makes positive login evidence independent of which request won.
+    expect(
+        old_login.request(
+            "POST",
+            "/api/v1/auth/login",
+            json={"email": "admin-a@example.invalid", "password": b["new_password"]},
+        ),
+        200,
+    )
 
 
 @pytest.mark.parametrize("expiry", ["idle", "absolute", "revoked"])
