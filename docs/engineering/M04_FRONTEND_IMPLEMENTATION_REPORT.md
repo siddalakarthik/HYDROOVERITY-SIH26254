@@ -33,7 +33,9 @@ Security uses generated M03 schemas, fixed same-origin paths, memory-only CSRF/i
 
 ## Executed frontend evidence and review risks
 
-Exact cached installation, generated contracts, strict application typecheck, zero-warning ESLint, formatting, sixteen unit/component tests and Webpack production build have passed. Two real Chrome browser scenarios passed in 1.9 minutes after correcting demonstrated defects. Tests use isolated PostgreSQL/PostGIS and random private fixture credentials, not mock-only acceptance. Additional post-review responsive-map/screenshot/keyboard checks are being verified before publication; final CI and artifacts must be checked on the pushed head.
+Frozen installation, generated contracts, strict application typecheck, zero-warning ESLint, formatting, sixteen unit/component tests and Webpack production build passed locally and in CI. Two real Chrome browser scenarios passed locally in 1.9 minutes after correcting demonstrated defects; the pinned Chromium suite also passed in CI. Tests use isolated PostgreSQL/PostGIS and random private fixture credentials, not mock-only acceptance. Responsive-map, screenshot and keyboard checks passed, with the scoped visual audit recorded in `design-qa.md` at the repository root.
+
+Implementation head `55b046346399f227f1ba11afecf533f9f5c33828` passed all four jobs in [run 39655482362](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39655482362), including the preserved backend, design, simulation and CAD regressions. The [sanitized browser evidence artifact](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39655482362/artifacts/12369674792) was uploaded with 14-day retention. PR #16 remains the status authority for subsequent documentation-only commits and owner review.
 
 Local audit has one unpatched HIGH development-only braces advisory through the official Next lint plugin; no clean-audit claim. License inventory records 302 installed entries and native Sharp LGPL notices. The standalone API production gate remains unchanged. All scientific/hardware source and results remain unchanged.
 

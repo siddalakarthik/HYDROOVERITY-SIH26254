@@ -1,6 +1,6 @@
 # M04 execution ledger
 
-Status: IN PROGRESS. No M04 completion, visual QA pass, browser pass, public deployment or CI pass is claimed in this initial record.
+Status: DELIVERED FOR OWNER ENGINEERING AND VISUAL REVIEW in PR #16. Implementation-head CI passed all four jobs; no merge or public deployment is authorized. Entries below preserve execution history, including failures and acceptance items that were pending at the time. The final verified evidence is recorded at the end.
 
 ## Executed preparation
 
@@ -87,3 +87,13 @@ The corrected release-age check passed all 395 entries during online verificatio
 Corrected-head local recovery completed: normal frozen installation passed all 395 supply-chain entries with lifecycle scripts disabled (62.1 seconds). Strict TypeScript and all sixteen Vitest tests passed again with explicit Vite 8.3.4. Temporary missing-module attempts occurred while the failed install was relinking dependencies; they were rerun after links and policy validation completed. No application source, M03 backend, M05 scientific result or M08 hardware source changed in this correction.
 
 Actual run 39654813829 on 59fb71d passed frozen Linux install, compile/type/lint/format/unit/build and production advisory checks. Its disposable database fixture step failed because the Docker image's temporary initialization socket satisfied pg_isready before the final TCP listener was ready. The M04-only workflow now waits for an authenticated TCP SELECT 1 before operator preparation. Existing backend, design, simulation and CAD jobs remain unmodified. No M04 artifact from this failed run is claimed.
+
+## Verified implementation-head CI
+
+Implementation commit `55b046346399f227f1ba11afecf533f9f5c33828` passed [run 39655482362](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39655482362): repository-integrity, m03-backend, m08-cad-and-figures and m04-frontend all concluded success. The authenticated TCP readiness correction resolved the disposable-fixture startup failure without changing application, backend, scientific or hardware source.
+
+The M04 job executed frozen installation, generated-contract checks, strict TypeScript, zero-warning lint, formatting, sixteen unit/component tests, the production build, the production dependency audit and both real PostgreSQL/PostGIS browser scenarios. The existing design, OpenAPI, numerical simulation, backend and CAD checks remained enabled and passed. Local visual comparison, mobile captures and keyboard checks passed; `design-qa.md` records the scoped audit.
+
+The successful workflow uploaded [HYDROOVERITY_M04_BROWSER_EVIDENCE](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/39655482362/artifacts/12369674792), with 14-day retention. It contains explicitly captured synthetic screenshots and safe JSON summaries, not private fixture configuration, tokens, evaluation truth or seeds. Later documentation-only commits must still pass their own PR CI; the PR is the current-head status authority.
+
+The one disclosed HIGH development-only braces advisory remains unresolved. Production dependency audit reported no known vulnerabilities. Automated accessibility checks and local timing are limited software evidence, not certification or field performance. Owner engineering/visual acceptance remains pending; issue #4 stays open and main is unchanged.
