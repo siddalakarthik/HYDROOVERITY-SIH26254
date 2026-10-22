@@ -1,5 +1,7 @@
 # Product information architecture
 
+M07 review note: the [candidate route catalogue](../../design/ui-ux/m07-route-catalog.json) proposes five additional service pages and gated associations for existing maintenance/work/notifications/admin pages. The live M04 catalogue remains46 classified routes and is byte-unchanged. All new pages are PROPOSED_NOT_ROUTED, online-only, with existing M02 tokens and M04 design direction preserved. See [page specifications](m07/README.md) and do not enable navigation before real backend acceptance.
+
 Issue #2; HYDROOVERITY Operations, design only. Public explanation, citizen ownership, assigned field work, supervisor operations, engineer investigation and tenant administration share a visual system but separate navigation/permissions. One organization switcher chooses an active membership; selecting an organization never grants access. Every API path revalidates it. Internal route `{org}` resolves to authorized UUID, not arbitrary client organization context.
 
 Public header: Solution, How it works, Benefits/limitations, Project status, Report water issue, Contact. Citizen navigation: My reports, New report, Notifications, Account. Worker navigation: My tasks, Pending sync, Notifications. Supervisor navigation: Overview, Incidents, Work orders, Complaints, Maintenance, Reports. Engineer adds Network, Monitoring, Devices, Acoustics, Simulations. Admin navigation: Users, Settings, Audit; admin does not inherit telemetry rights. Shared account/session pages are outside tenant data views.

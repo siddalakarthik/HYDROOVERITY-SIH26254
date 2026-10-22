@@ -1,5 +1,7 @@
 # Authentication, security and privacy design
 
+M07 review note: [owner decisions D1–D10](../project/m07-planning/M07_OWNER_REVIEW_DECISION.md) and [candidate security boundaries](m07/README.md) retain one identity owner, tenant/own/assigned enforcement and unchanged current sessions. Initial M07 is online-only and image-only after scanner/processing/license/storage review; PDF, external delivery and offline drafts are deferred. Encryption/key custody, consent/disclosure, retention/erasure/holds and operator commitments require explicit review before live release. Numeric pilot retention below is not approved legal policy.
+
 M02 issue #2; controls are specified, not implemented or penetration-tested. No production credentials or grants are created.
 
 ## One authentication owner

@@ -1,5 +1,7 @@
 # Documentation index
 
+M07 contract-only review: [candidate architecture and specification index](architecture/m07/README.md), [engineering/closure/compatibility report](engineering/M07_CONTRACT_RECONCILIATION_REPORT.md), and [owner decisions](project/m07-planning/M07_OWNER_REVIEW_DECISION.md). M04 subsequently merged at `fe69ccdb10ab515f73bbceaaa4652ce440859c85` with all four main CI jobs passing and issue #4 completed. M07 remains proposed, with no runtime/migration/frontend activation. Historical execution-time status below is preserved.
+
 The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved project specification. The [M01 request](project/MILESTONE_01_REQUEST.md) authorizes this repository foundation and refines its folder layout and milestone sequence. The [source manifest](project/SOURCE_MANIFEST.json) records source hashes. Onboarding-only instructions in the master context are historical; they do not authorize or prevent later separately approved tasks.
 
 | Document | Purpose |

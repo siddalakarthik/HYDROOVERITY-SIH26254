@@ -1,5 +1,17 @@
 # Role permission matrix
 
+M07 review note: [candidate operation metadata](../../data/schemas/m07-api-inventory.json) carries the proposed action-by-action roles, guards and required permissions; [candidate architecture](m07/README.md) describes separate citizen/staff/technician DTOs. These grants are not seeded into the existing runtime. The following permission families are proposed, not blanket access:
+
+| Permission family | Candidate role boundary |
+| --- | --- |
+| service_requests.read/write | Citizen owns submitted case and permitted requests; supervisor tenant triage/publication/closure. No general ADMIN/ENGINEER/TECHNICIAN case read. |
+| dispatch.read/write | Per-operation citizen owned appointment decisions; supervisor operations; ADMIN governance only; technician current assigned visit or self calendar. A shared family never bypasses endpoint role/parent/action checks. |
+| notification_preferences.read/write | Active membership's own recipient preferences; no arbitrary destination and in-app only. |
+| investigation_findings.read/write | Supervisor/engineer technical read; current assigned technician read/write; investigation-purpose work only. |
+| Existing uploads/feedback/notifications | Retain current-parent/owner/current-recipient checks in the deferred candidate; no implementation or ADMIN wildcard. |
+
+Mixed-role users cannot approve their own repair. Internal timeline audience and administrative attendance corrections remain supervisor-only; technician calendars expose no other tenant or private resident contact. Governance enrollment/policy edits require fresh reauthentication and reason. All other existing role restrictions below remain authoritative for current operations.
+
 Issue #2. Deny by default. Global user identity -> active organization_membership -> scoped role_assignments -> explicit permission. No universal super-admin. Multiple memberships/roles are allowed; switching UI organization revalidates membership and clears cached data. PUBLIC means anonymous/preauth only; ALL means authenticated active membership. EVALUATOR is an explicitly owner-reviewed extra grant for engineers, never inherited by ADMIN or accepted through ordinary role edit. DEVICE and SIMULATOR are separate machine identities, not human roles.
 
 For every request: authenticate; bind path organization; load active membership/grants; load resource under organization predicate; apply own/assigned/parent checks; validate transition/version; persist/audit/outbox in one transaction. Role revocation invalidates access immediately, including open streams and downloads. A worker's task ID, stale cached assignment or device lease is not authorization. Citizen queries always include reporter membership and return citizen-safe DTOs; existence failures are uniform404. Privileged changes require recent reauthentication (within10 minutes), reason and safe audit, including last-admin protection.

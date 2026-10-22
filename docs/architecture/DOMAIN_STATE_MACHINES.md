@@ -1,5 +1,7 @@
 # Domain state machines
 
+M07 review note: [proposed service and appointment states](../../data/schemas/m07-state-machines.json) supplement these frozen scientific/incident/work domains without activating runtime behavior. Service closure, appointment attendance and feedback never imply scientific verification. Investigation findings and atomic replacement/cancellation guards are specified in the [candidate design](m07/README.md); current manual verification remains NOT_VERIFIABLE only. No M06 integration is included.
+
 Issue #2; canonical names match OpenAPI and database enum catalogue. Status domains are independent. Every human transition requires current permission, correct tenant/parent, expected version, UTC receipt timestamp, actor/reason, immutable history and atomic outbox/audit. System transitions identify versioned algorithm/config and source window. Unknown/stale inputs never become confident no-leak results.
 
 ## Supply

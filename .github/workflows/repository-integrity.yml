@@ -24,12 +24,18 @@ jobs:
         run: python3 scripts/check_m02_design.py
       - name: Test design checker regression examples
         run: python3 scripts/test_m02_design_checker.py -v
+      - name: Validate M07 proposed contracts and frozen compatibility
+        run: |
+          python3 scripts/build_m07_contracts.py --check
+          python3 scripts/check_m07_design.py
+          python3 scripts/test_m07_design_checker.py -v
       - name: Independently validate OpenAPI 3.1 in isolated environment
         run: |
           python3 -m venv "$RUNNER_TEMP/openapi-review"
           "$RUNNER_TEMP/openapi-review/bin/python" -m pip install --disable-pip-version-check --only-binary=:all: -r scripts/openapi-validation-requirements.txt
           "$RUNNER_TEMP/openapi-review/bin/python" -m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json
           "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_openapi_design.py
+          "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_m07_openapi.py
       - name: Validate scientific simulations
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib

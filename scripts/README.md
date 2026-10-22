@@ -1,5 +1,7 @@
 # Repository validation
 
+For the contract-only M07 candidate, also run `python scripts/build_m07_contracts.py --check`, `python scripts/check_m07_design.py` and `python scripts/test_m07_design_checker.py -v`. In the same isolated pinned OpenAPI review environment used below, run `python scripts/validate_m07_openapi.py`. See the [M07 report](../docs/engineering/M07_CONTRACT_RECONCILIATION_REPORT.md). These are schema/model/permission/route compatibility checks, not executed M07 operations, SQL race tests or security enforcement.
+
 From the repository root run `python scripts/check_repository.py` using Python 3.12+ and Git. No packages or application setup are required. CI runs the same checker on Ubuntu; local development may use Windows.
 
 The checker validates required files/directories, local Markdown targets, source SHA-256 copies, placeholder-only environment example, ignore behavior, text encoding/newlines and limited credential/large-artifact hygiene for tracked and unignored files. It does not inspect ignored secrets, network URLs, Markdown anchors or physical performance and is not a comprehensive secret scanner/security audit. Matched secret values are never printed.
