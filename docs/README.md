@@ -32,7 +32,7 @@ Research source claims in the master context are inherited, not independently re
 
 These are proposed implementation contracts, not a running application, executed migration or measured sensor result.
 
-- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): original planning sequence; M03's current implementation is documented below. M04 remains unstarted.
+- [M03/M04 staged sequence](project/M03_M04_IMPLEMENTATION_SEQUENCE.md): original planning sequence; current implementation records supersede its historical status language.
 - [Final M02 review validation](testing/M02_REVIEW_VALIDATION.md): independent OpenAPI tool/version/commands and design-checker mutation evidence.
 
 M05: [executed simulation evidence, limitations and reproduction](testing/M05_SIMULATION_EVIDENCE_REPORT.md).
@@ -40,3 +40,7 @@ M05: [executed simulation evidence, limitations and reproduction](testing/M05_SI
 M08: [digital hardware engineering report](engineering/M08_DIGITAL_HARDWARE_REPORT.md), [hardware source index](../hardware/README.md), [estimated materials ledger](../hardware/bom/M08_BOM.md). Review package only; no physical validation.
 
 M03: [backend implementation report](engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [runtime decisions](decisions/M03_RUNTIME_DECISIONS.md), [acceptance results](testing/M03_ACCEPTANCE_RESULTS.md), [PowerShell/Compose reproduction](../services/api/README.md) and [117-operation/57-table traceability](../data/schemas/m03-implementation-matrix.json). Published for owner review; not merged automatically. No public deployment or physical validation.
+
+M03 and recovery PR #15 were subsequently approved and merged at main `e0122f5ee4146e49ae6113a1aa6a5ee444b25973`; issue #3 is closed. The original milestone reports retain their execution-time status.
+
+M04: [authorized request](project/MILESTONE_04_REQUEST.md), [frontend implementation record](engineering/M04_FRONTEND_IMPLEMENTATION_REPORT.md), [execution ledger](testing/M04_EXECUTION_LEDGER.md), [local web guide](../apps/web/README.md), [route/API integration matrix](testing/M04_ROUTE_AND_API_MATRIX.md) and [46-route capability data](../apps/web/src/lib/route-capabilities.json) and [visual QA gate](../design-qa.md). In progress; no completion, merge or issue closure is claimed.

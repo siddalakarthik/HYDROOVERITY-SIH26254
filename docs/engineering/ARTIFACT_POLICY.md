@@ -9,3 +9,7 @@ For an externally stored artifact commit a small manifest recording source commi
 Private citizen uploads, actual field captures with sensitive metadata, secrets and local databases must not enter Git or public CI artifacts. Use ignored `uploads/`, `data/private/`, `data/raw/` or `data/local/` during authorized local development, then apply a reviewed storage/retention design. Synthetic examples must be clearly labeled and contain no real personal data.
 
 M01 does not configure external storage, Git LFS, paid services or artifact uploads. Render/video creation and CAD/PCB generation remain later milestones.
+
+## M04 reviewed public engineering asset
+
+The M04 public explanation reuses the unchanged reviewed M08 H02 PNG at `apps/web/public/engineering/guard5.png` (355779 bytes; SHA256 `e21d3a341c8dd65f6f54409c647abd7656342748c98a2ac76baa8d09865220c7`). It is a proposed CAD illustration, not a fabricated-device photograph or evidence of physical testing. The foundation checker allows only this exact PNG checksum/signature; other binaries still require review and the 1 MiB limit remains. The original editable CAD, generated SVG and M08 reproduction paths remain intact. No scientific raw evaluation truth or seeds are added to public assets.

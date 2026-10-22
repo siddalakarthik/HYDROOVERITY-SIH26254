@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="648pt" viewBox="0 0 1152 648" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-20T22:49:13.657974</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 648
+L 1152 648
+L 1152 0
+L 0 0
+z
+" style="fill: #f5f8fc"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 75.075623 241.716226
+L 237.05117 241.716226
+Q 251.049057 241.716226 251.049057 235.211774
+L 251.049057 155.299925
+Q 251.049057 148.795472 237.05117 148.795472
+L 75.075623 148.795472
+Q 61.077736 148.795472 61.077736 155.299925
+L 61.077736 235.211774
+Q 61.077736 241.716226 75.075623 241.716226
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #008c95; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 325.037887 241.716226
+L 576.999849 241.716226
+Q 590.997736 241.716226 590.997736 235.211774
+L 590.997736 155.299925
+Q 590.997736 148.795472 576.999849 148.795472
+L 325.037887 148.795472
+Q 311.04 148.795472 311.04 155.299925
+L 311.04 235.211774
+Q 311.04 241.716226 325.037887 241.716226
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #266b98; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 75.075623 371.805283
+L 237.05117 371.805283
+Q 251.049057 371.805283 251.049057 365.30083
+L 251.049057 285.388981
+Q 251.049057 278.884528 237.05117 278.884528
+L 75.075623 278.884528
+Q 61.077736 278.884528 61.077736 285.388981
+L 61.077736 365.30083
+Q 61.077736 371.805283 75.075623 371.805283
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #008c95; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 325.037887 371.805283
+L 576.999849 371.805283
+Q 590.997736 371.805283 590.997736 365.30083
+L 590.997736 285.388981
+Q 590.997736 278.884528 576.999849 278.884528
+L 325.037887 278.884528
+Q 311.04 278.884528 311.04 285.388981
+L 311.04 365.30083
+Q 311.04 371.805283 325.037887 371.805283
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #266b98; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 664.986566 376.451321
+L 836.960604 376.451321
+Q 850.958491 376.451321 850.958491 369.946868
+L 850.958491 150.653887
+Q 850.958491 144.149434 836.960604 144.149434
+L 664.986566 144.149434
+Q 650.988679 144.149434 650.988679 150.653887
+L 650.988679 369.946868
+Q 650.988679 376.451321 664.986566 376.451321
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #d99b25; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 914.94883 376.451321
+L 1056.927396 376.451321
+Q 1070.925283 376.451321 1070.925283 369.946868
+L 1070.925283 150.653887
+Q 1070.925283 144.149434 1056.927396 144.149434
+L 914.94883 144.149434
+Q 900.950943 144.149434 900.950943 150.653887
+L 900.950943 369.946868
+Q 900.950943 376.451321 914.94883 376.451321
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #102b46; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 325.037887 515.832453
+L 586.99834 515.832453
+Q 600.996226 515.832453 600.996226 509.328
+L 600.996226 438.708226
+Q 600.996226 432.203774 586.99834 432.203774
+L 325.037887 432.203774
+Q 311.04 432.203774 311.04 438.708226
+L 311.04 509.328
+Q 311.04 515.832453 325.037887 515.832453
+z
+" clip-path="url(#pdd0a68172d)" style="fill: #ffffff; stroke: #b94c50; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(131.460584 183.970224)">Pickup L</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(115.981521 198.373505)">Passive piezo</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(108.875271 212.776787)">Matched mount</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(380.709962 184.910693)">1 MΩ input bias / follower</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(398.870274 198.113701)">Gain 11, bias 2.5 V</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(366.349805 211.316708)">2 × buffered RC, fc ≈ 4.82 kHz</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 248.053293 197.578868
+Q 281.048306 197.578868 311.807252 197.578868
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 306.607252 194.978868
+L 311.807252 197.578868
+L 306.607252 200.178868
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 588.001972 197.578868
+Q 620.996986 197.578868 651.755931 197.578868
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 646.555931 194.978868
+L 651.755931 197.578868
+L 646.555931 200.178868
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(130.634646 314.059281)">Pickup R</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(115.981521 328.462562)">Passive piezo</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(108.875271 342.865843)">Matched mount</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(380.709962 314.999749)">1 MΩ input bias / follower</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(398.870274 328.202757)">Gain 11, bias 2.5 V</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(366.349805 341.405765)">2 × buffered RC, fc ≈ 4.82 kHz</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 248.053293 327.667925
+Q 281.048306 327.667925 311.807252 327.667925
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 306.607252 325.067925
+L 311.807252 327.667925
+L 306.607252 330.267925
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 588.001972 327.667925
+Q 620.996986 327.667925 651.755931 327.667925
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 646.555931 325.067925
+L 651.755931 327.667925
+L 646.555931 330.267925
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(713.168897 234.61194)">PCM1808PW</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(718.934522 249.015221)">5 V analog</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(719.40046 263.418502)">3.3 V logic</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(709.87171 277.820846)">MD1=MD0=1</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(715.262335 292.22319)">FMT=0 (I²S)</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(959.680769 236.753073)">ESP32-S3</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(962.197879 249.95608)">RX slave</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(949.472254 263.158229)">GPIO15 BCLK</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(954.731629 276.360377)">GPIO16 WS</text>
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(953.689207 289.562526)">GPIO17 DIN</text>
+   </g>
+   <g id="patch_13">
+    <path d="M 847.962117 271.915472
+Q 875.956297 271.915472 901.71441 271.915472
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 896.51441 269.315472
+L 901.71441 271.915472
+L 896.51441 274.515472
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(371.302801 469.934129)">12.288 MHz CMOS oscillator</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(382.848113 484.33741)">3.3 V → SCKI (one clock)</text>
+   </g>
+   <g id="patch_14">
+    <path d="M 597.569772 475.104334
+Q 660.987868 425.234168 722.648264 376.746206
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 716.953548 377.916763
+L 722.648264 376.746206
+L 720.16788 382.004313
+" style="fill: none; stroke: #266b98; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(675.984906 452.334393)">48,000 stereo frames/s</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(675.984906 471.075018)">24 valid bits / 32-bit slots</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(675.984906 488.98408)">384,000 bytes/s; 10 s = 3.84 MB</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(675.984906 508.74658)">64 KiB buffer ≈ 170.7 ms</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(66.076981 429.610454)">CLOCK RELATIONSHIPS</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(66.076981 448.316392)">MCLK 12.288 MHz = 256 fs</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(66.076981 466.916392)">BCLK 3.072 MHz = 64 fs</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #102b46" transform="translate(66.076981 485.516392)">LRCLK 48 kHz = 1 fs</text>
+   </g>
+  </g>
+  <g id="text_10">
+   <text style="font-weight: 700; font-size: 24px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #102b46" x="51.84" y="36.936" transform="rotate(-0 51.84 36.936)">H05  |  HYDRO-EAR: one physical sampling clock</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #536b80" x="51.84" y="63.504" transform="rotate(-0 51.84 63.504)">Two matched contact channels → one PCM1808 stereo ADC → ESP32-S3 I²S receive slave</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #102b46" x="51.84" y="627.912" transform="rotate(-0 51.84 627.912)">HYDROOVERITY | TARK | SIH26254</text>
+  </g>
+  <g id="text_13">
+   <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b94c50" x="1100.16" y="627.912" transform="rotate(-0 1100.16 627.912)">PROPOSED DESIGN / NOT PHYSICALLY TESTED</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pdd0a68172d">
+   <rect x="46.08" y="90.72" width="1059.84" height="492.48"/>
+  </clipPath>
+ </defs>
+</svg>
