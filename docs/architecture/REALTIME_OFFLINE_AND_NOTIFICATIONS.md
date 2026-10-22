@@ -1,5 +1,7 @@
 # Realtime, offline and notifications
 
+M07 review note: the [owner's initial scope](../project/m07-planning/M07_OWNER_REVIEW_DECISION.md) keeps offline drafts/synchronization and all external email/SMS/push disabled. In-app delivery has three total attempts, including the initial attempt; retry delay configuration requires review rather than a fourth attempt from the historical three-delay wording below. Use the existing planned background_jobs with an event dedup key, not an additional queue/checkpoint table. Current M04's 15-minute online brief is unchanged; the offline lease/vault design below is not activated. See [M07 candidate](m07/README.md).
+
 Issue #2; future implementation design only.
 
 ## SSE first, polling fallback

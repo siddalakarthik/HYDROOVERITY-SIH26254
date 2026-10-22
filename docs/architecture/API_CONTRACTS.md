@@ -1,5 +1,7 @@
 # API contracts
 
+M07 review note: the [composed M07 candidate](m07/README.md) adds44 proposed operations and reconciles11 deferred designs, separately from the frozen M02 JSON consumed by M03/M04. Current runtime stays58 operations. No M07 endpoint is registered. See the [reconciliation report](../engineering/M07_CONTRACT_RECONCILIATION_REPORT.md) for exact counts, compatibility and owner gates; later authorization is required to activate contracts or implement them.
+
 Issue #2; **no endpoints implemented**. [OpenAPI 3.1 JSON](openapi-design.json) is the canonical wire contract; JSON avoids a second YAML source and needs no installed parser. This inventory explains actions, roles and persistence. [Provenance](DATA_CONTRACTS_AND_PROVENANCE.md), [security](AUTH_SECURITY_AND_PRIVACY.md) and [state guards](DOMAIN_STATE_MACHINES.md) are normative service invariants that JSON Schema alone cannot express.
 
 ## Conventions

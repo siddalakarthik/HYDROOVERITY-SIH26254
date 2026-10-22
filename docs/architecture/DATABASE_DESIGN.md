@@ -1,5 +1,7 @@
 # Database design
 
+M07 review note: the [candidate catalogue](../../data/schemas/m07-database-design.json) composes57 baseline designed tables plus17 proposed tables, totaling74; the migrated runtime remains30 tables. It includes proposed service/appointment/enrollment/allocation/findings invariants and five existing-table column deltas. The deployed M02 catalogue and all migrations remain unchanged. [M07 architecture](m07/README.md) records the single background_jobs outbox strategy and explicit retention/encryption review gates. Pilot retention periods below are historical proposals, not approved M07 live policy.
+
 M02 design for issue #2; **not a deployed migration**. PostgreSQL 17 + PostGIS 3.5 is the conservative pilot version-family recommendation, subject to maintained patch/image selection and integration checks in M03. No database is installed here. This document and the machine-readable field catalogue describe the same reviewed design; the catalogue enables consistency checks, not runtime ORM generation.
 
 ## Global invariants

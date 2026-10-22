@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "path": "docs/project/m07-planning/M07_SERVICE_MANAGEMENT_ENGINEERING_PLAN.md",
+      "sha256": "d76bd324561ed1e986d17a16f85845ca836e539580b0abce49c9e934ff217b04",
+      "status": "OWNER_REVIEWED_PLANNING_SOURCE; historical gate observations are superseded by M07 reconciliation report"
+    },
+    {
+      "path": "docs/project/m07-planning/M07_API_AND_SCHEMA_PROPOSAL.md",
+      "sha256": "7990451015de0648c6dea711a4f3ea32eb9ebbdb2c5f39445620db5bb6956ba6",
+      "status": "OWNER_REVIEWED_PLANNING_SOURCE; historical gate observations are superseded by M07 reconciliation report"
+    },
+    {
+      "path": "docs/project/m07-planning/M07_OWNER_REVIEW_DECISION.md",
+      "sha256": "f285cb7b004cac50a62e8b030f644ee3177ed205597f6597f266fbf0f850af20",
+      "status": "OWNER_REVIEWED_PLANNING_SOURCE; historical gate observations are superseded by M07 reconciliation report"
+    }
+  ]
+}
