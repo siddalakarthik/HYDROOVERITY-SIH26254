@@ -60,12 +60,19 @@ def main():
     if result.returncode:
         raise SystemExit(result.returncode)
     from hydro.contracts import INVENTORY, OPERATIONS
+    from hydro.service_contracts import ACTIVE
 
     summary = json.loads((evidence / "pytest-summary.json").read_text())
     missing = [op["id"] for op in OPERATIONS if op["id"] not in summary["operation_tests"]]
     if missing:
         print("Operations without executed positive response conformance:", ",".join(missing))
         raise SystemExit(1)
+    service_missing = ACTIVE - set(summary.get("service_operation_tests", {}))
+    if service_missing:
+        raise SystemExit(
+            "M07-A operations without executed positive conformance: "
+            + ",".join(sorted(service_missing))
+        )
     files = sorted(
         [
             *(ROOT / "services/api").rglob("*.py"),
@@ -92,6 +99,11 @@ def main():
     summary["errors"] = sum(int(s.get("errors", "0")) for s in xml.iter("testsuite"))
     summary.update(
         implemented_operations=len(OPERATIONS),
+        catalogue_scope="M03_BASELINE_COMPATIBILITY",
+        m07a_implemented_operations=len(ACTIVE),
+        total_implemented_operations=len(OPERATIONS) + len(ACTIVE),
+        designed_operations=161,
+        migrated_tables=35,
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

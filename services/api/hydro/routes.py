@@ -11,9 +11,9 @@ from .dispatch import dispatch
 from .errors import Problem, require
 
 
-def endpoint(app, op):
+def endpoint(app, op, design=DESIGN, dispatcher=dispatch):
     async def handle(request: Request):
-        spec = DESIGN["paths"][op["path"]][op["method"]]
+        spec = design["paths"][op["path"]][op["method"]]
         allowed = {p["name"] for p in spec.get("parameters", []) if p["in"] == "query"}
         require(
             set(request.query_params) <= allowed,
@@ -48,7 +48,7 @@ def endpoint(app, op):
             except (ValueError, UnicodeDecodeError):
                 raise Problem(400, "INVALID_JSON", "Malformed JSON request")
         result, status, headers = await run_in_threadpool(
-            dispatch, app, request, op, value, dict(request.path_params)
+            dispatcher, app, request, op, value, dict(request.path_params)
         )
         response = JSONResponse(result, status_code=status)
         for key, value in headers.raw_headers:
@@ -65,6 +65,19 @@ def bind_routes(app):
         app.add_api_route(
             "/api/v1" + op["path"],
             endpoint(app, op),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
+
+    from .service_contracts import DESIGN as service_design
+    from .service_contracts import OPERATIONS as service_operations
+    from .services.service_requests import dispatch as service_dispatch
+
+    for op in service_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            endpoint(app, op, service_design, service_dispatch),
             methods=[op["method"].upper()],
             operation_id=op["id"],
             include_in_schema=False,

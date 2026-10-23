@@ -956,6 +956,178 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/service-requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N02 GET /service-requests — M07-A */
+        get: operations["m07_n02"];
+        put?: never;
+        /** N01 POST /service-requests — M07-A */
+        post: operations["m07_n01"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N03 GET /service-requests/{request_id} — M07-A */
+        get: operations["m07_n03"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/timeline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N04 GET /service-requests/{request_id}/timeline — M07-A */
+        get: operations["m07_n04"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-request-lookups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N05 POST /service-request-lookups — M07-A */
+        post: operations["m07_n05"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/follow-ups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N06 POST /service-requests/{request_id}/follow-ups — M07-A */
+        post: operations["m07_n06"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/triage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N07 POST /service-requests/{request_id}/triage — M07-A */
+        post: operations["m07_n07"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/transitions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N08 POST /service-requests/{request_id}/transitions — M07-A */
+        post: operations["m07_n08"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/public-updates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N09 POST /service-requests/{request_id}/public-updates — M07-A */
+        post: operations["m07_n09"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/work-order-links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N13 POST /service-requests/{request_id}/work-order-links — M07-A */
+        post: operations["m07_n13"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/work-orders/{work_order_id}/findings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N44 GET /work-orders/{work_order_id}/findings — M07-A */
+        get: operations["m07_n44"];
+        put?: never;
+        /** N43 POST /work-orders/{work_order_id}/findings — M07-A */
+        post: operations["m07_n43"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1470,6 +1642,339 @@ export interface components {
             /** Format: date-time */
             expires_at: string;
         };
+        /** @enum {string} */
+        M07TaskPurpose: "REPAIR" | "INVESTIGATION";
+        M07FutureWorkOrderWrite: {
+            /** Format: uuid */
+            incident_id: string;
+            /** @enum {string} */
+            priority: "LOW" | "MEDIUM" | "HIGH" | "URGENT";
+            instructions: string;
+            task_purpose?: components["schemas"]["M07TaskPurpose"];
+        };
+        M07Page_Findings: {
+            items: components["schemas"]["M07Findings"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Findings: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            work_order_id: string;
+            /** Format: uuid */
+            recorded_by_membership_id: string;
+            /** Format: date-time */
+            observed_at: string;
+            /** Format: date-time */
+            received_at: string;
+            findings: string;
+            no_repair_reason: string;
+            attachment_ids: string[];
+            supersedes_id: string | null;
+            /** @constant */
+            provenance: "MANUAL";
+        };
+        M07FindingsWrite: {
+            /** Format: uuid */
+            operation_id: string;
+            assignment_version: number;
+            /** Format: date-time */
+            observed_at: string;
+            findings: string;
+            no_repair_reason: string;
+            attachment_ids: string[];
+            supersedes_id: string | null;
+        };
+        M07FindingsReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            resource: components["schemas"]["M07Findings"];
+            work_version: number;
+        };
+        M07WorkLinkWrite: {
+            /** Format: uuid */
+            work_order_id: string;
+            expected_work_version: number;
+            purpose: components["schemas"]["M07TaskPurpose"];
+            internal_reason: string;
+        };
+        M07WorkLink: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            service_request_id: string;
+            /** Format: uuid */
+            work_order_id: string;
+            purpose: components["schemas"]["M07TaskPurpose"];
+            /** Format: date-time */
+            created_at: string;
+            version: number;
+        };
+        M07PublicUpdateWrite: {
+            /** @enum {string} */
+            event_kind: "INFORMATION" | "PROGRESS" | "CORRECTION";
+            message: string;
+            supersedes_update_id: string | null;
+        };
+        M07PublicUpdate: {
+            /** Format: uuid */
+            id: string;
+            sequence: number;
+            /** @enum {string} */
+            event_kind: "INFORMATION" | "PROGRESS" | "CORRECTION" | "SERVICE" | "APPOINTMENT" | "VISIT";
+            message: string;
+            /** Format: date-time */
+            occurred_at: string;
+            /** Format: date-time */
+            published_at: string;
+            appointment_id: string | null;
+            supersedes_id: string | null;
+        };
+        M07ServiceTransition: {
+            /** @constant */
+            action: "WITHDRAW";
+            reason_code: string;
+            public_message: string;
+        } | {
+            /** @constant */
+            action: "REQUEST_CANCELLATION";
+            reason_code: string;
+            public_message: string;
+        } | {
+            /** @constant */
+            action: "CANCEL";
+            reason_code: string;
+            public_message: string;
+            internal_reason: string;
+            expected_work_versions: {
+                /** Format: uuid */
+                work_order_id: string;
+                version: number;
+            }[];
+            child_dispositions: {
+                /** Format: uuid */
+                appointment_id: string;
+                expected_version: number;
+                /** @enum {string} */
+                action: "CANCEL" | "KEEP_FOR_SHARED_WORK";
+            }[];
+        } | {
+            /** @constant */
+            action: "START_SERVICE";
+            reason_code: string;
+            public_message: string;
+            internal_reason: string;
+        } | {
+            /** @constant */
+            action: "REQUEST_REVIEW";
+            reason_code: string;
+            public_message: string;
+            internal_reason: string;
+        } | {
+            /** @constant */
+            action: "RETURN_TO_WORK";
+            reason_code: string;
+            public_message: string;
+            internal_reason: string;
+        } | {
+            /** @constant */
+            action: "CLOSE";
+            reason_code: string;
+            public_message: string;
+            internal_reason: string;
+            expected_work_versions: {
+                /** Format: uuid */
+                work_order_id: string;
+                version: number;
+            }[];
+            child_dispositions: {
+                /** Format: uuid */
+                appointment_id: string;
+                expected_version: number;
+                /** @enum {string} */
+                action: "CANCEL" | "KEEP_FOR_SHARED_WORK";
+            }[];
+            service_outcome: components["schemas"]["M07ServiceOutcome"];
+        };
+        /** @enum {string} */
+        M07ServiceOutcome: "ADVICE_PROVIDED" | "VISIT_COMPLETED" | "REPAIR_REPORTED" | "REFERRED" | "NO_ACTION_WITH_REASON";
+        M07N08Response: components["schemas"]["M07ServiceCaseCitizen"] | components["schemas"]["M07ServiceCaseStaff"];
+        M07ServiceCaseStaff: {
+            /** Format: uuid */
+            id: string;
+            tracking_reference: string;
+            category: components["schemas"]["M07ServiceCategory"];
+            description: string;
+            coarse_area: string;
+            status: components["schemas"]["M07ServiceStatus"];
+            cancellation_pending: boolean;
+            service_outcome: components["schemas"]["M07ServiceOutcome"] | null;
+            verification_summary: components["schemas"]["M07VerificationSummary"];
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            accepted_at: string | null;
+            version: number;
+            own_origin_complaint_id: string | null;
+            own_follow_up_of_id: string | null;
+            preferences: components["schemas"]["M07Preferences"] | null;
+            latest_public_update: components["schemas"]["M07PublicUpdate"] | null;
+            current_appointment: components["schemas"]["M07AppointmentCitizen"] | null;
+            allowed_actions: string[];
+            /** Format: uuid */
+            owner_membership_id: string;
+            work_links: components["schemas"]["M07WorkLink"][];
+            /** @enum {string} */
+            dispatch_health: "UNCONFIGURED" | "UNPLANNED_WORK" | "READY" | "REVIEW_REQUIRED";
+            internal_event_summary: string;
+        };
+        M07AppointmentCitizen: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            service_request_id: string;
+            status: components["schemas"]["M07AppointmentStatus"];
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            public_visit_message: string | null;
+            cancellation_pending: boolean;
+            replaces_id: string | null;
+            version: number;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            allowed_actions: string[];
+        };
+        /** @enum {string} */
+        M07AppointmentStatus: "CONFIRMED" | "CHECKED_IN" | "VISIT_FINISHED" | "NO_ACCESS" | "ABORTED" | "NO_SHOW" | "CANCELLED" | "SUPERSEDED";
+        M07Preferences: {
+            version: number;
+            intervals: components["schemas"]["M07Interval"][];
+            access_needs: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        M07Interval: {
+            /** Format: date-time */
+            start_at: string;
+            /** Format: date-time */
+            end_at: string;
+        };
+        /** @enum {string} */
+        M07VerificationSummary: "NOT_APPLICABLE" | "PENDING_REVIEW" | "NOT_VERIFIABLE";
+        /** @enum {string} */
+        M07ServiceStatus: "SUBMITTED" | "UNDER_REVIEW" | "AWAITING_RESIDENT" | "ACCEPTED" | "SERVICE_IN_PROGRESS" | "SERVICE_REVIEW_PENDING" | "SERVICE_CLOSED" | "DECLINED" | "WITHDRAWN" | "CANCELLED";
+        /** @enum {string} */
+        M07ServiceCategory: "VISIBLE_LEAK" | "LOW_PRESSURE" | "SERVICE_INTERRUPTION";
+        M07ServiceCaseCitizen: {
+            /** Format: uuid */
+            id: string;
+            tracking_reference: string;
+            category: components["schemas"]["M07ServiceCategory"];
+            description: string;
+            coarse_area: string;
+            status: components["schemas"]["M07ServiceStatus"];
+            cancellation_pending: boolean;
+            service_outcome: components["schemas"]["M07ServiceOutcome"] | null;
+            verification_summary: components["schemas"]["M07VerificationSummary"];
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            accepted_at: string | null;
+            version: number;
+            own_origin_complaint_id: string | null;
+            own_follow_up_of_id: string | null;
+            preferences: components["schemas"]["M07Preferences"] | null;
+            latest_public_update: components["schemas"]["M07PublicUpdate"] | null;
+            current_appointment: components["schemas"]["M07AppointmentCitizen"] | null;
+            allowed_actions: string[];
+        };
+        M07Triage: {
+            /** @enum {string} */
+            target: "UNDER_REVIEW" | "AWAITING_RESIDENT" | "ACCEPTED" | "DECLINED";
+            public_message: string;
+            internal_reason: string;
+        };
+        M07Followup: {
+            /** Format: uuid */
+            operation_id: string;
+            message: string;
+        };
+        M07ReferenceLookup: {
+            tracking_reference: string;
+        };
+        M07ReferenceResult: {
+            /** Format: uuid */
+            id: string;
+            tracking_reference: string;
+        };
+        M07N04Response: components["schemas"]["M07InternalTimelinePage"] | components["schemas"]["M07PublicTimelinePage"];
+        M07PublicTimelinePage: {
+            items: components["schemas"]["M07PublicUpdate"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            audience: "PUBLIC";
+        };
+        M07InternalTimelinePage: {
+            items: components["schemas"]["M07InternalEvent"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            audience: "INTERNAL";
+        };
+        M07InternalEvent: {
+            /** Format: uuid */
+            id: string;
+            sequence: number;
+            event_kind: string;
+            actor_membership_id: string | null;
+            /** Format: date-time */
+            received_at: string;
+            observed_at: string | null;
+            internal_reason: string;
+            /** @enum {string} */
+            resource_type: "SERVICE" | "APPOINTMENT" | "WORK" | "FEEDBACK" | "ATTACHMENT";
+            resource_id: string | null;
+            previous_version: number | null;
+            resulting_version: number | null;
+            supersedes_id: string | null;
+        };
+        M07N03Response: components["schemas"]["M07ServiceCaseCitizen"] | components["schemas"]["M07ServiceCaseStaff"];
+        M07N02Response: components["schemas"]["M07Page_ServiceCaseCitizen"] | components["schemas"]["M07Page_ServiceCaseStaff"];
+        M07Page_ServiceCaseStaff: {
+            items: components["schemas"]["M07ServiceCaseStaff"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Page_ServiceCaseCitizen: {
+            items: components["schemas"]["M07ServiceCaseCitizen"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07ServiceCreate: {
+            category: components["schemas"]["M07ServiceCategory"];
+            description: string;
+            coarse_area: string;
+            origin_complaint_id: string | null;
+            expected_complaint_version: number | null;
+            follow_up_of_id: string | null;
+            /** @constant */
+            service_privacy_acknowledged: true;
+        } & unknown;
     };
     responses: {
         /** @description Dependency unavailable; no fake success */
@@ -3946,7 +4451,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["WorkOrderWrite"];
+                "application/json": components["schemas"]["M07FutureWorkOrderWrite"];
             };
         };
         responses: {
@@ -4734,6 +5239,507 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Page_AuditEvent"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n02: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                status?: components["schemas"]["M07ServiceStatus"];
+                category?: components["schemas"]["M07ServiceCategory"];
+                from?: string;
+                to?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N02Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n01: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07ServiceCreate"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07ServiceCaseCitizen"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n03: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    /** @description Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write. */
+                    ETag: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N03Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n04: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                /** @description Default PUBLIC. INTERNAL is SUPERVISOR-only; denied to citizen even when owned. */
+                audience?: "PUBLIC" | "INTERNAL";
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N04Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n05: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07ReferenceLookup"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07ReferenceResult"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n06: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07Followup"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Receipt"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n07: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07Triage"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07ServiceCaseStaff"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n08: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07ServiceTransition"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N08Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n09: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07PublicUpdateWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07PublicUpdate"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n13: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07WorkLinkWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07WorkLink"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n44: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                work_order_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_Findings"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n43: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current WORK_ORDER resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                work_order_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07FindingsWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07FindingsReceipt"];
                 };
             };
             400: components["responses"]["Error400"];

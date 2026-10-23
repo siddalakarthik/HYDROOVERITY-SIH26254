@@ -1,5 +1,5 @@
 {
-  "milestone": "M04",
+  "milestone": "M04 + M07-A",
   "pages": [
     {
       "id": "PAGE-01",
@@ -1852,6 +1852,121 @@
       "component": "administration",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+    },
+    {
+      "id": "PAGE-47",
+      "route": "/citizen/{org}/service-requests",
+      "roles": "CITIZEN",
+      "title": "Read own service receipts and authenticated reference lookup",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m07_n02",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n05",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "component": "service-requests",
+      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+    },
+    {
+      "id": "PAGE-48",
+      "route": "/citizen/{org}/service-requests/new",
+      "roles": "CITIZEN",
+      "title": "Submit service review, no automatic acceptance or incident",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m07_n01",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "component": "service-requests",
+      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+    },
+    {
+      "id": "PAGE-49",
+      "route": "/citizen/{org}/service-requests/{id}",
+      "roles": "CITIZEN",
+      "title": "Own timeline, access preferences and explicit appointment decisions",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m07_n03",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n04",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n06",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n08",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "component": "service-requests",
+      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+    },
+    {
+      "id": "PAGE-50",
+      "route": "/app/{org}/service-requests",
+      "roles": "SUPERVISOR",
+      "title": "Triage tenant service queue",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m07_n02",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n07",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "component": "service-requests",
+      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+    },
+    {
+      "id": "PAGE-51",
+      "route": "/app/{org}/service-requests/{id}",
+      "roles": "SUPERVISOR",
+      "title": "Review safe/internal context and manage service commitments",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m07_n03",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n04",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n07",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n08",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n09",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n13",
+          "status": "IMPLEMENTED"
+        }
+      ],
+      "component": "service-requests",
+      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
     }
   ]
 }

@@ -110,6 +110,7 @@ def main():
     api.add_argument("--runtime-config", type=Path, required=True)
     api.add_argument("--container-private", action="store_true")
     api.add_argument("--trusted-proxy-ip", default="127.0.0.1")
+    api.add_argument("--port", type=int, default=8000, choices=range(1024, 65536))
     proxy = sub.add_parser("proxy")
     proxy.add_argument("--certificate", type=Path, required=True)
     proxy.add_argument("--key", type=Path, required=True)
@@ -136,7 +137,7 @@ def main():
         uvicorn.run(
             create_app(settings),
             host="0.0.0.0" if args.container_private else "127.0.0.1",
-            port=8000,
+            port=args.port,
             access_log=False,
             log_level="warning",
             proxy_headers=True,

@@ -124,6 +124,7 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/m04-python"
           "$RUNNER_TEMP/m04-python/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
           "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/contracts.py --check
+          "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07a_implementation.py
           python3 - <<'PY'
           import os,pathlib,secrets
           root=pathlib.Path(os.environ['RUNNER_TEMP'])
@@ -186,6 +187,18 @@ jobs:
         env:
           M04_ARTIFACT_URL: ${{ steps.m04-upload.outputs.artifact-url }}
         run: printf '[Download M04 synthetic browser evidence](%s) — retained for 14 days.\n' "$M04_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload M07-A synthetic desktop and mobile evidence
+        id: m07a-upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M07A_BROWSER_EVIDENCE
+          path: ${{ runner.temp }}/m04-evidence/M07-A-*.png
+          if-no-files-found: error
+          retention-days: 14
+      - name: Link the uploaded M07-A visual evidence
+        env:
+          M07A_ARTIFACT_URL: ${{ steps.m07a-upload.outputs.artifact-url }}
+        run: printf '[Download M07-A synthetic browser evidence](%s) — retained for 14 days.\n' "$M07A_ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
       - name: Stop isolated M04 database
         if: always()
         run: docker stop hydro-m04-db || true
@@ -233,6 +246,7 @@ jobs:
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/verify_backend.py --operator-config /private/operator/operator.json --runtime-config /private/runtime/runtime.json --confirm-disposable-database hydro_disposable_m03 --evidence-directory /private/evidence-repeat
       - name: Backend source quality and dependency compatibility
         run: |
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence-repeat/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pytest services/api/traceability_tests -q --acceptance-evidence /private/evidence/acceptance-summary.json --acceptance-evidence /private/evidence-repeat/acceptance-summary.json

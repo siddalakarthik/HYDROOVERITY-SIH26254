@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "test:browser": "playwright test",
+    "test:browser": "node tools/browser-suite.mjs",
     "contracts": "openapi-typescript contracts/implemented.openapi.json -o src/lib/generated.ts"
   },
   "dependencies": {

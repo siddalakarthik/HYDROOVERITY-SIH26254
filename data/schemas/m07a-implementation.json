@@ -1,0 +1,186 @@
+{
+  "milestone": "M07-A",
+  "scope": "PRIVATE_DEVELOPMENT_ONLY",
+  "verified_main": "c3f785c4fa2974ec45e473786bca4ea8806e2c7a",
+  "approved_contract_head": "5893c5c79831d77fc228d3eae9b814915c071d98",
+  "implemented_operation_ids": [
+    "m07_n01",
+    "m07_n02",
+    "m07_n03",
+    "m07_n04",
+    "m07_n05",
+    "m07_n06",
+    "m07_n07",
+    "m07_n08",
+    "m07_n09",
+    "m07_n13",
+    "m07_n43",
+    "m07_n44"
+  ],
+  "privacy_disabled_operation_ids": [
+    "m07_n10",
+    "m07_n11",
+    "m07_n12"
+  ],
+  "counts": {
+    "baseline_implemented": 58,
+    "m07a_implemented": 12,
+    "total_implemented": 70,
+    "designed_operations": 161,
+    "baseline_migrated_tables": 30,
+    "m07a_migrated_tables": 5,
+    "total_migrated_tables": 35,
+    "designed_tables": 74
+  },
+  "migrated_tables": [
+    "service_requests",
+    "service_request_events",
+    "service_public_updates",
+    "service_work_order_links",
+    "work_investigation_findings"
+  ],
+  "authorized_baseline_changes": {
+    "apps/web/browser/workflow.spec.ts": {
+      "baseline_sha256": "fe70f891097702ccede6860d722d503466d13a54ff96399215cc36022ccc61e0",
+      "sha256": "74b193947d5356533a38fd0e14f26f3a5e04f3050fa70198d0c54966c1e0073d"
+    },
+    "apps/web/contracts/implemented.openapi.json": {
+      "baseline_sha256": "f413ba658c048042a221aa48e01cae0aeb609efeae453a91638d533af45f40c4",
+      "sha256": "782f780f7a83e4a569d3662fea5e55389edf77ae755219f19c1abbd1f7413265"
+    },
+    "apps/web/package.json": {
+      "baseline_sha256": "415f1932302424830c6733e47150a61630fa574c7344fc2811286444d3426acc",
+      "sha256": "5a547fbd68a2b5e4294013d8d5e9e4ff46bdeb7f10d803ca900efcb1346206cb"
+    },
+    "apps/web/playwright.config.ts": {
+      "baseline_sha256": "ec0b26e1329d22a1750adc8d1a4dfd429bf06b3382e7f251c9493accd899cb59",
+      "sha256": "0def1f06df62c7b5705ed416d8860c14e82739f4aa983b37c5b9d5536fab77b7"
+    },
+    "apps/web/src/app/globals.css": {
+      "baseline_sha256": "85adfea36a00155bd2a9abeb7636d4e78df08ffa586bcfa74471e1b342c3727f",
+      "sha256": "f24a50c69613336796c58df8a9d0aa42c2ef7e563f0eb0fc320b15aaf2d8ed1a"
+    },
+    "apps/web/src/features/work.tsx": {
+      "baseline_sha256": "8b0c5f8490d9a1fbaa52d339ed5cfc13add3ddc711fce9ab64a0f631a6cb7877",
+      "sha256": "bca7e223bd7a0dfb69b3a615657a825b18181097eb23455b13a1867411f24eb9"
+    },
+    "apps/web/src/features/workspace.tsx": {
+      "baseline_sha256": "89809e611c89e604c613e6de857d8cdc1f90600cbf3e88b3c015f21caa6095a1",
+      "sha256": "669896555130fcd9f393fbe7864de32d38a66136c9e4299f798466f4ee7fcce1"
+    },
+    "apps/web/src/lib/generated.ts": {
+      "baseline_sha256": "df90a2383c187cd4446f8381c84df7089ce297eadcc05c83cc6041926c7e2350",
+      "sha256": "206d4e83ce97e817c60c36d8ac8de935b937938d1abc71e30f9a1a54718cbb16"
+    },
+    "apps/web/src/lib/route-capabilities.json": {
+      "baseline_sha256": "a7ef01e6c0a507eb951669f84aea1cfb4e21a14dc8bba5396c5f685ec8b4c4f7",
+      "sha256": "b40e63ecaec83c10f375994f6434e0b412b1547917801ff19f0dbd404ef2aec4"
+    },
+    "apps/web/tests/forms.test.tsx": {
+      "baseline_sha256": "562b95dc365b2661be4405fd2fb399f04e8353b5dbfca49ac604bee563e1371d",
+      "sha256": "6edc12ea96626b7f0a8a5d8912f8bc31bd6bbb0ffaa80b1a59c62b4f58c09b2c"
+    },
+    "apps/web/tools/contracts.py": {
+      "baseline_sha256": "eaafaef519ed4096cbd73abe6e5c5d6af6ee6b852acda0c4ab3db3b3317891b1",
+      "sha256": "7c82650f3cebc81d07ef627af488f5b7042a045ad42bf2e764fe0fcfd69792b5"
+    },
+    "apps/web/tools/local_proxy.py": {
+      "baseline_sha256": "18ac934df935947635b0975fea7222917d197bf09e7d086fb6c1c3b1b191b399",
+      "sha256": "013f6d9f4b6821998be24cd9a661ff5f672e32d0530aa8c7682c73cae6c7afe4"
+    },
+    "apps/web/tools/prepare_browser_fixture.py": {
+      "baseline_sha256": "070a634d3b3984c92963d22920e7b132a781254017310fefc2b9f45885b57857",
+      "sha256": "8ead66b375973776e8cfb13f81d76c008faa541d3e3e856ad06c26b71cd87698"
+    },
+    "data/schemas/m03-implementation-matrix.json": {
+      "baseline_sha256": "d2d365995256a6d4cda7227d5bd26d537664eb516e59624e0c6000b3a407bdb3",
+      "sha256": "4dbc38acdd779ca2025dca6f968247ee20260ebaac4014d64b92614d4ede056b"
+    },
+    "services/api/hydro/cli.py": {
+      "baseline_sha256": "1ec414a78f828da57ef5c6c3a56a116abe44c039239a79378d08ed6d6e71ada0",
+      "sha256": "41032459707a442cc74927bdd95ed3f82fd3a5eef8ac6082362d07e7a5f76b22"
+    },
+    "services/api/hydro/contracts.py": {
+      "baseline_sha256": "60d052b09a4e6698f190a8f35bd575ae171386cd1c647bd2a4c508bf804c5a39",
+      "sha256": "2773c15b71dbdab2516eef0e88935cedce80c1fec6cae66ecbbb3cdc751de177"
+    },
+    "services/api/hydro/db.py": {
+      "baseline_sha256": "d6472973e4649426ff33f0a78cfe35140eb984a3907779c22d8423e51dc2478c",
+      "sha256": "0b947349d85112a9d5ddf2eab6700b1df2096d9379bd8f975a01a84f39e5f4b7"
+    },
+    "services/api/hydro/inputs.py": {
+      "baseline_sha256": "d39845bfcc735bf298279018a801f973f23e5af7aa04a4494fdb12c804b7da60",
+      "sha256": "c2422d54eaec0fdb69329101c403f0a585db5a6a40c74b4d9cc90cb09cc2f253"
+    },
+    "services/api/hydro/local.py": {
+      "baseline_sha256": "03996f4e53a8aa7ad11df941aa31c86cb6cf80f03afd8ee0e4dde6bfb18204cc",
+      "sha256": "c18f8d65774956dde2e17ebcf7a495dcbf94fb8a3f1384cb342a134a52a688e1"
+    },
+    "services/api/hydro/routes.py": {
+      "baseline_sha256": "4d0f7ad008f8b1571fe199b4955ad0efadb23f911308f7d7520b544c10ad052e",
+      "sha256": "7d7be07e107447357429b7e04b5e3ff001f529f7238bc6b19f92bd0929824b1c"
+    },
+    "services/api/hydro/services/repairs.py": {
+      "baseline_sha256": "5f67f21b6f32771a2b75cb0cc9d0aaaadc7531233b60d88d14a159f9e3a6ef32",
+      "sha256": "9bb62609e2a0da6613d6e907f1afdfeda4dfad61b36718a2dbc768d7b4d569f9"
+    },
+    "services/api/hydro/services/work_orders.py": {
+      "baseline_sha256": "c6a282075bda917b29a7d47d817d39b399abbe5b038c54a73651368c86bc03e4",
+      "sha256": "16a8b6e0b5d5b7a924d9433f7f9a817b4111ef2736606c4e0f80c2a066ba9c18"
+    },
+    "services/api/tests/conftest.py": {
+      "baseline_sha256": "19d3ef3781bd847e2796a3a0610e270f7570a7ea489e5bccb33837559f6da4d0",
+      "sha256": "9ff55e41b4ad305c144720a968a869c20e024787d9d4c6335a65cc3a67730012"
+    },
+    "services/api/tests/test_concurrency_resilience.py": {
+      "baseline_sha256": "694265069ac671ea195398dc113008804afe85db9f81df129ad02d9a5d97f2ff",
+      "sha256": "199f707b7532ce76d3cc9a088d819c088e7beb3ce75194f2a44b550baa467929"
+    },
+    "services/api/tests/test_foundation.py": {
+      "baseline_sha256": "ee2adb713f69ce3bf23ec76463430b08994629060fb1329fc6684e9536cbc8cb",
+      "sha256": "f85baead7d25a54cb48a43ab8961635ad7a8e4c2ed959a9fe3a00c60840d17b5"
+    },
+    "services/api/tests/test_schema_boundaries.py": {
+      "baseline_sha256": "22d7e5c7d640a47233dcd7f1883f8ef81a3a182ed15b1e6091222aa56a371211",
+      "sha256": "8a3ca6aa2b5683cc73fe8782a9f7113cbcc0aa8e087edf8f6104d124e1772a9d"
+    },
+    "services/api/tests/test_workflow.py": {
+      "baseline_sha256": "28246b54fab84452898d34deb57f4f2c5c4a863e1c007a98ad9335d83d11a316",
+      "sha256": "48882a17c892cac732d99d305bd0ff8a2cfad3eef18ef5ae1ed02f4ff29bd547"
+    },
+    "services/api/tools/demo_backend.py": {
+      "baseline_sha256": "4d048a4e2130a363ca5afeaf3fff74ce5dd9aa0b8c4c6ffe24c46a742437cd93",
+      "sha256": "dc10a2b7f36f033c279973a3ad1e50986f87444b8bce0b78b5f01878b5a1cad3"
+    },
+    "services/api/tools/verify_backend.py": {
+      "baseline_sha256": "a3bd97218a66f67c897de0d9eac07a2db1bd314ee03dae1820cb60f28cd547f8",
+      "sha256": "42e8ef84d167131f028f384a4faef33ce8ee89beecd83dc24ba7670a2e118758"
+    },
+    "services/api/traceability_tests/test_traceability.py": {
+      "baseline_sha256": "3f2cbc2f1d3d1d1a3c4e5898b85c23e45604c577e018248ee292657c30c0bccc",
+      "sha256": "e58ff7c93bf9aa24a2a5784aec84f9aac9299ceb3f0e5973bd961c5388632d68"
+    }
+  },
+  "new_source_sha256": {
+    "apps/web/browser/service-foundation.spec.ts": "a68a784f268ec01a86fa6ce9999a950c5b32e90dbaaadebec79b95590e69a943",
+    "apps/web/src/features/service-requests.tsx": "64ff3fe9644767e2c39f8e3ee87d24ca0c9cbe00207e9140d1514b3193ff9dcc",
+    "apps/web/tools/browser-suite.mjs": "329656ff2ae36fa949d1a1a7720a9142eaf00c9bdd06bf7fe6eb6d96722a8781",
+    "scripts/check_m07a_implementation.py": "efa9a2fd7b00f130048510b29c3a194579e2a426e2e8abcf7e67fe2f0c21a5ca",
+    "services/api/hydro/service_contracts.py": "12162ede9922d521087237b11252b1f354f2a42daf2d681a4951bcd7de9375c9",
+    "services/api/hydro/services/service_requests.py": "596eb000923000ed9e3b3dcf333081362924628a50781e77757e8c8aa04d8334",
+    "services/api/migrations/m07_a.sql": "0d2fbfa3352ad15a80531ad25ce05435207dd3d81ad6345187cd7ac2ab42384d",
+    "services/api/migrations/versions/m07_a_001.py": "fca4020ca7671778df28431f20205f0dbc40f0a7cfa3a27b2fe7560c82a08101",
+    "services/api/tests/test_service_foundation.py": "4edc99f6b2868d42eb59707c9d28cf77bafddda78876217d13284210239de4f6"
+  },
+  "activation_delta": "Optional task_purpose on existing work-order creation; omission remains REPAIR; existing 58 response schemas unchanged",
+  "gates": {
+    "visit_access": false,
+    "visit_preferences": false,
+    "scheduling": false,
+    "media": false,
+    "notifications": false,
+    "offline": false,
+    "public_deployment": false,
+    "scientific_verification": "NOT_VERIFIABLE_ONLY"
+  }
+}
