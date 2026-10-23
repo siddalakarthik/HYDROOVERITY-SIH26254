@@ -6,6 +6,7 @@ const cli = require.resolve("@playwright/test/cli");
 for (const [index, file] of [
   "browser/workflow.spec.ts",
   "browser/service-foundation.spec.ts",
+  "browser/science.spec.ts",
 ].entries()) {
   if (index) {
     console.log(

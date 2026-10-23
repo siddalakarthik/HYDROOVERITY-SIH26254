@@ -3,7 +3,7 @@
 import json
 
 from fastapi import Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from starlette.concurrency import run_in_threadpool
 
 from .contracts import DESIGN, OPERATIONS, runtime_openapi
@@ -60,6 +60,43 @@ def endpoint(app, op, design=DESIGN, dispatcher=dispatch):
     return handle
 
 
+def science_endpoint(app, op, design, dispatcher):
+    ordinary = endpoint(app, op, design, dispatcher)
+    if op["id"] != "m06_stream":
+        return ordinary
+
+    async def stream(request: Request):
+        # Bounded replay batch; every reconnect repeats current session/tenant
+        # authorization. It is not a live sensor feed or a long-lived grant.
+        result = await ordinary(request)
+        page = json.loads(result.body)
+        chunks = [
+            "event: provenance\ndata: "
+            + json.dumps({k: v for k, v in page.items() if k != "items"})
+            + "\n\n"
+        ]
+        chunks.extend(
+            "id: "
+            + str(item["sequence"])
+            + "\nevent: observation\ndata: "
+            + json.dumps(item)
+            + "\n\n"
+            for item in page["items"]
+        )
+        chunks.append(
+            "event: checkpoint\ndata: "
+            + json.dumps({"next_offset": page["next_offset"], "source_category": "SIMULATION"})
+            + "\n\n"
+        )
+        response = StreamingResponse(iter(chunks), media_type="text/event-stream")
+        for key, value in result.raw_headers:
+            if key.lower() not in {b"content-length", b"content-type"}:
+                response.raw_headers.append((key, value))
+        return response
+
+    return stream
+
+
 def bind_routes(app):
     for op in OPERATIONS:
         app.add_api_route(
@@ -78,6 +115,20 @@ def bind_routes(app):
         app.add_api_route(
             "/api/v1" + op["path"],
             endpoint(app, op, service_design, service_dispatch),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
+
+    from .science_contracts import OPERATIONS as science_operations
+    from .science_contracts import extend_openapi
+    from .services.science import dispatch as science_dispatch
+
+    science_design = extend_openapi({"paths": {}, "components": {"schemas": {}}})
+    for op in science_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            science_endpoint(app, op, science_design, science_dispatch),
             methods=[op["method"].upper()],
             operation_id=op["id"],
             include_in_schema=False,
