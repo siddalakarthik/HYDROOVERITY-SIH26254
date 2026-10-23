@@ -1,5 +1,5 @@
 {
-  "milestone": "M04 + M07-A",
+  "milestone": "M04 + M07-A + M06",
   "pages": [
     {
       "id": "PAGE-01",
@@ -1653,37 +1653,123 @@
       "id": "PAGE-40",
       "route": "/app/{org}/simulations",
       "roles": "ENGINEER",
-      "title": "Select allowed scenario/config and queue a reproducible run",
-      "status": "DEFERRED",
-      "operations": [],
+      "title": "Import and replay verified observation-only M05 scenarios",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m06_catalogue",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/catalogue",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_import",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/scientific-replays",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_list",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_detail",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_replay",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/frames",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_export",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/export",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_stream",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/events",
+          "status": "IMPLEMENTED"
+        }
+      ],
       "shared_operations": [
         "GET /me",
         "GET /me/memberships",
         "GET /orgs/{organization_id}"
       ],
-      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "data_boundary": "Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
       "states": ["informational", "mobile"],
-      "component": "unavailable",
+      "component": "science",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Deferred M03 operation; no active navigation"
+      "future_dependency": "Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred"
     },
     {
       "id": "PAGE-41",
       "route": "/app/{org}/simulations/{id}",
       "roles": "ENGINEER",
-      "title": "Inspect status and synthetic outputs; evaluation separately gated",
-      "status": "DEFERRED",
-      "operations": [],
+      "title": "Import and replay verified observation-only M05 scenarios",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "m06_catalogue",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/catalogue",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_import",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/scientific-replays",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_list",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_detail",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_replay",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/frames",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_export",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/export",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m06_stream",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/scientific-replays/{run_id}/events",
+          "status": "IMPLEMENTED"
+        }
+      ],
       "shared_operations": [
         "GET /me",
         "GET /me/memberships",
         "GET /orgs/{organization_id}"
       ],
-      "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
+      "data_boundary": "Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
       "states": ["informational", "mobile"],
-      "component": "unavailable",
+      "component": "science",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Deferred M03 operation; no active navigation"
+      "future_dependency": "Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred"
     },
     {
       "id": "PAGE-42",

@@ -17,6 +17,11 @@ class Settings(BaseModel):
     development: bool = True
     mail_directory: Path
     pool_size: int = Field(default=5, ge=1, le=20)
+    science_catalogue_path: Path | None = ROOT / "data/samples/m06"
+    science_catalogue_sha256: str | None = Field(
+        default="1921fae430c22f2c05c74862e5e1dfe65bffbb9d936171eb637ca61325ca097a",
+        pattern=r"^[0-9a-f]{64}$",
+    )
 
     @model_validator(mode="after")
     def release_boundary(self) -> "Settings":
@@ -51,4 +56,14 @@ class Settings(BaseModel):
             origin=os.environ.get("HYDRO_ORIGIN", "https://localhost:8443"),
             mail_directory=Path(os.environ["HYDRO_PRIVATE_MAIL_DIR"]),
             development=os.environ.get("HYDRO_ENV", "development") == "development",
+            **(
+                {"science_catalogue_path": os.environ["HYDRO_SCIENCE_CATALOGUE"]}
+                if "HYDRO_SCIENCE_CATALOGUE" in os.environ
+                else {}
+            ),
+            **(
+                {"science_catalogue_sha256": os.environ["HYDRO_SCIENCE_CATALOGUE_SHA256"]}
+                if "HYDRO_SCIENCE_CATALOGUE_SHA256" in os.environ
+                else {}
+            ),
         )

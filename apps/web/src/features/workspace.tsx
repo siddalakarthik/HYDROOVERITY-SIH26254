@@ -35,6 +35,7 @@ import {
 import { Logout, membershipHome } from "./auth";
 import { CitizenReports, SupervisorComplaints } from "./complaints";
 import { ServiceRequests } from "./service-requests";
+import { Science } from "./science";
 import { Overview, Incidents, IncidentDetail } from "./incidents";
 import { WorkOrders, WorkDetail, VerificationPage } from "./work";
 import { NetworkPage } from "./network";
@@ -123,6 +124,12 @@ function useMemberships() {
   return state;
 }
 const navItems = [
+  {
+    suffix: "simulations",
+    label: "Scientific lab",
+    roles: ["ENGINEER"],
+    icon: LayoutDashboard,
+  },
   {
     suffix: "service-requests",
     label: "Service requests",
@@ -247,6 +254,7 @@ export function Workspace({ segments }: { segments: string[] }) {
                 suffix === item.suffix || suffix.startsWith(item.suffix + "/"),
             )?.label ?? "Workspace");
   const content = () => {
+    if (tail[0] === "simulations") return <Science org={org} id={tail[1]} />;
     if (route.status === "DEFERRED")
       return (
         <>
@@ -434,8 +442,9 @@ export function Workspace({ segments }: { segments: string[] }) {
           </p>
           <ResourceState {...organization}>
             <Notice>
-              Operational record workspace · Manual reports and work receipts.
-              No live sensor measurements are connected.
+              {tail[0] === "simulations"
+                ? "SIMULATION MODE · M05 modeled observations. Not live measurements or physically validated evidence."
+                : "Operational record workspace · Manual reports and work receipts. No live sensor measurements are connected."}
             </Notice>
             <div key={`${org}-${suffix}`}>{content()}</div>
           </ResourceState>

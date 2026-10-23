@@ -1128,6 +1128,112 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/scientific-replays/catalogue": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** SIMULATION ONLY — m06_catalogue */
+        get: operations["m06_catalogue"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/scientific-replays": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** SIMULATION ONLY — m06_list */
+        get: operations["m06_list"];
+        put?: never;
+        /** SIMULATION ONLY — m06_import */
+        post: operations["m06_import"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/scientific-replays/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** SIMULATION ONLY — m06_detail */
+        get: operations["m06_detail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/scientific-replays/{run_id}/frames": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** SIMULATION ONLY — m06_replay */
+        get: operations["m06_replay"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/scientific-replays/{run_id}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** SIMULATION ONLY — m06_export */
+        get: operations["m06_export"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/scientific-replays/{run_id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * SIMULATION ONLY — m06_stream
+         * @description Bounded SSE batch: provenance, observation events, then checkpoint. Resume with next_offset; every batch reauthorizes current membership. Not a live sensor feed.
+         */
+        get: operations["m06_stream"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1975,6 +2081,446 @@ export interface components {
             /** @constant */
             service_privacy_acknowledged: true;
         } & unknown;
+        /** Scenario */
+        M06Scenario: {
+            /** Code */
+            code: string;
+            /** Name */
+            name: string;
+            /**
+             * Module
+             * @enum {string}
+             */
+            module: "HYDRO-WATCH" | "GUARD-5" | "HYDRO-EAR" | "HYDRO-VERIFY";
+        };
+        /** Catalogue */
+        M06Catalogue: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Catalogue Hash */
+            catalogue_hash: string;
+            /** Items */
+            items: components["schemas"]["M06Scenario"][];
+        };
+        /** Replay */
+        M06Replay: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Status
+             * @constant
+             */
+            status: "IMPORTED";
+            /** Scenario Code */
+            scenario_code: string;
+            /** Name */
+            name: string;
+            /** Module */
+            module: string;
+            /** Content Hash */
+            content_hash: string;
+            /** Catalogue Hash */
+            catalogue_hash: string;
+            /** Configuration Hash */
+            configuration_hash: string;
+            /** Algorithm Source Hash */
+            algorithm_source_hash: string;
+            /**
+             * Algorithm Version
+             * @constant
+             */
+            algorithm_version: "M05-2";
+            /** Limitations */
+            limitations: string[];
+        };
+        /** ReplayList */
+        M06ReplayList: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Items */
+            items: components["schemas"]["M06Replay"][];
+            /** Next Offset */
+            next_offset: number | null;
+        };
+        /** Case */
+        M06Case: {
+            /** Code */
+            code: string;
+            /** Name */
+            name: string;
+            /** Data */
+            data: components["schemas"]["M06Watch"] | components["schemas"]["M06Guard"] | components["schemas"]["M06Ear"] | components["schemas"]["M06Verify"];
+        };
+        /** Ear */
+        M06Ear: {
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Limitations */
+            limitations: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            module: "HYDRO-EAR";
+            /** Time S */
+            time_s: (number | null)[];
+            /** Waveforms */
+            waveforms: (number | null)[][];
+            /** Preview Stride */
+            preview_stride: number;
+            /**
+             * Sample Rate Hz
+             * @constant
+             */
+            sample_rate_hz: 4096;
+            /** Shared Clock */
+            shared_clock: boolean;
+            /** Eligible Path */
+            eligible_path: boolean;
+            /** Span M */
+            span_m: number;
+            /** Assumed Speed Mps */
+            assumed_speed_mps: number;
+            /** Speed Fraction */
+            speed_fraction: number;
+            /** Timing Uncertainty S */
+            timing_uncertainty_s: number;
+            /** Pressure Bar */
+            pressure_bar: number;
+            /** Correlation Lag S */
+            correlation_lag_s: (number | null)[];
+            /** Correlation */
+            correlation: (number | null)[];
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "UNRESOLVED" | "INVALID_PATH" | "NO_PRESSURE" | "INVALID_CAPTURE" | "INSUFFICIENT_SIGNAL" | "QUALIFIED_CANDIDATE";
+            /** Interval M */
+            interval_m: number[] | null;
+            /** Peak Correlation */
+            peak_correlation: number | null;
+            /** Peak Ratio */
+            peak_ratio: number | null;
+        };
+        /** Guard */
+        M06Guard: {
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Limitations */
+            limitations: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            module: "GUARD-5";
+            /** Channels */
+            channels: ("A" | "B" | "C" | "EXT" | "BYPASS")[];
+            /** Time S */
+            time_s: (number | null)[];
+            /** Wet */
+            wet: boolean[][];
+            /** Health */
+            health: "UNKNOWN"[];
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "LOCAL_SUSPECT" | "ENVIRONMENTAL_OR_AMBIGUOUS" | "COLLECTION_UNRESOLVED" | "NO_WETNESS_UNKNOWN_HEALTH" | "SERVICE_TEST";
+            /** Local Suspect */
+            local_suspect: boolean;
+            /** Blockage Suspected */
+            blockage_suspected: boolean;
+            /**
+             * Service
+             * @enum {string}
+             */
+            service: "NOT_PERFORMED" | "RESPONSE_OBSERVED" | "COLLECTION_OR_SENSOR_UNRESOLVED";
+            /** Reference Pad Alarm */
+            reference_pad_alarm: boolean;
+            /** Reference Multizone Alarm */
+            reference_multizone_alarm: boolean;
+        };
+        M06JsonValue: unknown;
+        /** Snapshot */
+        M06Snapshot: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /**
+             * Algorithm Version
+             * @constant
+             */
+            algorithm_version: "M05-2";
+            /** Configuration Hash */
+            configuration_hash: string;
+            /** Algorithm Source Hash */
+            algorithm_source_hash: string;
+            /** Reference Summary Hash */
+            reference_summary_hash: string;
+            /** Historical Benchmark */
+            historical_benchmark: {
+                [key: string]: components["schemas"]["M06JsonValue"];
+            };
+            case: components["schemas"]["M06Case"];
+        };
+        /** Urgent */
+        M06Urgent: {
+            /** Time S */
+            time_s: number;
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "MISSING_SENSOR_DATA" | "PRESSURE_COLLAPSE_REVIEW";
+        };
+        /** Verify */
+        M06Verify: {
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Limitations */
+            limitations: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            module: "HYDRO-VERIFY";
+            /**
+             * Outcome
+             * @enum {string}
+             */
+            outcome: "PASSED" | "FAILED" | "NOT_VERIFIABLE";
+            /** Before Residual Lpm */
+            before_residual_lpm: number;
+            /** After Residual Lpm */
+            after_residual_lpm: number | null;
+            watch: components["schemas"]["M06Watch"];
+            ear: components["schemas"]["M06Ear"];
+            guard: components["schemas"]["M06Guard"];
+        };
+        /** Watch */
+        M06Watch: {
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Limitations */
+            limitations: string[];
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            module: "HYDRO-WATCH";
+            /** Time S */
+            time_s: (number | null)[];
+            /** Pressure Bar */
+            pressure_bar: (number | null)[];
+            /** Inlet Lpm */
+            inlet_lpm: (number | null)[];
+            /** Customer Outlet Lpm */
+            customer_outlet_lpm: (number | null)[];
+            /** Pump On */
+            pump_on: boolean[];
+            /** Storage Known */
+            storage_known: boolean[];
+            /** Solver Valid */
+            solver_valid: boolean[];
+            /** Meter Sigma Lpm */
+            meter_sigma_lpm: number;
+            /** State */
+            state: ("UNKNOWN" | "OFF" | "DRAINING" | "FILLING" | "STEADY")[];
+            /** Qualified Outcome */
+            qualified_outcome: ("NO_PERSISTENT_ANOMALY" | "UNEXPLAINED_LOSS_SUSPECTED" | "UNRESOLVED")[];
+            /** Fixed Alarm */
+            fixed_alarm: boolean[];
+            /** Watch Alarm */
+            watch_alarm: boolean[];
+            /** Residual Lpm */
+            residual_lpm: (number | null)[];
+            /** Urgent Events */
+            urgent_events: components["schemas"]["M06Urgent"][];
+            /** Threshold Lpm */
+            threshold_lpm: number;
+        };
+        /** Detail */
+        M06Detail: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Status
+             * @constant
+             */
+            status: "IMPORTED";
+            /** Scenario Code */
+            scenario_code: string;
+            /** Name */
+            name: string;
+            /** Module */
+            module: string;
+            /** Content Hash */
+            content_hash: string;
+            /** Catalogue Hash */
+            catalogue_hash: string;
+            /** Configuration Hash */
+            configuration_hash: string;
+            /** Algorithm Source Hash */
+            algorithm_source_hash: string;
+            /**
+             * Algorithm Version
+             * @constant
+             */
+            algorithm_version: "M05-2";
+            /** Limitations */
+            limitations: string[];
+            snapshot: components["schemas"]["M06Snapshot"];
+        };
+        /** Frame */
+        M06Frame: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /** Sequence */
+            sequence: number;
+            /** Time S */
+            time_s: number;
+            /** Module */
+            module: string;
+            /** Values */
+            values: {
+                [key: string]: components["schemas"]["M06JsonValue"];
+            };
+        };
+        /** Frames */
+        M06Frames: {
+            /**
+             * Source Category
+             * @constant
+             */
+            source_category: "SIMULATION";
+            /**
+             * Label
+             * @constant
+             */
+            label: "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED";
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Status
+             * @constant
+             */
+            status: "IMPORTED";
+            /** Scenario Code */
+            scenario_code: string;
+            /** Name */
+            name: string;
+            /** Module */
+            module: string;
+            /** Content Hash */
+            content_hash: string;
+            /** Catalogue Hash */
+            catalogue_hash: string;
+            /** Configuration Hash */
+            configuration_hash: string;
+            /** Algorithm Source Hash */
+            algorithm_source_hash: string;
+            /**
+             * Algorithm Version
+             * @constant
+             */
+            algorithm_version: "M05-2";
+            /** Limitations */
+            limitations: string[];
+            /** Items */
+            items: components["schemas"]["M06Frame"][];
+            /** Total Frames */
+            total_frames: number;
+            /** Next Offset */
+            next_offset: number | null;
+        };
     };
     responses: {
         /** @description Dependency unavailable; no fake success */
@@ -5753,6 +6299,181 @@ export interface operations {
             428: components["responses"]["Error428"];
             429: components["responses"]["Error429"];
             503: components["responses"]["Error503"];
+        };
+    };
+    m06_catalogue: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06Catalogue"];
+                };
+            };
+        };
+    };
+    m06_list: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06ReplayList"];
+                };
+            };
+        };
+    };
+    m06_import: {
+        parameters: {
+            query?: never;
+            header: {
+                "Idempotency-Key": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    scenario_code: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06Replay"];
+                };
+            };
+        };
+    };
+    m06_detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06Detail"];
+                };
+            };
+        };
+    };
+    m06_replay: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06Frames"];
+                };
+            };
+        };
+    };
+    m06_export: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M06Detail"];
+                };
+            };
+        };
+    };
+    m06_stream: {
+        parameters: {
+            query?: {
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                run_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authorized observation-only replay */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
+                };
+            };
         };
     };
 }

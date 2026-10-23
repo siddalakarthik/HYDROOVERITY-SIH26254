@@ -172,8 +172,15 @@ def frozen_files():
     for name, change in activated.items():
         if (not name.startswith(("services/api/", "apps/web/")) and name != "data/schemas/m03-implementation-matrix.json") or lock["sha256"].get(name) != change.get("baseline_sha256"):
             errors.append("Invalid M07-A activation boundary: " + name)
+    science_path = ROOT / "data/schemas/m06-implementation.json"
+    science = read("data/schemas/m06-implementation.json").get("authorized_baseline_changes", {}) if science_path.exists() else {}
+    for name, change in science.items():
+        previous = activated[name]["sha256"] if name in activated else lock["sha256"].get(name)
+        if (not name.startswith(("services/api/", "apps/web/")) and name != "data/schemas/m03-implementation-matrix.json") or previous != change.get("baseline_sha256"):
+            errors.append("Invalid M06 activation boundary: " + name)
     for name,digest in lock["sha256"].items():
         expected = activated[name]["sha256"] if name in activated else digest
+        if name in science: expected = science[name]["sha256"]
         if not (ROOT/name).is_file() or hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != expected:
             errors.append("Frozen runtime/scientific/hardware contract changed: " + name)
     for source in read("data/schemas/m07-planning-source-manifest.json")["sources"]:

@@ -133,9 +133,7 @@
             "$ref": "#/components/schemas/ErrorBody"
           }
         },
-        "required": [
-          "error"
-        ]
+        "required": ["error"]
       },
       "ErrorBody": {
         "type": "object",
@@ -161,12 +159,7 @@
             "maxItems": 30
           }
         },
-        "required": [
-          "code",
-          "message",
-          "request_id",
-          "field_errors"
-        ]
+        "required": ["code", "message", "request_id", "field_errors"]
       },
       "FieldError": {
         "type": "object",
@@ -181,10 +174,7 @@
             "maxLength": 80
           }
         },
-        "required": [
-          "field",
-          "code"
-        ]
+        "required": ["field", "code"]
       },
       "Page_AuditEvent": {
         "type": "object",
@@ -198,10 +188,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -209,11 +196,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "AuditEvent": {
         "type": "object",
@@ -232,10 +215,7 @@
             "maxLength": 80
           },
           "resource_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           },
           "occurred_at": {
@@ -263,10 +243,7 @@
           "status": {
             "type": "string",
             "maxLength": 20,
-            "enum": [
-              "ACTIVE",
-              "SUSPENDED"
-            ]
+            "enum": ["ACTIVE", "SUSPENDED"]
           },
           "reason": {
             "type": "string",
@@ -274,10 +251,7 @@
             "minLength": 10
           }
         },
-        "required": [
-          "status",
-          "reason"
-        ]
+        "required": ["status", "reason"]
       },
       "MembershipView": {
         "type": "object",
@@ -346,10 +320,7 @@
             "minLength": 10
           }
         },
-        "required": [
-          "roles",
-          "reason"
-        ],
+        "required": ["roles", "reason"],
         "description": "EVALUATOR grant uses separately reviewed owner procedure; not accepted by ordinary admin role editor."
       },
       "InviteWrite": {
@@ -363,18 +334,10 @@
           "role": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "ENGINEER",
-              "SUPERVISOR",
-              "TECHNICIAN",
-              "ADMIN"
-            ]
+            "enum": ["ENGINEER", "SUPERVISOR", "TECHNICIAN", "ADMIN"]
           }
         },
-        "required": [
-          "email",
-          "role"
-        ]
+        "required": ["email", "role"]
       },
       "Receipt": {
         "type": "object",
@@ -393,11 +356,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "id",
-          "version",
-          "received_at"
-        ]
+        "required": ["id", "version", "received_at"]
       },
       "Page_MembershipView": {
         "type": "object",
@@ -411,10 +370,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -422,11 +378,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "ComplaintReview": {
         "type": "object",
@@ -441,10 +393,7 @@
             "minLength": 5
           },
           "incident_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           },
           "internal_reason": {
@@ -493,11 +442,7 @@
             "maxItems": 5
           }
         },
-        "required": [
-          "description",
-          "photo_consent",
-          "attachment_ids"
-        ]
+        "required": ["description", "photo_consent", "attachment_ids"]
       },
       "CitizenComplaint": {
         "type": "object",
@@ -566,11 +511,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "status",
-          "message",
-          "occurred_at"
-        ]
+        "required": ["status", "message", "occurred_at"]
       },
       "Page_CitizenComplaint": {
         "type": "object",
@@ -584,10 +525,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -595,11 +533,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "ComplaintWrite": {
         "type": "object",
@@ -608,11 +542,7 @@
           "category": {
             "type": "string",
             "maxLength": 40,
-            "enum": [
-              "VISIBLE_LEAK",
-              "LOW_PRESSURE",
-              "SERVICE_INTERRUPTION"
-            ]
+            "enum": ["VISIBLE_LEAK", "LOW_PRESSURE", "SERVICE_INTERRUPTION"]
           },
           "description": {
             "type": "string",
@@ -657,10 +587,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -668,11 +595,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "Verification": {
         "type": "object",
@@ -741,11 +664,7 @@
       },
       "VerificationOutcome": {
         "type": "string",
-        "enum": [
-          "VERIFICATION_PASSED",
-          "VERIFICATION_FAILED",
-          "NOT_VERIFIABLE"
-        ]
+        "enum": ["VERIFICATION_PASSED", "VERIFICATION_FAILED", "NOT_VERIFIABLE"]
       },
       "VerificationWrite": {
         "type": "object",
@@ -799,10 +718,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -810,11 +726,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "Repair": {
         "type": "object",
@@ -850,12 +762,7 @@
       },
       "AcquisitionEnvironment": {
         "type": "string",
-        "enum": [
-          "SIMULATION",
-          "LABORATORY",
-          "FIELD",
-          "MANUAL"
-        ]
+        "enum": ["SIMULATION", "LABORATORY", "FIELD", "MANUAL"]
       },
       "RepairWrite": {
         "type": "object",
@@ -910,11 +817,7 @@
             "maxLength": 30
           }
         },
-        "required": [
-          "name",
-          "quantity",
-          "unit"
-        ]
+        "required": ["name", "quantity", "unit"]
       },
       "WorkTransition": {
         "type": "object",
@@ -929,10 +832,7 @@
             "minLength": 5
           }
         },
-        "required": [
-          "target",
-          "reason"
-        ]
+        "required": ["target", "reason"]
       },
       "WorkOrderStatus": {
         "type": "string",
@@ -963,10 +863,7 @@
             "$ref": "#/components/schemas/WorkOrderStatus"
           },
           "assignee_membership_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           },
           "priority": {
@@ -974,10 +871,7 @@
             "maxLength": 30
           },
           "due_at": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "date-time"
           },
           "instructions": {
@@ -1011,10 +905,7 @@
       },
       "WorkspaceMode": {
         "type": "string",
-        "enum": [
-          "SIMULATION",
-          "OPERATIONAL"
-        ]
+        "enum": ["SIMULATION", "OPERATIONAL"]
       },
       "WorkerAction": {
         "type": "object",
@@ -1076,10 +967,7 @@
             "format": "uuid"
           },
           "due_at": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "date-time"
           },
           "reason": {
@@ -1088,11 +976,7 @@
             "minLength": 5
           }
         },
-        "required": [
-          "assignee_membership_id",
-          "due_at",
-          "reason"
-        ]
+        "required": ["assignee_membership_id", "due_at", "reason"]
       },
       "WorkerBrief": {
         "type": "object",
@@ -1142,12 +1026,7 @@
           "priority": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "LOW",
-              "MEDIUM",
-              "HIGH",
-              "URGENT"
-            ]
+            "enum": ["LOW", "MEDIUM", "HIGH", "URGENT"]
           },
           "instructions": {
             "type": "string",
@@ -1155,11 +1034,7 @@
             "minLength": 5
           }
         },
-        "required": [
-          "incident_id",
-          "priority",
-          "instructions"
-        ]
+        "required": ["incident_id", "priority", "instructions"]
       },
       "Page_WorkOrder": {
         "type": "object",
@@ -1173,10 +1048,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1184,11 +1056,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "IncidentLinkWrite": {
         "type": "object",
@@ -1201,10 +1069,7 @@
           "relation": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "DUPLICATE_OF",
-              "RELATED"
-            ]
+            "enum": ["DUPLICATE_OF", "RELATED"]
           },
           "reason": {
             "type": "string",
@@ -1212,11 +1077,7 @@
             "minLength": 10
           }
         },
-        "required": [
-          "target_incident_id",
-          "relation",
-          "reason"
-        ]
+        "required": ["target_incident_id", "relation", "reason"]
       },
       "IncidentTransition": {
         "type": "object",
@@ -1231,10 +1092,7 @@
             "minLength": 10
           }
         },
-        "required": [
-          "target",
-          "reason"
-        ]
+        "required": ["target", "reason"]
       },
       "IncidentStatus": {
         "type": "string",
@@ -1273,12 +1131,7 @@
           "severity": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "LOW",
-              "MEDIUM",
-              "HIGH",
-              "URGENT"
-            ]
+            "enum": ["LOW", "MEDIUM", "HIGH", "URGENT"]
           },
           "workspace_mode": {
             "$ref": "#/components/schemas/WorkspaceMode"
@@ -1310,10 +1163,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1321,11 +1171,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "TimelineEvent": {
         "type": "object",
@@ -1380,12 +1226,7 @@
           "severity": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "LOW",
-              "MEDIUM",
-              "HIGH",
-              "URGENT"
-            ]
+            "enum": ["LOW", "MEDIUM", "HIGH", "URGENT"]
           },
           "assessment_ids": {
             "type": "array",
@@ -1399,10 +1240,7 @@
             "$ref": "#/components/schemas/WorkspaceMode"
           },
           "simulation_run_id": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "format": "uuid"
           }
         },
@@ -1427,10 +1265,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1438,11 +1273,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "Evidence": {
         "type": "object",
@@ -1539,12 +1370,7 @@
             "minLength": 10
           }
         },
-        "required": [
-          "kind",
-          "disposition",
-          "evidence_record_ids",
-          "reason"
-        ],
+        "required": ["kind", "disposition", "evidence_record_ids", "reason"],
         "description": "Reviewed assessment, no physical leak-confirmed status. Acoustic candidate requires an eligible qualified estimate, enforced by service."
       },
       "Page_Evidence": {
@@ -1559,10 +1385,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1570,11 +1393,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "PipeWrite": {
         "type": "object",
@@ -1604,10 +1423,7 @@
             "exclusiveMinimum": 0
           },
           "path_length_m": {
-            "type": [
-              "number",
-              "null"
-            ],
+            "type": ["number", "null"],
             "exclusiveMinimum": 0
           },
           "topology_quality": {
@@ -1658,10 +1474,7 @@
             }
           }
         },
-        "required": [
-          "type",
-          "coordinates"
-        ]
+        "required": ["type", "coordinates"]
       },
       "Pipe": {
         "type": "object",
@@ -1695,10 +1508,7 @@
             "exclusiveMinimum": 0
           },
           "path_length_m": {
-            "type": [
-              "number",
-              "null"
-            ],
+            "type": ["number", "null"],
             "exclusiveMinimum": 0
           },
           "topology_quality": {
@@ -1730,10 +1540,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1741,11 +1548,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "JunctionWrite": {
         "type": "object",
@@ -1767,12 +1570,7 @@
             "maxLength": 40
           }
         },
-        "required": [
-          "zone_id",
-          "external_ref",
-          "geometry",
-          "topology_quality"
-        ]
+        "required": ["zone_id", "external_ref", "geometry", "topology_quality"]
       },
       "PointGeometry": {
         "type": "object",
@@ -1801,10 +1599,7 @@
             "items": false
           }
         },
-        "required": [
-          "type",
-          "coordinates"
-        ]
+        "required": ["type", "coordinates"]
       },
       "Junction": {
         "type": "object",
@@ -1850,10 +1645,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1861,11 +1653,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "ZoneWrite": {
         "type": "object",
@@ -1884,11 +1672,7 @@
             "$ref": "#/components/schemas/DemandAccounting"
           }
         },
-        "required": [
-          "name",
-          "demand_boundary_version",
-          "demand_accounting"
-        ]
+        "required": ["name", "demand_boundary_version", "demand_accounting"]
       },
       "DemandAccounting": {
         "type": "object",
@@ -1931,22 +1715,11 @@
             "$ref": "#/components/schemas/SupplyState"
           }
         },
-        "required": [
-          "id",
-          "name",
-          "topology_quality",
-          "supply_state"
-        ]
+        "required": ["id", "name", "topology_quality", "supply_state"]
       },
       "SupplyState": {
         "type": "string",
-        "enum": [
-          "OFF",
-          "FILLING",
-          "STEADY",
-          "DRAINING",
-          "UNKNOWN"
-        ]
+        "enum": ["OFF", "FILLING", "STEADY", "DRAINING", "UNKNOWN"]
       },
       "Page_ZoneView": {
         "type": "object",
@@ -1960,10 +1733,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -1971,11 +1741,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "OrganizationView": {
         "type": "object",
@@ -1994,11 +1760,7 @@
             "maxLength": 80
           }
         },
-        "required": [
-          "id",
-          "name",
-          "public_slug"
-        ]
+        "required": ["id", "name", "public_slug"]
       },
       "ProjectStatus": {
         "type": "object",
@@ -2061,12 +1823,7 @@
             "maxItems": 100
           }
         },
-        "required": [
-          "slug",
-          "name",
-          "reporting_enabled",
-          "service_areas"
-        ]
+        "required": ["slug", "name", "reporting_enabled", "service_areas"]
       },
       "Message": {
         "type": "object",
@@ -2077,9 +1834,7 @@
             "maxLength": 300
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "Page_SessionView": {
         "type": "object",
@@ -2093,10 +1848,7 @@
             "maxItems": 100
           },
           "next_cursor": {
-            "type": [
-              "string",
-              "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 500
           },
           "as_of": {
@@ -2104,11 +1856,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "SessionView": {
         "type": "object",
@@ -2152,9 +1900,7 @@
             "minLength": 1
           }
         },
-        "required": [
-          "display_name"
-        ]
+        "required": ["display_name"]
       },
       "UserView": {
         "type": "object",
@@ -2176,12 +1922,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "id",
-          "display_name",
-          "email",
-          "verified"
-        ]
+        "required": ["id", "display_name", "email", "verified"]
       },
       "TokenAction": {
         "type": "object",
@@ -2193,9 +1934,7 @@
             "minLength": 32
           }
         },
-        "required": [
-          "token"
-        ]
+        "required": ["token"]
       },
       "Reset": {
         "type": "object",
@@ -2212,10 +1951,7 @@
             "minLength": 15
           }
         },
-        "required": [
-          "token",
-          "new_password"
-        ]
+        "required": ["token", "new_password"]
       },
       "Recovery": {
         "type": "object",
@@ -2226,9 +1962,7 @@
             "format": "email"
           }
         },
-        "required": [
-          "email"
-        ]
+        "required": ["email"]
       },
       "Login": {
         "type": "object",
@@ -2244,10 +1978,7 @@
             "minLength": 1
           }
         },
-        "required": [
-          "email",
-          "password"
-        ]
+        "required": ["email", "password"]
       },
       "Register": {
         "type": "object",
@@ -2273,12 +2004,7 @@
             "minLength": 15
           }
         },
-        "required": [
-          "utility_slug",
-          "email",
-          "display_name",
-          "password"
-        ],
+        "required": ["utility_slug", "email", "display_name", "password"],
         "description": "Creates CITIZEN membership only; no requested role field. Do not silently truncate passwords."
       },
       "Csrf": {
@@ -2294,17 +2020,11 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "csrf_token",
-          "expires_at"
-        ]
+        "required": ["csrf_token", "expires_at"]
       },
       "M07TaskPurpose": {
         "type": "string",
-        "enum": [
-          "REPAIR",
-          "INVESTIGATION"
-        ]
+        "enum": ["REPAIR", "INVESTIGATION"]
       },
       "M07FutureWorkOrderWrite": {
         "type": "object",
@@ -2317,12 +2037,7 @@
           "priority": {
             "type": "string",
             "maxLength": 30,
-            "enum": [
-              "LOW",
-              "MEDIUM",
-              "HIGH",
-              "URGENT"
-            ]
+            "enum": ["LOW", "MEDIUM", "HIGH", "URGENT"]
           },
           "instructions": {
             "type": "string",
@@ -2333,11 +2048,7 @@
             "$ref": "#/components/schemas/M07TaskPurpose"
           }
         },
-        "required": [
-          "incident_id",
-          "priority",
-          "instructions"
-        ]
+        "required": ["incident_id", "priority", "instructions"]
       },
       "M07Page_Findings": {
         "type": "object",
@@ -2369,11 +2080,7 @@
             "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "M07Findings": {
         "type": "object",
@@ -2524,11 +2231,7 @@
             "maximum": 2147483647
           }
         },
-        "required": [
-          "receipt",
-          "resource",
-          "work_version"
-        ]
+        "required": ["receipt", "resource", "work_version"]
       },
       "M07WorkLinkWrite": {
         "type": "object",
@@ -2604,11 +2307,7 @@
         "properties": {
           "event_kind": {
             "type": "string",
-            "enum": [
-              "INFORMATION",
-              "PROGRESS",
-              "CORRECTION"
-            ]
+            "enum": ["INFORMATION", "PROGRESS", "CORRECTION"]
           },
           "message": {
             "type": "string",
@@ -2627,11 +2326,7 @@
             ]
           }
         },
-        "required": [
-          "event_kind",
-          "message",
-          "supersedes_update_id"
-        ]
+        "required": ["event_kind", "message", "supersedes_update_id"]
       },
       "M07PublicUpdate": {
         "type": "object",
@@ -2727,11 +2422,7 @@
                 "maxLength": 1000
               }
             },
-            "required": [
-              "action",
-              "reason_code",
-              "public_message"
-            ]
+            "required": ["action", "reason_code", "public_message"]
           },
           {
             "type": "object",
@@ -2752,11 +2443,7 @@
                 "maxLength": 1000
               }
             },
-            "required": [
-              "action",
-              "reason_code",
-              "public_message"
-            ]
+            "required": ["action", "reason_code", "public_message"]
           },
           {
             "type": "object",
@@ -2797,10 +2484,7 @@
                       "maximum": 2147483647
                     }
                   },
-                  "required": [
-                    "work_order_id",
-                    "version"
-                  ]
+                  "required": ["work_order_id", "version"]
                 },
                 "maxItems": 20,
                 "uniqueItems": true
@@ -2822,17 +2506,10 @@
                     },
                     "action": {
                       "type": "string",
-                      "enum": [
-                        "CANCEL",
-                        "KEEP_FOR_SHARED_WORK"
-                      ]
+                      "enum": ["CANCEL", "KEEP_FOR_SHARED_WORK"]
                     }
                   },
-                  "required": [
-                    "appointment_id",
-                    "expected_version",
-                    "action"
-                  ]
+                  "required": ["appointment_id", "expected_version", "action"]
                 },
                 "maxItems": 20,
                 "uniqueItems": true
@@ -2979,10 +2656,7 @@
                       "maximum": 2147483647
                     }
                   },
-                  "required": [
-                    "work_order_id",
-                    "version"
-                  ]
+                  "required": ["work_order_id", "version"]
                 },
                 "maxItems": 20,
                 "uniqueItems": true
@@ -3004,17 +2678,10 @@
                     },
                     "action": {
                       "type": "string",
-                      "enum": [
-                        "CANCEL",
-                        "KEEP_FOR_SHARED_WORK"
-                      ]
+                      "enum": ["CANCEL", "KEEP_FOR_SHARED_WORK"]
                     }
                   },
-                  "required": [
-                    "appointment_id",
-                    "expected_version",
-                    "action"
-                  ]
+                  "required": ["appointment_id", "expected_version", "action"]
                 },
                 "maxItems": 20,
                 "uniqueItems": true
@@ -3386,12 +3053,7 @@
             "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
           }
         },
-        "required": [
-          "version",
-          "intervals",
-          "access_needs",
-          "updated_at"
-        ]
+        "required": ["version", "intervals", "access_needs", "updated_at"]
       },
       "M07Interval": {
         "type": "object",
@@ -3408,18 +3070,11 @@
             "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
           }
         },
-        "required": [
-          "start_at",
-          "end_at"
-        ]
+        "required": ["start_at", "end_at"]
       },
       "M07VerificationSummary": {
         "type": "string",
-        "enum": [
-          "NOT_APPLICABLE",
-          "PENDING_REVIEW",
-          "NOT_VERIFIABLE"
-        ]
+        "enum": ["NOT_APPLICABLE", "PENDING_REVIEW", "NOT_VERIFIABLE"]
       },
       "M07ServiceStatus": {
         "type": "string",
@@ -3438,11 +3093,7 @@
       },
       "M07ServiceCategory": {
         "type": "string",
-        "enum": [
-          "VISIBLE_LEAK",
-          "LOW_PRESSURE",
-          "SERVICE_INTERRUPTION"
-        ]
+        "enum": ["VISIBLE_LEAK", "LOW_PRESSURE", "SERVICE_INTERRUPTION"]
       },
       "M07ServiceCaseCitizen": {
         "type": "object",
@@ -3625,11 +3276,7 @@
             "maxLength": 2000
           }
         },
-        "required": [
-          "target",
-          "public_message",
-          "internal_reason"
-        ]
+        "required": ["target", "public_message", "internal_reason"]
       },
       "M07Followup": {
         "type": "object",
@@ -3645,10 +3292,7 @@
             "maxLength": 2000
           }
         },
-        "required": [
-          "operation_id",
-          "message"
-        ]
+        "required": ["operation_id", "message"]
       },
       "M07ReferenceLookup": {
         "type": "object",
@@ -3661,9 +3305,7 @@
             "pattern": "^HYS-[0-9A-HJKMNP-TV-Z]{26}$"
           }
         },
-        "required": [
-          "tracking_reference"
-        ]
+        "required": ["tracking_reference"]
       },
       "M07ReferenceResult": {
         "type": "object",
@@ -3679,10 +3321,7 @@
             "maxLength": 40
           }
         },
-        "required": [
-          "id",
-          "tracking_reference"
-        ]
+        "required": ["id", "tracking_reference"]
       },
       "M07N04Response": {
         "anyOf": [
@@ -3728,12 +3367,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of",
-          "audience"
-        ]
+        "required": ["items", "next_cursor", "as_of", "audience"]
       },
       "M07InternalTimelinePage": {
         "type": "object",
@@ -3769,12 +3403,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of",
-          "audience"
-        ]
+        "required": ["items", "next_cursor", "as_of", "audience"]
       },
       "M07InternalEvent": {
         "type": "object",
@@ -3829,13 +3458,7 @@
           },
           "resource_type": {
             "type": "string",
-            "enum": [
-              "SERVICE",
-              "APPOINTMENT",
-              "WORK",
-              "FEEDBACK",
-              "ATTACHMENT"
-            ]
+            "enum": ["SERVICE", "APPOINTMENT", "WORK", "FEEDBACK", "ATTACHMENT"]
           },
           "resource_id": {
             "anyOf": [
@@ -3949,11 +3572,7 @@
             "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "M07Page_ServiceCaseCitizen": {
         "type": "object",
@@ -3985,11 +3604,7 @@
             "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
           }
         },
-        "required": [
-          "items",
-          "next_cursor",
-          "as_of"
-        ]
+        "required": ["items", "next_cursor", "as_of"]
       },
       "M07ServiceCreate": {
         "type": "object",
@@ -4064,9 +3679,7 @@
                   "type": "string"
                 }
               },
-              "required": [
-                "origin_complaint_id"
-              ]
+              "required": ["origin_complaint_id"]
             },
             "then": {
               "properties": {
@@ -4089,6 +3702,1158 @@
             }
           }
         ]
+      },
+      "M06Scenario": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "module": {
+            "enum": ["HYDRO-WATCH", "GUARD-5", "HYDRO-EAR", "HYDRO-VERIFY"],
+            "title": "Module",
+            "type": "string"
+          }
+        },
+        "required": ["code", "name", "module"],
+        "title": "Scenario",
+        "type": "object"
+      },
+      "M06Catalogue": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "catalogue_hash": {
+            "title": "Catalogue Hash",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/M06Scenario"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": ["source_category", "label", "catalogue_hash", "items"],
+        "title": "Catalogue",
+        "type": "object"
+      },
+      "M06Replay": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "status": {
+            "const": "IMPORTED",
+            "title": "Status",
+            "type": "string"
+          },
+          "scenario_code": {
+            "title": "Scenario Code",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "module": {
+            "title": "Module",
+            "type": "string"
+          },
+          "content_hash": {
+            "title": "Content Hash",
+            "type": "string"
+          },
+          "catalogue_hash": {
+            "title": "Catalogue Hash",
+            "type": "string"
+          },
+          "configuration_hash": {
+            "title": "Configuration Hash",
+            "type": "string"
+          },
+          "algorithm_source_hash": {
+            "title": "Algorithm Source Hash",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "const": "M05-2",
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          }
+        },
+        "required": [
+          "source_category",
+          "label",
+          "id",
+          "created_at",
+          "status",
+          "scenario_code",
+          "name",
+          "module",
+          "content_hash",
+          "catalogue_hash",
+          "configuration_hash",
+          "algorithm_source_hash",
+          "algorithm_version",
+          "limitations"
+        ],
+        "title": "Replay",
+        "type": "object"
+      },
+      "M06ReplayList": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/M06Replay"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
+          }
+        },
+        "required": ["source_category", "label", "items", "next_offset"],
+        "title": "ReplayList",
+        "type": "object"
+      },
+      "M06Case": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "pattern": "^(H\\d{2}|A\\d{2}|G\\d{2}-(unfavorable|nominal|favorable)|V-(comparable_repair|missing_post_evidence|incomplete_repair))$",
+            "title": "Code",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 150,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "data": {
+            "discriminator": {
+              "mapping": {
+                "GUARD-5": "#/components/schemas/M06Guard",
+                "HYDRO-EAR": "#/components/schemas/M06Ear",
+                "HYDRO-VERIFY": "#/components/schemas/M06Verify",
+                "HYDRO-WATCH": "#/components/schemas/M06Watch"
+              },
+              "propertyName": "module"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/M06Watch"
+              },
+              {
+                "$ref": "#/components/schemas/M06Guard"
+              },
+              {
+                "$ref": "#/components/schemas/M06Ear"
+              },
+              {
+                "$ref": "#/components/schemas/M06Verify"
+              }
+            ],
+            "title": "Data"
+          }
+        },
+        "required": ["code", "name", "data"],
+        "title": "Case",
+        "type": "object"
+      },
+      "M06Ear": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "maxLength": 500,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Limitations",
+            "type": "array"
+          },
+          "module": {
+            "const": "HYDRO-EAR",
+            "title": "Module",
+            "type": "string"
+          },
+          "time_s": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Time S",
+            "type": "array"
+          },
+          "waveforms": {
+            "items": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "maxItems": 8192,
+              "minItems": 1,
+              "type": "array"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "title": "Waveforms",
+            "type": "array"
+          },
+          "preview_stride": {
+            "maximum": 32,
+            "minimum": 1,
+            "title": "Preview Stride",
+            "type": "integer"
+          },
+          "sample_rate_hz": {
+            "const": 4096,
+            "title": "Sample Rate Hz",
+            "type": "integer"
+          },
+          "shared_clock": {
+            "title": "Shared Clock",
+            "type": "boolean"
+          },
+          "eligible_path": {
+            "title": "Eligible Path",
+            "type": "boolean"
+          },
+          "span_m": {
+            "exclusiveMinimum": 0,
+            "maximum": 100,
+            "title": "Span M",
+            "type": "number"
+          },
+          "assumed_speed_mps": {
+            "exclusiveMinimum": 0,
+            "title": "Assumed Speed Mps",
+            "type": "number"
+          },
+          "speed_fraction": {
+            "exclusiveMaximum": 1,
+            "minimum": 0,
+            "title": "Speed Fraction",
+            "type": "number"
+          },
+          "timing_uncertainty_s": {
+            "minimum": 0,
+            "title": "Timing Uncertainty S",
+            "type": "number"
+          },
+          "pressure_bar": {
+            "title": "Pressure Bar",
+            "type": "number"
+          },
+          "correlation_lag_s": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Correlation Lag S",
+            "type": "array"
+          },
+          "correlation": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Correlation",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "UNRESOLVED",
+              "INVALID_PATH",
+              "NO_PRESSURE",
+              "INVALID_CAPTURE",
+              "INSUFFICIENT_SIGNAL",
+              "QUALIFIED_CANDIDATE"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "interval_m": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval M"
+          },
+          "peak_correlation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peak Correlation"
+          },
+          "peak_ratio": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peak Ratio"
+          }
+        },
+        "required": [
+          "label",
+          "limitations",
+          "module",
+          "time_s",
+          "waveforms",
+          "preview_stride",
+          "sample_rate_hz",
+          "shared_clock",
+          "eligible_path",
+          "span_m",
+          "assumed_speed_mps",
+          "speed_fraction",
+          "timing_uncertainty_s",
+          "pressure_bar",
+          "correlation_lag_s",
+          "correlation",
+          "outcome",
+          "interval_m",
+          "peak_correlation",
+          "peak_ratio"
+        ],
+        "title": "Ear",
+        "type": "object"
+      },
+      "M06Guard": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "maxLength": 500,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Limitations",
+            "type": "array"
+          },
+          "module": {
+            "const": "GUARD-5",
+            "title": "Module",
+            "type": "string"
+          },
+          "channels": {
+            "items": {
+              "enum": ["A", "B", "C", "EXT", "BYPASS"],
+              "type": "string"
+            },
+            "title": "Channels",
+            "type": "array"
+          },
+          "time_s": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Time S",
+            "type": "array"
+          },
+          "wet": {
+            "items": {
+              "items": {
+                "type": "boolean"
+              },
+              "maxItems": 5,
+              "minItems": 5,
+              "type": "array"
+            },
+            "title": "Wet",
+            "type": "array"
+          },
+          "health": {
+            "items": {
+              "const": "UNKNOWN",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Health",
+            "type": "array"
+          },
+          "outcome": {
+            "enum": [
+              "LOCAL_SUSPECT",
+              "ENVIRONMENTAL_OR_AMBIGUOUS",
+              "COLLECTION_UNRESOLVED",
+              "NO_WETNESS_UNKNOWN_HEALTH",
+              "SERVICE_TEST"
+            ],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "local_suspect": {
+            "title": "Local Suspect",
+            "type": "boolean"
+          },
+          "blockage_suspected": {
+            "title": "Blockage Suspected",
+            "type": "boolean"
+          },
+          "service": {
+            "enum": [
+              "NOT_PERFORMED",
+              "RESPONSE_OBSERVED",
+              "COLLECTION_OR_SENSOR_UNRESOLVED"
+            ],
+            "title": "Service",
+            "type": "string"
+          },
+          "reference_pad_alarm": {
+            "title": "Reference Pad Alarm",
+            "type": "boolean"
+          },
+          "reference_multizone_alarm": {
+            "title": "Reference Multizone Alarm",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "label",
+          "limitations",
+          "module",
+          "channels",
+          "time_s",
+          "wet",
+          "health",
+          "outcome",
+          "local_suspect",
+          "blockage_suspected",
+          "service",
+          "reference_pad_alarm",
+          "reference_multizone_alarm"
+        ],
+        "title": "Guard",
+        "type": "object"
+      },
+      "M06JsonValue": {},
+      "M06Snapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "const": "M05-2",
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "configuration_hash": {
+            "title": "Configuration Hash",
+            "type": "string"
+          },
+          "algorithm_source_hash": {
+            "title": "Algorithm Source Hash",
+            "type": "string"
+          },
+          "reference_summary_hash": {
+            "title": "Reference Summary Hash",
+            "type": "string"
+          },
+          "historical_benchmark": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/M06JsonValue"
+            },
+            "title": "Historical Benchmark",
+            "type": "object"
+          },
+          "case": {
+            "$ref": "#/components/schemas/M06Case"
+          }
+        },
+        "required": [
+          "source_category",
+          "label",
+          "algorithm_version",
+          "configuration_hash",
+          "algorithm_source_hash",
+          "reference_summary_hash",
+          "historical_benchmark",
+          "case"
+        ],
+        "title": "Snapshot",
+        "type": "object"
+      },
+      "M06Urgent": {
+        "additionalProperties": false,
+        "properties": {
+          "time_s": {
+            "title": "Time S",
+            "type": "number"
+          },
+          "reason": {
+            "enum": ["MISSING_SENSOR_DATA", "PRESSURE_COLLAPSE_REVIEW"],
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": ["time_s", "reason"],
+        "title": "Urgent",
+        "type": "object"
+      },
+      "M06Verify": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "maxLength": 500,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Limitations",
+            "type": "array"
+          },
+          "module": {
+            "const": "HYDRO-VERIFY",
+            "title": "Module",
+            "type": "string"
+          },
+          "outcome": {
+            "enum": ["PASSED", "FAILED", "NOT_VERIFIABLE"],
+            "title": "Outcome",
+            "type": "string"
+          },
+          "before_residual_lpm": {
+            "title": "Before Residual Lpm",
+            "type": "number"
+          },
+          "after_residual_lpm": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After Residual Lpm"
+          },
+          "watch": {
+            "$ref": "#/components/schemas/M06Watch"
+          },
+          "ear": {
+            "$ref": "#/components/schemas/M06Ear"
+          },
+          "guard": {
+            "$ref": "#/components/schemas/M06Guard"
+          }
+        },
+        "required": [
+          "label",
+          "limitations",
+          "module",
+          "outcome",
+          "before_residual_lpm",
+          "after_residual_lpm",
+          "watch",
+          "ear",
+          "guard"
+        ],
+        "title": "Verify",
+        "type": "object"
+      },
+      "M06Watch": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "maxLength": 500,
+              "type": "string"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Limitations",
+            "type": "array"
+          },
+          "module": {
+            "const": "HYDRO-WATCH",
+            "title": "Module",
+            "type": "string"
+          },
+          "time_s": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Time S",
+            "type": "array"
+          },
+          "pressure_bar": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Pressure Bar",
+            "type": "array"
+          },
+          "inlet_lpm": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Inlet Lpm",
+            "type": "array"
+          },
+          "customer_outlet_lpm": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Customer Outlet Lpm",
+            "type": "array"
+          },
+          "pump_on": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Pump On",
+            "type": "array"
+          },
+          "storage_known": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Storage Known",
+            "type": "array"
+          },
+          "solver_valid": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Solver Valid",
+            "type": "array"
+          },
+          "meter_sigma_lpm": {
+            "title": "Meter Sigma Lpm",
+            "type": "number"
+          },
+          "state": {
+            "items": {
+              "enum": ["UNKNOWN", "OFF", "DRAINING", "FILLING", "STEADY"],
+              "type": "string"
+            },
+            "title": "State",
+            "type": "array"
+          },
+          "qualified_outcome": {
+            "items": {
+              "enum": [
+                "NO_PERSISTENT_ANOMALY",
+                "UNEXPLAINED_LOSS_SUSPECTED",
+                "UNRESOLVED"
+              ],
+              "type": "string"
+            },
+            "title": "Qualified Outcome",
+            "type": "array"
+          },
+          "fixed_alarm": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Fixed Alarm",
+            "type": "array"
+          },
+          "watch_alarm": {
+            "items": {
+              "type": "boolean"
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Watch Alarm",
+            "type": "array"
+          },
+          "residual_lpm": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "maxItems": 8192,
+            "minItems": 1,
+            "title": "Residual Lpm",
+            "type": "array"
+          },
+          "urgent_events": {
+            "items": {
+              "$ref": "#/components/schemas/M06Urgent"
+            },
+            "maxItems": 8192,
+            "title": "Urgent Events",
+            "type": "array"
+          },
+          "threshold_lpm": {
+            "title": "Threshold Lpm",
+            "type": "number"
+          }
+        },
+        "required": [
+          "label",
+          "limitations",
+          "module",
+          "time_s",
+          "pressure_bar",
+          "inlet_lpm",
+          "customer_outlet_lpm",
+          "pump_on",
+          "storage_known",
+          "solver_valid",
+          "meter_sigma_lpm",
+          "state",
+          "qualified_outcome",
+          "fixed_alarm",
+          "watch_alarm",
+          "residual_lpm",
+          "urgent_events",
+          "threshold_lpm"
+        ],
+        "title": "Watch",
+        "type": "object"
+      },
+      "M06Detail": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "status": {
+            "const": "IMPORTED",
+            "title": "Status",
+            "type": "string"
+          },
+          "scenario_code": {
+            "title": "Scenario Code",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "module": {
+            "title": "Module",
+            "type": "string"
+          },
+          "content_hash": {
+            "title": "Content Hash",
+            "type": "string"
+          },
+          "catalogue_hash": {
+            "title": "Catalogue Hash",
+            "type": "string"
+          },
+          "configuration_hash": {
+            "title": "Configuration Hash",
+            "type": "string"
+          },
+          "algorithm_source_hash": {
+            "title": "Algorithm Source Hash",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "const": "M05-2",
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "snapshot": {
+            "$ref": "#/components/schemas/M06Snapshot"
+          }
+        },
+        "required": [
+          "source_category",
+          "label",
+          "id",
+          "created_at",
+          "status",
+          "scenario_code",
+          "name",
+          "module",
+          "content_hash",
+          "catalogue_hash",
+          "configuration_hash",
+          "algorithm_source_hash",
+          "algorithm_version",
+          "limitations",
+          "snapshot"
+        ],
+        "title": "Detail",
+        "type": "object"
+      },
+      "M06Frame": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "time_s": {
+            "title": "Time S",
+            "type": "number"
+          },
+          "module": {
+            "title": "Module",
+            "type": "string"
+          },
+          "values": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/M06JsonValue"
+            },
+            "title": "Values",
+            "type": "object"
+          }
+        },
+        "required": [
+          "source_category",
+          "label",
+          "sequence",
+          "time_s",
+          "module",
+          "values"
+        ],
+        "title": "Frame",
+        "type": "object"
+      },
+      "M06Frames": {
+        "additionalProperties": false,
+        "properties": {
+          "source_category": {
+            "const": "SIMULATION",
+            "title": "Source Category",
+            "type": "string"
+          },
+          "label": {
+            "const": "SIMULATED / CODE-TESTED / PHYSICALLY UNVALIDATED",
+            "title": "Label",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "status": {
+            "const": "IMPORTED",
+            "title": "Status",
+            "type": "string"
+          },
+          "scenario_code": {
+            "title": "Scenario Code",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "module": {
+            "title": "Module",
+            "type": "string"
+          },
+          "content_hash": {
+            "title": "Content Hash",
+            "type": "string"
+          },
+          "catalogue_hash": {
+            "title": "Catalogue Hash",
+            "type": "string"
+          },
+          "configuration_hash": {
+            "title": "Configuration Hash",
+            "type": "string"
+          },
+          "algorithm_source_hash": {
+            "title": "Algorithm Source Hash",
+            "type": "string"
+          },
+          "algorithm_version": {
+            "const": "M05-2",
+            "title": "Algorithm Version",
+            "type": "string"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Limitations",
+            "type": "array"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/M06Frame"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "total_frames": {
+            "title": "Total Frames",
+            "type": "integer"
+          },
+          "next_offset": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Offset"
+          }
+        },
+        "required": [
+          "source_category",
+          "label",
+          "id",
+          "created_at",
+          "status",
+          "scenario_code",
+          "name",
+          "module",
+          "content_hash",
+          "catalogue_hash",
+          "configuration_hash",
+          "algorithm_source_hash",
+          "algorithm_version",
+          "limitations",
+          "items",
+          "total_frames",
+          "next_offset"
+        ],
+        "title": "Frames",
+        "type": "object"
       }
     },
     "securitySchemes": {
@@ -4104,16 +4869,12 @@
     "/auth/csrf": {
       "get": {
         "operationId": "authentication_get_auth_csrf",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Create/refresh bounded preauth session and synchronizer CSRF verifier",
         "description": "Create/refresh bounded preauth session and synchronizer CSRF verifier; no business mutation. Authorization: preauth/session. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [],
         "security": [],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.read",
         "x-scope": "preauth/session",
         "x-database-effect": "Create/refresh bounded preauth session and synchronizer CSRF verifier; no business mutation.",
@@ -4368,9 +5129,7 @@
     "/auth/register": {
       "post": {
         "operationId": "authentication_post_auth_register",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Create unverified global identity and CITIZEN membership",
         "description": "Normalize email; transactionally create unverified identity and CITIZEN membership only for enabled utility. Duplicate registration returns generic Message without changing an existing password, identity or grants. Coalesce verification delivery under account/IP limits; no authenticated session issued. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -4390,9 +5149,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "preauth/session",
         "x-database-effect": "Normalize email; transactionally create unverified identity and CITIZEN membership only for enabled utility. Duplicate registration returns generic Message without changing an existing password, identity or grants. Coalesce verification delivery under account/IP limits; no authenticated session issued.",
@@ -4651,19 +5408,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "PREAUTH",
-          "AUTHENTICATED"
-        ],
+        "x-auth-session-states": ["PREAUTH", "AUTHENTICATED"],
         "x-authorization-guards": []
       }
     },
     "/auth/login": {
       "post": {
         "operationId": "authentication_post_auth_login",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Validate credentials, rotate session/CSRF",
         "description": "Validate current credentials and rate limits on every attempt. Revoke prior presented preauth/authenticated session and rotate session plus CSRF. Never cache or reissue Set-Cookie or a previously issued secret. A lost reply requires fresh CSRF bootstrap and credential validation; any unreachable session expires normally. Revocation is monotonic. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits. Serialize session issuance with password reset/account suspension; recheck current credential version and user state at commit so in-flight old-password login cannot survive reset.",
         "parameters": [
@@ -4683,9 +5435,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "preauth/session",
         "x-database-effect": "Validate current credentials and rate limits on every attempt. Revoke prior presented preauth/authenticated session and rotate session plus CSRF. Never cache or reissue Set-Cookie or a previously issued secret. A lost reply requires fresh CSRF bootstrap and credential validation; any unreachable session expires normally. Revocation is monotonic. Serialize session issuance with password reset/account suspension; recheck current credential version and user state at commit so in-flight old-password login cannot survive reset.",
@@ -4944,19 +5694,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "PREAUTH",
-          "AUTHENTICATED"
-        ],
+        "x-auth-session-states": ["PREAUTH", "AUTHENTICATED"],
         "x-authorization-guards": []
       }
     },
     "/auth/recovery": {
       "post": {
         "operationId": "authentication_post_auth_recovery",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Generic response",
         "description": "Generic Message whether account exists or not. Coalesce delivery during cooldown; rate-limit IP and normalized account, never return or retrieve an existing token. Outside cooldown a new bounded token invalidates prior unused reset tokens. Store only token verifier; no authenticated session issued. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -4976,9 +5721,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "preauth/session",
         "x-database-effect": "Generic Message whether account exists or not. Coalesce delivery during cooldown; rate-limit IP and normalized account, never return or retrieve an existing token. Outside cooldown a new bounded token invalidates prior unused reset tokens. Store only token verifier; no authenticated session issued.",
@@ -5237,19 +5980,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "PREAUTH",
-          "AUTHENTICATED"
-        ],
+        "x-auth-session-states": ["PREAUTH", "AUTHENTICATED"],
         "x-authorization-guards": []
       }
     },
     "/auth/reset": {
       "post": {
         "operationId": "authentication_post_auth_reset",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Consume token, update hash, revoke all authenticated sessions.",
         "description": "Atomically consume unexpired purpose-bound token once, update password hash and revoke all authenticated sessions. No automatic login. Consumed/expired/invalid token returns uniform 422, including after a lost successful reply; retry by login or new recovery, never cached success or secret. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -5269,9 +6007,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "preauth/session",
         "x-database-effect": "Atomically consume unexpired purpose-bound token once, update password hash and revoke all authenticated sessions. No automatic login. Consumed/expired/invalid token returns uniform 422, including after a lost successful reply; retry by login or new recovery, never cached success or secret.",
@@ -5530,19 +6266,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "PREAUTH",
-          "AUTHENTICATED"
-        ],
+        "x-auth-session-states": ["PREAUTH", "AUTHENTICATED"],
         "x-authorization-guards": []
       }
     },
     "/auth/verify": {
       "post": {
         "operationId": "authentication_post_auth_verify",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Consume email token and activate allowed citizen membership.",
         "description": "Atomically consume purpose-bound email token once and activate only the pending verified identity/allowed citizen membership. No authenticated session or new role grant. Consumed/expired/invalid token returns uniform 422; check account status through login or request bounded support recovery after lost reply. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -5562,9 +6293,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "preauth/session",
         "x-database-effect": "Atomically consume purpose-bound email token once and activate only the pending verified identity/allowed citizen membership. No authenticated session or new role grant. Consumed/expired/invalid token returns uniform 422; check account status through login or request bounded support recovery after lost reply.",
@@ -5823,19 +6552,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "PREAUTH",
-          "AUTHENTICATED"
-        ],
+        "x-auth-session-states": ["PREAUTH", "AUTHENTICATED"],
         "x-authorization-guards": []
       }
     },
     "/auth/invitation-accept": {
       "post": {
         "operationId": "authentication_post_auth_invitation_accept",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Bind verified invited user to exact tenant role",
         "description": "Require authenticated verified global identity (active tenant membership not required), exact invited normalized email and server-held organization/role. Atomically consume one-use invitation and apply exact allowed grant; never grant evaluator implicitly. Replayed/expired/invalid token returns uniform 422. After a lost reply query /me/memberships; no cached grant or token response. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -5855,9 +6579,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "authentication.write",
         "x-scope": "verified global identity + invited email; server-bound tenant/role",
         "x-database-effect": "Require authenticated verified global identity (active tenant membership not required), exact invited normalized email and server-held organization/role. Atomically consume one-use invitation and apply exact allowed grant; never grant evaluator implicitly. Replayed/expired/invalid token returns uniform 422. After a lost reply query /me/memberships; no cached grant or token response.",
@@ -6116,18 +6838,14 @@
         },
         "x-retry-policy": "AUTH_NO_CACHE",
         "x-response-cache": "NO_STORE",
-        "x-auth-session-states": [
-          "AUTHENTICATED_VERIFIED"
-        ],
+        "x-auth-session-states": ["AUTHENTICATED_VERIFIED"],
         "x-authorization-guards": []
       }
     },
     "/auth/logout": {
       "post": {
         "operationId": "authentication_post_auth_logout",
-        "tags": [
-          "Authentication"
-        ],
+        "tags": ["Authentication"],
         "summary": "Revoke current session, expire cookies, signal local-vault purge.",
         "description": "CSRF-protected monotonic revocation; clear cookie and request local-vault purge. Active/preauth or recognized revoked/expired verifier may authorize only this cleanup, never business access. Repeated cleanup succeeds without issuing a session. After cookie clearing bootstrap fresh preauth CSRF for another cleanup; unrecognized cookie fails authentication. Idempotency-Key is rejected with 400; no business receipt, credential fingerprint or cached authentication response. Require session-bound CSRF, validated same-origin request and bounded rate limits.",
         "parameters": [
@@ -6147,9 +6865,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "authentication.write",
         "x-scope": "presented session cleanup only; no active membership required",
         "x-database-effect": "CSRF-protected monotonic revocation; clear cookie and request local-vault purge. Active/preauth or recognized revoked/expired verifier may authorize only this cleanup, never business access. Repeated cleanup succeeds without issuing a session. After cookie clearing bootstrap fresh preauth CSRF for another cleanup; unrecognized cookie fails authentication.",
@@ -6410,9 +7126,7 @@
     "/me": {
       "get": {
         "operationId": "current_user_get_me",
-        "tags": [
-          "Current user"
-        ],
+        "tags": ["Current user"],
         "summary": "Read identity only.",
         "description": "Read identity only. Authorization: self. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [],
@@ -6421,9 +7135,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "current_user.read",
         "x-scope": "self",
         "x-database-effect": "Read identity only.",
@@ -6478,9 +7190,7 @@
       },
       "patch": {
         "operationId": "current_user_patch_me",
-        "tags": [
-          "Current user"
-        ],
+        "tags": ["Current user"],
         "summary": "Update display name",
         "description": "Update display name; audit safe identity change. Authorization: self. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence. Global self-owned final-state update; no tenant receipt or Idempotency-Key (reject header with 400). Reauthorize and recheck CSRF on every attempt. Repeated revocation cannot reactivate a session; profile version conflicts require refetch. No secret response cache.",
         "parameters": [
@@ -6510,9 +7220,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "current_user.write",
         "x-scope": "self",
         "x-database-effect": "Update display name; audit safe identity change.",
@@ -6579,9 +7287,7 @@
     "/me/memberships": {
       "get": {
         "operationId": "current_user_get_me_memberships",
-        "tags": [
-          "Current user"
-        ],
+        "tags": ["Current user"],
         "summary": "Read active memberships",
         "description": "Read active memberships; no other user directory. Authorization: self. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -6609,9 +7315,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "current_user.read",
         "x-scope": "self",
         "x-database-effect": "Read active memberships; no other user directory.",
@@ -6668,9 +7372,7 @@
     "/me/sessions": {
       "get": {
         "operationId": "current_user_get_me_sessions",
-        "tags": [
-          "Current user"
-        ],
+        "tags": ["Current user"],
         "summary": "List own sessions without token verifiers.",
         "description": "List own sessions without token verifiers. Authorization: self. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -6698,9 +7400,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "current_user.read",
         "x-scope": "self",
         "x-database-effect": "List own sessions without token verifiers.",
@@ -6757,9 +7457,7 @@
     "/me/sessions/{session_id}": {
       "delete": {
         "operationId": "current_user_delete_me_sessions_session_id",
-        "tags": [
-          "Current user"
-        ],
+        "tags": ["Current user"],
         "summary": "Revoke owned session immediately.",
         "description": "Revoke owned session immediately. Authorization: self. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence. Global self-owned final-state update; no tenant receipt or Idempotency-Key (reject header with 400). Reauthorize and recheck CSRF on every attempt. Repeated revocation cannot reactivate a session; profile version conflicts require refetch. No secret response cache.",
         "parameters": [
@@ -6788,9 +7486,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "current_user.write",
         "x-scope": "self",
         "x-database-effect": "Revoke owned session immediately.",
@@ -6847,9 +7543,7 @@
     "/public/utilities/{slug}": {
       "get": {
         "operationId": "public_get_public_utilities_slug",
-        "tags": [
-          "Public"
-        ],
+        "tags": ["Public"],
         "summary": "Read enabled utility public metadata only.",
         "description": "Read enabled utility public metadata only. Authorization: public allowlist. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -6864,9 +7558,7 @@
           }
         ],
         "security": [],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "public.read",
         "x-scope": "public allowlist",
         "x-database-effect": "Read enabled utility public metadata only.",
@@ -6923,16 +7615,12 @@
     "/public/project-status": {
       "get": {
         "operationId": "public_get_public_project_status",
-        "tags": [
-          "Public"
-        ],
+        "tags": ["Public"],
         "summary": "Read editorial evidence status, no field metrics invented.",
         "description": "Read editorial evidence status, no field metrics invented. Authorization: public allowlist. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [],
         "security": [],
-        "x-roles": [
-          "PUBLIC"
-        ],
+        "x-roles": ["PUBLIC"],
         "x-required-permission": "public.read",
         "x-scope": "public allowlist",
         "x-database-effect": "Read editorial evidence status, no field metrics invented.",
@@ -6989,9 +7677,7 @@
     "/orgs/{organization_id}": {
       "get": {
         "operationId": "organization_get_orgs_organization_id",
-        "tags": [
-          "Organization"
-        ],
+        "tags": ["Organization"],
         "summary": "Read permitted organization summary.",
         "description": "Read permitted organization summary. Authorization: active membership. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -7010,9 +7696,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ALL"
-        ],
+        "x-roles": ["ALL"],
         "x-required-permission": "organization.read",
         "x-scope": "active membership",
         "x-database-effect": "Read permitted organization summary.",
@@ -7063,17 +7747,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/zones": {
       "get": {
         "operationId": "water_zones_get_orgs_organization_id_zones",
-        "tags": [
-          "Water zones"
-        ],
+        "tags": ["Water zones"],
         "summary": "Read internal graph/asset list.",
         "description": "Read internal graph/asset list. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -7129,10 +7809,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "water_zones.read",
         "x-scope": "tenant",
         "x-database-effect": "Read internal graph/asset list.",
@@ -7183,15 +7860,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "post": {
         "operationId": "water_zones_post_orgs_organization_id_zones",
-        "tags": [
-          "Water zones"
-        ],
+        "tags": ["Water zones"],
         "summary": "Validate topology/units, insert asset and audit",
         "description": "Validate topology/units, insert asset and audit; no physical installation implied. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -7230,9 +7903,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "water_zones.write",
         "x-scope": "tenant",
         "x-database-effect": "Validate topology/units, insert asset and audit; no physical installation implied.",
@@ -7293,17 +7964,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/zones/{resource_id}": {
       "get": {
         "operationId": "water_zones_get_orgs_organization_id_zones_resource_id",
-        "tags": [
-          "Water zones"
-        ],
+        "tags": ["Water zones"],
         "summary": "Read asset or uniform not-found.",
         "description": "Read asset or uniform not-found. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -7331,10 +7998,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "water_zones.read",
         "x-scope": "tenant",
         "x-database-effect": "Read asset or uniform not-found.",
@@ -7385,15 +8049,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "patch": {
         "operationId": "water_zones_patch_orgs_organization_id_zones_resource_id",
-        "tags": [
-          "Water zones"
-        ],
+        "tags": ["Water zones"],
         "summary": "Versioned asset edit",
         "description": "Versioned asset edit; reject inconsistent endpoints, offsets or zones. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -7451,9 +8111,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "water_zones.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
@@ -7514,17 +8172,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/junctions": {
       "get": {
         "operationId": "pipeline_assets_get_orgs_organization_id_junctions",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Read internal graph/asset list.",
         "description": "Read internal graph/asset list. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -7580,10 +8234,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "pipeline_assets.read",
         "x-scope": "tenant",
         "x-database-effect": "Read internal graph/asset list.",
@@ -7634,15 +8285,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "post": {
         "operationId": "pipeline_assets_post_orgs_organization_id_junctions",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Validate topology/units, insert asset and audit",
         "description": "Validate topology/units, insert asset and audit; no physical installation implied. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -7681,9 +8328,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "pipeline_assets.write",
         "x-scope": "tenant",
         "x-database-effect": "Validate topology/units, insert asset and audit; no physical installation implied.",
@@ -7744,17 +8389,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/junctions/{resource_id}": {
       "get": {
         "operationId": "pipeline_assets_get_orgs_organization_id_junctions_resource_id",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Read asset or uniform not-found.",
         "description": "Read asset or uniform not-found. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -7782,10 +8423,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "pipeline_assets.read",
         "x-scope": "tenant",
         "x-database-effect": "Read asset or uniform not-found.",
@@ -7836,15 +8474,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "patch": {
         "operationId": "pipeline_assets_patch_orgs_organization_id_junctions_resource_id",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Versioned asset edit",
         "description": "Versioned asset edit; reject inconsistent endpoints, offsets or zones. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -7902,9 +8536,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "pipeline_assets.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
@@ -7965,17 +8597,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/pipes": {
       "get": {
         "operationId": "pipeline_assets_get_orgs_organization_id_pipes",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Read internal graph/asset list.",
         "description": "Read internal graph/asset list. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -8031,10 +8659,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "pipeline_assets.read",
         "x-scope": "tenant",
         "x-database-effect": "Read internal graph/asset list.",
@@ -8085,15 +8710,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "post": {
         "operationId": "pipeline_assets_post_orgs_organization_id_pipes",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Validate topology/units, insert asset and audit",
         "description": "Validate topology/units, insert asset and audit; no physical installation implied. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -8132,9 +8753,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "pipeline_assets.write",
         "x-scope": "tenant",
         "x-database-effect": "Validate topology/units, insert asset and audit; no physical installation implied.",
@@ -8195,17 +8814,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/pipes/{resource_id}": {
       "get": {
         "operationId": "pipeline_assets_get_orgs_organization_id_pipes_resource_id",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Read asset or uniform not-found.",
         "description": "Read asset or uniform not-found. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -8233,10 +8848,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "pipeline_assets.read",
         "x-scope": "tenant",
         "x-database-effect": "Read asset or uniform not-found.",
@@ -8287,15 +8899,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "patch": {
         "operationId": "pipeline_assets_patch_orgs_organization_id_pipes_resource_id",
-        "tags": [
-          "Pipeline assets"
-        ],
+        "tags": ["Pipeline assets"],
         "summary": "Versioned asset edit",
         "description": "Versioned asset edit; reject inconsistent endpoints, offsets or zones. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -8353,9 +8961,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "pipeline_assets.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Versioned asset edit; reject inconsistent endpoints, offsets or zones.",
@@ -8416,17 +9022,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/evidence-assessments": {
       "get": {
         "operationId": "evidence_get_orgs_organization_id_evidence_assessments",
-        "tags": [
-          "Evidence"
-        ],
+        "tags": ["Evidence"],
         "summary": "Read explanations with immutable source links.",
         "description": "Read explanations with immutable source links. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -8480,10 +9082,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "evidence.read",
         "x-scope": "tenant",
         "x-database-effect": "Read explanations with immutable source links.",
@@ -8534,15 +9133,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "post": {
         "operationId": "evidence_post_orgs_organization_id_evidence_assessments",
-        "tags": [
-          "Evidence"
-        ],
+        "tags": ["Evidence"],
         "summary": "Append reviewed interpretation, preserve competing explanations.",
         "description": "Append reviewed interpretation, preserve competing explanations. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -8581,9 +9176,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER"
-        ],
+        "x-roles": ["ENGINEER"],
         "x-required-permission": "evidence.write",
         "x-scope": "tenant",
         "x-database-effect": "Append reviewed interpretation, preserve competing explanations.",
@@ -8644,17 +9237,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/evidence-assessments/{assessment_id}": {
       "get": {
         "operationId": "evidence_get_orgs_organization_id_evidence_assessments_assessment_id",
-        "tags": [
-          "Evidence"
-        ],
+        "tags": ["Evidence"],
         "summary": "Read assessment reasons, alternatives and source IDs.",
         "description": "Read assessment reasons, alternatives and source IDs. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -8682,10 +9271,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "evidence.read",
         "x-scope": "tenant",
         "x-database-effect": "Read assessment reasons, alternatives and source IDs.",
@@ -8736,17 +9322,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/incidents": {
       "get": {
         "operationId": "incidents_get_orgs_organization_id_incidents",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "List concerns separate from evidence confidence.",
         "description": "List concerns separate from evidence confidence. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -8818,10 +9400,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "incidents.read",
         "x-scope": "tenant",
         "x-database-effect": "List concerns separate from evidence confidence.",
@@ -8872,15 +9451,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "post": {
         "operationId": "incidents_post_orgs_organization_id_incidents",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "Create concern with same-mode evidence links and NEW event.",
         "description": "Create concern with same-mode evidence links and NEW event. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -8919,10 +9494,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "incidents.write",
         "x-scope": "tenant",
         "x-database-effect": "Create concern with same-mode evidence links and NEW event.",
@@ -8983,17 +9555,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/incidents/{incident_id}": {
       "get": {
         "operationId": "incidents_get_orgs_organization_id_incidents_incident_id",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "Read concern and allowed operational state.",
         "description": "Read concern and allowed operational state. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -9021,10 +9589,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "incidents.read",
         "x-scope": "tenant",
         "x-database-effect": "Read concern and allowed operational state.",
@@ -9075,17 +9640,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/incidents/{incident_id}/timeline": {
       "get": {
         "operationId": "incidents_get_orgs_organization_id_incidents_incident_id_timeline",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "Read immutable source/status/assignment history.",
         "description": "Read immutable source/status/assignment history. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -9131,10 +9692,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR"],
         "x-required-permission": "incidents.read",
         "x-scope": "tenant",
         "x-database-effect": "Read immutable source/status/assignment history.",
@@ -9185,17 +9743,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/incidents/{incident_id}/transitions": {
       "post": {
         "operationId": "incidents_post_orgs_organization_id_incidents_incident_id_transitions",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "Validate state guard",
         "description": "Validate state guard; append event/audit/outbox in one transaction. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -9253,9 +9807,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "incidents.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Validate state guard; append event/audit/outbox in one transaction.",
@@ -9316,17 +9868,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/incidents/{incident_id}/links": {
       "post": {
         "operationId": "incidents_post_orgs_organization_id_incidents_incident_id_links",
-        "tags": [
-          "Incidents"
-        ],
+        "tags": ["Incidents"],
         "summary": "Link duplicates/related concerns with provenance",
         "description": "Link duplicates/related concerns with provenance; no history deletion. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -9384,9 +9932,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "incidents.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Link duplicates/related concerns with provenance; no history deletion.",
@@ -9447,17 +9993,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/work-orders": {
       "get": {
         "operationId": "work_orders_get_orgs_organization_id_work_orders",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Read task board, not scientific verification.",
         "description": "Read task board, not scientific verification. Authorization: tenant; TECHNICIAN assigned only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -9529,11 +10071,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR",
-          "ENGINEER",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["SUPERVISOR", "ENGINEER", "TECHNICIAN"],
         "x-required-permission": "work_orders.read",
         "x-scope": "tenant; TECHNICIAN assigned only",
         "x-database-effect": "Read task board, not scientific verification.",
@@ -9584,16 +10122,11 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       },
       "post": {
         "operationId": "work_orders_post_orgs_organization_id_work_orders",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Create task for accepted concern",
         "description": "Create task for accepted concern; no automatic verified leak status. Authorization: tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -9632,9 +10165,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "work_orders.write",
         "x-scope": "tenant",
         "x-database-effect": "Create task for accepted concern; no automatic verified leak status.",
@@ -9695,17 +10226,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}": {
       "get": {
         "operationId": "work_orders_get_orgs_organization_id_work_orders_work_order_id",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Read task.",
         "description": "Read task. Authorization: tenant; TECHNICIAN assigned only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -9733,11 +10260,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR",
-          "ENGINEER",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["SUPERVISOR", "ENGINEER", "TECHNICIAN"],
         "x-required-permission": "work_orders.read",
         "x-scope": "tenant; TECHNICIAN assigned only",
         "x-database-effect": "Read task.",
@@ -9788,18 +10311,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}/brief": {
       "get": {
         "operationId": "work_orders_get_orgs_organization_id_work_orders_work_order_id_brief",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Issue minimal safe task cache and 12-hour offline lease.",
         "description": "Issue minimal safe task cache and 12-hour offline lease. Authorization: current assigned membership. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -9827,9 +10345,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "TECHNICIAN"
-        ],
+        "x-roles": ["TECHNICIAN"],
         "x-required-permission": "work_orders.read",
         "x-scope": "current assigned membership",
         "x-database-effect": "Issue minimal safe task cache and 12-hour offline lease.",
@@ -9880,18 +10396,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}/assignment": {
       "post": {
         "operationId": "work_orders_post_orgs_organization_id_work_orders_work_order_id_assignment",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Assign active technician, increment assignment_version, notify/deduplicate.",
         "description": "Assign active technician, increment assignment_version, notify/deduplicate. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -9949,9 +10460,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "work_orders.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Assign active technician, increment assignment_version, notify/deduplicate.",
@@ -10012,17 +10521,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}/actions": {
       "post": {
         "operationId": "work_orders_post_orgs_organization_id_work_orders_work_order_id_actions",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Append offline-compatible note/material/photo references, operation ID deduplication.",
         "description": "Append offline-compatible note/material/photo references, operation ID deduplication. Authorization: assigned + version/assignment checks. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -10070,9 +10575,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "TECHNICIAN"
-        ],
+        "x-roles": ["TECHNICIAN"],
         "x-required-permission": "work_orders.write",
         "x-scope": "assigned + version/assignment checks",
         "x-database-effect": "Append offline-compatible note/material/photo references, operation ID deduplication.",
@@ -10133,18 +10636,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}/transitions": {
       "post": {
         "operationId": "work_orders_post_orgs_organization_id_work_orders_work_order_id_transitions",
-        "tags": [
-          "Work orders"
-        ],
+        "tags": ["Work orders"],
         "summary": "Apply authorized transition",
         "description": "Apply authorized transition; only supervisor completes/cancels; never scientific PASSED. Authorization: tenant; worker assigned + permitted edge. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -10202,10 +10700,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["SUPERVISOR", "TECHNICIAN"],
         "x-required-permission": "work_orders.write",
         "x-scope": "tenant; worker assigned + permitted edge",
         "x-database-effect": "Apply authorized transition; only supervisor completes/cancels; never scientific PASSED.",
@@ -10266,18 +10761,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/work-orders/{work_order_id}/repairs": {
       "post": {
         "operationId": "repairs_post_orgs_organization_id_work_orders_work_order_id_repairs",
-        "tags": [
-          "Repairs"
-        ],
+        "tags": ["Repairs"],
         "summary": "Append manual repair receipt and immutable evidence",
         "description": "Append manual repair receipt and immutable evidence; no claimed success. Authorization: assigned + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -10335,9 +10825,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "TECHNICIAN"
-        ],
+        "x-roles": ["TECHNICIAN"],
         "x-required-permission": "repairs.write",
         "x-scope": "assigned + If-Match",
         "x-database-effect": "Append manual repair receipt and immutable evidence; no claimed success.",
@@ -10398,16 +10886,11 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       },
       "get": {
         "operationId": "repairs_get_orgs_organization_id_work_orders_work_order_id_repairs",
-        "tags": [
-          "Repairs"
-        ],
+        "tags": ["Repairs"],
         "summary": "Read repair records.",
         "description": "Read repair records. Authorization: tenant; worker assigned only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -10453,11 +10936,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR",
-          "ENGINEER",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["SUPERVISOR", "ENGINEER", "TECHNICIAN"],
         "x-required-permission": "repairs.read",
         "x-scope": "tenant; worker assigned only",
         "x-database-effect": "Read repair records.",
@@ -10508,18 +10987,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/repairs/{repair_id}/verifications": {
       "post": {
         "operationId": "verification_post_orgs_organization_id_repairs_repair_id_verifications",
-        "tags": [
-          "Verification"
-        ],
+        "tags": ["Verification"],
         "summary": "Record explicit PASSED/FAILED/NOT_VERIFIABLE",
         "description": "Record explicit PASSED/FAILED/NOT_VERIFIABLE; require engineer review for technical comparability uncertainty. Authorization: tenant + If-Match + comparable evidence. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -10577,9 +11051,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "verification.write",
         "x-scope": "tenant + If-Match + comparable evidence",
         "x-database-effect": "Record explicit PASSED/FAILED/NOT_VERIFIABLE; require engineer review for technical comparability uncertainty.",
@@ -10640,15 +11112,11 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       },
       "get": {
         "operationId": "verification_get_orgs_organization_id_repairs_repair_id_verifications",
-        "tags": [
-          "Verification"
-        ],
+        "tags": ["Verification"],
         "summary": "Read verification outcomes, independent of completed task.",
         "description": "Read verification outcomes, independent of completed task. Authorization: tenant; worker assigned parent only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -10694,11 +11162,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ENGINEER",
-          "SUPERVISOR",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["ENGINEER", "SUPERVISOR", "TECHNICIAN"],
         "x-required-permission": "verification.read",
         "x-scope": "tenant; worker assigned parent only",
         "x-database-effect": "Read verification outcomes, independent of completed task.",
@@ -10749,18 +11213,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "TECHNICIAN_ASSIGNED"
-        ]
+        "x-authorization-guards": ["TENANT", "TECHNICIAN_ASSIGNED"]
       }
     },
     "/orgs/{organization_id}/complaints": {
       "post": {
         "operationId": "complaints_post_orgs_organization_id_complaints",
-        "tags": [
-          "Complaints"
-        ],
+        "tags": ["Complaints"],
         "summary": "Create own report/tracking number with validated consent and safe updates.",
         "description": "Create own report/tracking number with validated consent and safe updates. Authorization: self in enabled reporting tenant. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -10799,9 +11258,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "CITIZEN"
-        ],
+        "x-roles": ["CITIZEN"],
         "x-required-permission": "complaints.write",
         "x-scope": "self in enabled reporting tenant",
         "x-database-effect": "Create own report/tracking number with validated consent and safe updates.",
@@ -10862,16 +11319,11 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT",
-          "CITIZEN_OWNED"
-        ]
+        "x-authorization-guards": ["TENANT", "CITIZEN_OWNED"]
       },
       "get": {
         "operationId": "complaints_get_orgs_organization_id_complaints",
-        "tags": [
-          "Complaints"
-        ],
+        "tags": ["Complaints"],
         "summary": "Read citizen-safe projection even for supervisor",
         "description": "Read citizen-safe projection even for supervisor; private review is separate. Authorization: tenant; citizen owned only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -10917,10 +11369,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "complaints.read",
         "x-scope": "tenant; citizen owned only",
         "x-database-effect": "Read citizen-safe projection even for supervisor; private review is separate.",
@@ -10971,18 +11420,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "CITIZEN_OWNED"
-        ]
+        "x-authorization-guards": ["TENANT", "CITIZEN_OWNED"]
       }
     },
     "/orgs/{organization_id}/complaints/{complaint_id}": {
       "get": {
         "operationId": "complaints_get_orgs_organization_id_complaints_complaint_id",
-        "tags": [
-          "Complaints"
-        ],
+        "tags": ["Complaints"],
         "summary": "Return own report",
         "description": "Return own report; guessed IDs return uniform 404. Authorization: tenant; citizen owned only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -11010,10 +11454,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "complaints.read",
         "x-scope": "tenant; citizen owned only",
         "x-database-effect": "Return own report; guessed IDs return uniform 404.",
@@ -11064,18 +11505,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT",
-          "CITIZEN_OWNED"
-        ]
+        "x-authorization-guards": ["TENANT", "CITIZEN_OWNED"]
       }
     },
     "/orgs/{organization_id}/complaints/{complaint_id}/follow-ups": {
       "post": {
         "operationId": "complaints_post_orgs_organization_id_complaints_complaint_id_follow_ups",
-        "tags": [
-          "Complaints"
-        ],
+        "tags": ["Complaints"],
         "summary": "Append own followup",
         "description": "Append own followup; no internal notes disclosed. Authorization: owned complaint + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -11133,9 +11569,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "CITIZEN"
-        ],
+        "x-roles": ["CITIZEN"],
         "x-required-permission": "complaints.write",
         "x-scope": "owned complaint + If-Match",
         "x-database-effect": "Append own followup; no internal notes disclosed.",
@@ -11196,18 +11630,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT",
-          "CITIZEN_OWNED"
-        ]
+        "x-authorization-guards": ["TENANT", "CITIZEN_OWNED"]
       }
     },
     "/orgs/{organization_id}/complaints/{complaint_id}/review": {
       "post": {
         "operationId": "complaints_post_orgs_organization_id_complaints_complaint_id_review",
-        "tags": [
-          "Complaints"
-        ],
+        "tags": ["Complaints"],
         "summary": "Write public-safe status event and optional internal incident link",
         "description": "Write public-safe status event and optional internal incident link; do not confirm leak automatically. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -11265,9 +11694,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "complaints.write",
         "x-scope": "tenant + If-Match",
         "x-database-effect": "Write public-safe status event and optional internal incident link; do not confirm leak automatically.",
@@ -11328,17 +11755,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/memberships": {
       "get": {
         "operationId": "administration_get_orgs_organization_id_memberships",
-        "tags": [
-          "Administration"
-        ],
+        "tags": ["Administration"],
         "summary": "Read tenant membership directory without credential material.",
         "description": "Read tenant membership directory without credential material. Authorization: tenant + fresh session. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -11375,9 +11798,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ADMIN"
-        ],
+        "x-roles": ["ADMIN"],
         "x-required-permission": "administration.read",
         "x-scope": "tenant + fresh session",
         "x-database-effect": "Read tenant membership directory without credential material.",
@@ -11428,17 +11849,13 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/invitations": {
       "post": {
         "operationId": "administration_post_orgs_organization_id_invitations",
-        "tags": [
-          "Administration"
-        ],
+        "tags": ["Administration"],
         "summary": "Create bounded one-use staff invitation",
         "description": "Create bounded one-use staff invitation; no existing credentials disclosed. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -11477,9 +11894,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ADMIN"
-        ],
+        "x-roles": ["ADMIN"],
         "x-required-permission": "administration.write",
         "x-scope": "tenant + fresh reauth",
         "x-database-effect": "Create bounded one-use staff invitation; no existing credentials disclosed.",
@@ -11540,17 +11955,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/memberships/{membership_id}/roles": {
       "put": {
         "operationId": "administration_put_orgs_organization_id_memberships_membership_id_roles",
-        "tags": [
-          "Administration"
-        ],
+        "tags": ["Administration"],
         "summary": "Replace allowed primary grants, audit",
         "description": "Replace allowed primary grants, audit; cannot grant EVALUATOR here. Authorization: tenant + fresh reauth + last-admin guard. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -11608,9 +12019,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ADMIN"
-        ],
+        "x-roles": ["ADMIN"],
         "x-required-permission": "administration.write",
         "x-scope": "tenant + fresh reauth + last-admin guard",
         "x-database-effect": "Replace allowed primary grants, audit; cannot grant EVALUATOR here.",
@@ -11671,17 +12080,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/memberships/{membership_id}/status": {
       "post": {
         "operationId": "administration_post_orgs_organization_id_memberships_membership_id_status",
-        "tags": [
-          "Administration"
-        ],
+        "tags": ["Administration"],
         "summary": "Suspend/reactivate tenant membership",
         "description": "Suspend/reactivate tenant membership; revoke tenant authorization immediately. Authorization: tenant + fresh reauth + last-admin guard. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
         "parameters": [
@@ -11729,9 +12134,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ADMIN"
-        ],
+        "x-roles": ["ADMIN"],
         "x-required-permission": "administration.write",
         "x-scope": "tenant + fresh reauth + last-admin guard",
         "x-database-effect": "Suspend/reactivate tenant membership; revoke tenant authorization immediately.",
@@ -11792,17 +12195,13 @@
           }
         },
         "x-retry-policy": "TENANT_7_DAY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/audit-logs": {
       "get": {
         "operationId": "administration_get_orgs_organization_id_audit_logs",
-        "tags": [
-          "Administration"
-        ],
+        "tags": ["Administration"],
         "summary": "Read safe significant-change audit, no secret/IP dumps.",
         "description": "Read safe significant-change audit, no secret/IP dumps. Authorization: tenant + security permission. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
         "parameters": [
@@ -11866,9 +12265,7 @@
             "sessionCookie": []
           }
         ],
-        "x-roles": [
-          "ADMIN"
-        ],
+        "x-roles": ["ADMIN"],
         "x-required-permission": "administration.read",
         "x-scope": "tenant + security permission",
         "x-database-effect": "Read safe significant-change audit, no secret/IP dumps.",
@@ -11919,18 +12316,14 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
-        "x-authorization-guards": [
-          "TENANT"
-        ]
+        "x-authorization-guards": ["TENANT"]
       }
     },
     "/orgs/{organization_id}/service-requests": {
       "post": {
         "operationId": "m07_n01",
         "summary": "N01 POST /service-requests \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -11966,9 +12359,7 @@
             }
           }
         ],
-        "x-roles": [
-          "CITIZEN"
-        ],
+        "x-roles": ["CITIZEN"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12052,9 +12443,7 @@
       "get": {
         "operationId": "m07_n02",
         "summary": "N02 GET /service-requests \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12119,10 +12508,7 @@
             }
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "service_requests.read",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12206,9 +12592,7 @@
       "get": {
         "operationId": "m07_n03",
         "summary": "N03 GET /service-requests/{request_id} \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12234,10 +12618,7 @@
             }
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "service_requests.read",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12320,19 +12701,14 @@
           "CITIZEN": "M07ServiceCaseCitizen",
           "SUPERVISOR": "M07ServiceCaseStaff"
         },
-        "x-response-variants": [
-          "M07ServiceCaseCitizen",
-          "M07ServiceCaseStaff"
-        ]
+        "x-response-variants": ["M07ServiceCaseCitizen", "M07ServiceCaseStaff"]
       }
     },
     "/orgs/{organization_id}/service-requests/{request_id}/timeline": {
       "get": {
         "operationId": "m07_n04",
         "summary": "N04 GET /service-requests/{request_id}/timeline \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12380,18 +12756,12 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "enum": [
-                "PUBLIC",
-                "INTERNAL"
-              ]
+              "enum": ["PUBLIC", "INTERNAL"]
             },
             "description": "Default PUBLIC. INTERNAL is SUPERVISOR-only; denied to citizen even when owned."
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "service_requests.read",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12475,9 +12845,7 @@
       "post": {
         "operationId": "m07_n05",
         "summary": "N05 POST /service-request-lookups \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12504,10 +12872,7 @@
             }
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "service_requests.read",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12594,9 +12959,7 @@
       "post": {
         "operationId": "m07_n06",
         "summary": "N06 POST /service-requests/{request_id}/follow-ups \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12651,9 +13014,7 @@
             "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "CITIZEN"
-        ],
+        "x-roles": ["CITIZEN"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12739,9 +13100,7 @@
       "post": {
         "operationId": "m07_n07",
         "summary": "N07 POST /service-requests/{request_id}/triage \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12796,9 +13155,7 @@
             "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -12882,9 +13239,7 @@
       "post": {
         "operationId": "m07_n08",
         "summary": "N08 POST /service-requests/{request_id}/transitions \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -12939,10 +13294,7 @@
             "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "CITIZEN",
-          "SUPERVISOR"
-        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -13023,45 +13375,26 @@
           }
         },
         "x-action-roles": {
-          "WITHDRAW": [
-            "CITIZEN"
-          ],
-          "REQUEST_CANCELLATION": [
-            "CITIZEN"
-          ],
-          "CANCEL": [
-            "SUPERVISOR"
-          ],
-          "START_SERVICE": [
-            "SUPERVISOR"
-          ],
-          "REQUEST_REVIEW": [
-            "SUPERVISOR"
-          ],
-          "RETURN_TO_WORK": [
-            "SUPERVISOR"
-          ],
-          "CLOSE": [
-            "SUPERVISOR"
-          ]
+          "WITHDRAW": ["CITIZEN"],
+          "REQUEST_CANCELLATION": ["CITIZEN"],
+          "CANCEL": ["SUPERVISOR"],
+          "START_SERVICE": ["SUPERVISOR"],
+          "REQUEST_REVIEW": ["SUPERVISOR"],
+          "RETURN_TO_WORK": ["SUPERVISOR"],
+          "CLOSE": ["SUPERVISOR"]
         },
         "x-role-projections": {
           "CITIZEN": "M07ServiceCaseCitizen",
           "SUPERVISOR": "M07ServiceCaseStaff"
         },
-        "x-response-variants": [
-          "M07ServiceCaseCitizen",
-          "M07ServiceCaseStaff"
-        ]
+        "x-response-variants": ["M07ServiceCaseCitizen", "M07ServiceCaseStaff"]
       }
     },
     "/orgs/{organization_id}/service-requests/{request_id}/public-updates": {
       "post": {
         "operationId": "m07_n09",
         "summary": "N09 POST /service-requests/{request_id}/public-updates \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -13116,9 +13449,7 @@
             "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -13202,9 +13533,7 @@
       "post": {
         "operationId": "m07_n13",
         "summary": "N13 POST /service-requests/{request_id}/work-order-links \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -13259,9 +13588,7 @@
             "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "SUPERVISOR"
-        ],
+        "x-roles": ["SUPERVISOR"],
         "x-required-permission": "service_requests.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -13345,9 +13672,7 @@
       "post": {
         "operationId": "m07_n43",
         "summary": "N43 POST /work-orders/{work_order_id}/findings \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -13402,9 +13727,7 @@
             "description": "Current WORK_ORDER resource version; body contains any additional parent/calendar versions."
           }
         ],
-        "x-roles": [
-          "TECHNICIAN"
-        ],
+        "x-roles": ["TECHNICIAN"],
         "x-required-permission": "investigation_findings.write",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -13487,9 +13810,7 @@
       "get": {
         "operationId": "m07_n44",
         "summary": "N44 GET /work-orders/{work_order_id}/findings \u2014 M07-A",
-        "tags": [
-          "M07 M07-A"
-        ],
+        "tags": ["M07 M07-A"],
         "security": [
           {
             "sessionCookie": []
@@ -13533,11 +13854,7 @@
             }
           }
         ],
-        "x-roles": [
-          "SUPERVISOR",
-          "ENGINEER",
-          "TECHNICIAN"
-        ],
+        "x-roles": ["SUPERVISOR", "ENGINEER", "TECHNICIAN"],
         "x-required-permission": "investigation_findings.read",
         "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
         "x-authorization-guards": [
@@ -13606,6 +13923,388 @@
             "$ref": "#/components/responses/Error503"
           }
         }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays/catalogue": {
+      "get": {
+        "operationId": "m06_catalogue",
+        "summary": "SIMULATION ONLY \u2014 m06_catalogue",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06Catalogue"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays": {
+      "post": {
+        "operationId": "m06_import",
+        "summary": "SIMULATION ONLY \u2014 m06_import",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.write",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06Replay"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["scenario_code"],
+                "properties": {
+                  "scenario_code": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 80
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "m06_list",
+        "summary": "SIMULATION ONLY \u2014 m06_list",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06ReplayList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays/{run_id}": {
+      "get": {
+        "operationId": "m06_detail",
+        "summary": "SIMULATION ONLY \u2014 m06_detail",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06Detail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays/{run_id}/frames": {
+      "get": {
+        "operationId": "m06_replay",
+        "summary": "SIMULATION ONLY \u2014 m06_replay",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8192,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06Frames"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays/{run_id}/export": {
+      "get": {
+        "operationId": "m06_export",
+        "summary": "SIMULATION ONLY \u2014 m06_export",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M06Detail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/scientific-replays/{run_id}/events": {
+      "get": {
+        "operationId": "m06_stream",
+        "summary": "SIMULATION ONLY \u2014 m06_stream",
+        "x-roles": ["ENGINEER"],
+        "x-required-permission": "simulations.read",
+        "x-implementation-status": "IMPLEMENTED_M06",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8192,
+              "default": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorized observation-only replay",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": "Bounded SSE batch: provenance, observation events, then checkpoint. Resume with next_offset; every batch reauthorizes current membership. Not a live sensor feed."
       }
     }
   }

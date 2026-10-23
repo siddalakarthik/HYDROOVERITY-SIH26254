@@ -68,6 +68,20 @@ def main():
         print("Operations without executed positive response conformance:", ",".join(missing))
         raise SystemExit(1)
     service_missing = ACTIVE - set(summary.get("service_operation_tests", {}))
+    from hydro.science_contracts import OPERATIONS as science_operations
+
+    science_missing = {o["id"] for o in science_operations} - set(
+        summary.get("science_operation_tests", {})
+    )
+    if science_missing:
+        raise SystemExit(
+            "M06 operations without executed positive conformance: "
+            + ",".join(sorted(science_missing))
+        )
+    summary["m06_implemented_operations"] = len(science_operations)
+    summary["combined_implemented_operations"] = (
+        len(OPERATIONS) + len(ACTIVE) + len(science_operations)
+    )
     if service_missing:
         raise SystemExit(
             "M07-A operations without executed positive conformance: "
@@ -101,9 +115,9 @@ def main():
         implemented_operations=len(OPERATIONS),
         catalogue_scope="M03_BASELINE_COMPATIBILITY",
         m07a_implemented_operations=len(ACTIVE),
-        total_implemented_operations=len(OPERATIONS) + len(ACTIVE),
-        designed_operations=161,
-        migrated_tables=35,
+        total_implemented_operations=len(OPERATIONS) + len(ACTIVE) + len(science_operations),
+        designed_operations=168,
+        migrated_tables=36,
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

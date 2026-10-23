@@ -19,12 +19,23 @@ from hydro.repository import TABLES
 
 COVERAGE = {}
 SERVICE_COVERAGE = {}
+SCIENCE_COVERAGE = {}
 
 
 def capture_response(response):
     from hydro.contracts import OPERATIONS
 
     if 200 <= response.status_code < 300:
+        from hydro.science_contracts import OPERATIONS as science_operations
+
+        for op in science_operations:
+            pattern = re.sub(r"\{[^}]+\}", r"[^/]+", "/api/v1" + op["path"])
+            if response.request.method.lower() == op["method"] and re.fullmatch(
+                pattern, response.request.url.path
+            ):
+                SCIENCE_COVERAGE.setdefault(op["id"], set()).add(
+                    os.environ.get("PYTEST_CURRENT_TEST", "unknown").split(" ")[0]
+                )
         from hydro.service_contracts import ACTIVE
         from hydro.service_contracts import OPERATIONS as service_operations
 
@@ -62,6 +73,7 @@ def pytest_sessionfinish(session, exitstatus):
             "collected_tests": [item.nodeid for item in session.items],
             "operation_tests": {k: sorted(v) for k, v in sorted(COVERAGE.items())},
             "service_operation_tests": {k: sorted(v) for k, v in sorted(SERVICE_COVERAGE.items())},
+            "science_operation_tests": {k: sorted(v) for k, v in sorted(SCIENCE_COVERAGE.items())},
         }
         (directory / "pytest-summary.json").write_text(json.dumps(report, indent=2))
 

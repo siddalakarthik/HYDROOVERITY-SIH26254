@@ -43,6 +43,7 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/m05"
           "$RUNNER_TEMP/m05/bin/python" -m pip install --only-binary=:all: -r simulations/requirements-m05.txt
           "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m05.py -q
+          "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m06_reproduction.py -q
           "$RUNNER_TEMP/m05/bin/python" -m simulations.run_all --profile smoke
       - name: Check whitespace
         run: git diff-tree --check --root -m HEAD
@@ -125,6 +126,7 @@ jobs:
           "$RUNNER_TEMP/m04-python/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
           "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/contracts.py --check
           "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07a_implementation.py
+          "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m06.py
           python3 - <<'PY'
           import os,pathlib,secrets
           root=pathlib.Path(os.environ['RUNNER_TEMP'])
@@ -202,6 +204,13 @@ jobs:
       - name: Stop isolated M04 database
         if: always()
         run: docker stop hydro-m04-db || true
+      - name: Upload sanitized M06 scientific browser evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M06_BROWSER_EVIDENCE
+          path: ${{ runner.temp }}/m04-evidence/M06-*.png
+          if-no-files-found: error
+          retention-days: 14
 
   m03-backend:
     runs-on: ubuntu-24.04
@@ -247,6 +256,7 @@ jobs:
       - name: Backend source quality and dependency compatibility
         run: |
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py --backend-only
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m06.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence-repeat/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pytest services/api/traceability_tests -q --acceptance-evidence /private/evidence/acceptance-summary.json --acceptance-evidence /private/evidence-repeat/acceptance-summary.json

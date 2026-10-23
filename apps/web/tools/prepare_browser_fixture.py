@@ -42,7 +42,7 @@ def main():
     p.add_argument("--openssl", default="openssl")
     args = p.parse_args()
     name = args.confirm_disposable_database
-    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser"}:
+    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser", "hydro_disposable_m06_browser"}:
         raise SystemExit("Only explicitly confirmed M04 or M07-A disposable browser fixtures may be reset")
     private = args.private_directory.resolve()
     if private.is_relative_to(ROOT):
@@ -88,6 +88,7 @@ def main():
 
     fixture = {"app": app, "owner": owner, "settings": settings, "org": org, "admin": member, "other": other, "password": password, "client": client}
     flow = setup(fixture)
+    provision(fixture, "ENGINEER", "science-engineer@example.invalid", flow["admin"])
     # Separate synthetic identities keep the service suite independent of M04's
     # deliberate role revocation and reassignment scenarios.
     _, service_tech = provision(fixture, "TECHNICIAN", "service-tech@example.invalid", flow["admin"])

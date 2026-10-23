@@ -10,6 +10,7 @@ WEB = ROOT / "apps/web"
 sys.path.insert(0, str(ROOT / "services/api"))
 from hydro.contracts import runtime_openapi  # noqa: E402
 from hydro.service_contracts import ACTIVE  # noqa: E402
+from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
 
 
 def outputs():
@@ -19,7 +20,7 @@ def outputs():
     implemented = {o["id"] for o in matrix["operations"] if o["status"] == "CODE_TESTED"}
     contract = runtime_openapi()
     advertised = {operation["operationId"] for methods in contract["paths"].values() for operation in methods.values()}
-    assert advertised == implemented | ACTIVE, "Browser contract must match exactly the implemented operations"
+    assert advertised == implemented | ACTIVE | {o["id"] for o in SCIENCE}, "Browser contract must match exactly the implemented operations"
     assert not {"EvaluationResult", "SimulationParameters", "SimulationRun", "RunOutput"}.intersection(contract["components"]["schemas"]), "Deferred scientific/evaluation models must not enter the browser contract"
     groups = {
         7: ["Public"], 8: ["Public"], 18: ["Current user"], 19: ["Current user"],
@@ -59,6 +60,13 @@ def outputs():
                       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
                       "future_dependency": "Deferred M03 operation; no active navigation" if status == "DEFERRED" else "Attachments, telemetry, offline queue and scientific integration remain disabled"})
     assert len(pages) == 46 and len(implemented) == 58
+    for p in pages:
+        if p["id"] in {"PAGE-40", "PAGE-41"}:
+            p.update(status="ACTIVE_FUNCTIONAL", component="science",
+                     title="Import and replay verified observation-only M05 scenarios",
+                     operations=[{"operation_id": o["id"], "method": o["method"].upper(), "path": o["path"], "status": "IMPLEMENTED"} for o in SCIENCE],
+                     data_boundary="Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
+                     future_dependency="Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred")
     proposed = json.loads((ROOT / "design/ui-ux/m07-route-catalog.json").read_text())
     page_operations = {47:[2,5],48:[1],49:[3,4,6,8],50:[2,7],51:[3,4,7,8,9,13]}
     for p in proposed["pages"][-5:]:
@@ -67,7 +75,7 @@ def outputs():
                       "status": "ACTIVE_FUNCTIONAL", "operations": [{"operation_id": f"m07_n{i:02}", "status": "IMPLEMENTED"} for i in page_operations[number]],
                       "component": "service-requests", "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"})
     return {WEB / "contracts/implemented.openapi.json": contract,
-            WEB / "src/lib/route-capabilities.json": {"milestone": "M04 + M07-A", "pages": pages}}
+            WEB / "src/lib/route-capabilities.json": {"milestone": "M04 + M07-A + M06", "pages": pages}}
 
 
 if __name__ == "__main__":
@@ -81,4 +89,4 @@ if __name__ == "__main__":
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected)
-    print("PASS: 70 implemented operations and 51 route classifications; privacy-gated routes excluded")
+    print("PASS: 77 implemented operations and 51 route classifications; privacy-gated routes excluded")

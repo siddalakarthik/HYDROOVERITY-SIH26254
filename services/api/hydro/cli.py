@@ -31,10 +31,13 @@ def seed_catalogue(c):
                 description="Explicit " + role + " capability",
             )
     grants = set()
+    from .science_contracts import OPERATIONS as science_operations
     from .service_contracts import ACTIVE
     from .service_contracts import OPERATIONS as service_operations
 
-    for op in OPERATIONS + [o for o in service_operations if o["id"] in ACTIVE]:
+    for op in (
+        OPERATIONS + [o for o in service_operations if o["id"] in ACTIVE] + science_operations
+    ):
         permission = op["permission"]
         if not one(c, "SELECT id FROM permissions WHERE code=:v", v=permission):
             insert(
