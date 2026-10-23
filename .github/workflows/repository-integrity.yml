@@ -124,6 +124,7 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/m04-python"
           "$RUNNER_TEMP/m04-python/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
           "$RUNNER_TEMP/m04-python/bin/python" apps/web/tools/contracts.py --check
+          "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07a_implementation.py
           python3 - <<'PY'
           import os,pathlib,secrets
           root=pathlib.Path(os.environ['RUNNER_TEMP'])
@@ -245,7 +246,7 @@ jobs:
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/verify_backend.py --operator-config /private/operator/operator.json --runtime-config /private/runtime/runtime.json --confirm-disposable-database hydro_disposable_m03 --evidence-directory /private/evidence-repeat
       - name: Backend source quality and dependency compatibility
         run: |
-          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence-repeat/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pytest services/api/traceability_tests -q --acceptance-evidence /private/evidence/acceptance-summary.json --acceptance-evidence /private/evidence-repeat/acceptance-summary.json

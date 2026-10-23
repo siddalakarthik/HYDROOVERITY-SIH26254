@@ -169,7 +169,7 @@
     "apps/web/browser/service-foundation.spec.ts": "8e71ad19ac0fb4edcffb2cd91a5e9ecd385804be58315843ec4f6fa7e0662883",
     "apps/web/src/features/service-requests.tsx": "64ff3fe9644767e2c39f8e3ee87d24ca0c9cbe00207e9140d1514b3193ff9dcc",
     "apps/web/tools/browser-suite.mjs": "329656ff2ae36fa949d1a1a7720a9142eaf00c9bdd06bf7fe6eb6d96722a8781",
-    "scripts/check_m07a_implementation.py": "a60baf30d67693ab4864f907e0bea8e3d9aad594de634dd11b4a1959bad849e6",
+    "scripts/check_m07a_implementation.py": "efa9a2fd7b00f130048510b29c3a194579e2a426e2e8abcf7e67fe2f0c21a5ca",
     "services/api/hydro/service_contracts.py": "12162ede9922d521087237b11252b1f354f2a42daf2d681a4951bcd7de9375c9",
     "services/api/hydro/services/service_requests.py": "596eb000923000ed9e3b3dcf333081362924628a50781e77757e8c8aa04d8334",
     "services/api/migrations/m07_a.sql": "0d2fbfa3352ad15a80531ad25ce05435207dd3d81ad6345187cd7ac2ab42384d",

@@ -1,5 +1,6 @@
 """Verify the bounded M07-A runtime activation against approved contracts."""
 import copy
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -12,6 +13,9 @@ from hydro.service_contracts import ACTIVE, DISABLED  # noqa: E402
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--backend-only", action="store_true", help="Validate backend source hashes inside the intentionally frontend-free API image")
+    args = parser.parse_args()
     manifest = json.loads((ROOT / "data/schemas/m07a-implementation.json").read_text())
     assert manifest["verified_main"] == "c3f785c4fa2974ec45e473786bca4ea8806e2c7a"
     assert manifest["approved_contract_head"] == "5893c5c79831d77fc228d3eae9b814915c071d98"
@@ -32,8 +36,10 @@ def main():
             assert schema == DESIGN["components"]["schemas"][name], name
     assert not {"EvaluationResult", "SimulationParameters", "RunOutput"} & runtime["components"]["schemas"].keys()
     for name, digest in manifest["new_source_sha256"].items():
+        if args.backend_only and not name.startswith("services/api/"):
+            continue
         assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == digest, name
-    print("PASS: 58 compatible baseline + 12 M07-A operations = 70; 35 migrated / 74 designed tables; privacy and future-operation gates retained")
+    print("PASS: 58 compatible baseline + 12 M07-A operations = 70; 35 migrated / 74 designed tables; privacy and future-operation gates retained; source hash scope=" + ("backend image" if args.backend_only else "complete checkout"))
 
 
 if __name__ == "__main__":
