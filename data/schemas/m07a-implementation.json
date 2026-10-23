@@ -60,10 +60,6 @@
       "baseline_sha256": "85adfea36a00155bd2a9abeb7636d4e78df08ffa586bcfa74471e1b342c3727f",
       "sha256": "f24a50c69613336796c58df8a9d0aa42c2ef7e563f0eb0fc320b15aaf2d8ed1a"
     },
-    "apps/web/src/components/ui.tsx": {
-      "baseline_sha256": "45300a66f5a999b86a4737f2ae556411231509a9c6071e9e183bd44d0bb8028f",
-      "sha256": "8b4cfe8e8b62b25961664f6d0d94ee15405fea770088bd5688a27d8f2bfe3d10"
-    },
     "apps/web/src/features/work.tsx": {
       "baseline_sha256": "8b0c5f8490d9a1fbaa52d339ed5cfc13add3ddc711fce9ab64a0f631a6cb7877",
       "sha256": "bca7e223bd7a0dfb69b3a615657a825b18181097eb23455b13a1867411f24eb9"
@@ -166,7 +162,7 @@
     }
   },
   "new_source_sha256": {
-    "apps/web/browser/service-foundation.spec.ts": "8e71ad19ac0fb4edcffb2cd91a5e9ecd385804be58315843ec4f6fa7e0662883",
+    "apps/web/browser/service-foundation.spec.ts": "a68a784f268ec01a86fa6ce9999a950c5b32e90dbaaadebec79b95590e69a943",
     "apps/web/src/features/service-requests.tsx": "64ff3fe9644767e2c39f8e3ee87d24ca0c9cbe00207e9140d1514b3193ff9dcc",
     "apps/web/tools/browser-suite.mjs": "329656ff2ae36fa949d1a1a7720a9142eaf00c9bdd06bf7fe6eb6d96722a8781",
     "scripts/check_m07a_implementation.py": "efa9a2fd7b00f130048510b29c3a194579e2a426e2e8abcf7e67fe2f0c21a5ca",

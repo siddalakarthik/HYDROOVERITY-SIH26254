@@ -321,14 +321,12 @@ export function Select({
   defaultValue?: string;
   required?: boolean;
 }) {
-  const [selected, setSelected] = useState(defaultValue ?? "");
   return (
     <Field name={name} label={label}>
       <select
         id={name}
         name={name}
-        value={selected}
-        onChange={(event) => setSelected(event.target.value)}
+        defaultValue={defaultValue}
         required={required}
       >
         <option value="">Choose…</option>

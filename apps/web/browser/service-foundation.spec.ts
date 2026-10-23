@@ -102,15 +102,45 @@ test("M07-A real resident intake, supervisor triage, follow-up and authorized in
   [resident.page, supervisor.page, technician.page].forEach((page) =>
     page.on("pageerror", (e) => errors.push(e.message)),
   );
+  let releaseResources = () => {};
   try {
     const r = resident.page,
       s = supervisor.page,
       t = technician.page;
     const root = `/citizen/${fixture.org}/service-requests`;
     await r.goto(root);
+    // Delay real optional-resource requests until the resident has entered data.
+    // No response or appointment/service data is fabricated by this regression.
+    const resourcePaths = new Set([
+      `/api/v1/orgs/${fixture.org}/complaints`,
+      `/api/v1/orgs/${fixture.org}/service-requests`,
+    ]);
+    const resourceUrl = (url: URL) => resourcePaths.has(url.pathname);
+    const heldPaths = new Set<string>();
+    const resourcesReady = new Promise<void>((resolve) => {
+      releaseResources = resolve;
+    });
+    await r.route(resourceUrl, async (route) => {
+      if (
+        route.request().method() === "GET" &&
+        r.url().endsWith("/service-requests/new")
+      ) {
+        heldPaths.add(new URL(route.request().url()).pathname);
+        await resourcesReady;
+      }
+      await route.continue();
+    });
     await r
       .getByRole("link", { name: "Request utility service", exact: true })
       .click();
+    await expect(r).toHaveURL(new RegExp(`/service-requests/new$`));
+    await expect(
+      r.getByRole("heading", { name: "Request utility service", exact: true }),
+    ).toBeVisible();
+    await expect.poll(() => heldPaths.size).toBe(2);
+    const selectedCategory = await r
+      .getByLabel("Service category", { exact: true })
+      .elementHandle();
     await r
       .getByLabel("Service category", { exact: true })
       .selectOption("VISIBLE_LEAK");
@@ -126,6 +156,28 @@ test("M07-A real resident intake, supervisor triage, follow-up and authorized in
     await expect(r.getByLabel("Service category", { exact: true })).toHaveValue(
       "VISIBLE_LEAK",
     );
+    releaseResources();
+    await r
+      .getByText("Connect an existing report or closed request (optional)", {
+        exact: true,
+      })
+      .click();
+    await expect(r.getByLabel("Existing report (optional)")).toBeVisible();
+    await expect(
+      r.getByLabel("Closed request for a recurring concern (optional)"),
+    ).toBeVisible();
+    expect(await selectedCategory!.evaluate((el) => el.isConnected)).toBe(true);
+    await expect(r.getByLabel("Service category", { exact: true })).toHaveValue(
+      "VISIBLE_LEAK",
+    );
+    await expect(r.getByLabel("What needs attention?")).toHaveValue(
+      "SYNTHETIC M07-A browser request: visible water near a public landmark.",
+    );
+    await expect(r.getByLabel("Rough area or public landmark")).toHaveValue(
+      "SYNTHETIC public landmark only",
+    );
+    await expect(r.getByLabel("I understand this submits")).toBeChecked();
+    await r.unroute(resourceUrl);
     await accessible(r);
     await expect(r.getByLabel("Service category", { exact: true })).toHaveValue(
       "VISIBLE_LEAK",
@@ -308,6 +360,7 @@ test("M07-A real resident intake, supervisor triage, follow-up and authorized in
     ).toHaveCount(0);
     expect(errors).toEqual([]);
   } finally {
+    releaseResources();
     await Promise.all([
       resident.context.close(),
       supervisor.context.close(),
