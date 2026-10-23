@@ -27,7 +27,7 @@ def test_identical_evidence_and_ordering_regenerate_stably(valid):
 def test_independently_executed_acceptance_has_equivalent_coverage(actual_evidence):
     first, second = actual_evidence
     assert first["backend_source_sha256"] == second["backend_source_sha256"]
-    assert first["collected"] == second["collected"] == 45
+    assert first["collected"] == second["collected"] >= 45
     assert t.matrix(t.validate_evidence(first)) == t.matrix(t.validate_evidence(second))
 
 

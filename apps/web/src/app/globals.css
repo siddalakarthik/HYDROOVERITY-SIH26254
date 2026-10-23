@@ -846,6 +846,12 @@ textarea {
 .record-top h3 {
   font-size: 18px;
 }
+.tracking-reference,
+.record-list h2 {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  min-width: 0;
+}
 .record-list p {
   margin: 8px 0;
 }

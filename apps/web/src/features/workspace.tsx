@@ -34,6 +34,7 @@ import {
 } from "@/components/ui";
 import { Logout, membershipHome } from "./auth";
 import { CitizenReports, SupervisorComplaints } from "./complaints";
+import { ServiceRequests } from "./service-requests";
 import { Overview, Incidents, IncidentDetail } from "./incidents";
 import { WorkOrders, WorkDetail, VerificationPage } from "./work";
 import { NetworkPage } from "./network";
@@ -122,6 +123,12 @@ function useMemberships() {
   return state;
 }
 const navItems = [
+  {
+    suffix: "service-requests",
+    label: "Service requests",
+    roles: ["SUPERVISOR"],
+    icon: MessageSquare,
+  },
   {
     suffix: "overview",
     label: "Overview",
@@ -229,14 +236,16 @@ export function Workspace({ segments }: { segments: string[] }) {
   const root = `/app/${org}`;
   const common = { org, roles: member.roles };
   const breadcrumb =
-    scope === "citizen"
-      ? "My reports"
-      : tail[0] === "repairs"
-        ? "Repair verification"
-        : (navItems.find(
-            (item) =>
-              suffix === item.suffix || suffix.startsWith(item.suffix + "/"),
-          )?.label ?? "Workspace");
+    tail[0] === "service-requests"
+      ? "Service requests"
+      : scope === "citizen"
+        ? "My reports"
+        : tail[0] === "repairs"
+          ? "Repair verification"
+          : (navItems.find(
+              (item) =>
+                suffix === item.suffix || suffix.startsWith(item.suffix + "/"),
+            )?.label ?? "Workspace");
   const content = () => {
     if (route.status === "DEFERRED")
       return (
@@ -250,6 +259,14 @@ export function Workspace({ segments }: { segments: string[] }) {
             fabricated here.
           </Notice>
         </>
+      );
+    if (tail[0] === "service-requests")
+      return (
+        <ServiceRequests
+          org={org}
+          rest={tail.slice(1)}
+          staff={scope === "app"}
+        />
       );
     if (scope === "citizen")
       return <CitizenReports org={org} rest={tail.slice(1)} />;
@@ -311,6 +328,14 @@ export function Workspace({ segments }: { segments: string[] }) {
         <nav aria-label="Workspace navigation">
           {scope === "citizen" ? (
             <>
+              <Link
+                href={`/citizen/${org}/service-requests`}
+                aria-current={
+                  tail[0] === "service-requests" ? "page" : undefined
+                }
+              >
+                My service requests
+              </Link>
               <Link
                 href={`/citizen/${org}/reports`}
                 aria-current={suffix === "reports" ? "page" : undefined}

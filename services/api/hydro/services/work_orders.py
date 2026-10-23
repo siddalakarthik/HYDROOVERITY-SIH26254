@@ -68,6 +68,7 @@ class WorkOrderService(Service):
                 instructions=b["instructions"],
                 assignment_version=1,
                 workspace_mode=incident["workspace_mode"],
+                task_purpose=b.get("task_purpose", "REPAIR"),
             )
             return self.save("work_orders", row)
         require(
@@ -190,15 +191,23 @@ class WorkOrderService(Service):
                 "Technician transition is not allowed",
             )
         if target == "SUBMITTED_FOR_REVIEW":
+            investigation = parent["task_purpose"] != "REPAIR"
             require(
                 one(
                     c,
-                    "SELECT id FROM repair_records WHERE work_order_id=:w LIMIT 1",
+                    (
+                        "SELECT id FROM work_investigation_findings WHERE work_order_id=:w AND assignment_version=:av LIMIT 1"
+                        if investigation
+                        else "SELECT id FROM repair_records WHERE work_order_id=:w LIMIT 1"
+                    ),
                     w=parent["id"],
+                    av=parent["assignment_version"],
                 ),
                 409,
-                "REPAIR_REQUIRED",
-                "Repair receipt required before submission",
+                "FINDINGS_REQUIRED" if investigation else "REPAIR_REQUIRED",
+                "Current-assignment findings required before submission"
+                if investigation
+                else "Repair receipt required before submission",
             )
         row = change(c, "work_orders", parent["id"], status=target)
         insert(

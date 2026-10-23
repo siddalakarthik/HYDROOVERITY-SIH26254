@@ -65,6 +65,17 @@
         "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
         "services/api/tests/test_schema_boundaries.py::test_nul_text_rejected_without_changing_password_rules",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_concurrent_idempotency_and_competing_versions",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_empty_migration_roundtrip_and_populated_rollback_refusal",
+        "services/api/tests/test_service_foundation.py::test_service_intake_reference_owned_tracking_and_no_automatic_incident",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_service_ownership_role_tenant_csrf_and_privacy_gates",
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -97,6 +108,17 @@
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_concurrent_registration_has_one_identity_and_citizen_grant",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_concurrent_idempotency_and_competing_versions",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_empty_migration_roundtrip_and_populated_rollback_refusal",
+        "services/api/tests/test_service_foundation.py::test_service_intake_reference_owned_tracking_and_no_automatic_incident",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_service_ownership_role_tenant_csrf_and_privacy_gates",
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -140,6 +162,17 @@
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_concurrent_idempotency_and_competing_versions",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_empty_migration_roundtrip_and_populated_rollback_refusal",
+        "services/api/tests/test_service_foundation.py::test_service_intake_reference_owned_tracking_and_no_automatic_incident",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_service_ownership_role_tenant_csrf_and_privacy_gates",
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -203,6 +236,17 @@
         "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_concurrent_idempotency_and_competing_versions",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_empty_migration_roundtrip_and_populated_rollback_refusal",
+        "services/api/tests/test_service_foundation.py::test_service_intake_reference_owned_tracking_and_no_automatic_incident",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_service_ownership_role_tenant_csrf_and_privacy_gates",
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -230,6 +274,12 @@
         "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -304,6 +354,12 @@
         "services/api/tests/test_governance.py::test_membership_suspension_revokes_immediately_and_retry_denies",
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -435,6 +491,9 @@
         "services/api/tests/test_assets_contracts.py::test_supported_filters_and_unknown_filters_do_not_widen_scope",
         "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
@@ -1022,6 +1081,8 @@
       "positive_response_tests": [
         "services/api/tests/test_assets_contracts.py::test_manual_evidence_assessment_links_and_pagination",
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
@@ -1067,6 +1128,8 @@
       "status": "CODE_TESTED",
       "positive_response_tests": [
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
@@ -1112,6 +1175,8 @@
       "status": "CODE_TESTED",
       "positive_response_tests": [
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
@@ -1128,6 +1193,8 @@
       "table": null,
       "status": "CODE_TESTED",
       "positive_response_tests": [
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
       ]
@@ -1159,6 +1226,8 @@
       "status": "CODE_TESTED",
       "positive_response_tests": [
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_workflow_invalid_transitions_nested_tenant_ids_and_photos_disabled"
@@ -1191,6 +1260,8 @@
       "status": "CODE_TESTED",
       "positive_response_tests": [
         "services/api/tests/test_concurrency_resilience.py::test_worker_cannot_review_own_repair_even_with_supervisor_role",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
       ]
@@ -1267,6 +1338,7 @@
         "services/api/tests/test_concurrency_resilience.py::test_concurrent_business_retry_has_one_receipt_audit_event_and_mutation",
         "services/api/tests/test_concurrency_resilience.py::test_fault_rolls_back_business_history_outbox_and_receipt",
         "services/api/tests/test_concurrency_resilience.py::test_receipt_expiry_membership_revocation_and_parent_binding",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
       ]
@@ -1296,6 +1368,7 @@
       "table": null,
       "status": "CODE_TESTED",
       "positive_response_tests": [
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
       ]
@@ -1326,6 +1399,7 @@
       "table": null,
       "status": "CODE_TESTED",
       "positive_response_tests": [
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
       ]
@@ -1634,6 +1708,12 @@
         "services/api/tests/test_governance.py::test_recent_reauthentication_and_safe_audit",
         "services/api/tests/test_governance.py::test_role_editor_persists_reason_and_revokes_old_sessions",
         "services/api/tests/test_schema_boundaries.py::test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles",
+        "services/api/tests/test_service_foundation.py::test_findings_and_work_link_complete_without_fake_repair",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+        "services/api/tests/test_service_foundation.py::test_service_cursors_are_bound_to_owner_parent_filters_and_audience",
+        "services/api/tests/test_service_foundation.py::test_service_decline_withdrawal_and_linked_recurrence",
+        "services/api/tests/test_service_foundation.py::test_service_origin_complaint_ownership_versions_and_single_conversion",
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
         "services/api/tests/test_workflow.py::test_complete_followup_and_unlinked_private_review_are_retained",
         "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
         "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",

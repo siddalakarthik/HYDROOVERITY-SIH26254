@@ -20,6 +20,12 @@ class RepairService(Service):
                 {"w": parent["id"]},
             )
         require(
+            parent["task_purpose"] == "REPAIR",
+            409,
+            "REPAIR_PURPOSE_REQUIRED",
+            "Investigation work requires findings, not a repair receipt",
+        )
+        require(
             parent["status"] in {"IN_PROGRESS", "BLOCKED"},
             409,
             "INVALID_STATE",

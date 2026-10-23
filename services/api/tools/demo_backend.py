@@ -284,7 +284,7 @@ def main():
             certificate_verification="PASS",
             actual_api_process_restart="PASS",
             database=name,
-            migration_head="m03_004",
+            migration_head="m07_a_001",
         )
         (private / "https-workflow-summary.json").write_text(json.dumps(summary, indent=2))
         print(

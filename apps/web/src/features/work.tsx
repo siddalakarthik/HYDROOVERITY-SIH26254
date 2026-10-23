@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { date, label, orgPath, uuid, type Model } from "@/lib/api";
+import { ApiError, date, label, orgPath, uuid, type Model } from "@/lib/api";
 import {
   ActionForm,
   Badge,
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui";
 import { usePage, Pager } from "@/components/pagination";
 import { priorities, type ScopeProps } from "./incidents";
+import { InvestigationFindings } from "./service-requests";
 
 const options = (values: string[]) =>
   values.map((value) => ({ value, label: label(value) }));
@@ -211,7 +212,11 @@ export function WorkOrders({ org, roles }: ScopeProps) {
                       "priority",
                     ) as Model<"WorkOrderWrite">["priority"],
                     instructions: value(f, "instructions"),
-                  }) satisfies Model<"WorkOrderWrite">
+                    task_purpose: value(
+                      f,
+                      "task_purpose",
+                    ) as Model<"M07TaskPurpose">,
+                  }) satisfies Model<"M07FutureWorkOrderWrite">
                 }
                 onDone={(data) =>
                   router.push(
@@ -234,6 +239,12 @@ export function WorkOrders({ org, roles }: ScopeProps) {
                     .map((i) => ({ value: i.id, label: i.title }))}
                 />
                 <Select name="priority" label="Priority" options={priorities} />
+                <Select
+                  name="task_purpose"
+                  label="Work purpose"
+                  defaultValue="REPAIR"
+                  options={options(["REPAIR", "INVESTIGATION", "INSPECTION"])}
+                />
                 <TextArea
                   name="instructions"
                   label="Visit instructions"
@@ -269,6 +280,12 @@ export function WorkDetail({
     assigned ? `${path}/brief` : null,
   );
   const repairs = usePage<Model<"Repair">>(`${path}/repairs`);
+  const purpose = useResource<{ items: Model<"M07Findings">[] }>(
+    assigned ? `${path}/findings` : null,
+  );
+  const repairPurpose =
+    purpose.error instanceof ApiError &&
+    purpose.error.code === "FINDINGS_PURPOSE";
   const [recordedAt] = useState(utcInput);
   const refresh = () => {
     work.refresh();
@@ -459,6 +476,7 @@ export function WorkDetail({
                 </section>
               )}
             {assigned &&
+              repairPurpose &&
               ["IN_PROGRESS", "BLOCKED"].includes(work.data.status) && (
                 <section className="panel">
                   <h2>Record a repair receipt</h2>
@@ -493,6 +511,12 @@ export function WorkDetail({
                   </ActionForm>
                 </section>
               )}
+            <InvestigationFindings
+              org={org}
+              work={work.data}
+              assigned={assigned}
+              refresh={refresh}
+            />
             <section className="panel">
               <h2>Repair receipts</h2>
               <ResourceState {...repairs}>

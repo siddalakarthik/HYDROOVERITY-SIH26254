@@ -177,7 +177,13 @@ def test_populated_migration_roundtrip_and_failed_destructive_downgrade(env, mon
 
     before = snapshot()
     command.downgrade(cfg, "m03_001")
-    assert snapshot() == before
+    # Empty M07-A rollback removes only its capability catalogue entries.
+    current = snapshot()
+    assert {k: v for k, v in current.items() if k not in {"permissions", "role_permissions"}} == {
+        k: v for k, v in before.items() if k not in {"permissions", "role_permissions"}
+    }
+    assert current["permissions"] == before["permissions"] - 4
+    assert current["role_permissions"] == before["role_permissions"] - 8
     expect(env["client"]().request("GET", "/internal/health/ready"), 503)
     command.upgrade(cfg, "head")
     command.upgrade(cfg, "head")
@@ -187,7 +193,7 @@ def test_populated_migration_roundtrip_and_failed_destructive_downgrade(env, mon
         command.downgrade(cfg, "base")
     assert snapshot() == before
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m03_004"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_a_001"
 
 
 def test_unsafe_owner_principal_fails_closed_and_no_internal_error_secrets(env):

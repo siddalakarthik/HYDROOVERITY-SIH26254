@@ -24,6 +24,10 @@ const fixture = JSON.parse(
   pipe: string;
   junctions: string[];
 };
+const baseURL =
+  process.env.HYDRO_BROWSER_PORT === "9443"
+    ? "https://localhost:9443"
+    : "https://localhost:8443";
 const output = process.env.HYDRO_M04_SCREENSHOTS;
 if (!output)
   throw new Error("Set a dedicated synthetic screenshot output directory.");
@@ -113,7 +117,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   const contexts: BrowserContext[] = [];
   async function actor(email: string) {
     const c = await browser.newContext({
-      baseURL: "https://localhost:8443",
+      baseURL,
       viewport: { width: 1440, height: 1000 },
       ignoreHTTPSErrors: false,
     });
@@ -124,7 +128,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     return p;
   }
   const publicContext = await browser.newContext({
-    baseURL: "https://localhost:8443",
+    baseURL,
     viewport: { width: 1374, height: 1145 },
   });
   contexts.push(publicContext);
@@ -643,9 +647,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
   // the disposable browser cookie jar; no product code reads HttpOnly cookies.
   const csrfForOrigin = (await raw(supervisor, "/auth/csrf")).data
     .csrf_token as string;
-  const cookieForOrigin = (
-    await supervisor.context().cookies("https://localhost:8443")
-  )
+  const cookieForOrigin = (await supervisor.context().cookies(baseURL))
     .map((cookie) => `${cookie.name}=${cookie.value}`)
     .join("; ");
   const originStatus = await new Promise<number>((resolve, reject) => {
@@ -653,7 +655,7 @@ test("real resident-to-independent-review workflow, denial cases, mobile and acc
     const request = httpsRequest(
       {
         hostname: "localhost",
-        port: 8443,
+        port: Number(new URL(baseURL).port),
         path: "/api/v1/me",
         method: "PATCH",
         ca: readFileSync(
@@ -800,7 +802,7 @@ test("real account lifecycle, asset editing, offline recovery and map fallback",
   browser,
 }) => {
   const context = await browser.newContext({
-    baseURL: "https://localhost:8443",
+    baseURL,
     storageState: savedEngineer,
   });
   const engineer = await context.newPage();
@@ -955,7 +957,7 @@ test("real account lifecycle, asset editing, offline recovery and map fallback",
     ),
   ).toBeVisible();
   const visitor = await browser.newContext({
-    baseURL: "https://localhost:8443",
+    baseURL,
   });
   const page = await visitor.newPage();
   const email = `synthetic-browser-${crypto.randomUUID()}@example.invalid`;
@@ -1054,7 +1056,7 @@ test("real account lifecycle, asset editing, offline recovery and map fallback",
   await acknowledge();
   await signIn(newPassword);
   const adminContext = await browser.newContext({
-    baseURL: "https://localhost:8443",
+    baseURL,
     storageState: savedAdmin,
   });
   const admin = await adminContext.newPage();

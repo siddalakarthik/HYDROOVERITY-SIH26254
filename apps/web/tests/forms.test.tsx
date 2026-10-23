@@ -1,6 +1,12 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { expect, it, vi } from "vitest";
-import { ActionForm, Field, TextArea, ErrorPanel } from "../src/components/ui";
+import {
+  ActionForm,
+  Field,
+  TextArea,
+  ErrorPanel,
+  Select,
+} from "../src/components/ui";
 import { ApiError } from "../src/lib/api";
 it("provides unique persistent labels for repeated independent forms", () => {
   render(
@@ -19,6 +25,30 @@ it("supports multiline input with an accessible character counter", () => {
     target: { value: "Observed wetness" },
   });
   expect(screen.getByText("16 / 2000 characters")).toBeTruthy();
+});
+it("retains a deliberate selection when its options are refreshed", () => {
+  const { rerender } = render(
+    <Select
+      name="category"
+      label="Service category"
+      options={[{ value: "VISIBLE_LEAK", label: "Visible leak" }]}
+    />,
+  );
+  const select = screen.getByLabelText("Service category") as HTMLSelectElement;
+  fireEvent.change(select, { target: { value: "VISIBLE_LEAK" } });
+  rerender(
+    <Select
+      name="category"
+      label="Service category"
+      options={[
+        { value: "VISIBLE_LEAK", label: "Visible leak" },
+        { value: "LOW_PRESSURE", label: "Low pressure" },
+      ]}
+    />,
+  );
+  expect(
+    (screen.getByLabelText("Service category") as HTMLSelectElement).value,
+  ).toBe("VISIBLE_LEAK");
 });
 it("never renders a verification conflict as success", () => {
   render(

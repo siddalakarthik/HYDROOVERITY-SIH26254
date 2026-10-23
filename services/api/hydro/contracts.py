@@ -62,8 +62,13 @@ def validator(name):
 
 
 def body(name, value):
+    check = validator(name)
+    if name == "WorkOrderWrite" and isinstance(value, dict) and "task_purpose" in value:
+        from .service_contracts import validator as service_validator
+
+        check = service_validator("M07FutureWorkOrderWrite")
     require(
-        not list(validator(name).iter_errors(value)),
+        not list(check.iter_errors(value)),
         422,
         "INVALID_BODY",
         "Body does not match the operation contract",
@@ -72,7 +77,7 @@ def body(name, value):
         return (
             getattr(inputs, name)
             .model_validate_json(json.dumps(value, allow_nan=False))
-            .model_dump(mode="json")
+            .model_dump(mode="json", exclude_unset=name == "WorkOrderWrite")
         )
     except (ValidationError, ValueError, TypeError):
         require(False, 422, "INVALID_BODY", "Body does not match the operation contract")
@@ -108,4 +113,6 @@ def runtime_openapi():
         "sessionCookie": DESIGN["components"]["securitySchemes"]["sessionCookie"]
     }
     result["components"] = components
-    return result
+    from .service_contracts import extend_openapi
+
+    return extend_openapi(result)

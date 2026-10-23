@@ -28,7 +28,10 @@ export default defineConfig({
   reporter: [["list"]],
   use: {
     channel: channel as "chrome" | undefined,
-    baseURL: "https://localhost:8443",
+    baseURL:
+      process.env.HYDRO_BROWSER_PORT === "9443"
+        ? "https://localhost:9443"
+        : "https://localhost:8443",
     ignoreHTTPSErrors: false,
     trace: "off",
     video: "off",

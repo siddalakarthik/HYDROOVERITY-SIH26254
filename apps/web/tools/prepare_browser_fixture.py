@@ -42,8 +42,8 @@ def main():
     p.add_argument("--openssl", default="openssl")
     args = p.parse_args()
     name = args.confirm_disposable_database
-    if name != "hydro_disposable_m04":
-        raise SystemExit("This fixture resets only explicitly confirmed hydro_disposable_m04")
+    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser"}:
+        raise SystemExit("Only explicitly confirmed M04 or M07-A disposable browser fixtures may be reset")
     private = args.private_directory.resolve()
     if private.is_relative_to(ROOT):
         raise SystemExit("Private material must remain outside the checkout")
@@ -88,6 +88,12 @@ def main():
 
     fixture = {"app": app, "owner": owner, "settings": settings, "org": org, "admin": member, "other": other, "password": password, "client": client}
     flow = setup(fixture)
+    # Separate synthetic identities keep the service suite independent of M04's
+    # deliberate role revocation and reassignment scenarios.
+    _, service_tech = provision(fixture, "TECHNICIAN", "service-tech@example.invalid", flow["admin"])
+    provision(fixture, "SUPERVISOR", "service-supervisor@example.invalid", flow["admin"])
+    register(fixture, "service-citizen@example.invalid")
+    register(fixture, "service-stranger@example.invalid")
     _, other_tech = provision(fixture, "TECHNICIAN", "other-tech@example.invalid", flow["admin"])
     stranger = register(fixture, "other-citizen@example.invalid")
     login(fixture, "other-citizen@example.invalid", stranger)
@@ -110,6 +116,7 @@ def main():
     public_key = subprocess.check_output([args.openssl, "x509", "-in", str(certificate), "-pubkey", "-noout"])
     der = subprocess.check_output([args.openssl, "pkey", "-pubin", "-outform", "der"], input=public_key)
     browser = {"provenance": "SYNTHETIC_BROWSER_INTEGRATION_ONLY", "password": password, "other_complaint": stranger_report["id"], "org": str(org["id"]), "other_org": str(other["id"]), "zone": flow["zone"]["id"], "tech_membership": flow["tech_membership"]["id"], "other_tech_membership": other_tech["id"], "incident": incident["id"], "work_order": work["id"], "junctions": [j["id"] for j in junctions], "pipe": pipe["id"], "certificate_spki": base64.b64encode(hashlib.sha256(der).digest()).decode()}
+    browser["service_tech_membership"] = service_tech["id"]
     (private / "browser.json").write_text(json.dumps(browser))
     if os.name != "nt":
         for path in private.glob("*.json"):

@@ -162,6 +162,7 @@ class WorkOrderWrite(Input):
     incident_id: UUID = ...
     priority: Literal["LOW", "MEDIUM", "HIGH", "URGENT"] = Field(max_length=30)
     instructions: str = Field(min_length=5, max_length=4000)
+    task_purpose: Literal["REPAIR", "INVESTIGATION", "INSPECTION"] = "REPAIR"
 
 
 class AssignmentWrite(Input):

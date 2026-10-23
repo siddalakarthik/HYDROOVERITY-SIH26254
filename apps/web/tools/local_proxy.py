@@ -49,10 +49,10 @@ class Proxy(BaseHTTPRequestHandler):
             self.reject(413)
             return
         body = self.rfile.read(length)
-        upstream = http.client.HTTPConnection("127.0.0.1", 8000 if is_api else 3000, timeout=90)
+        upstream = http.client.HTTPConnection("127.0.0.1", self.server.api_port if is_api else self.server.web_port, timeout=90)
         allowed = {"content-type", "cookie", "origin", "sec-fetch-site", "x-csrf-token", "idempotency-key", "if-match", "accept", "rsc", "next-router-state-tree", "next-router-prefetch", "next-url"}
         headers = {key: val for key, val in self.headers.items() if key.lower() in allowed}
-        headers.update({"Host": "localhost:8443", "X-Forwarded-Proto": "https", "X-Forwarded-For": self.client_address[0]})
+        headers.update({"Host": f"localhost:{self.server.server_port}", "X-Forwarded-Proto": "https", "X-Forwarded-For": self.client_address[0]})
         try:
             upstream.request(self.command, self.path, body=body, headers=headers)
             response = upstream.getresponse()
@@ -81,10 +81,14 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--certificate", required=True, type=Path)
     p.add_argument("--key", required=True, type=Path)
+    p.add_argument("--port", type=int, default=8443, choices=range(1024, 65536))
+    p.add_argument("--api-port", type=int, default=8000, choices=range(1024, 65536))
+    p.add_argument("--web-port", type=int, default=3000, choices=range(1024, 65536))
     args = p.parse_args()
     if any(path.resolve().is_relative_to(ROOT) for path in [args.certificate, args.key]):
         raise SystemExit("Keep certificates and private keys outside the checkout")
-    server = ThreadingHTTPServer(("127.0.0.1", 8443), Proxy)
+    server = ThreadingHTTPServer(("127.0.0.1", args.port), Proxy)
+    server.api_port, server.web_port = args.api_port, args.web_port
     context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     context.minimum_version = ssl.TLSVersion.TLSv1_2
     context.load_cert_chain(args.certificate, args.key)

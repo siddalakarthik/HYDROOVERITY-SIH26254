@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HYDROOVERITY implemented M03 API",
+    "title": "HYDROOVERITY implemented M03 + M07-A API",
     "version": "0.1.0",
     "description": "M02 review contract for issue #2. No service is implemented or deployed. API revision is not a project product-version name."
   },
@@ -2297,6 +2297,1797 @@
         "required": [
           "csrf_token",
           "expires_at"
+        ]
+      },
+      "M07TaskPurpose": {
+        "type": "string",
+        "enum": [
+          "REPAIR",
+          "INVESTIGATION"
+        ]
+      },
+      "M07FutureWorkOrderWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "incident_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "string",
+            "maxLength": 30,
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "URGENT"
+            ]
+          },
+          "instructions": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 5
+          },
+          "task_purpose": {
+            "$ref": "#/components/schemas/M07TaskPurpose"
+          }
+        },
+        "required": [
+          "incident_id",
+          "priority",
+          "instructions"
+        ]
+      },
+      "M07Page_Findings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07Findings"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of"
+        ]
+      },
+      "M07Findings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "recorded_by_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "findings": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 4000
+          },
+          "no_repair_reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "attachment_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 10,
+            "uniqueItems": true
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provenance": {
+            "type": "string",
+            "const": "MANUAL"
+          }
+        },
+        "required": [
+          "id",
+          "work_order_id",
+          "recorded_by_membership_id",
+          "observed_at",
+          "received_at",
+          "findings",
+          "no_repair_reason",
+          "attachment_ids",
+          "supersedes_id",
+          "provenance"
+        ]
+      },
+      "M07FindingsWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignment_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "findings": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 4000
+          },
+          "no_repair_reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "attachment_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 10,
+            "uniqueItems": true
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "operation_id",
+          "assignment_version",
+          "observed_at",
+          "findings",
+          "no_repair_reason",
+          "attachment_ids",
+          "supersedes_id"
+        ]
+      },
+      "M07FindingsReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/M07Findings"
+          },
+          "work_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "receipt",
+          "resource",
+          "work_version"
+        ]
+      },
+      "M07WorkLinkWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_work_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "purpose": {
+            "$ref": "#/components/schemas/M07TaskPurpose"
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "work_order_id",
+          "expected_work_version",
+          "purpose",
+          "internal_reason"
+        ]
+      },
+      "M07WorkLink": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service_request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "purpose": {
+            "$ref": "#/components/schemas/M07TaskPurpose"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "id",
+          "service_request_id",
+          "work_order_id",
+          "purpose",
+          "created_at",
+          "version"
+        ]
+      },
+      "M07PublicUpdateWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "event_kind": {
+            "type": "string",
+            "enum": [
+              "INFORMATION",
+              "PROGRESS",
+              "CORRECTION"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "supersedes_update_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "event_kind",
+          "message",
+          "supersedes_update_id"
+        ]
+      },
+      "M07PublicUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "event_kind": {
+            "type": "string",
+            "enum": [
+              "INFORMATION",
+              "PROGRESS",
+              "CORRECTION",
+              "SERVICE",
+              "APPOINTMENT",
+              "VISIT"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "sequence",
+          "event_kind",
+          "message",
+          "occurred_at",
+          "published_at",
+          "appointment_id",
+          "supersedes_id"
+        ]
+      },
+      "M07ServiceTransition": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "WITHDRAW",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "REQUEST_CANCELLATION",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "CANCEL",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "expected_work_versions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2147483647
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "version"
+                  ]
+                },
+                "maxItems": 20,
+                "uniqueItems": true
+              },
+              "child_dispositions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "appointment_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "expected_version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2147483647
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "CANCEL",
+                        "KEEP_FOR_SHARED_WORK"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "appointment_id",
+                    "expected_version",
+                    "action"
+                  ]
+                },
+                "maxItems": 20,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message",
+              "internal_reason",
+              "expected_work_versions",
+              "child_dispositions"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "START_SERVICE",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message",
+              "internal_reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "REQUEST_REVIEW",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message",
+              "internal_reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "RETURN_TO_WORK",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message",
+              "internal_reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {
+                "const": "CLOSE",
+                "type": "string"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "expected_work_versions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "work_order_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2147483647
+                    }
+                  },
+                  "required": [
+                    "work_order_id",
+                    "version"
+                  ]
+                },
+                "maxItems": 20,
+                "uniqueItems": true
+              },
+              "child_dispositions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "appointment_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "expected_version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2147483647
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "CANCEL",
+                        "KEEP_FOR_SHARED_WORK"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "appointment_id",
+                    "expected_version",
+                    "action"
+                  ]
+                },
+                "maxItems": 20,
+                "uniqueItems": true
+              },
+              "service_outcome": {
+                "$ref": "#/components/schemas/M07ServiceOutcome"
+              }
+            },
+            "required": [
+              "action",
+              "reason_code",
+              "public_message",
+              "internal_reason",
+              "expected_work_versions",
+              "child_dispositions",
+              "service_outcome"
+            ]
+          }
+        ]
+      },
+      "M07ServiceOutcome": {
+        "type": "string",
+        "enum": [
+          "ADVICE_PROVIDED",
+          "VISIT_COMPLETED",
+          "REPAIR_REPORTED",
+          "REFERRED",
+          "NO_ACTION_WITH_REASON"
+        ]
+      },
+      "M07N08Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07ServiceCaseCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07ServiceCaseStaff"
+          }
+        ]
+      },
+      "M07ServiceCaseStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tracking_reference": {
+            "type": "string",
+            "minLength": 6,
+            "maxLength": 40
+          },
+          "category": {
+            "$ref": "#/components/schemas/M07ServiceCategory"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000
+          },
+          "coarse_area": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07ServiceStatus"
+          },
+          "cancellation_pending": {
+            "type": "boolean"
+          },
+          "service_outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07ServiceOutcome"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "verification_summary": {
+            "$ref": "#/components/schemas/M07VerificationSummary"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "own_origin_complaint_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "own_follow_up_of_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferences": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07Preferences"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latest_public_update": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07PublicUpdate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentCitizen"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "allowed_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "owner_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "work_links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07WorkLink"
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "dispatch_health": {
+            "type": "string",
+            "enum": [
+              "UNCONFIGURED",
+              "UNPLANNED_WORK",
+              "READY",
+              "REVIEW_REQUIRED"
+            ]
+          },
+          "internal_event_summary": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "id",
+          "tracking_reference",
+          "category",
+          "description",
+          "coarse_area",
+          "status",
+          "cancellation_pending",
+          "service_outcome",
+          "verification_summary",
+          "created_at",
+          "updated_at",
+          "accepted_at",
+          "version",
+          "own_origin_complaint_id",
+          "own_follow_up_of_id",
+          "preferences",
+          "latest_public_update",
+          "current_appointment",
+          "allowed_actions",
+          "owner_membership_id",
+          "work_links",
+          "dispatch_health",
+          "internal_event_summary"
+        ]
+      },
+      "M07AppointmentCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service_request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07AppointmentStatus"
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "public_visit_message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cancellation_pending": {
+            "type": "boolean"
+          },
+          "replaces_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "allowed_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 10,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "service_request_id",
+          "status",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "timezone",
+          "public_visit_message",
+          "cancellation_pending",
+          "replaces_id",
+          "version",
+          "created_at",
+          "updated_at",
+          "allowed_actions"
+        ]
+      },
+      "M07AppointmentStatus": {
+        "type": "string",
+        "enum": [
+          "CONFIRMED",
+          "CHECKED_IN",
+          "VISIT_FINISHED",
+          "NO_ACCESS",
+          "ABORTED",
+          "NO_SHOW",
+          "CANCELLED",
+          "SUPERSEDED"
+        ]
+      },
+      "M07Preferences": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "intervals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07Interval"
+            },
+            "maxItems": 5,
+            "uniqueItems": true
+          },
+          "access_needs": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "version",
+          "intervals",
+          "access_needs",
+          "updated_at"
+        ]
+      },
+      "M07Interval": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "start_at",
+          "end_at"
+        ]
+      },
+      "M07VerificationSummary": {
+        "type": "string",
+        "enum": [
+          "NOT_APPLICABLE",
+          "PENDING_REVIEW",
+          "NOT_VERIFIABLE"
+        ]
+      },
+      "M07ServiceStatus": {
+        "type": "string",
+        "enum": [
+          "SUBMITTED",
+          "UNDER_REVIEW",
+          "AWAITING_RESIDENT",
+          "ACCEPTED",
+          "SERVICE_IN_PROGRESS",
+          "SERVICE_REVIEW_PENDING",
+          "SERVICE_CLOSED",
+          "DECLINED",
+          "WITHDRAWN",
+          "CANCELLED"
+        ]
+      },
+      "M07ServiceCategory": {
+        "type": "string",
+        "enum": [
+          "VISIBLE_LEAK",
+          "LOW_PRESSURE",
+          "SERVICE_INTERRUPTION"
+        ]
+      },
+      "M07ServiceCaseCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tracking_reference": {
+            "type": "string",
+            "minLength": 6,
+            "maxLength": 40
+          },
+          "category": {
+            "$ref": "#/components/schemas/M07ServiceCategory"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000
+          },
+          "coarse_area": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07ServiceStatus"
+          },
+          "cancellation_pending": {
+            "type": "boolean"
+          },
+          "service_outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07ServiceOutcome"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "verification_summary": {
+            "$ref": "#/components/schemas/M07VerificationSummary"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "accepted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "own_origin_complaint_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "own_follow_up_of_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "preferences": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07Preferences"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latest_public_update": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07PublicUpdate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentCitizen"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "allowed_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "tracking_reference",
+          "category",
+          "description",
+          "coarse_area",
+          "status",
+          "cancellation_pending",
+          "service_outcome",
+          "verification_summary",
+          "created_at",
+          "updated_at",
+          "accepted_at",
+          "version",
+          "own_origin_complaint_id",
+          "own_follow_up_of_id",
+          "preferences",
+          "latest_public_update",
+          "current_appointment",
+          "allowed_actions"
+        ]
+      },
+      "M07Triage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target": {
+            "type": "string",
+            "enum": [
+              "UNDER_REVIEW",
+              "AWAITING_RESIDENT",
+              "ACCEPTED",
+              "DECLINED"
+            ]
+          },
+          "public_message": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 1000
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "target",
+          "public_message",
+          "internal_reason"
+        ]
+      },
+      "M07Followup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "operation_id",
+          "message"
+        ]
+      },
+      "M07ReferenceLookup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tracking_reference": {
+            "type": "string",
+            "minLength": 6,
+            "maxLength": 40,
+            "pattern": "^HYS-[0-9A-HJKMNP-TV-Z]{26}$"
+          }
+        },
+        "required": [
+          "tracking_reference"
+        ]
+      },
+      "M07ReferenceResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tracking_reference": {
+            "type": "string",
+            "minLength": 6,
+            "maxLength": 40
+          }
+        },
+        "required": [
+          "id",
+          "tracking_reference"
+        ]
+      },
+      "M07N04Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07InternalTimelinePage"
+          },
+          {
+            "$ref": "#/components/schemas/M07PublicTimelinePage"
+          }
+        ]
+      },
+      "M07PublicTimelinePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07PublicUpdate"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "audience": {
+            "const": "PUBLIC",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of",
+          "audience"
+        ]
+      },
+      "M07InternalTimelinePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07InternalEvent"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "audience": {
+            "const": "INTERNAL",
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of",
+          "audience"
+        ]
+      },
+      "M07InternalEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "event_kind": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "actor_membership_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "received_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "observed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          },
+          "resource_type": {
+            "type": "string",
+            "enum": [
+              "SERVICE",
+              "APPOINTMENT",
+              "WORK",
+              "FEEDBACK",
+              "ATTACHMENT"
+            ]
+          },
+          "resource_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "previous_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "resulting_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "supersedes_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "sequence",
+          "event_kind",
+          "actor_membership_id",
+          "received_at",
+          "observed_at",
+          "internal_reason",
+          "resource_type",
+          "resource_id",
+          "previous_version",
+          "resulting_version",
+          "supersedes_id"
+        ]
+      },
+      "M07N03Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07ServiceCaseCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07ServiceCaseStaff"
+          }
+        ]
+      },
+      "M07N02Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07Page_ServiceCaseCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07Page_ServiceCaseStaff"
+          }
+        ]
+      },
+      "M07Page_ServiceCaseStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07ServiceCaseStaff"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of"
+        ]
+      },
+      "M07Page_ServiceCaseCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07ServiceCaseCitizen"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of"
+        ]
+      },
+      "M07ServiceCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "$ref": "#/components/schemas/M07ServiceCategory"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000
+          },
+          "coarse_area": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200
+          },
+          "origin_complaint_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_complaint_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "follow_up_of_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "service_privacy_acknowledged": {
+            "const": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "category",
+          "description",
+          "coarse_area",
+          "origin_complaint_id",
+          "expected_complaint_version",
+          "follow_up_of_id",
+          "service_privacy_acknowledged"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "origin_complaint_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "origin_complaint_id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "expected_complaint_version": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                },
+                "follow_up_of_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "expected_complaint_version": {
+                  "type": "null"
+                }
+              }
+            }
+          }
         ]
       }
     },
@@ -7898,7 +9689,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WorkOrderWrite"
+                "$ref": "#/components/schemas/M07FutureWorkOrderWrite"
               }
             }
           }
@@ -10131,6 +11922,1690 @@
         "x-authorization-guards": [
           "TENANT"
         ]
+      }
+    },
+    "/orgs/{organization_id}/service-requests": {
+      "post": {
+        "operationId": "m07_n01",
+        "summary": "N01 POST /service-requests \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": [
+          "CITIZEN"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07ServiceCaseCitizen"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07ServiceCreate"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "m07_n02",
+        "summary": "N02 GET /service-requests \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/M07ServiceStatus"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/M07ServiceCategory"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "x-roles": [
+          "CITIZEN",
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N02Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07Page_ServiceCaseCitizen",
+          "SUPERVISOR": "M07Page_ServiceCaseStaff"
+        },
+        "x-response-variants": [
+          "M07Page_ServiceCaseCitizen",
+          "M07Page_ServiceCaseStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}": {
+      "get": {
+        "operationId": "m07_n03",
+        "summary": "N03 GET /service-requests/{request_id} \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": [
+          "CITIZEN",
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              },
+              "ETag": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N03Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07ServiceCaseCitizen",
+          "SUPERVISOR": "M07ServiceCaseStaff"
+        },
+        "x-response-variants": [
+          "M07ServiceCaseCitizen",
+          "M07ServiceCaseStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/timeline": {
+      "get": {
+        "operationId": "m07_n04",
+        "summary": "N04 GET /service-requests/{request_id}/timeline \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "INTERNAL"
+              ]
+            },
+            "description": "Default PUBLIC. INTERNAL is SUPERVISOR-only; denied to citizen even when owned."
+          }
+        ],
+        "x-roles": [
+          "CITIZEN",
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N04Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07PublicTimelinePage",
+          "SUPERVISOR": "M07InternalTimelinePage or M07PublicTimelinePage by audience"
+        },
+        "x-response-variants": [
+          "M07InternalTimelinePage",
+          "M07PublicTimelinePage"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/service-request-lookups": {
+      "post": {
+        "operationId": "m07_n05",
+        "summary": "N05 POST /service-request-lookups \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          }
+        ],
+        "x-roles": [
+          "CITIZEN",
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY_POST",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07ReferenceResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07ReferenceLookup"
+              }
+            }
+          }
+        },
+        "x-idempotency-header": "REJECT_400"
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/follow-ups": {
+      "post": {
+        "operationId": "m07_n06",
+        "summary": "N06 POST /service-requests/{request_id}/follow-ups \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "CITIZEN"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Receipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07Followup"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/triage": {
+      "post": {
+        "operationId": "m07_n07",
+        "summary": "N07 POST /service-requests/{request_id}/triage \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07ServiceCaseStaff"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07Triage"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/transitions": {
+      "post": {
+        "operationId": "m07_n08",
+        "summary": "N08 POST /service-requests/{request_id}/transitions \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "CITIZEN",
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N08Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07ServiceTransition"
+              }
+            }
+          }
+        },
+        "x-action-roles": {
+          "WITHDRAW": [
+            "CITIZEN"
+          ],
+          "REQUEST_CANCELLATION": [
+            "CITIZEN"
+          ],
+          "CANCEL": [
+            "SUPERVISOR"
+          ],
+          "START_SERVICE": [
+            "SUPERVISOR"
+          ],
+          "REQUEST_REVIEW": [
+            "SUPERVISOR"
+          ],
+          "RETURN_TO_WORK": [
+            "SUPERVISOR"
+          ],
+          "CLOSE": [
+            "SUPERVISOR"
+          ]
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07ServiceCaseCitizen",
+          "SUPERVISOR": "M07ServiceCaseStaff"
+        },
+        "x-response-variants": [
+          "M07ServiceCaseCitizen",
+          "M07ServiceCaseStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/public-updates": {
+      "post": {
+        "operationId": "m07_n09",
+        "summary": "N09 POST /service-requests/{request_id}/public-updates \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07PublicUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07PublicUpdateWrite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/work-order-links": {
+      "post": {
+        "operationId": "m07_n13",
+        "summary": "N13 POST /service-requests/{request_id}/work-order-links \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "SUPERVISOR"
+        ],
+        "x-required-permission": "service_requests.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07WorkLink"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07WorkLinkWrite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/work-orders/{work_order_id}/findings": {
+      "post": {
+        "operationId": "m07_n43",
+        "summary": "N43 POST /work-orders/{work_order_id}/findings \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "work_order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current WORK_ORDER resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": [
+          "TECHNICIAN"
+        ],
+        "x-required-permission": "investigation_findings.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "TECHNICIAN_ASSIGNED"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": "WORK_ORDER",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07FindingsReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07FindingsWrite"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "m07_n44",
+        "summary": "N44 GET /work-orders/{work_order_id}/findings \u2014 M07-A",
+        "tags": [
+          "M07 M07-A"
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "work_order_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          }
+        ],
+        "x-roles": [
+          "SUPERVISOR",
+          "ENGINEER",
+          "TECHNICIAN"
+        ],
+        "x-required-permission": "investigation_findings.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "TECHNICIAN_ASSIGNED"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_A",
+        "x-m07-phase": "M07-A",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Page_Findings"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
       }
     }
   }
