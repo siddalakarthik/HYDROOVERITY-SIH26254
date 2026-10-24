@@ -330,7 +330,7 @@
     },
     "services/api/hydro/db.py": {
       "baseline_sha256": "ad6f1bc840721460aad3753742445c734428477c89708b50f4aac40fc87af3b3",
-      "sha256": "78e6a9ae49879d883f90242583b221e5dae6613b700782e8d7b21a922753cbf8"
+      "sha256": "ad5a2b9a0c589b8a3bad934e3cc2dc7ebdf6d294bb812a1ec729965bb439f4e8"
     },
     "services/api/hydro/dispatch.py": {
       "baseline_sha256": "6dfc70570efd3e5a9fb7835bc912946bb7c05070516140b0c4bbcfa4ab306763",
@@ -358,11 +358,11 @@
     },
     "services/api/tests/test_concurrency_resilience.py": {
       "baseline_sha256": "226e4a3965f48d8923bd4f022a4bad3fc3e356c4f94e9770db215a0b7a383e72",
-      "sha256": "e8af150bd6a13ad4341dd1defec684db32fb8e42da8d2e79b27c1969539cd72e"
+      "sha256": "e39c299f2f4d9218b952a5ae0822a921d6df79eb63a1b423cce9556947530498"
     },
     "services/api/tests/test_foundation.py": {
       "baseline_sha256": "e0249dbd751dbff298913a4bdcd0f1f7413f94b4fdd70feed5718eced1e63a20",
-      "sha256": "ba6c92968c4d5957bcd9b67a3d86f7ed411b1466ab228e9225bcdc06e8c8d13d"
+      "sha256": "cc8e183000ba761453382fd819f85635253669c5ef71856e4f57594c1e866bc8"
     },
     "services/api/tests/test_schema_boundaries.py": {
       "baseline_sha256": "a12f48ffdfe86fc254c7a27a644baa24088cabaed5f32ddfc9d7a93b8bdbca6f",
@@ -370,7 +370,7 @@
     },
     "services/api/tests/test_workflow.py": {
       "baseline_sha256": "d8fe583fabb9dab5892ea769a421172c57af131ec9cbee2140224f2920780396",
-      "sha256": "ac0c0974fc14c32d4d5312f141fc4c1a20e9b6a425aa5a7c54650a0cab6d0e90"
+      "sha256": "55af1a5a424576b784ae2c16b62e8b022dab918e38816d49e77b00b4ac3d0cb0"
     },
     "services/api/tools/verify_backend.py": {
       "baseline_sha256": "57498d6ad8af65d209f8104b37739a97f036885fa0505be98398fb9354bf1977",

@@ -238,10 +238,14 @@ class Scheduler:
         if op == "m07_n27":
             require(
                 b["max_daily_minutes"] >= parent["max_daily_minutes"]
-                or parent["calendar_version"] == 1,
+                or not one(
+                    c,
+                    "SELECT hydro_dispatch_has_commitments(:m) AS busy",
+                    m=parent["membership_id"],
+                )["busy"],
                 409,
                 "REPLAN_REQUIRED",
-                "Lowering capacity after calendar use requires reviewed governance controls; existing commitments are preserved",
+                "Replan active visits before lowering technician capacity",
             )
             row = write(
                 c,

@@ -447,6 +447,28 @@ def test_booking_reschedule_cancellation_and_role_projections(env):
     receipt = confirm(f, row)
     first = receipt["appointment"]
     assert first["status"] == "CONFIRMED"
+    from hydro.db import context
+
+    with env["owner"].begin() as c:
+        admin_user = one(
+            c, "SELECT id FROM users WHERE email_normalized='admin-a@example.invalid'"
+        )["id"]
+        citizen_user = one(
+            c, "SELECT id FROM users WHERE email_normalized='citizen@example.invalid'"
+        )["id"]
+        definition = one(
+            c,
+            "SELECT prosecdef,proconfig,NOT EXISTS(SELECT 1 FROM aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a WHERE a.grantee=0 AND a.privilege_type='EXECUTE') AS public_denied,has_function_privilege('hydro_app',p.oid,'EXECUTE') AS app_allowed FROM pg_proc p WHERE p.oid='hydro_dispatch_has_commitments(uuid)'::regprocedure",
+        )
+        assert definition["prosecdef"] and definition["public_denied"] and definition["app_allowed"]
+        assert definition["proconfig"] == ["search_path=pg_catalog, public"]
+    with env["app"].state.engine.begin() as c:
+        context(c, admin_user, env["org"]["id"])
+        assert one(c, "SELECT hydro_dispatch_has_commitments(NULL) AS busy")["busy"] is True
+        context(c, citizen_user, env["org"]["id"])
+        assert one(c, "SELECT hydro_dispatch_has_commitments(NULL) AS busy")["busy"] is False
+        context(c, admin_user, env["other"]["id"])
+        assert one(c, "SELECT hydro_dispatch_has_commitments(NULL) AS busy")["busy"] is False
     profile = expect(f["admin"].request("GET", base + "/dispatch/technicians"), 200)["items"][0]
     expect(
         mutate(
