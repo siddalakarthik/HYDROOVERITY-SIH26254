@@ -1234,6 +1234,384 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/service-requests/{request_id}/appointment-windows": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N14 GET /service-requests/{request_id}/appointment-windows — M07-B */
+        get: operations["m07_n14"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/appointment-requests": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N16 GET /service-requests/{request_id}/appointment-requests — M07-B */
+        get: operations["m07_n16"];
+        put?: never;
+        /** N15 POST /service-requests/{request_id}/appointment-requests — M07-B */
+        post: operations["m07_n15"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N17 GET /appointment-requests/{appointment_request_id} — M07-B */
+        get: operations["m07_n17"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/decisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N18 POST /appointment-requests/{appointment_request_id}/decisions — M07-B */
+        post: operations["m07_n18"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/accept-alternative": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N19 POST /appointment-requests/{appointment_request_id}/accept-alternative — M07-B */
+        post: operations["m07_n19"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/withdrawals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N20 POST /appointment-requests/{appointment_request_id}/withdrawals — M07-B */
+        post: operations["m07_n20"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/appointments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N21 GET /service-requests/{request_id}/appointments — M07-B */
+        get: operations["m07_n21"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointments/{appointment_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N22 GET /appointments/{appointment_id} — M07-B */
+        get: operations["m07_n22"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointments/{appointment_id}/cancellations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N23 POST /appointments/{appointment_id}/cancellations — M07-B */
+        post: operations["m07_n23"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/appointments/{appointment_id}/visit-events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N24 POST /appointments/{appointment_id}/visit-events — M07-B */
+        post: operations["m07_n24"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/technicians": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N25 GET /dispatch/technicians — M07-B */
+        get: operations["m07_n25"];
+        put?: never;
+        /** N26 POST /dispatch/technicians — M07-B */
+        post: operations["m07_n26"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/technicians/{membership_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** N27 PATCH /dispatch/technicians/{membership_id} — M07-B */
+        patch: operations["m07_n27"];
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/technicians/{membership_id}/calendar": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N28 GET /dispatch/technicians/{membership_id}/calendar — M07-B */
+        get: operations["m07_n28"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/shifts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N29 POST /dispatch/shifts — M07-B */
+        post: operations["m07_n29"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/shifts/{shift_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** N30 PATCH /dispatch/shifts/{shift_id} — M07-B */
+        patch: operations["m07_n30"];
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/blocks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N31 POST /dispatch/blocks — M07-B */
+        post: operations["m07_n31"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/blocks/{block_id}/release": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N32 POST /dispatch/blocks/{block_id}/release — M07-B */
+        post: operations["m07_n32"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/blocks/{block_id}/replacements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N33 POST /dispatch/blocks/{block_id}/replacements — M07-B */
+        post: operations["m07_n33"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/appointment-windows": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N34 GET /dispatch/appointment-windows — M07-B */
+        get: operations["m07_n34"];
+        put?: never;
+        /** N35 POST /dispatch/appointment-windows — M07-B */
+        post: operations["m07_n35"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/appointment-windows/{window_id}/withdrawals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** N36 POST /dispatch/appointment-windows/{window_id}/withdrawals — M07-B */
+        post: operations["m07_n36"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/workload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N37 GET /dispatch/workload — M07-B */
+        get: operations["m07_n37"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/dispatch/policy": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N38 GET /dispatch/policy — M07-B */
+        get: operations["m07_n38"];
+        /** N39 PUT /dispatch/policy — M07-B */
+        put: operations["m07_n39"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1804,7 +2182,9 @@ export interface components {
             expected_work_version: number;
             purpose: components["schemas"]["M07TaskPurpose"];
             internal_reason: string;
-        };
+            dispatch_service_area_code?: string | null;
+            dispatch_required_skill_codes?: string[] | null;
+        } & unknown;
         M07WorkLink: {
             /** Format: uuid */
             id: string;
@@ -1816,6 +2196,8 @@ export interface components {
             /** Format: date-time */
             created_at: string;
             version: number;
+            dispatch_service_area_code?: string | null;
+            dispatch_required_skill_codes?: string[] | null;
         };
         M07PublicUpdateWrite: {
             /** @enum {string} */
@@ -2521,6 +2903,546 @@ export interface components {
             /** Next Offset */
             next_offset: number | null;
         };
+        M07DispatchPolicyWrite: {
+            booking_enabled: boolean;
+            horizon_days: number;
+            minimum_lead_minutes: number;
+            free_cancel_before_minutes: number;
+            max_arrival_width_minutes: number;
+            request_expiry_hours: number;
+            offer_expiry_hours: number;
+            max_daily_minutes: number;
+            minimum_before_buffer_minutes: number;
+            minimum_after_buffer_minutes: number;
+            allowed_duration_minutes: number[];
+            reason: string;
+        };
+        M07DispatchPolicy: {
+            version: number;
+            booking_enabled: boolean;
+            configured: boolean;
+            horizon_days: number | null;
+            minimum_lead_minutes: number | null;
+            free_cancel_before_minutes: number | null;
+            max_arrival_width_minutes: number | null;
+            request_expiry_hours: number | null;
+            offer_expiry_hours: number | null;
+            max_daily_minutes: number | null;
+            minimum_before_buffer_minutes: number | null;
+            minimum_after_buffer_minutes: number | null;
+            allowed_duration_minutes: number[];
+            /** Format: date-time */
+            updated_at: string;
+        };
+        M07WorkloadSnapshot: {
+            /** Format: date-time */
+            as_of: string;
+            /** Format: date-time */
+            from: string;
+            /** Format: date-time */
+            to: string;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            items: components["schemas"]["M07WorkloadRow"][];
+            next_cursor: string | null;
+        };
+        M07WorkloadRow: {
+            /** Format: uuid */
+            technician_membership_id: string;
+            confirmed_appointments: number;
+            planned_occupied_minutes: number;
+            unplanned_work_count: number;
+            overdue_work_count: number;
+            available_shift_minutes: number;
+            known_load_ratio: number | null;
+            /** @enum {string} */
+            scheduling_health: "READY" | "UNPLANNED_WORK" | "REVIEW_REQUIRED" | "UNCONFIGURED";
+        };
+        M07WindowWithdraw: {
+            expected_calendar_version: number;
+            reason: string;
+        };
+        M07StaffWindow: {
+            /** Format: uuid */
+            id: string;
+            version: number;
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            policy_version: number;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            confirmation_required: true;
+            /** Format: uuid */
+            technician_membership_id: string;
+            calendar_version: number;
+            category_codes: components["schemas"]["M07ServiceCategory"][];
+            service_area_codes: string[];
+            before_buffer_minutes: number;
+            after_buffer_minutes: number;
+            /** @enum {string} */
+            state: "PUBLISHED" | "WITHDRAWN";
+            occupied_interval: components["schemas"]["M07Interval"];
+        };
+        M07WindowPublish: {
+            /** Format: uuid */
+            technician_membership_id: string;
+            expected_calendar_version: number;
+            expected_policy_version: number;
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            before_buffer_minutes: number;
+            after_buffer_minutes: number;
+            category_codes: components["schemas"]["M07ServiceCategory"][];
+            service_area_codes: string[];
+            reason: string;
+        };
+        M07Page_StaffWindow: {
+            items: components["schemas"]["M07StaffWindow"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07BlockReplace: {
+            expected_calendar_version: number;
+            expected_work_version: number | null;
+            reason: string;
+            interval: components["schemas"]["M07Interval"];
+        };
+        M07DispatchBlock: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            technician_membership_id: string;
+            /** @enum {string} */
+            kind: "UNAVAILABLE" | "WORK_BLOCK";
+            interval: components["schemas"]["M07Interval"];
+            work_order_id: string | null;
+            version: number;
+            calendar_version: number;
+        };
+        M07BlockRelease: {
+            expected_calendar_version: number;
+            expected_work_version: number | null;
+            reason: string;
+        };
+        M07DispatchBlockWrite: {
+            /** Format: uuid */
+            technician_membership_id: string;
+            expected_calendar_version: number;
+            /** @enum {string} */
+            kind: "UNAVAILABLE" | "WORK_BLOCK";
+            interval: components["schemas"]["M07Interval"];
+            work_order_id: string | null;
+            expected_work_version: number | null;
+            reason_code: string;
+            internal_reason: string;
+        } & unknown;
+        M07ShiftChange: {
+            interval: components["schemas"]["M07Interval"];
+            /** @enum {string} */
+            status: "ACTIVE" | "WITHDRAWN";
+            expected_calendar_version: number;
+            reason: string;
+        };
+        M07Shift: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            technician_membership_id: string;
+            interval: components["schemas"]["M07Interval"];
+            /** @enum {string} */
+            status: "ACTIVE" | "WITHDRAWN";
+            version: number;
+            calendar_version: number;
+        };
+        M07ShiftWrite: {
+            /** Format: uuid */
+            technician_membership_id: string;
+            expected_calendar_version: number;
+            interval: components["schemas"]["M07Interval"];
+            reason: string;
+        };
+        M07N28Response: components["schemas"]["M07StaffCalendarSnapshot"] | components["schemas"]["M07TechnicianCalendarSnapshot"];
+        M07TechnicianCalendarSnapshot: {
+            profile_version: number;
+            calendar_version: number;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            shifts: {
+                items: components["schemas"]["M07Shift"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+            blocks: {
+                items: components["schemas"]["M07DispatchBlock"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+            appointments: {
+                items: components["schemas"]["M07AppointmentTechnician"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+        };
+        M07AppointmentTechnician: {
+            /** Format: uuid */
+            id: string;
+            status: components["schemas"]["M07AppointmentStatus"];
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            /** Format: uuid */
+            work_order_id: string;
+            assignment_version: number;
+            work_version: number;
+            version: number;
+            safe_access_instructions: string;
+            safe_task_instructions: string;
+            /** Format: date-time */
+            brief_expires_at: string;
+            allowed_actions: string[];
+        };
+        M07StaffCalendarSnapshot: {
+            profile_version: number;
+            calendar_version: number;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            shifts: {
+                items: components["schemas"]["M07Shift"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+            blocks: {
+                items: components["schemas"]["M07DispatchBlock"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+            appointments: {
+                items: components["schemas"]["M07AppointmentStaff"][];
+                next_cursor: string | null;
+                /** Format: date-time */
+                as_of: string;
+            };
+        };
+        M07AppointmentStaff: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            service_request_id: string;
+            status: components["schemas"]["M07AppointmentStatus"];
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            public_visit_message: string | null;
+            cancellation_pending: boolean;
+            replaces_id: string | null;
+            version: number;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            allowed_actions: string[];
+            /** Format: uuid */
+            request_id: string;
+            /** Format: uuid */
+            window_id: string;
+            /** Format: uuid */
+            work_order_id: string;
+            /** Format: uuid */
+            assignee_membership_id: string;
+            assignment_version: number;
+            occupied_interval: components["schemas"]["M07Interval"];
+            calendar_version: number;
+            policy_version: number;
+            /** @enum {string} */
+            dispatch_health: "READY" | "REVIEW_REQUIRED" | "UNPLANNED_WORK";
+            internal_reason: string;
+        };
+        M07TechnicianProfilePatch: {
+            skill_codes: string[];
+            service_area_codes: string[];
+            max_daily_minutes: number;
+            reason: string;
+            active: boolean;
+        };
+        M07DispatchTechnician: {
+            /** Format: uuid */
+            membership_id: string;
+            display_name: string;
+            /** @enum {string} */
+            enrollment_state: "ELIGIBLE" | "ENROLLED" | "UNAVAILABLE";
+            active: boolean;
+            skill_codes: string[];
+            service_area_codes: string[];
+            max_daily_minutes: number | null;
+            profile_version: number | null;
+            calendar_version: number | null;
+            /** @enum {string} */
+            scheduling_health: "READY" | "UNPLANNED_WORK" | "REVIEW_REQUIRED" | "UNCONFIGURED";
+        } & unknown;
+        M07TechnicianEnroll: {
+            /** Format: uuid */
+            membership_id: string;
+            expected_membership_version: number;
+            skill_codes: string[];
+            service_area_codes: string[];
+            max_daily_minutes: number;
+            /** @constant */
+            exclusive_dispatch_acknowledged: true;
+            reason: string;
+        };
+        M07Page_DispatchTechnician: {
+            items: components["schemas"]["M07DispatchTechnician"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07VisitEventWrite: {
+            /** Format: uuid */
+            operation_id: string;
+            /** @enum {string} */
+            event_type: "CHECK_IN" | "VISIT_FINISHED" | "NO_ACCESS" | "ABORTED" | "OVERRUN_REPORTED" | "ADMIN_CORRECTION";
+            /** Format: date-time */
+            observed_at: string;
+            assignment_version: number;
+            expected_work_version: number;
+            note: string;
+            supersedes_event_id: string | null;
+        };
+        M07N24Response: components["schemas"]["M07StaffVisitEventReceipt"] | components["schemas"]["M07TechnicianVisitEventReceipt"];
+        M07TechnicianVisitEventReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            appointment: components["schemas"]["M07AppointmentTechnician"];
+        };
+        M07StaffVisitEventReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            appointment: components["schemas"]["M07AppointmentStaff"];
+        };
+        M07AppointmentCancel: {
+            /** @constant */
+            caller_action: "RESIDENT";
+            reason_code: string;
+            public_reason: string;
+            expected_service_version: number;
+        } | {
+            /** @constant */
+            caller_action: "SUPERVISOR";
+            reason_code: string;
+            public_reason: string;
+            expected_service_version: number;
+            internal_reason: string;
+            expected_work_version: number;
+            expected_assignment_version: number;
+            /** @enum {string} */
+            disposition: "CANCEL" | "ACCEPT_PENDING_CANCEL" | "DECLINE_PENDING_CANCEL";
+        };
+        M07N23Response: components["schemas"]["M07CitizenAppointmentCommandReceipt"] | components["schemas"]["M07StaffAppointmentCommandReceipt"];
+        M07StaffAppointmentCommandReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            appointment: components["schemas"]["M07AppointmentStaff"];
+            current_service_version: number;
+        };
+        M07CitizenAppointmentCommandReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            appointment: components["schemas"]["M07AppointmentCitizen"];
+            current_service_version: number;
+        };
+        M07N22Response: components["schemas"]["M07AppointmentCitizen"] | components["schemas"]["M07AppointmentStaff"] | components["schemas"]["M07AppointmentTechnician"];
+        M07N21Response: components["schemas"]["M07Page_AppointmentCitizen"] | components["schemas"]["M07Page_AppointmentStaff"];
+        M07Page_AppointmentStaff: {
+            items: components["schemas"]["M07AppointmentStaff"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Page_AppointmentCitizen: {
+            items: components["schemas"]["M07AppointmentCitizen"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Reason: {
+            reason_code: string;
+            reason: string;
+        };
+        M07AppointmentRequestCitizen: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            service_request_id: string;
+            /** @enum {string} */
+            kind: "INITIAL" | "RESCHEDULE";
+            status: components["schemas"]["M07AppointmentRequestStatus"];
+            requested_window: components["schemas"]["M07ResidentWindow"];
+            alternative_window: components["schemas"]["M07ResidentWindow"] | null;
+            proposal_revision: number | null;
+            offer_expires_at: string | null;
+            replaces_appointment_id: string | null;
+            confirmed_appointment_id: string | null;
+            public_message: string | null;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            version: number;
+        };
+        M07ResidentWindow: {
+            /** Format: uuid */
+            id: string;
+            version: number;
+            /** Format: date-time */
+            arrival_start: string;
+            /** Format: date-time */
+            arrival_end: string;
+            expected_service_minutes: number;
+            /** @constant */
+            timezone: "Asia/Kolkata";
+            policy_version: number;
+            /** Format: date-time */
+            as_of: string;
+            /** @constant */
+            confirmation_required: true;
+        };
+        /** @enum {string} */
+        M07AppointmentRequestStatus: "PENDING" | "ALTERNATIVE_OFFERED" | "CONFIRMED" | "DECLINED" | "WITHDRAWN" | "EXPIRED";
+        M07AlternativeAccept: {
+            proposal_revision: number;
+            expected_window_version: number;
+            expected_service_version: number;
+            expected_replaced_appointment_version: number | null;
+        };
+        M07N19Response: components["schemas"]["M07CitizenDecisionReceipt"];
+        M07CitizenDecisionReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            request: components["schemas"]["M07AppointmentRequestCitizen"];
+            appointment: components["schemas"]["M07AppointmentCitizen"] | null;
+            replaced_appointment: components["schemas"]["M07AppointmentCitizen"] | null;
+        };
+        M07AppointmentDecision: {
+            /** @constant */
+            decision: "CONFIRM_REQUESTED";
+            public_message: string;
+            internal_reason: string;
+            expectations: components["schemas"]["M07BookingExpectations"];
+        } | {
+            /** @constant */
+            decision: "OFFER_ALTERNATIVE";
+            public_message: string;
+            internal_reason: string;
+            expectations: components["schemas"]["M07BookingExpectations"];
+            /** Format: uuid */
+            alternative_window_id: string;
+            expected_window_version: number;
+            /** Format: date-time */
+            offer_expires_at: string;
+        } | {
+            /** @constant */
+            decision: "DECLINE";
+            public_message: string;
+            internal_reason: string;
+            reason_code: string;
+        };
+        M07BookingExpectations: {
+            service_version: number;
+            /** Format: uuid */
+            work_order_id: string;
+            work_version: number;
+            assignment_version: number;
+            window_version: number;
+            calendar_version: number;
+            policy_version: number;
+            replaced_appointment_version: number | null;
+        };
+        M07N18Response: components["schemas"]["M07StaffDecisionReceipt"];
+        M07StaffDecisionReceipt: {
+            receipt: components["schemas"]["Receipt"];
+            request: components["schemas"]["M07AppointmentRequestStaff"];
+            appointment: components["schemas"]["M07AppointmentStaff"] | null;
+            replaced_appointment: components["schemas"]["M07AppointmentStaff"] | null;
+        };
+        M07AppointmentRequestStaff: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            service_request_id: string;
+            /** @enum {string} */
+            kind: "INITIAL" | "RESCHEDULE";
+            status: components["schemas"]["M07AppointmentRequestStatus"];
+            requested_window: components["schemas"]["M07ResidentWindow"];
+            alternative_window: components["schemas"]["M07ResidentWindow"] | null;
+            proposal_revision: number | null;
+            offer_expires_at: string | null;
+            replaces_appointment_id: string | null;
+            confirmed_appointment_id: string | null;
+            public_message: string | null;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            version: number;
+            expectations: components["schemas"]["M07BookingExpectations"];
+            internal_reason: string;
+        };
+        M07N17Response: components["schemas"]["M07AppointmentRequestCitizen"] | components["schemas"]["M07AppointmentRequestStaff"];
+        M07N16Response: components["schemas"]["M07Page_AppointmentRequestCitizen"] | components["schemas"]["M07Page_AppointmentRequestStaff"];
+        M07Page_AppointmentRequestStaff: {
+            items: components["schemas"]["M07AppointmentRequestStaff"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Page_AppointmentRequestCitizen: {
+            items: components["schemas"]["M07AppointmentRequestCitizen"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07AppointmentRequestCreate: {
+            /** @enum {string} */
+            kind: "INITIAL" | "RESCHEDULE";
+            /** Format: uuid */
+            window_id: string;
+            expected_window_version: number;
+            expected_preferences_version: number | null;
+            replaces_appointment_id: string | null;
+            expected_appointment_version: number | null;
+            message: string;
+        } & unknown;
+        M07Page_ResidentWindow: {
+            items: components["schemas"]["M07ResidentWindow"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+            /** @enum {string} */
+            availability_state: "AVAILABLE" | "NO_PUBLISHED_WINDOWS" | "UNCONFIGURED" | "DISABLED" | "SERVICE_REVIEW_REQUIRED";
+            message: string;
+        } & unknown;
     };
     responses: {
         /** @description Dependency unavailable; no fake success */
@@ -6474,6 +7396,1090 @@ export interface operations {
                     "text/event-stream": string;
                 };
             };
+        };
+    };
+    m07_n14: {
+        parameters: {
+            query: {
+                limit?: number;
+                cursor?: string;
+                from: string;
+                to: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_ResidentWindow"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n16: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N16Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n15: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SERVICE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07AppointmentRequestCreate"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07AppointmentRequestCitizen"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n17: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                appointment_request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    /** @description Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write. */
+                    ETag: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N17Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n18: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                appointment_request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07AppointmentDecision"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N18Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n19: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                appointment_request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07AlternativeAccept"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N19Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n20: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                appointment_request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07Reason"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07AppointmentRequestCitizen"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n21: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N21Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n22: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                appointment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    /** @description Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write. */
+                    ETag: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N22Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n23: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current APPOINTMENT resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                appointment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07AppointmentCancel"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N23Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n24: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current APPOINTMENT resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                appointment_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07VisitEventWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N24Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n25: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                status?: "ELIGIBLE" | "ENROLLED" | "UNAVAILABLE";
+                skill?: string;
+                area?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_DispatchTechnician"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n26: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07TechnicianEnroll"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchTechnician"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n27: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current PROFILE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                membership_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07TechnicianProfilePatch"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchTechnician"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n28: {
+        parameters: {
+            query: {
+                limit?: number;
+                cursor?: string;
+                from: string;
+                to: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                membership_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07N28Response"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n29: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current PROFILE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07ShiftWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Shift"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n30: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current SHIFT resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                shift_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07ShiftChange"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Shift"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n31: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current PROFILE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07DispatchBlockWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchBlock"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n32: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current BLOCK resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                block_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07BlockRelease"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchBlock"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n33: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current BLOCK resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                block_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07BlockReplace"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchBlock"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n34: {
+        parameters: {
+            query: {
+                limit?: number;
+                cursor?: string;
+                from: string;
+                to: string;
+                state?: "PUBLISHED" | "WITHDRAWN";
+                category?: components["schemas"]["M07ServiceCategory"];
+                area?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_StaffWindow"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n35: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current PROFILE resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07WindowPublish"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07StaffWindow"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n36: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current WINDOW resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                window_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07WindowWithdraw"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07StaffWindow"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n37: {
+        parameters: {
+            query: {
+                limit?: number;
+                cursor?: string;
+                from: string;
+                to: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07WorkloadSnapshot"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n38: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    /** @description Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write. */
+                    ETag: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchPolicy"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n39: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current POLICY resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07DispatchPolicyWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07DispatchPolicy"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
         };
     };
 }

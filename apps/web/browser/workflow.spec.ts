@@ -24,10 +24,7 @@ const fixture = JSON.parse(
   pipe: string;
   junctions: string[];
 };
-const baseURL =
-  process.env.HYDRO_BROWSER_PORT === "9443"
-    ? "https://localhost:9443"
-    : "https://localhost:8443";
+const baseURL = `https://localhost:${/^[0-9]{4,5}$/.test(process.env.HYDRO_BROWSER_PORT ?? "") ? process.env.HYDRO_BROWSER_PORT : "8443"}`;
 const output = process.env.HYDRO_M04_SCREENSHOTS;
 if (!output)
   throw new Error("Set a dedicated synthetic screenshot output directory.");

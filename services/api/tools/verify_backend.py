@@ -60,6 +60,7 @@ def main():
     if result.returncode:
         raise SystemExit(result.returncode)
     from hydro.contracts import INVENTORY, OPERATIONS
+    from hydro.scheduling_contracts import ACTIVE as SCHEDULING
     from hydro.service_contracts import ACTIVE
 
     summary = json.loads((evidence / "pytest-summary.json").read_text())
@@ -68,6 +69,13 @@ def main():
         print("Operations without executed positive response conformance:", ",".join(missing))
         raise SystemExit(1)
     service_missing = ACTIVE - set(summary.get("service_operation_tests", {}))
+    scheduling_missing = SCHEDULING - set(summary.get("scheduling_operation_tests", {}))
+    if scheduling_missing:
+        raise SystemExit(
+            "M07-B operations without executed positive conformance: "
+            + ",".join(sorted(scheduling_missing))
+        )
+    summary["m07b_implemented_operations"] = len(SCHEDULING)
     from hydro.science_contracts import OPERATIONS as science_operations
 
     science_missing = {o["id"] for o in science_operations} - set(
@@ -80,7 +88,7 @@ def main():
         )
     summary["m06_implemented_operations"] = len(science_operations)
     summary["combined_implemented_operations"] = (
-        len(OPERATIONS) + len(ACTIVE) + len(science_operations)
+        len(OPERATIONS) + len(ACTIVE) + len(science_operations) + len(SCHEDULING)
     )
     if service_missing:
         raise SystemExit(
@@ -115,9 +123,12 @@ def main():
         implemented_operations=len(OPERATIONS),
         catalogue_scope="M03_BASELINE_COMPATIBILITY",
         m07a_implemented_operations=len(ACTIVE),
-        total_implemented_operations=len(OPERATIONS) + len(ACTIVE) + len(science_operations),
+        total_implemented_operations=len(OPERATIONS)
+        + len(ACTIVE)
+        + len(science_operations)
+        + len(SCHEDULING),
         designed_operations=168,
-        migrated_tables=36,
+        migrated_tables=45,
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

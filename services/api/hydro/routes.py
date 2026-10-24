@@ -134,6 +134,19 @@ def bind_routes(app):
             include_in_schema=False,
         )
 
+    from .scheduling_contracts import DESIGN as scheduling_design
+    from .scheduling_contracts import OPERATIONS as scheduling_operations
+    from .services.scheduling import dispatch as scheduling_dispatch
+
+    for op in scheduling_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            endpoint(app, op, scheduling_design, scheduling_dispatch),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
+
     @app.get("/internal/openapi.json", include_in_schema=False)
     def development_contract():
         return runtime_openapi()

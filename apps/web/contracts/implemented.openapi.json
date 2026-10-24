@@ -2253,6 +2253,36 @@
             "type": "string",
             "minLength": 5,
             "maxLength": 2000
+          },
+          "dispatch_service_area_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dispatch_required_skill_codes": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                "minItems": 1,
+                "maxItems": 20,
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -2260,6 +2290,33 @@
           "expected_work_version",
           "purpose",
           "internal_reason"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "dispatch_service_area_code": {
+                  "type": "string"
+                }
+              },
+              "required": ["dispatch_service_area_code"]
+            },
+            "then": {
+              "required": ["dispatch_required_skill_codes"],
+              "properties": {
+                "dispatch_required_skill_codes": {
+                  "type": "array"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "dispatch_required_skill_codes": {
+                  "type": "null"
+                }
+              }
+            }
+          }
         ]
       },
       "M07WorkLink": {
@@ -2290,6 +2347,36 @@
             "type": "integer",
             "minimum": 1,
             "maximum": 2147483647
+          },
+          "dispatch_service_area_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dispatch_required_skill_codes": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 40
+                },
+                "minItems": 1,
+                "maxItems": 20,
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -4854,6 +4941,2930 @@
         ],
         "title": "Frames",
         "type": "object"
+      },
+      "M07DispatchPolicyWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "booking_enabled": {
+            "type": "boolean"
+          },
+          "horizon_days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60
+          },
+          "minimum_lead_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10080
+          },
+          "free_cancel_before_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10080
+          },
+          "max_arrival_width_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "request_expiry_hours": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 168
+          },
+          "offer_expiry_hours": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 72
+          },
+          "max_daily_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 960
+          },
+          "minimum_before_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "minimum_after_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "allowed_duration_minutes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 480
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "booking_enabled",
+          "horizon_days",
+          "minimum_lead_minutes",
+          "free_cancel_before_minutes",
+          "max_arrival_width_minutes",
+          "request_expiry_hours",
+          "offer_expiry_hours",
+          "max_daily_minutes",
+          "minimum_before_buffer_minutes",
+          "minimum_after_buffer_minutes",
+          "allowed_duration_minutes",
+          "reason"
+        ]
+      },
+      "M07DispatchPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "booking_enabled": {
+            "type": "boolean"
+          },
+          "configured": {
+            "type": "boolean"
+          },
+          "horizon_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 60
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "minimum_lead_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10080
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "free_cancel_before_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10080
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_arrival_width_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 480
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "request_expiry_hours": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 168
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "offer_expiry_hours": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 72
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_daily_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 960
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "minimum_before_buffer_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 240
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "minimum_after_buffer_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 240
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "allowed_duration_minutes": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 480
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": [
+          "version",
+          "booking_enabled",
+          "configured",
+          "horizon_days",
+          "minimum_lead_minutes",
+          "free_cancel_before_minutes",
+          "max_arrival_width_minutes",
+          "request_expiry_hours",
+          "offer_expiry_hours",
+          "max_daily_minutes",
+          "minimum_before_buffer_minutes",
+          "minimum_after_buffer_minutes",
+          "allowed_duration_minutes",
+          "updated_at"
+        ]
+      },
+      "M07WorkloadSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "from": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07WorkloadRow"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": ["as_of", "from", "to", "timezone", "items", "next_cursor"]
+      },
+      "M07WorkloadRow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "confirmed_appointments": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "planned_occupied_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "unplanned_work_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "overdue_work_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "available_shift_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "known_load_ratio": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scheduling_health": {
+            "type": "string",
+            "enum": [
+              "READY",
+              "UNPLANNED_WORK",
+              "REVIEW_REQUIRED",
+              "UNCONFIGURED"
+            ]
+          }
+        },
+        "required": [
+          "technician_membership_id",
+          "confirmed_appointments",
+          "planned_occupied_minutes",
+          "unplanned_work_count",
+          "overdue_work_count",
+          "available_shift_minutes",
+          "known_load_ratio",
+          "scheduling_health"
+        ]
+      },
+      "M07WindowWithdraw": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": ["expected_calendar_version", "reason"]
+      },
+      "M07StaffWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "policy_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "confirmation_required": {
+            "type": "boolean",
+            "const": true
+          },
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "category_codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07ServiceCategory"
+            },
+            "maxItems": 3,
+            "uniqueItems": true
+          },
+          "service_area_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "before_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "after_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "state": {
+            "type": "string",
+            "enum": ["PUBLISHED", "WITHDRAWN"]
+          },
+          "occupied_interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "timezone",
+          "policy_version",
+          "as_of",
+          "confirmation_required",
+          "technician_membership_id",
+          "calendar_version",
+          "category_codes",
+          "service_area_codes",
+          "before_buffer_minutes",
+          "after_buffer_minutes",
+          "state",
+          "occupied_interval"
+        ]
+      },
+      "M07WindowPublish": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_policy_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "before_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "after_buffer_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 240
+          },
+          "category_codes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07ServiceCategory"
+            },
+            "maxItems": 3,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "service_area_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "technician_membership_id",
+          "expected_calendar_version",
+          "expected_policy_version",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "before_buffer_minutes",
+          "after_buffer_minutes",
+          "category_codes",
+          "service_area_codes",
+          "reason"
+        ]
+      },
+      "M07Page_StaffWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07StaffWindow"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07BlockReplace": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_work_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          }
+        },
+        "required": [
+          "expected_calendar_version",
+          "expected_work_version",
+          "reason",
+          "interval"
+        ]
+      },
+      "M07DispatchBlock": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["UNAVAILABLE", "WORK_BLOCK"]
+          },
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "work_order_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "id",
+          "technician_membership_id",
+          "kind",
+          "interval",
+          "work_order_id",
+          "version",
+          "calendar_version"
+        ]
+      },
+      "M07BlockRelease": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_work_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "expected_calendar_version",
+          "expected_work_version",
+          "reason"
+        ]
+      },
+      "M07DispatchBlockWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["UNAVAILABLE", "WORK_BLOCK"]
+          },
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "work_order_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_work_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "technician_membership_id",
+          "expected_calendar_version",
+          "kind",
+          "interval",
+          "work_order_id",
+          "expected_work_version",
+          "reason_code",
+          "internal_reason"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "WORK_BLOCK"
+                }
+              },
+              "required": ["kind"]
+            },
+            "then": {
+              "properties": {
+                "work_order_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "expected_work_version": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "work_order_id": {
+                  "type": "null"
+                },
+                "expected_work_version": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "M07ShiftChange": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "WITHDRAWN"]
+          },
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "interval",
+          "status",
+          "expected_calendar_version",
+          "reason"
+        ]
+      },
+      "M07Shift": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "WITHDRAWN"]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "id",
+          "technician_membership_id",
+          "interval",
+          "status",
+          "version",
+          "calendar_version"
+        ]
+      },
+      "M07ShiftWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "technician_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "technician_membership_id",
+          "expected_calendar_version",
+          "interval",
+          "reason"
+        ]
+      },
+      "M07N28Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07StaffCalendarSnapshot"
+          },
+          {
+            "$ref": "#/components/schemas/M07TechnicianCalendarSnapshot"
+          }
+        ]
+      },
+      "M07TechnicianCalendarSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "profile_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "shifts": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07Shift"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          },
+          "blocks": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07DispatchBlock"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          },
+          "appointments": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07AppointmentTechnician"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          }
+        },
+        "required": [
+          "profile_version",
+          "calendar_version",
+          "as_of",
+          "timezone",
+          "shifts",
+          "blocks",
+          "appointments"
+        ]
+      },
+      "M07AppointmentTechnician": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07AppointmentStatus"
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignment_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "work_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "safe_access_instructions": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          },
+          "safe_task_instructions": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 4000
+          },
+          "brief_expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "allowed_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 10,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "timezone",
+          "work_order_id",
+          "assignment_version",
+          "work_version",
+          "version",
+          "safe_access_instructions",
+          "safe_task_instructions",
+          "brief_expires_at",
+          "allowed_actions"
+        ]
+      },
+      "M07StaffCalendarSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "profile_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "shifts": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07Shift"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          },
+          "blocks": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07DispatchBlock"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          },
+          "appointments": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/M07AppointmentStaff"
+                },
+                "maxItems": 100,
+                "uniqueItems": true
+              },
+              "next_cursor": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "as_of": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": ["items", "next_cursor", "as_of"]
+          }
+        },
+        "required": [
+          "profile_version",
+          "calendar_version",
+          "as_of",
+          "timezone",
+          "shifts",
+          "blocks",
+          "appointments"
+        ]
+      },
+      "M07AppointmentStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service_request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07AppointmentStatus"
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "public_visit_message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cancellation_pending": {
+            "type": "boolean"
+          },
+          "replaces_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "allowed_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 10,
+            "uniqueItems": true
+          },
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "window_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignee_membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignment_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "occupied_interval": {
+            "$ref": "#/components/schemas/M07Interval"
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "policy_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "dispatch_health": {
+            "type": "string",
+            "enum": ["READY", "REVIEW_REQUIRED", "UNPLANNED_WORK"]
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "id",
+          "service_request_id",
+          "status",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "timezone",
+          "public_visit_message",
+          "cancellation_pending",
+          "replaces_id",
+          "version",
+          "created_at",
+          "updated_at",
+          "allowed_actions",
+          "request_id",
+          "window_id",
+          "work_order_id",
+          "assignee_membership_id",
+          "assignment_version",
+          "occupied_interval",
+          "calendar_version",
+          "policy_version",
+          "dispatch_health",
+          "internal_reason"
+        ]
+      },
+      "M07TechnicianProfilePatch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "skill_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "service_area_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "max_daily_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 960
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "skill_codes",
+          "service_area_codes",
+          "max_daily_minutes",
+          "reason",
+          "active"
+        ]
+      },
+      "M07DispatchTechnician": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "display_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "enrollment_state": {
+            "type": "string",
+            "enum": ["ELIGIBLE", "ENROLLED", "UNAVAILABLE"]
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "skill_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 0
+          },
+          "service_area_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 0
+          },
+          "max_daily_minutes": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 960
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "profile_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "calendar_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "scheduling_health": {
+            "type": "string",
+            "enum": [
+              "READY",
+              "UNPLANNED_WORK",
+              "REVIEW_REQUIRED",
+              "UNCONFIGURED"
+            ]
+          }
+        },
+        "required": [
+          "membership_id",
+          "display_name",
+          "enrollment_state",
+          "active",
+          "skill_codes",
+          "service_area_codes",
+          "max_daily_minutes",
+          "profile_version",
+          "calendar_version",
+          "scheduling_health"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "enrollment_state": {
+                  "const": "ENROLLED"
+                }
+              },
+              "required": ["enrollment_state"]
+            },
+            "then": {
+              "properties": {
+                "skill_codes": {
+                  "minItems": 1
+                },
+                "service_area_codes": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "M07TechnicianEnroll": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "membership_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_membership_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "skill_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "service_area_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "max_daily_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 960
+          },
+          "exclusive_dispatch_acknowledged": {
+            "type": "boolean",
+            "const": true
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "membership_id",
+          "expected_membership_version",
+          "skill_codes",
+          "service_area_codes",
+          "max_daily_minutes",
+          "exclusive_dispatch_acknowledged",
+          "reason"
+        ]
+      },
+      "M07Page_DispatchTechnician": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07DispatchTechnician"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07VisitEventWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "CHECK_IN",
+              "VISIT_FINISHED",
+              "NO_ACCESS",
+              "ABORTED",
+              "OVERRUN_REPORTED",
+              "ADMIN_CORRECTION"
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "assignment_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_work_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "supersedes_event_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "operation_id",
+          "event_type",
+          "observed_at",
+          "assignment_version",
+          "expected_work_version",
+          "note",
+          "supersedes_event_id"
+        ]
+      },
+      "M07N24Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07StaffVisitEventReceipt"
+          },
+          {
+            "$ref": "#/components/schemas/M07TechnicianVisitEventReceipt"
+          }
+        ]
+      },
+      "M07TechnicianVisitEventReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "appointment": {
+            "$ref": "#/components/schemas/M07AppointmentTechnician"
+          }
+        },
+        "required": ["receipt", "appointment"]
+      },
+      "M07StaffVisitEventReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "appointment": {
+            "$ref": "#/components/schemas/M07AppointmentStaff"
+          }
+        },
+        "required": ["receipt", "appointment"]
+      },
+      "M07AppointmentCancel": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "caller_action": {
+                "type": "string",
+                "const": "RESIDENT"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "expected_service_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              }
+            },
+            "required": [
+              "caller_action",
+              "reason_code",
+              "public_reason",
+              "expected_service_version"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "caller_action": {
+                "type": "string",
+                "const": "SUPERVISOR"
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "public_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "expected_service_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "expected_work_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              "expected_assignment_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              "disposition": {
+                "type": "string",
+                "enum": [
+                  "CANCEL",
+                  "ACCEPT_PENDING_CANCEL",
+                  "DECLINE_PENDING_CANCEL"
+                ]
+              }
+            },
+            "required": [
+              "caller_action",
+              "reason_code",
+              "public_reason",
+              "expected_service_version",
+              "internal_reason",
+              "expected_work_version",
+              "expected_assignment_version",
+              "disposition"
+            ]
+          }
+        ]
+      },
+      "M07N23Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07CitizenAppointmentCommandReceipt"
+          },
+          {
+            "$ref": "#/components/schemas/M07StaffAppointmentCommandReceipt"
+          }
+        ]
+      },
+      "M07StaffAppointmentCommandReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "appointment": {
+            "$ref": "#/components/schemas/M07AppointmentStaff"
+          },
+          "current_service_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": ["receipt", "appointment", "current_service_version"]
+      },
+      "M07CitizenAppointmentCommandReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "appointment": {
+            "$ref": "#/components/schemas/M07AppointmentCitizen"
+          },
+          "current_service_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": ["receipt", "appointment", "current_service_version"]
+      },
+      "M07N22Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07AppointmentCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07AppointmentStaff"
+          },
+          {
+            "$ref": "#/components/schemas/M07AppointmentTechnician"
+          }
+        ]
+      },
+      "M07N21Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07Page_AppointmentCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07Page_AppointmentStaff"
+          }
+        ]
+      },
+      "M07Page_AppointmentStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07AppointmentStaff"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07Page_AppointmentCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07AppointmentCitizen"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07Reason": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reason_code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 1000
+          }
+        },
+        "required": ["reason_code", "reason"]
+      },
+      "M07AppointmentRequestCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service_request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["INITIAL", "RESCHEDULE"]
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07AppointmentRequestStatus"
+          },
+          "requested_window": {
+            "$ref": "#/components/schemas/M07ResidentWindow"
+          },
+          "alternative_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07ResidentWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "proposal_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "offer_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replaces_appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmed_appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "public_message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "id",
+          "service_request_id",
+          "kind",
+          "status",
+          "requested_window",
+          "alternative_window",
+          "proposal_revision",
+          "offer_expires_at",
+          "replaces_appointment_id",
+          "confirmed_appointment_id",
+          "public_message",
+          "created_at",
+          "updated_at",
+          "version"
+        ]
+      },
+      "M07ResidentWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "arrival_start": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "arrival_end": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "expected_service_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 480
+          },
+          "timezone": {
+            "type": "string",
+            "const": "Asia/Kolkata"
+          },
+          "policy_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "confirmation_required": {
+            "type": "boolean",
+            "const": true
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "arrival_start",
+          "arrival_end",
+          "expected_service_minutes",
+          "timezone",
+          "policy_version",
+          "as_of",
+          "confirmation_required"
+        ]
+      },
+      "M07AppointmentRequestStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "ALTERNATIVE_OFFERED",
+          "CONFIRMED",
+          "DECLINED",
+          "WITHDRAWN",
+          "EXPIRED"
+        ]
+      },
+      "M07AlternativeAccept": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "proposal_revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_window_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_service_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_replaced_appointment_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "proposal_revision",
+          "expected_window_version",
+          "expected_service_version",
+          "expected_replaced_appointment_version"
+        ]
+      },
+      "M07N19Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07CitizenDecisionReceipt"
+          }
+        ]
+      },
+      "M07CitizenDecisionReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "request": {
+            "$ref": "#/components/schemas/M07AppointmentRequestCitizen"
+          },
+          "appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentCitizen"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replaced_appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentCitizen"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "receipt",
+          "request",
+          "appointment",
+          "replaced_appointment"
+        ]
+      },
+      "M07AppointmentDecision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "CONFIRM_REQUESTED",
+                "type": "string"
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "expectations": {
+                "$ref": "#/components/schemas/M07BookingExpectations"
+              }
+            },
+            "required": [
+              "decision",
+              "public_message",
+              "internal_reason",
+              "expectations"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "OFFER_ALTERNATIVE",
+                "type": "string"
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "expectations": {
+                "$ref": "#/components/schemas/M07BookingExpectations"
+              },
+              "alternative_window_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "expected_window_version": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              "offer_expires_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              }
+            },
+            "required": [
+              "decision",
+              "public_message",
+              "internal_reason",
+              "expectations",
+              "alternative_window_id",
+              "expected_window_version",
+              "offer_expires_at"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "const": "DECLINE",
+                "type": "string"
+              },
+              "public_message": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 1000
+              },
+              "internal_reason": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 2000
+              },
+              "reason_code": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              }
+            },
+            "required": [
+              "decision",
+              "public_message",
+              "internal_reason",
+              "reason_code"
+            ]
+          }
+        ]
+      },
+      "M07BookingExpectations": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "service_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "work_order_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "work_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "assignment_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "window_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "calendar_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "policy_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "replaced_appointment_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "service_version",
+          "work_order_id",
+          "work_version",
+          "assignment_version",
+          "window_version",
+          "calendar_version",
+          "policy_version",
+          "replaced_appointment_version"
+        ]
+      },
+      "M07N18Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07StaffDecisionReceipt"
+          }
+        ]
+      },
+      "M07StaffDecisionReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "receipt": {
+            "$ref": "#/components/schemas/Receipt"
+          },
+          "request": {
+            "$ref": "#/components/schemas/M07AppointmentRequestStaff"
+          },
+          "appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentStaff"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replaced_appointment": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07AppointmentStaff"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "receipt",
+          "request",
+          "appointment",
+          "replaced_appointment"
+        ]
+      },
+      "M07AppointmentRequestStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "service_request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["INITIAL", "RESCHEDULE"]
+          },
+          "status": {
+            "$ref": "#/components/schemas/M07AppointmentRequestStatus"
+          },
+          "requested_window": {
+            "$ref": "#/components/schemas/M07ResidentWindow"
+          },
+          "alternative_window": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/M07ResidentWindow"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "proposal_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "offer_expires_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replaces_appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmed_appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "public_message": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expectations": {
+            "$ref": "#/components/schemas/M07BookingExpectations"
+          },
+          "internal_reason": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "id",
+          "service_request_id",
+          "kind",
+          "status",
+          "requested_window",
+          "alternative_window",
+          "proposal_revision",
+          "offer_expires_at",
+          "replaces_appointment_id",
+          "confirmed_appointment_id",
+          "public_message",
+          "created_at",
+          "updated_at",
+          "version",
+          "expectations",
+          "internal_reason"
+        ]
+      },
+      "M07N17Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07AppointmentRequestCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07AppointmentRequestStaff"
+          }
+        ]
+      },
+      "M07N16Response": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/M07Page_AppointmentRequestCitizen"
+          },
+          {
+            "$ref": "#/components/schemas/M07Page_AppointmentRequestStaff"
+          }
+        ]
+      },
+      "M07Page_AppointmentRequestStaff": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07AppointmentRequestStaff"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07Page_AppointmentRequestCitizen": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07AppointmentRequestCitizen"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          }
+        },
+        "required": ["items", "next_cursor", "as_of"]
+      },
+      "M07AppointmentRequestCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["INITIAL", "RESCHEDULE"]
+          },
+          "window_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_window_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "expected_preferences_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replaces_appointment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_appointment_version": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "kind",
+          "window_id",
+          "expected_window_version",
+          "expected_preferences_version",
+          "replaces_appointment_id",
+          "expected_appointment_version",
+          "message"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "INITIAL"
+                }
+              },
+              "required": ["kind"]
+            },
+            "then": {
+              "properties": {
+                "replaces_appointment_id": {
+                  "type": "null"
+                },
+                "expected_appointment_version": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "replaces_appointment_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "expected_appointment_version": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                }
+              }
+            }
+          }
+        ]
+      },
+      "M07Page_ResidentWindow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/M07ResidentWindow"
+            },
+            "maxItems": 100,
+            "uniqueItems": true
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "availability_state": {
+            "type": "string",
+            "enum": [
+              "AVAILABLE",
+              "NO_PUBLISHED_WINDOWS",
+              "UNCONFIGURED",
+              "DISABLED",
+              "SERVICE_REVIEW_REQUIRED"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of",
+          "availability_state",
+          "message"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "availability_state": {
+                  "enum": [
+                    "UNCONFIGURED",
+                    "DISABLED",
+                    "SERVICE_REVIEW_REQUIRED"
+                  ]
+                }
+              },
+              "required": ["availability_state"]
+            },
+            "then": {
+              "properties": {
+                "items": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "securitySchemes": {
@@ -14305,6 +17316,3537 @@
           }
         },
         "description": "Bounded SSE batch: provenance, observation events, then checkpoint. Resume with next_offset; every batch reauthorizes current membership. Not a live sensor feed."
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/appointment-windows": {
+      "get": {
+        "operationId": "m07_n14",
+        "summary": "N14 GET /service-requests/{request_id}/appointment-windows \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Page_ResidentWindow"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-unconfigured-behavior": "EMPTY_WINDOWS_WITH_VISIBLE_UNCONFIGURED_REASON; preferences and cancellation remain usable"
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/appointment-requests": {
+      "post": {
+        "operationId": "m07_n15",
+        "summary": "N15 POST /service-requests/{request_id}/appointment-requests \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SERVICE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["CITIZEN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO",
+          "D5_CAPACITY_PROMISE_ONLY"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "SERVICE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07AppointmentRequestCitizen"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07AppointmentRequestCreate"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "m07_n16",
+        "summary": "N16 GET /service-requests/{request_id}/appointment-requests \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N16Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07Page_AppointmentRequestCitizen",
+          "SUPERVISOR": "M07Page_AppointmentRequestStaff"
+        },
+        "x-response-variants": [
+          "M07Page_AppointmentRequestCitizen",
+          "M07Page_AppointmentRequestStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}": {
+      "get": {
+        "operationId": "m07_n17",
+        "summary": "N17 GET /appointment-requests/{appointment_request_id} \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              },
+              "ETag": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N17Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07AppointmentRequestCitizen",
+          "SUPERVISOR": "M07AppointmentRequestStaff"
+        },
+        "x-response-variants": [
+          "M07AppointmentRequestCitizen",
+          "M07AppointmentRequestStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/decisions": {
+      "post": {
+        "operationId": "m07_n18",
+        "summary": "N18 POST /appointment-requests/{appointment_request_id}/decisions \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "D5_CAPACITY_PROMISE_ONLY",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "APPOINTMENT_REQUEST",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N18Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07AppointmentDecision"
+              }
+            }
+          }
+        },
+        "x-action-gates": {
+          "CONFIRM_REQUESTED": "D5_CONFIGURED_CALENDAR",
+          "OFFER_ALTERNATIVE": "D5_CONFIGURED_CALENDAR",
+          "DECLINE": "CURRENT_AUTHORIZATION_ONLY"
+        },
+        "x-role-projections": {
+          "SUPERVISOR": "M07StaffDecisionReceipt"
+        },
+        "x-response-variants": ["M07StaffDecisionReceipt"]
+      }
+    },
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/accept-alternative": {
+      "post": {
+        "operationId": "m07_n19",
+        "summary": "N19 POST /appointment-requests/{appointment_request_id}/accept-alternative \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["CITIZEN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO",
+          "D5_CAPACITY_PROMISE_ONLY",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "APPOINTMENT_REQUEST",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N19Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07AlternativeAccept"
+              }
+            }
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07CitizenDecisionReceipt"
+        },
+        "x-response-variants": ["M07CitizenDecisionReceipt"]
+      }
+    },
+    "/orgs/{organization_id}/appointment-requests/{appointment_request_id}/withdrawals": {
+      "post": {
+        "operationId": "m07_n20",
+        "summary": "N20 POST /appointment-requests/{appointment_request_id}/withdrawals \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current APPOINTMENT_REQUEST resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["CITIZEN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "APPOINTMENT_REQUEST",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07AppointmentRequestCitizen"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07Reason"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/service-requests/{request_id}/appointments": {
+      "get": {
+        "operationId": "m07_n21",
+        "summary": "N21 GET /service-requests/{request_id}/appointments \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N21Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07Page_AppointmentCitizen",
+          "SUPERVISOR": "M07Page_AppointmentStaff"
+        },
+        "x-response-variants": [
+          "M07Page_AppointmentCitizen",
+          "M07Page_AppointmentStaff"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/appointments/{appointment_id}": {
+      "get": {
+        "operationId": "m07_n22",
+        "summary": "N22 GET /appointments/{appointment_id} \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR", "TECHNICIAN"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO",
+          "TECHNICIAN_ASSIGNED"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              },
+              "ETag": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N22Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07AppointmentCitizen",
+          "SUPERVISOR": "M07AppointmentStaff",
+          "TECHNICIAN": "M07AppointmentTechnician"
+        },
+        "x-response-variants": [
+          "M07AppointmentCitizen",
+          "M07AppointmentStaff",
+          "M07AppointmentTechnician"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/appointments/{appointment_id}/cancellations": {
+      "post": {
+        "operationId": "m07_n23",
+        "summary": "N23 POST /appointments/{appointment_id}/cancellations \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current APPOINTMENT resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["CITIZEN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "CITIZEN_OWNED",
+          "CITIZEN_SAFE_DTO",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "APPOINTMENT",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N23Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07AppointmentCancel"
+              }
+            }
+          }
+        },
+        "x-role-projections": {
+          "CITIZEN": "M07CitizenAppointmentCommandReceipt",
+          "SUPERVISOR": "M07StaffAppointmentCommandReceipt"
+        },
+        "x-response-variants": [
+          "M07CitizenAppointmentCommandReceipt",
+          "M07StaffAppointmentCommandReceipt"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/appointments/{appointment_id}/visit-events": {
+      "post": {
+        "operationId": "m07_n24",
+        "summary": "N24 POST /appointments/{appointment_id}/visit-events \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "appointment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current APPOINTMENT resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["TECHNICIAN", "SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "TECHNICIAN_ASSIGNED",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "APPOINTMENT",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N24Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07VisitEventWrite"
+              }
+            }
+          }
+        },
+        "x-action-roles": {
+          "CHECK_IN": ["TECHNICIAN"],
+          "VISIT_FINISHED": ["TECHNICIAN"],
+          "NO_ACCESS": ["TECHNICIAN"],
+          "ABORTED": ["TECHNICIAN"],
+          "OVERRUN_REPORTED": ["TECHNICIAN"],
+          "ADMIN_CORRECTION": ["SUPERVISOR"]
+        },
+        "x-role-projections": {
+          "TECHNICIAN": "M07TechnicianVisitEventReceipt",
+          "SUPERVISOR": "M07StaffVisitEventReceipt"
+        },
+        "x-response-variants": [
+          "M07StaffVisitEventReceipt",
+          "M07TechnicianVisitEventReceipt"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/dispatch/technicians": {
+      "get": {
+        "operationId": "m07_n25",
+        "summary": "N25 GET /dispatch/technicians \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["ELIGIBLE", "ENROLLED", "UNAVAILABLE"]
+            }
+          },
+          {
+            "name": "skill",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "area",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          }
+        ],
+        "x-roles": ["SUPERVISOR", "ADMIN"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Page_DispatchTechnician"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "post": {
+        "operationId": "m07_n26",
+        "summary": "N26 POST /dispatch/technicians \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": ["ADMIN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "RECENT_REAUTH",
+          "GOVERNANCE_REASON"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchTechnician"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07TechnicianEnroll"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/technicians/{membership_id}": {
+      "patch": {
+        "operationId": "m07_n27",
+        "summary": "N27 PATCH /dispatch/technicians/{membership_id} \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current PROFILE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["ADMIN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "RECENT_REAUTH",
+          "GOVERNANCE_REASON"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "PROFILE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchTechnician"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07TechnicianProfilePatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/technicians/{membership_id}/calendar": {
+      "get": {
+        "operationId": "m07_n28",
+        "summary": "N28 GET /dispatch/technicians/{membership_id}/calendar \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "membership_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "x-roles": ["SUPERVISOR", "TECHNICIAN"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "TECHNICIAN_SELF"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07N28Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-role-projections": {
+          "TECHNICIAN": "M07TechnicianCalendarSnapshot",
+          "SUPERVISOR": "M07StaffCalendarSnapshot"
+        },
+        "x-response-variants": [
+          "M07StaffCalendarSnapshot",
+          "M07TechnicianCalendarSnapshot"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/dispatch/shifts": {
+      "post": {
+        "operationId": "m07_n29",
+        "summary": "N29 POST /dispatch/shifts \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current PROFILE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "PROFILE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Shift"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07ShiftWrite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/shifts/{shift_id}": {
+      "patch": {
+        "operationId": "m07_n30",
+        "summary": "N30 PATCH /dispatch/shifts/{shift_id} \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "shift_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current SHIFT resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "SHIFT",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Shift"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07ShiftChange"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/blocks": {
+      "post": {
+        "operationId": "m07_n31",
+        "summary": "N31 POST /dispatch/blocks \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current PROFILE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "PROFILE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchBlock"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07DispatchBlockWrite"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/blocks/{block_id}/release": {
+      "post": {
+        "operationId": "m07_n32",
+        "summary": "N32 POST /dispatch/blocks/{block_id}/release \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current BLOCK resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "BLOCK",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchBlock"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07BlockRelease"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/blocks/{block_id}/replacements": {
+      "post": {
+        "operationId": "m07_n33",
+        "summary": "N33 POST /dispatch/blocks/{block_id}/replacements \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "block_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current BLOCK resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "BLOCK",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchBlock"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07BlockReplace"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/appointment-windows": {
+      "get": {
+        "operationId": "m07_n34",
+        "summary": "N34 GET /dispatch/appointment-windows \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["PUBLISHED", "WITHDRAWN"]
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/M07ServiceCategory"
+            }
+          },
+          {
+            "name": "area",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07Page_StaffWindow"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "post": {
+        "operationId": "m07_n35",
+        "summary": "N35 POST /dispatch/appointment-windows \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current PROFILE resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "D5_CAPACITY_PROMISE_ONLY",
+          "SORTED_LOCK_ORDER",
+          "ATOMIC_ALLOCATION_CONSTRAINTS"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "PROFILE",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "201": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07StaffWindow"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07WindowPublish"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/appointment-windows/{window_id}/withdrawals": {
+      "post": {
+        "operationId": "m07_n36",
+        "summary": "N36 POST /dispatch/appointment-windows/{window_id}/withdrawals \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "window_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current WINDOW resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "WINDOW",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07StaffWindow"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07WindowWithdraw"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/workload": {
+      "get": {
+        "operationId": "m07_n37",
+        "summary": "N37 GET /dispatch/workload \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "x-roles": ["SUPERVISOR"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07WorkloadSnapshot"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/orgs/{organization_id}/dispatch/policy": {
+      "get": {
+        "operationId": "m07_n38",
+        "summary": "N38 GET /dispatch/policy \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "x-roles": ["SUPERVISOR", "ADMIN"],
+        "x-required-permission": "dispatch.read",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL"
+        ],
+        "x-retry-policy": "READ_ONLY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": null,
+        "x-database-effect": "Authorized projection only",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              },
+              "ETag": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "description": "Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "put": {
+        "operationId": "m07_n39",
+        "summary": "N39 PUT /dispatch/policy \u2014 M07-B",
+        "tags": ["M07 M07-B"],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[1-9][0-9]*\"$"
+            },
+            "description": "Current POLICY resource version; body contains any additional parent/calendar versions."
+          }
+        ],
+        "x-roles": ["ADMIN"],
+        "x-required-permission": "dispatch.write",
+        "x-scope": "Current tenant plus per-action own/assigned/self/role checks; see M07 permission contract",
+        "x-authorization-guards": [
+          "TENANT",
+          "CURRENT_MEMBERSHIP",
+          "CURRENT_PARENT_ACL",
+          "RECENT_REAUTH",
+          "GOVERNANCE_REASON"
+        ],
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-response-cache": "NO_STORE",
+        "x-implementation-status": "IMPLEMENTED_M07_B",
+        "x-m07-phase": "M07-B",
+        "x-version-target": "POLICY",
+        "x-database-effect": "Atomic state/history/audit/outbox; no external side effect before commit",
+        "responses": {
+          "200": {
+            "description": "Proposed authorized result, not an implemented endpoint",
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/M07DispatchPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/M07DispatchPolicyWrite"
+              }
+            }
+          }
+        }
       }
     }
   }

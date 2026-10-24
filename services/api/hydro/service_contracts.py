@@ -13,6 +13,40 @@ from .config import ROOT
 DESIGN = json.loads(
     (ROOT / "docs/architecture/m07/openapi-proposed.json").read_text(encoding="utf-8")
 )
+# Owner-approved M07-B eligibility review; omitted historical linkage remains unschedulable.
+for schema_name in ("M07WorkLinkWrite", "M07WorkLink"):
+    DESIGN["components"]["schemas"][schema_name]["properties"].update(
+        {
+            "dispatch_service_area_code": {
+                "anyOf": [{"type": "string", "minLength": 1, "maxLength": 40}, {"type": "null"}]
+            },
+            "dispatch_required_skill_codes": {
+                "anyOf": [
+                    {
+                        "type": "array",
+                        "items": {"type": "string", "minLength": 1, "maxLength": 40},
+                        "minItems": 1,
+                        "maxItems": 20,
+                        "uniqueItems": True,
+                    },
+                    {"type": "null"},
+                ]
+            },
+        }
+    )
+DESIGN["components"]["schemas"]["M07WorkLinkWrite"]["allOf"] = [
+    {
+        "if": {
+            "properties": {"dispatch_service_area_code": {"type": "string"}},
+            "required": ["dispatch_service_area_code"],
+        },
+        "then": {
+            "required": ["dispatch_required_skill_codes"],
+            "properties": {"dispatch_required_skill_codes": {"type": "array"}},
+        },
+        "else": {"properties": {"dispatch_required_skill_codes": {"type": "null"}}},
+    }
+]
 ACTIVE = {f"m07_n{i:02}" for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 43, 44]}
 DISABLED = {"m07_n10", "m07_n11", "m07_n12"}
 OPERATIONS = []

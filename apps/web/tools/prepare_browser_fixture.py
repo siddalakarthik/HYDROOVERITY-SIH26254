@@ -42,7 +42,7 @@ def main():
     p.add_argument("--openssl", default="openssl")
     args = p.parse_args()
     name = args.confirm_disposable_database
-    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser", "hydro_disposable_m06_browser"}:
+    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser", "hydro_disposable_m06_browser", "hydro_disposable_m07b_browser"}:
         raise SystemExit("Only explicitly confirmed M04 or M07-A disposable browser fixtures may be reset")
     private = args.private_directory.resolve()
     if private.is_relative_to(ROOT):
@@ -63,9 +63,16 @@ def main():
     marker.write_text(json.dumps({"database": name, "purpose": "M04_BROWSER_ONLY"}))
     with psycopg.connect(**{**admin, "dbname": name}, autocommit=True, connect_timeout=3) as c:
         c.execute("CREATE EXTENSION IF NOT EXISTS postgis")
+        c.execute("CREATE EXTENSION IF NOT EXISTS btree_gist")
     owner_url = make_url(operator["migration_url"]).set(database=name).render_as_string(hide_password=False)
     runtime["database_url"] = make_url(runtime["database_url"]).set(database=name).render_as_string(hide_password=False)
     runtime["mail_directory"] = str(private / "mail")
+    # A new fixture must not select an obsolete invitation token from an earlier
+    # synthetic database generation. Preserve previous private deliveries.
+    previous_mail=private/"mail"
+    if previous_mail.exists():
+        assert previous_mail.resolve().parent==private and private.name.endswith("private")
+        previous_mail.rename(private/("mail-previous-"+secrets.token_hex(8)))
     runtime["hmac_key"] = secrets.token_urlsafe(48)
     (private / "runtime.json").write_text(json.dumps(runtime))
     env = {**os.environ, "PYTHONPATH": str(ROOT / "services/api"), "HYDRO_MIGRATION_URL": owner_url}
@@ -108,6 +115,15 @@ def main():
     other_admin = login(fixture, "admin-b@example.invalid")
     expect(mutate(other_admin, f"/api/v1/orgs/{other['id']}/invitations", {"email": "admin-a@example.invalid", "role": "ADMIN"}), 200)
     expect(flow["admin"].request("POST", "/api/v1/auth/invitation-accept", json={"token": token(fixture, "INVITATION", "admin-a@example.invalid")}), 200)
+    from test_scheduling import booking_fixture
+
+    dispatch_admin=flow["admin"]
+    dispatch_sup,_ = provision(fixture,"SUPERVISOR","dispatch-supervisor@example.invalid",flow["admin"])
+    dispatch_tech,dispatch_member = provision(fixture,"TECHNICIAN","dispatch-tech@example.invalid",flow["admin"])
+    dispatch_engineer,_ = provision(fixture,"ENGINEER","dispatch-engineer@example.invalid",flow["admin"])
+    dispatch_citizen=register(fixture,"dispatch-citizen@example.invalid")
+    login(fixture,"dispatch-citizen@example.invalid",dispatch_citizen)
+    dispatch_flow=booking_fixture(fixture,{**flow,"admin":dispatch_admin,"supervisor":dispatch_sup,"technician":dispatch_tech,"tech_membership":dispatch_member,"citizen":dispatch_citizen,"engineer":dispatch_engineer})
     for item in clients:
         item.close()
     app.state.engine.dispose()
@@ -118,6 +134,10 @@ def main():
     der = subprocess.check_output([args.openssl, "pkey", "-pubin", "-outform", "der"], input=public_key)
     browser = {"provenance": "SYNTHETIC_BROWSER_INTEGRATION_ONLY", "password": password, "other_complaint": stranger_report["id"], "org": str(org["id"]), "other_org": str(other["id"]), "zone": flow["zone"]["id"], "tech_membership": flow["tech_membership"]["id"], "other_tech_membership": other_tech["id"], "incident": incident["id"], "work_order": work["id"], "junctions": [j["id"] for j in junctions], "pipe": pipe["id"], "certificate_spki": base64.b64encode(hashlib.sha256(der).digest()).decode()}
     browser["service_tech_membership"] = service_tech["id"]
+    browser["dispatch_case"] = dispatch_flow["case_path"].rsplit("/",1)[1]
+    browser["dispatch_tech"] = dispatch_member["id"]
+    browser["dispatch_from"] = (dispatch_flow["start"]-__import__('datetime').timedelta(days=1)).isoformat()
+    browser["dispatch_to"] = (dispatch_flow["start"]+__import__('datetime').timedelta(days=2)).isoformat()
     (private / "browser.json").write_text(json.dumps(browser))
     if os.name != "nt":
         for path in private.glob("*.json"):

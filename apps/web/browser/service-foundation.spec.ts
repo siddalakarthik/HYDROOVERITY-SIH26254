@@ -13,10 +13,7 @@ const fixture = JSON.parse(
   incident: string;
 };
 const output = process.env.HYDRO_M04_SCREENSHOTS!;
-const baseURL =
-  process.env.HYDRO_BROWSER_PORT === "9443"
-    ? "https://localhost:9443"
-    : "https://localhost:8443";
+const baseURL = `https://localhost:${/^[0-9]{4,5}$/.test(process.env.HYDRO_BROWSER_PORT ?? "") ? process.env.HYDRO_BROWSER_PORT : "8443"}`;
 test.describe.configure({ mode: "serial" });
 
 async function actor(browser: Browser, email: string, mobile = false) {

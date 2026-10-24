@@ -138,7 +138,7 @@ def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
         response = client.raw(op["method"].upper(), "/api/v1" + path)
         assert response.status_code in {404, 405}, "A deferred operation was reachable"
     runtime = runtime_openapi()
-    assert sum(len(x) for x in runtime["paths"].values()) == 77
+    assert sum(len(x) for x in runtime["paths"].values()) == 103
     assert "EvaluationResult" not in runtime["components"]["schemas"]
     assert "deviceBearer" not in runtime["components"]["securitySchemes"]
 

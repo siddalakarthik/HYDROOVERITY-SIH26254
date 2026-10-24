@@ -77,6 +77,9 @@ class WorkOrderService(Service):
             "FINAL_WORK",
             "Final work history cannot be modified",
         )
+        from .scheduling_guards import guard_work_change
+
+        guard_work_change(s, parent, b)
         if path.endswith("/assignment"):
             member = s.row("organization_memberships", b["assignee_membership_id"], True)
             tech = one(
