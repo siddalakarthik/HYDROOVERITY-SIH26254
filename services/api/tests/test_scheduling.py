@@ -281,7 +281,7 @@ def test_failed_booking_replacement_rolls_back_and_concurrent_cancel_releases_on
         )
 
 
-def booking_fixture(env, flow=None):
+def booking_fixture(env, flow=None, policy_overrides=None):
     from test_service_foundation import create, triage
     from test_workflow import incident, setup, transition
 
@@ -303,7 +303,16 @@ def booking_fixture(env, flow=None):
         reason="SYNTHETIC technician enrollment",
     )
     p = expect(mutate(admin, dispatch + "/technicians", enrollment), 201)
-    expect(mutate(admin, dispatch + "/policy", policy_body(), 1, method="PUT"), 200)
+    expect(
+        mutate(
+            admin,
+            dispatch + "/policy",
+            {**policy_body(), **(policy_overrides or {})},
+            1,
+            method="PUT",
+        ),
+        200,
+    )
     start = datetime.now(UTC).replace(microsecond=0) + timedelta(days=1)
     shift = dict(
         technician_membership_id=str(m["id"]),
@@ -438,6 +447,23 @@ def test_booking_reschedule_cancellation_and_role_projections(env):
     receipt = confirm(f, row)
     first = receipt["appointment"]
     assert first["status"] == "CONFIRMED"
+    profile = expect(f["admin"].request("GET", base + "/dispatch/technicians"), 200)["items"][0]
+    expect(
+        mutate(
+            f["admin"],
+            base + "/dispatch/technicians/" + profile["membership_id"],
+            dict(
+                skill_codes=profile["skill_codes"],
+                service_area_codes=profile["service_area_codes"],
+                max_daily_minutes=1,
+                active=True,
+                reason="Synthetic lower capacity conflicting with active visits",
+            ),
+            profile["profile_version"],
+            method="PATCH",
+        ),
+        409,
+    )
     safe = expect(citizen.request("GET", base + "/appointments/" + first["id"]), 200)
     assert "work_order_id" not in safe and "internal_reason" not in safe
     request = request_visit(f, 1, first)
@@ -637,7 +663,7 @@ def test_alternative_acceptance_visit_events_and_legacy_guards(env):
 
 
 def test_request_withdrawal_decline_and_pending_cancellation(env):
-    f = booking_fixture(env)
+    f = booking_fixture(env, policy_overrides={"free_cancel_before_minutes": 2880})
     citizen = f["citizen"]
     sup = f["supervisor"]
     base = f["base"]
@@ -668,21 +694,6 @@ def test_request_withdrawal_decline_and_pending_cancellation(env):
         ),
         200,
     )
-    # Explicit synthetic policy puts cancellation inside the review cutoff.
-    p = expect(f["admin"].request("GET", base + "/dispatch/policy"), 200)
-    expect(
-        mutate(
-            f["admin"],
-            base + "/dispatch/policy",
-            {**policy_body(), "free_cancel_before_minutes": 2880},
-            p["version"],
-            method="PUT",
-        ),
-        200,
-    )
-    # Policy revision invalidates publication; restore reviewed snapshot only in this isolated fixture.
-    with env["owner"].begin() as c:
-        c.exec_driver_sql("UPDATE appointment_windows SET policy_version=3")
     row = request_visit(f)
     visit = confirm(f, row)["appointment"]
     case = expect(citizen.request("GET", f["case_path"]), 200)

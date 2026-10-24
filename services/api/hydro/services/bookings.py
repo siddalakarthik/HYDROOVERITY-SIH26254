@@ -672,12 +672,12 @@ class Bookings(Scheduler):
             require(
                 not one(
                     self.c,
-                    "SELECT id FROM appointments WHERE status IN ('CONFIRMED','CHECKED_IN') LIMIT 1",
+                    "SELECT id FROM dispatch_technician_profiles WHERE calendar_version>1 LIMIT 1",
                 )
                 or all(parent[k] == b[k] for k in safety),
                 409,
                 "REPLAN_REQUIRED",
-                "Replan existing commitments before changing safety policy",
+                "Safety policy changes after calendar use require reviewed governance controls. Booking can still be disabled with unchanged safety values.",
             )
         if n in {25, 26, 27, 29, 30, 31, 32, 33, 38, 39}:
             return super().run(b, parent, key)

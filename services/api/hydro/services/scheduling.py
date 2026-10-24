@@ -236,6 +236,13 @@ class Scheduler:
             )
             return self.save("dispatch_technician_profiles", row, b["reason"])
         if op == "m07_n27":
+            require(
+                b["max_daily_minutes"] >= parent["max_daily_minutes"]
+                or parent["calendar_version"] == 1,
+                409,
+                "REPLAN_REQUIRED",
+                "Lowering capacity after calendar use requires reviewed governance controls; existing commitments are preserved",
+            )
             row = write(
                 c,
                 "dispatch_technician_profiles",
