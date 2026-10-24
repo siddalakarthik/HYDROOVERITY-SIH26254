@@ -22,6 +22,8 @@
 !scripts/openapi-validation-requirements.txt
 !scripts/check_m07a_implementation.py
 !scripts/check_m06.py
+!scripts/check_m07b.py
+!data/schemas/m07b-implementation.json
 **/__pycache__/**
 **/.pytest_cache/**
 **/.env

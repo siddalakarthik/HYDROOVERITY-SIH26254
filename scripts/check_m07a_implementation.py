@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "services/api"))
 from hydro.contracts import DESIGN, OPERATIONS, runtime_openapi  # noqa: E402
 from hydro.service_contracts import ACTIVE, DISABLED  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
+from hydro.scheduling_contracts import ACTIVE as SCHEDULING
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
     assert manifest["counts"] == {"baseline_implemented":58,"m07a_implemented":12,"total_implemented":70,"designed_operations":161,"baseline_migrated_tables":30,"m07a_migrated_tables":5,"total_migrated_tables":35,"designed_tables":74}
     runtime = runtime_openapi()
     ids = {o["operationId"] for ms in runtime["paths"].values() for o in ms.values()}
-    assert ids == {o["id"] for o in OPERATIONS} | ACTIVE | {o["id"] for o in SCIENCE}
+    assert ids == {o["id"] for o in OPERATIONS} | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE}
     assert not ids & DISABLED
     for op in OPERATIONS:
         actual = copy.deepcopy(runtime["paths"][op["path"]][op["method"]])
@@ -41,7 +42,8 @@ def main():
             continue
         extensions = json.loads((ROOT / "data/schemas/m06-implementation.json").read_text())["m07a_file_extensions"]
         assert set(extensions) == {"scripts/check_m07a_implementation.py", "apps/web/tools/browser-suite.mjs"}
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == extensions.get(name, digest), name
+        scheduling = json.loads((ROOT / "data/schemas/m07b-implementation.json").read_text())["source_extensions"]
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == scheduling.get(name,{}).get("sha256",extensions.get(name, digest)), name
     print("PASS: 58 compatible baseline + 12 M07-A operations = 70; 35 migrated / 74 designed tables; privacy and future-operation gates retained; source hash scope=" + ("backend image" if args.backend_only else "complete checkout"))
 
 

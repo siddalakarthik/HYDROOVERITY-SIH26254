@@ -36,9 +36,19 @@ STATES = json.loads((ROOT / "data/schemas/m07-state-machines.json").read_text())
 
 def insert(c, table, **values):
     assert table in TABLES
+    if values.get("dispatch_required_skill_codes") is not None:
+        values["dispatch_required_skill_codes"] = json.dumps(
+            values["dispatch_required_skill_codes"]
+        )
+    expressions = [
+        "CAST(:dispatch_required_skill_codes AS jsonb)"
+        if k == "dispatch_required_skill_codes"
+        else ":" + k
+        for k in values
+    ]
     return one(
         c,
-        f"INSERT INTO {table} ({','.join(values)}) VALUES ({','.join(':' + k for k in values)}) RETURNING *",
+        f"INSERT INTO {table} ({','.join(values)}) VALUES ({','.join(expressions)}) RETURNING *",
         **values,
     )
 
@@ -71,6 +81,8 @@ def work_link(row):
     return {
         **{k: row[k] for k in "id work_order_id purpose created_at version".split()},
         "service_request_id": row["request_id"],
+        "dispatch_service_area_code": row.get("dispatch_service_area_code"),
+        "dispatch_required_skill_codes": row.get("dispatch_required_skill_codes"),
     }
 
 
@@ -164,6 +176,17 @@ class Scope(Tenant):
                     dispatch_health="UNCONFIGURED",
                     internal_event_summary=event["internal_reason"] if event else "",
                 )
+            current = one(
+                self.c,
+                "SELECT * FROM appointments WHERE request_id=:r AND status IN ('CONFIRMED','CHECKED_IN')",
+                r=row["id"],
+            )
+            if current:
+                from .bookings import Bookings
+
+                result["current_appointment"] = Bookings(self).projection(
+                    "appointments", current, True
+                )
             return result
         if table == "service_public_updates":
             return public_update(row)
@@ -188,7 +211,7 @@ class Foundation:
         self.result = None
         self.result_table = None
 
-    def save(self, table, row, result=None):
+    def save(self, table, row, result=None, reason=None):
         self.result_table, self.result = table, row
         record(
             self.c,
@@ -199,6 +222,7 @@ class Foundation:
             row["id"],
             self.s.auth.request.state.request_id,
             self.s.op["permission"],
+            reason,
         )
         return result if result is not None else self.s.view(table, row)
 
@@ -487,6 +511,53 @@ class Foundation:
                 "PURPOSE_CONFLICT",
                 "Purpose must match authorized operational work",
             )
+            existing = one(
+                c,
+                "SELECT * FROM service_work_order_links WHERE request_id=:r AND work_order_id=:w FOR UPDATE",
+                r=parent["id"],
+                w=work["id"],
+            )
+            if existing:
+                require(
+                    b.get("dispatch_service_area_code") and b.get("dispatch_required_skill_codes"),
+                    409,
+                    "LINK_EXISTS",
+                    "Existing work is already linked; supply reviewed dispatch eligibility to update its scheduling review",
+                )
+                require(
+                    not one(
+                        c,
+                        "SELECT id FROM appointments WHERE work_order_id=:w AND status IN ('CONFIRMED','CHECKED_IN') LIMIT 1",
+                        w=work["id"],
+                    ),
+                    409,
+                    "REPLAN_REQUIRED",
+                    "Resolve existing appointments before changing their eligibility review",
+                )
+                row = change(c, "service_requests", parent["id"], status=parent["status"])
+                review = {
+                    "previous_area": existing["dispatch_service_area_code"],
+                    "previous_skills": existing["dispatch_required_skill_codes"],
+                    "area": b["dispatch_service_area_code"],
+                    "skills": b["dispatch_required_skill_codes"],
+                }
+                self.history(
+                    row,
+                    "DISPATCH_ELIGIBILITY_REVIEWED",
+                    b["internal_reason"][:1800]
+                    + " Review digest: "
+                    + hashlib.sha256(json.dumps(review, sort_keys=True).encode()).hexdigest(),
+                    "The utility reviewed service eligibility for dispatch. No visit is confirmed.",
+                )
+                link = one(
+                    c,
+                    "UPDATE service_work_order_links SET dispatch_service_area_code=:area,dispatch_required_skill_codes=CAST(:skills AS jsonb),dispatch_review_service_version=:sv,version=version+1 WHERE id=:i RETURNING *",
+                    area=b["dispatch_service_area_code"],
+                    skills=json.dumps(b["dispatch_required_skill_codes"]),
+                    i=existing["id"],
+                    sv=row["version"],
+                )
+                return self.save("service_work_order_links", link, reason=json.dumps(review))
             require(
                 one(
                     c,
@@ -513,6 +584,8 @@ class Foundation:
                 work_order_id=work["id"],
                 linked_by_id=self.a,
                 purpose=b["purpose"],
+                dispatch_service_area_code=b.get("dispatch_service_area_code"),
+                dispatch_required_skill_codes=b.get("dispatch_required_skill_codes"),
             )
             return self.save("service_work_order_links", link)
         action = b["action"]
@@ -564,10 +637,20 @@ class Foundation:
                     "Supply exactly all current linked work versions",
                 )
                 require(
+                    not one(
+                        c,
+                        "SELECT id FROM appointments WHERE request_id=:r AND status IN ('CONFIRMED','CHECKED_IN') LIMIT 1",
+                        r=parent["id"],
+                    ),
+                    409,
+                    "VISIT_DISPOSITION_REQUIRED",
+                    "Resolve active visits through their appointment commands before closing service",
+                )
+                require(
                     not b["child_dispositions"],
                     422,
-                    "SCHEDULING_DISABLED",
-                    "No appointment dispositions are enabled",
+                    "USE_APPOINTMENT_COMMAND",
+                    "Use versioned appointment cancellation commands before the service disposition",
                 )
                 require(
                     all(x["status"] in {"COMPLETED", "CANCELLED"} for x in links),
@@ -590,10 +673,16 @@ class Foundation:
                         "A real repair receipt is required for this operational outcome",
                     )
                 require(
-                    action != "CLOSE" or b["service_outcome"] != "VISIT_COMPLETED",
+                    action != "CLOSE"
+                    or b["service_outcome"] != "VISIT_COMPLETED"
+                    or one(
+                        c,
+                        "SELECT id FROM appointments WHERE request_id=:r AND status='VISIT_FINISHED' LIMIT 1",
+                        r=parent["id"],
+                    ),
                     409,
-                    "VISITS_DISABLED",
-                    "Visit confirmation belongs to M07-B",
+                    "VISIT_REQUIRED",
+                    "A recorded finished visit is required for this outcome",
                 )
             values = {"status": target}
             if action in {"CLOSE", "CANCEL"}:
@@ -745,6 +834,11 @@ def dispatch(app, request, op, value, params):
                 params[k] = str(UUID(v))
             except ValueError:
                 require(False, 422, "INVALID_IDENTIFIER", "Invalid resource identifier")
+        execute(
+            c,
+            "SELECT pg_advisory_xact_lock(hashtextextended(:key,0))",
+            key="hydro-dispatch:" + params["organization_id"],
+        )
         s = Scope(auth, op, params)
         service = Foundation(s)
         if "request_id" in params:

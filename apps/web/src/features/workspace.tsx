@@ -36,6 +36,7 @@ import { Logout, membershipHome } from "./auth";
 import { CitizenReports, SupervisorComplaints } from "./complaints";
 import { ServiceRequests } from "./service-requests";
 import { Science } from "./science";
+import { DispatchBoard, DispatchGovernance } from "./dispatch";
 import { Overview, Incidents, IncidentDetail } from "./incidents";
 import { WorkOrders, WorkDetail, VerificationPage } from "./work";
 import { NetworkPage } from "./network";
@@ -290,12 +291,29 @@ export function Workspace({ segments }: { segments: string[] }) {
       return tail[1] ? (
         <WorkDetail {...common} membershipId={member.id} id={tail[1]} />
       ) : (
-        <WorkOrders {...common} />
+        <>
+          {member.roles.some((r) =>
+            ["SUPERVISOR", "TECHNICIAN"].includes(r),
+          ) && (
+            <DispatchBoard
+              org={org}
+              membershipId={member.id}
+              staff={member.roles.includes("SUPERVISOR")}
+            />
+          )}
+          <WorkOrders {...common} />
+        </>
       );
     if (tail[0] === "repairs" && tail[2] === "verification")
       return <VerificationPage {...common} id={tail[1]} />;
     if (suffix === "complaints") return <SupervisorComplaints org={org} />;
-    if (suffix === "admin/users") return <Administration org={org} />;
+    if (suffix === "admin/users")
+      return (
+        <>
+          <DispatchGovernance org={org} />
+          <Administration org={org} />
+        </>
+      );
     if (suffix === "admin/audit") return <Audit org={org} />;
     return (
       <>

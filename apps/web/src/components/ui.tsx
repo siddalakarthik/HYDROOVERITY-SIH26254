@@ -274,6 +274,7 @@ export function TextArea({
   maxLength = 2000,
   defaultValue = "",
   help,
+  required = true,
 }: {
   label: string;
   name: string;
@@ -281,6 +282,7 @@ export function TextArea({
   maxLength?: number;
   defaultValue?: string;
   help?: string;
+  required?: boolean;
 }) {
   const [length, setLength] = useState(defaultValue.length);
   const id = useId();
@@ -290,7 +292,7 @@ export function TextArea({
       <textarea
         id={id}
         name={name}
-        required
+        required={required}
         minLength={minLength}
         maxLength={maxLength}
         defaultValue={defaultValue}

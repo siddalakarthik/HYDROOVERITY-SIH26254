@@ -27,6 +27,7 @@ import {
   value,
 } from "@/components/ui";
 import { Pager, usePage } from "@/components/pagination";
+import { Appointments } from "./appointments";
 
 type Case = Model<"M07ServiceCaseCitizen"> | Model<"M07ServiceCaseStaff">;
 const options = (items: string[]) =>
@@ -348,6 +349,13 @@ function LinkWork({
               expected_work_version: selected.version,
               purpose: value(f, "purpose") as Model<"M07TaskPurpose">,
               internal_reason: value(f, "internal_reason"),
+              dispatch_service_area_code: value(f, "dispatch_area") || null,
+              dispatch_required_skill_codes: value(f, "dispatch_skills")
+                ? value(f, "dispatch_skills")
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter(Boolean)
+                : null,
             } satisfies Model<"M07WorkLinkWrite">;
           }}
           onDone={refresh}
@@ -368,6 +376,16 @@ function LinkWork({
             options={options(["INVESTIGATION", "INSPECTION", "REPAIR"])}
           />
           <TextArea name="internal_reason" label="Private linkage reason" />
+          <Field
+            name="dispatch_area"
+            label="Supervisor-reviewed service-area code (optional)"
+            maxLength={40}
+            help="Without reviewed area and skills this link cannot be scheduled."
+          />
+          <Field
+            name="dispatch_skills"
+            label="Required skill codes, separated by commas (optional)"
+          />
         </ActionForm>
         <Pager {...work} />
       </ResourceState>
@@ -510,7 +528,10 @@ function Detail({
                 </div>
               </dl>
               <p className="meta">
-                Version {row.version} · No appointment confirmed
+                Version {row.version} ·{" "}
+                {row.current_appointment
+                  ? label(row.current_appointment.status)
+                  : "No appointment confirmed"}
               </p>
               {row.cancellation_pending && (
                 <Notice>
@@ -522,6 +543,12 @@ function Detail({
                 Refresh request and history
               </button>
             </section>
+            <Appointments
+              org={org}
+              service={row}
+              staff={staff}
+              onChange={refresh}
+            />
             <section className="panel">
               <h2>Resident-visible timeline</h2>
               <ResourceState {...timeline}>
@@ -785,9 +812,9 @@ function Detail({
               </section>
             )}
             <Notice>
-              Visit preferences, access instructions, appointments, uploads and
-              notifications are disabled. Please do not enter access codes or
-              sensitive home information.
+              Visit preferences, access instructions, uploads and notifications
+              are disabled. Please do not enter access codes or sensitive home
+              information.
             </Notice>
           </>
         )}

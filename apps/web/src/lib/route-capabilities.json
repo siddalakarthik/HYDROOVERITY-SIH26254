@@ -1,5 +1,5 @@
 {
-  "milestone": "M04 + M07-A + M06",
+  "milestone": "M04 + M07-A + M06 + M07-B",
   "pages": [
     {
       "id": "PAGE-01",
@@ -1349,6 +1349,58 @@
           "method": "POST",
           "path": "/orgs/{organization_id}/work-orders/{work_order_id}/transitions",
           "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n25",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n28",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n29",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n30",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n31",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n32",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n33",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n34",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n35",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n36",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n37",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n38",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n24",
+          "status": "IMPLEMENTED"
         }
       ],
       "shared_operations": [
@@ -1371,7 +1423,7 @@
       ],
       "component": "work",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+      "future_dependency": "Visit access/privacy review, attachments, notifications and offline remain gated; scheduling requires authorized configuration"
     },
     {
       "id": "PAGE-34",
@@ -1837,6 +1889,26 @@
           "method": "POST",
           "path": "/orgs/{organization_id}/memberships/{membership_id}/status",
           "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n25",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n26",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n27",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n38",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n39",
+          "status": "IMPLEMENTED"
         }
       ],
       "shared_operations": [
@@ -1859,7 +1931,7 @@
       ],
       "component": "administration",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+      "future_dependency": "Visit access/privacy review, attachments, notifications and offline remain gated; scheduling requires authorized configuration"
     },
     {
       "id": "PAGE-45",
@@ -1995,10 +2067,46 @@
         {
           "operation_id": "m07_n08",
           "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n14",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n15",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n16",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n17",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n19",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n20",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n21",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n22",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n23",
+          "status": "IMPLEMENTED"
         }
       ],
       "component": "service-requests",
-      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+      "future_dependency": "Visit access/privacy review, attachments, notifications and offline remain gated; scheduling requires authorized configuration"
     },
     {
       "id": "PAGE-50",
@@ -2049,10 +2157,38 @@
         {
           "operation_id": "m07_n13",
           "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n14",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n16",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n17",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n18",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n21",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n22",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "m07_n23",
+          "status": "IMPLEMENTED"
         }
       ],
       "component": "service-requests",
-      "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"
+      "future_dependency": "Visit access/privacy review, attachments, notifications and offline remain gated; scheduling requires authorized configuration"
     }
   ]
 }

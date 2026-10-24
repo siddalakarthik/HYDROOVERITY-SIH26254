@@ -7,6 +7,7 @@ for (const [index, file] of [
   "browser/workflow.spec.ts",
   "browser/service-foundation.spec.ts",
   "browser/science.spec.ts",
+  "browser/dispatch.spec.ts",
 ].entries()) {
   if (index) {
     console.log(

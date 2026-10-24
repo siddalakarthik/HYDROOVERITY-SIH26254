@@ -14,6 +14,24 @@
   --simulation: #6b21a8;
   --radius: 10px;
 }
+.dispatch-card {
+  margin-block: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--brand);
+  border-radius: var(--radius);
+  background: var(--surface);
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.appointment-panel > h3 {
+  margin-block-start: 1.5rem;
+}
+.dispatch-card .record-top {
+  align-items: start;
+}
 * {
   box-sizing: border-box;
 }

@@ -232,6 +232,11 @@ def dispatch(app, request, op, value, params):
                 if op["group"] == "Current user":
                     result = current_user(auth, op, b, params)
                 else:
+                    execute(
+                        c,
+                        "SELECT pg_advisory_xact_lock(hashtextextended(:key,0))",
+                        key="hydro-dispatch:" + params["organization_id"],
+                    )
                     scope = Tenant(auth, op, params)
                     if op["path"].endswith("/links"):
                         lock(c, "incident-links:" + str(scope.organization_id))
