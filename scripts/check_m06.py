@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+from pre_m10_sources import revised_digest
 from pathlib import Path
 import sys
 
@@ -47,7 +48,7 @@ def main():
     for name, expected in manifest["m07a_file_extensions"].items():
         if args.backend_only and not name.startswith("services/api/"):
             continue
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == current["source_extensions"].get(name,{}).get("sha256",scheduling["source_extensions"].get(name,{}).get("sha256",expected)), name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == revised_digest(name, current["source_extensions"].get(name,{}).get("sha256",scheduling["source_extensions"].get(name,{}).get("sha256",expected))), name
     pins = json.loads((ROOT / "data/schemas/m06-observation-pins.json").read_text())
     catalogue = load_catalogue(ROOT / "data/samples/m06", pins["catalogue_sha256"])
     assert len(catalogue["cases"]) == 69

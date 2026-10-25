@@ -33,7 +33,8 @@ def changes():
 
 def revised_digest(name, expected):
     change = changes().get(name)
-    if change is None:
-        return expected
-    assert change["baseline_sha256"] == expected, f"Broken pre-M10 baseline chain: {name}"
-    return change["sha256"]
+    if change is not None:
+        assert change["baseline_sha256"] == expected, f"Broken pre-M10 baseline chain: {name}"
+        expected = change["sha256"]
+    from pre_m10_f01_sources import extend_digest
+    return extend_digest(name, expected)

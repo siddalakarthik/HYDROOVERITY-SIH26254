@@ -14,11 +14,22 @@ DESIGN = json.loads(
     (ROOT / "docs/architecture/m07/openapi-proposed.json").read_text(encoding="utf-8")
 )
 SCHEMAS = DESIGN["components"]["schemas"]
+# Additive private-development preference; existing opt-ins are never expanded.
+for schema_name in ("M07NotificationPreferences", "M07NotificationPreferencesWrite"):
+    categories = SCHEMAS[schema_name]["properties"]["event_categories"]
+    categories["items"]["enum"].append("COMPLAINT_PROGRESS")
+    categories["maxItems"] = 5
 SCHEMAS["M07Notification"]["properties"].update(
     {
         "event_category": {
             "type": "string",
-            "enum": ["SERVICE_PROGRESS", "APPOINTMENT", "WORK_ASSIGNMENT", "SERVICE_FEEDBACK"],
+            "enum": [
+                "SERVICE_PROGRESS",
+                "APPOINTMENT",
+                "WORK_ASSIGNMENT",
+                "SERVICE_FEEDBACK",
+                "COMPLAINT_PROGRESS",
+            ],
         },
         "resource_path": {"type": "string", "maxLength": 300, "pattern": "^/"},
     }

@@ -3,6 +3,7 @@ import copy
 import argparse
 import hashlib
 import json
+from pre_m10_sources import revised_digest
 from pathlib import Path
 import sys
 
@@ -45,7 +46,7 @@ def main():
         extensions = json.loads((ROOT / "data/schemas/m06-implementation.json").read_text())["m07a_file_extensions"]
         assert set(extensions) == {"scripts/check_m07a_implementation.py", "apps/web/tools/browser-suite.mjs"}
         scheduling = json.loads((ROOT / "data/schemas/m07b-implementation.json").read_text())["source_extensions"]
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == current["source_extensions"].get(name,{}).get("sha256",scheduling.get(name,{}).get("sha256",extensions.get(name, digest))), name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == revised_digest(name, current["source_extensions"].get(name,{}).get("sha256",scheduling.get(name,{}).get("sha256",extensions.get(name, digest)))), name
     print("PASS: 58 compatible baseline + 12 M07-A operations = 70; 35 migrated / 74 designed tables; privacy and future-operation gates retained; source hash scope=" + ("backend image" if args.backend_only else "complete checkout"))
 
 

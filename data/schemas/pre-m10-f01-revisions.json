@@ -1,0 +1,95 @@
+{
+  "baseline_commit": "848c1c8a1dbf72f980c1f58454a41d0bd332eab8",
+  "source_revisions": {
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "9640acc42e98dfd518664a0d69fe93f955f71f42cb5ab139d153d7c19afb904b",
+      "sha256": "5ca8323dd8ded5241ed55133b6f30bfb79bbdb9a3f89ab00b5de7eddd2463d18",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "apps/web/browser/communications.spec.ts": {
+      "baseline_sha256": "a1e87b1e7901dc1cfa91d6b688c34321d4f6f9ed7f95aa5133789ae47f76ff9f",
+      "sha256": "49f7b0d5fe6c62436d290a54056209ef10f9c77e89832ef1f2ade85591c9651f",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "apps/web/contracts/implemented.openapi.json": {
+      "baseline_sha256": "6342bab0f6821061206def9dffd1e88513b12d91312d7ad4f8b031f5827d819e",
+      "sha256": "5da45a54c6cfa99ea8f49855122a7c5d9bebc8a1db42aa5abc92210496dbb803",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "apps/web/src/features/communications.tsx": {
+      "baseline_sha256": "997133b5df39ed35e8507e00d04189aa592380c6746d1d028b2cd1a2e4fb39f6",
+      "sha256": "e31b3b1537d4534a89a2c8b811df464f2dd947f85b271d98de81b9ffdf4240fd",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "apps/web/src/lib/generated.ts": {
+      "baseline_sha256": "37753715f1040ca2c1807c0d9792683199aa03bdf21d8ce133ff2a056b1b949b",
+      "sha256": "18b7a924cc2e330c74feec4118d81d7b665c7d34b59ab23ff1f2567c07f9127e",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "scripts/check_m06.py": {
+      "baseline_sha256": "be1e781fe4897487a3ce13d671fe98b4676d9e924c181f0a1c2fd2fcbeda794b",
+      "sha256": "be7c01f9b00d319e4646ea19addd05eb0ce0e1ff87c661bf5f0c6f2736506970",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "scripts/check_m07a_implementation.py": {
+      "baseline_sha256": "9f62115e0fb432200c5c2bfb23df9fd3d952b801ffa57bd752013fcf5e613735",
+      "sha256": "70e93c380021a71708b07afd4bc39a31f85b765f166e112a8f31983ccb2876da",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "scripts/check_m09.py": {
+      "baseline_sha256": "4366d3a0cba639297ebb3ab68e873824060996f9750ae983fb39276641ffc121",
+      "sha256": "7bb83cf09f5a129799d879b99090f407ec6c554749461e2e7a3592f539b37c12",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "scripts/check_pre_m10.py": {
+      "baseline_sha256": "b487e1498f0f9be3c45a27b2a6b4c3f5f7f71bc39f0e9358ba9f4b355d09a8a2",
+      "sha256": "159e10f59bc09670dfbdb0f56e53a411490fbe5af8f0767d9447574c842a1d4c",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "scripts/pre_m10_sources.py": {
+      "baseline_sha256": "528c05f300abe91fa6be1bbc476d39113230ab4ddaf6db3e640e90ed6f83dee1",
+      "sha256": "7dfee3cd7935c44ae1191358c258739297cbf557c87092707ec6c247f904dbcf",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/hydro/communications_contracts.py": {
+      "baseline_sha256": "d8c34de02d3f2ab2cfb07c093cfd011cd1e2d8a72e6f4108bc0f6523675cd878",
+      "sha256": "462533fbbc69e8c58111cd9535fe8c300432f383a9f45c9cf59aa6c448404a62",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/hydro/db.py": {
+      "baseline_sha256": "568d8a41119fa194f051116a327d94b73e5b5ef6e079f1331c42f6817bdc0989",
+      "sha256": "228de9f2b7e9bab1d46afd6ccf71c20353358865e05e1c79316e50ce82a8e1e8",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/hydro/notification_worker.py": {
+      "baseline_sha256": "ad4c83c31c66962a3d5450a6d429474f16ea99de44ac779e454d07b1be7943e6",
+      "sha256": "4b40cfbf21e5c519502b73ad098a2db75171c0ab8c7ddcd0d9ae8affade92420",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/tests/m09_acceptance.py": {
+      "baseline_sha256": "dacad847e1b5fc6b716e4e5658ad85c62e81c145c548c8f3bff6d482122595bb",
+      "sha256": "ef615061508f17c44709f690458fca0a8bc8215050d8fd48339d86a9308a946e",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/tests/test_communications.py": {
+      "baseline_sha256": "66be8b68c7fcbaae0ca242b25a379d80c8fc2ea86434b95021019b7cc5562174",
+      "sha256": "606d093ff45668b8dcaa996b3731cfc010f4544fe2f7b4bb21f8d13ae08158c1",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/tests/test_concurrency_resilience.py": {
+      "baseline_sha256": "57409a32e585fda3f600a974143704a045c98ea73bdff9bc0d016583e0fb606d",
+      "sha256": "ab2b7f96e2aa1a78dbf323c998604bc10f219e0e807e10e69f379722a6f01cd7",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/tests/test_foundation.py": {
+      "baseline_sha256": "8ea4fefdca0655d313d2e53647d1228aedaf8edc414e287325e0643d674ceeb3",
+      "sha256": "d69a090bd4b1b1d7d7525f741c79889ec7d01c6c4ca6ecf4ada99d66187e3ff0",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    },
+    "services/api/tests/test_workflow.py": {
+      "baseline_sha256": "7c7f02f0d79d85b74c027f040523a348e4240bca19b6c0903a747a1642b02219",
+      "sha256": "8850752af4318ec940bddd4845060316662d541e23b14ef7117e709b8e85a447",
+      "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
+    }
+  }
+}
