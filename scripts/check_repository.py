@@ -56,7 +56,7 @@ docs/architecture/DATA_DICTIONARY.md docs/architecture/THREAT_MODEL.md
 docs/engineering/HARDWARE_STATUS.md docs/engineering/ENGINEERING_LIMITATIONS.md
 docs/engineering/ARTIFACT_POLICY.md docs/testing/SIMULATION_PLAN.md
 docs/testing/EVIDENCE_REGISTER.md docs/decisions/DECISION_LOG.md
-.github/README.md .github/backlog.json .github/PULL_REQUEST_TEMPLATE.md
+.github/DEVELOPMENT_SETUP.md .github/backlog.json .github/PULL_REQUEST_TEMPLATE.md
 .github/ISSUE_TEMPLATE/feature_request.md .github/ISSUE_TEMPLATE/bug_report.md
 .github/ISSUE_TEMPLATE/engineering_investigation.md
 .github/ISSUE_TEMPLATE/simulation_experiment.md
