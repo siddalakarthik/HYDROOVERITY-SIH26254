@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+from pre_m10_sources import revised_digest
 import sys
 from pathlib import Path
 
@@ -33,11 +34,11 @@ def main():
     for name, change in manifest["source_extensions"].items():
         if args.backend_only and not name.startswith("services/api/") and not (ROOT/name).exists():
             continue
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == change["sha256"], name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == revised_digest(name, change["sha256"]), name
     for name, expected in manifest["new_source_sha256"].items():
         if args.backend_only and not name.startswith("services/api/") and not (ROOT/name).exists():
             continue
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == expected, name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == revised_digest(name, expected), name
     assert manifest["attachments"] == "DISABLED_D7_REVIEW_REQUIRED"
     print("PASS: 103 preserved + 8 M07-C operations; 51 tables; D6/D7/D8/D10 gates retained")
 

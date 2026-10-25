@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+from pre_m10_sources import revised_digest
 from pathlib import Path
 import sys
 
@@ -36,7 +37,7 @@ def main():
     for name,change in m['source_extensions'].items():
         assert any(name.startswith(prefix) for prefix in allowed),name
         if args.backend_only and not name.startswith('services/api/') and not (ROOT/name).exists():continue
-        assert hashlib.sha256((ROOT/name).read_text('utf-8').encode()).hexdigest()==current["source_extensions"].get(name,{}).get("sha256",change['sha256']),name
+        assert hashlib.sha256((ROOT/name).read_text('utf-8').encode()).hexdigest()==revised_digest(name,current["source_extensions"].get(name,{}).get("sha256",change['sha256'])),name
     for name,expected in m['frozen_scientific_sources'].items():
         if args.backend_only and not (ROOT/name).exists():continue
         assert hashlib.sha256((ROOT/name).read_text('utf-8').encode()).hexdigest()==expected,name

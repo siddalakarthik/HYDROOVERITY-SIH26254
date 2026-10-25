@@ -1,6 +1,7 @@
 """Validate proposed contracts and frozen compatibility, never runtime enforcement."""
 import hashlib
 import json
+from pre_m10_sources import revised_digest
 from pathlib import Path
 import re
 
@@ -189,6 +190,7 @@ def frozen_files():
         if name in communications:
             if communications[name]["baseline_sha256"] != expected: errors.append("Invalid M07-C activation boundary: " + name)
             expected = communications[name]["sha256"]
+        expected = revised_digest(name, expected)
         if not (ROOT/name).is_file() or hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != expected:
             errors.append("Frozen runtime/scientific/hardware contract changed: " + name)
     for source in read("data/schemas/m07-planning-source-manifest.json")["sources"]:

@@ -1,0 +1,1275 @@
+{
+  "revision": 1,
+  "accepted_main": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+  "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+  "implemented_operations": 111,
+  "migrated_tables": 51,
+  "migration_head": "m07_c_001",
+  "scope_rule": "Original 40-case denominator and historical results are immutable. A current PASS requires executed evidence satisfying the original criterion. This register introduces no runtime activation.",
+  "items": [
+    {
+      "id": "F01",
+      "requirement": "Citizen creates report",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Legacy complaint notifications are not implemented; separate service lifecycle is tested",
+      "required_implementation": "Connect complaint lifecycle to deduplicated customer-safe in-app notifications without creating service/incident records.",
+      "required_test": "One complaint/tracking number and public receipt, one notification; different body same key409",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Legacy complaint notifications are not implemented; separate service lifecycle is tested"
+    },
+    {
+      "id": "F02",
+      "requirement": "Citizen ownership",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Uniform404 and no row/content disclosure",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Media absent; boundary denial is not secure-media functionality"
+    },
+    {
+      "id": "F03",
+      "requirement": "Triage",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Guarded versioned transition, immutable event/audit and same-mode evidence links",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Synthetic operator decisions, no actual utility triage"
+    },
+    {
+      "id": "F04",
+      "requirement": "Assignment",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Offline synchronization remains deferred D9",
+      "required_implementation": "Test bounded encrypted task caching and stale reassignment conflicts first; keep activation disabled pending D9 controls.",
+      "required_test": "Assignment version increments; old worker sync denied without discarding local draft",
+      "dependency_or_approval": "D9; reviewed encryption/key custody, lease, consent and retention before activation",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Offline synchronization remains deferred D9"
+    },
+    {
+      "id": "F05",
+      "requirement": "Worker repair",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "D7 photo processing/storage not implemented",
+      "required_implementation": "Implement reviewed quarantine, scan, isolated re-encode and authorized image lifecycle only after D7 approval.",
+      "required_test": "Persistent immutable receipts and review state; no scientific PASSED invented",
+      "dependency_or_approval": "D7 scanner, isolated decoder, licensing, storage, retention and operator review",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "D7 photo processing/storage not implemented"
+    },
+    {
+      "id": "F06",
+      "requirement": "Verification",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Operational comparable before/after acquisition and positive field verification are not implemented",
+      "required_implementation": "Add provenance/comparability validation and measured evidence workflow; retain NOT_VERIFIABLE for manual-only evidence.",
+      "required_test": "PASSED/FAILED only comparable; otherwise NOT_VERIFIABLE; work completion independent",
+      "dependency_or_approval": "Measured acquisition provenance, calibration, uncertainty and comparability; physical evidence remains absent",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Operational comparable before/after acquisition and positive field verification are not implemented"
+    },
+    {
+      "id": "F07",
+      "requirement": "Reopen",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Full comparable failed-verification and revisit workflow is unverified",
+      "required_implementation": "Add explicit versioned reopen/revisit transitions preserving immutable findings and independent verification.",
+      "required_test": "New reopen event; prior repairs/evidence preserved",
+      "dependency_or_approval": "Explicit reopen policy and comparable verification; never fabricate repair or PASSED evidence",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Full comparable failed-verification and revisit workflow is unverified"
+    },
+    {
+      "id": "S01",
+      "requirement": "No authentication",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "401, no private data or hidden side effects",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Private loopback only"
+    },
+    {
+      "id": "S02",
+      "requirement": "Tenant isolation",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Uniform denial; composite FK and RLS deny cross-tenant reads/writes; context reset",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No third-party penetration testing"
+    },
+    {
+      "id": "S03",
+      "requirement": "CSRF/session",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "403/401; login rotates; reset revokes sessions; no cookie/token in logs",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Single-process in-memory rate limiter; public release blocked"
+    },
+    {
+      "id": "S04",
+      "requirement": "Role/resource checks",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Deny; no ADMIN wildcard or evaluator self-grant",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No broader production identity certification"
+    },
+    {
+      "id": "S05",
+      "requirement": "Uploads",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "D7 scanner, licensing, processing and storage review required",
+      "required_implementation": "Add adversarial image/quarantine/storage/security tests after D7 design review.",
+      "required_test": "Reject413/422 or quarantine; no original/EXIF/public object exposure",
+      "dependency_or_approval": "D7 scanner, isolated decoder, licensing, storage, retention and operator review",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "D7 scanner, licensing, processing and storage review required"
+    },
+    {
+      "id": "S06",
+      "requirement": "Audit",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Safe actor/action/resource/time/request evidence; no credentials or private bodies",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Audit retention/operations policy requires review"
+    },
+    {
+      "id": "P01",
+      "requirement": "Truth exclusion",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Sealed evaluator/artifact access system deferred",
+      "required_implementation": "Implement scoped expiring evaluator grants and separate private artifact classification.",
+      "required_test": "No actual labels/positions/private truth seed; ordinary DB/object roles denied",
+      "dependency_or_approval": "Restricted evaluator grants and artifact classification; no ordinary-dashboard truth",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Sealed evaluator/artifact access system deferred"
+    },
+    {
+      "id": "P02",
+      "requirement": "Origin integrity",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Reject; server-derived SIMULATION survives queries and export",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No live sensor adapter"
+    },
+    {
+      "id": "P03",
+      "requirement": "Lab versus field",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "Physical adapters and evidence not implemented",
+      "required_implementation": "Implement bounded device protocol with credential-derived mode and immutable provenance; synthetic protocol tests are not field trials.",
+      "required_test": "Distinct immutable acquisition environments; no source relabeling by UI",
+      "dependency_or_approval": "Trusted provisioned credential determines LAB/FIELD; no client mode promotion",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Physical adapters and evidence not implemented"
+    },
+    {
+      "id": "P04",
+      "requirement": "Acoustic abstention",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "No fake pinpoint; reasons and empty candidate list for abstention",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Modeled common clock; no passive audibility/field location proof"
+    },
+    {
+      "id": "P05",
+      "requirement": "Guard wetness",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Competing explanations; no automatic joint-confirmed state; unsupported health UNKNOWN",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Physical collector and electrical supervision unverified"
+    },
+    {
+      "id": "P06",
+      "requirement": "Staleness",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Live late/out-of-order ingestion/freshness pipeline deferred",
+      "required_implementation": "Handle stale, late, out-of-order, duplicate and restart observations with explicit quality.",
+      "required_test": "Retain quality/freshness; no routine false attribution; urgent/fault lane retained",
+      "dependency_or_approval": "Trusted device ingestion and freshness policy",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Live late/out-of-order ingestion/freshness pipeline deferred"
+    },
+    {
+      "id": "R01",
+      "requirement": "Idempotency",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "One stable receipt; conflicts reject atomically, no duplicated incident side effects",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Short bounded races, not long-duration load"
+    },
+    {
+      "id": "R02",
+      "requirement": "Realtime recovery",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented",
+      "required_implementation": "Implement authenticated snapshot/replay cursors, expiry/reset and backpressure with revocation checks.",
+      "required_test": "Watermark/replay or reset snapshot; no lost authorized event; bounded queue; no waveform",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented"
+    },
+    {
+      "id": "R03",
+      "requirement": "Offline vault",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "D9 encrypted offline vault deferred",
+      "required_implementation": "Test and implement minimal encrypted offline vault only under reviewed D9 controls.",
+      "required_test": "Clear safe error/expiry/purge behavior; no plaintext cached keys/data or false synced badge",
+      "dependency_or_approval": "D9; reviewed offline encryption/key custody, consent and retention",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "D9 encrypted offline vault deferred"
+    },
+    {
+      "id": "R04",
+      "requirement": "Offline conflict",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "No offline reconciliation engine",
+      "required_implementation": "Test reassignment/revocation/logout/account-switch conflicts before enabling offline mutation.",
+      "required_test": "Current authorization and versions checked; conflict preserved for reconciliation, not last-write-wins",
+      "dependency_or_approval": "D9; reviewed offline encryption/key custody, consent and retention",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_workflow.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No offline reconciliation engine"
+    },
+    {
+      "id": "R05",
+      "requirement": "Jobs and delivery",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "External providers and provider timeout handling deferred D8",
+      "required_implementation": "Implement disabled provider interface with deterministic timeout/retry/dead-letter fake-provider tests.",
+      "required_test": "Bounded retries; partial outputs incomplete; notification deduplication/failed status visible",
+      "dependency_or_approval": "D8; external sends disabled; local fake-provider tests allowed; three total attempts",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_communications.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "External providers and provider timeout handling deferred D8"
+    },
+    {
+      "id": "U01",
+      "requirement": "Responsive UI",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "640/320 reflow approximates 200/400% of1280px; native browser zoom not executed",
+      "required_implementation": "Execute actual browser native 200%/400% zoom and inspect content, navigation and forms.",
+      "required_test": "Readable labeled data, usable task controls, no obscured focus; map/table alternative",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "apps/web/browser/m09-acceptance.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/workflow.spec.ts"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "640/320 reflow approximates 200/400% of1280px; native browser zoom not executed"
+    },
+    {
+      "id": "U02",
+      "requirement": "Accessible forms",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Full screen reader/manual assistive technology certification not performed",
+      "required_implementation": "Execute keyboard and available assistive-technology checks; disclose unavailable screen-reader coverage.",
+      "required_test": "Labels, error summary, focus restore and no drag/color-only action; password paste allowed",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "apps/web/browser/m09-acceptance.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/workflow.spec.ts"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Full screen reader/manual assistive technology certification not performed"
+    },
+    {
+      "id": "U03",
+      "requirement": "Mode/freshness",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Persistent SIMULATED DATA and timestamps; no synthetic field-performance savings",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No field savings or sensor-performance claim"
+    },
+    {
+      "id": "U04",
+      "requirement": "States",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Useful distinct states; every visible mutation tied to actual API receipt",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "apps/web/browser/m09-acceptance.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/workflow.spec.ts"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Bounded local/CI browser runs"
+    },
+    {
+      "id": "A01",
+      "requirement": "Registration retries",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Generic result, unique identity/CITIZEN-only membership; existing password/grants unchanged; bounded verification delivery",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Private auth mail adapter only"
+    },
+    {
+      "id": "A02",
+      "requirement": "Login lost response and logout",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Fresh validation/CSRF and rotation; commit-time credential-version/user-state check; revoked/pre-reset session never resurrected or previous secret redisclosed",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No public deployment or distributed session load"
+    },
+    {
+      "id": "A03",
+      "requirement": "Logout retry",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Monotonic cleanup with no new auth token; unknown verifier401, wrong CSRF403; no access granted by cleanup verifier",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No credentials redisclosed"
+    },
+    {
+      "id": "A04",
+      "requirement": "Recovery retry",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Generic no-store response, no old token exposure; later new token invalidates unused prior reset token; no fake tenant/job",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Private development delivery only"
+    },
+    {
+      "id": "A05",
+      "requirement": "One-use reset race",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Exactly one password update/token consumption; sessions revoked; loser/replay uniform422; no auto-login/cache",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Synthetic identities only"
+    },
+    {
+      "id": "A06",
+      "requirement": "Verification retry",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "No extra activation/grants/session; token replay422; resend only to same account under cooldown, no secret response",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_auth.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "External email disabled"
+    },
+    {
+      "id": "A07",
+      "requirement": "Invitation retry",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Matching verified user accepts exact server grant once without membership prerequisite; replay422, status via /me/memberships; wrong identity denied",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No external identity provider"
+    },
+    {
+      "id": "A08",
+      "requirement": "Business versus auth receipts",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Contact endpoint/device credential issuance remain deferred",
+      "required_implementation": "Implement contact/device-specific idempotency without redisclosing issued secrets.",
+      "required_test": "Header400 on exempt writes; no credentials or their fingerprints/bodies; tenant business dedup preserved; issuance retry409 with no secret",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Contact endpoint/device credential issuance remain deferred"
+    },
+    {
+      "id": "C01",
+      "requirement": "Project contact ownership",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "No global private contact inbox implemented",
+      "required_implementation": "Implement fixed global private project-contact inbox separate from utility complaints.",
+      "required_test": "Unknown fields422; only fixed private global inbox receives valid payload; no public retrieval or tenant ADMIN access",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No global private contact inbox implemented"
+    },
+    {
+      "id": "C02",
+      "requirement": "Project contact abuse/retention",
+      "historical_status": "NOT IMPLEMENTED",
+      "current_status": "NOT IMPLEMENTED",
+      "root_cause": "D10 retention not approved legal policy",
+      "required_implementation": "Implement bounded preauth CSRF, rate controls, generic responses and test-only retention policy; retain D10 live gate.",
+      "required_test": "429/413/503 as appropriate; escaped review with no URL fetch; no raw IP; rate buckets<=24h, message/email/row removed30days; uncertain retry may duplicate",
+      "dependency_or_approval": "D10 legal retention/holds/erasure and operator review before live release",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "D10 retention not approved legal policy"
+    },
+    {
+      "id": "P07",
+      "requirement": "Artifact and truth isolation",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Restricted sealed-run object downloads/evaluator grants deferred",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Current membership plus nontruth classification/parent ACL checked; no truth IDs/content; evaluator requires sealed run and explicit grant",
+      "dependency_or_approval": "Restricted evaluator grants and artifact classification; no ordinary-dashboard truth",
+      "risk": "HIGH",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Restricted sealed-run object downloads/evaluator grants deferred"
+    },
+    {
+      "id": "S07",
+      "requirement": "Authorization on retry",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "No cached response bypass of current tenant/own/assigned rights; ADMIN still lacks engineer/evaluator privileges",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No privilege widening for cached results"
+    },
+    {
+      "id": "M09-E2E",
+      "requirement": "Persisted resident-to-feedback chain",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Booking, manual visit, findings, closure, inbox read and feedback persist without repair fabrication",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Investigation has NOT_APPLICABLE verification; separate manual repair remains NOT_VERIFIABLE"
+    },
+    {
+      "id": "M09-RACES",
+      "requirement": "Competing scheduling transactions",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Single booking winner; replacement/cancellation/withdrawal/alternative/assignment/overrun preserve ledger",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_scheduling.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Short deterministic scenarios, not exhaustive interleavings"
+    },
+    {
+      "id": "M09-QUEUE",
+      "requirement": "Real worker process restart and attempts",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Delivered inbox distinct from read; lost leases do not invent delivery; max3 total attempts",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_communications.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "No external adapters or default retry delays"
+    },
+    {
+      "id": "M09-RECOVERY",
+      "requirement": "Actual HTTPS/API/database failure",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "60 successful reads; API stop yields503; restart same session200; isolated DB deny yields sanitized503 then200",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tools/m09_https_probe.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Only marked disposable DB disrupted; no infrastructure failover/long soak"
+    },
+    {
+      "id": "M09-SCIENCE",
+      "requirement": "Numerical reproduction and all69 public snapshots",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "69 reproduced within documented tolerances; all69 safe API exports/frames checked",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Simulation-only; M05 unfavorable results unchanged"
+    },
+    {
+      "id": "M09-UI",
+      "requirement": "Responsive and inert hostile text",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "Existing7 plus M09 browser cases; 16 reduced-motion public views and stored text inert on reload",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "apps/web/browser/m09-acceptance.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/workflow.spec.ts"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Native zoom/full assistive technology certification not performed"
+    },
+    {
+      "id": "M09-HARDWARE",
+      "requirement": "Digital consistency and physical boundary",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "13 source checks pass; final CI regenerates CAD/figures; BOM59870/headroom130",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "scripts/check_m08.py",
+        "tests/unit/test_m08_checks.py",
+        "tests/unit/test_m08_package.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Digital only; native ERC, MCU firmware, physical fit/calibration/field tests absent"
+    },
+    {
+      "id": "M09-RELEASE",
+      "requirement": "Fail-closed negative capabilities",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Accepted scoped evidence; regression protection required.",
+      "required_implementation": "Preserve accepted behavior and rerun affected regressions.",
+      "required_test": "111 operations/51 tables; nonowner nonbypassRLS runtime; gated routes remain closed",
+      "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_communications.py",
+        "services/api/tests/test_schema_boundaries.py"
+      ],
+      "completion_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+      "completion_pr": 22,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+      ],
+      "remaining_limitations": "Boundary PASS is not implementation of D6/D7/D8/D9/D10/public deployment"
+    },
+    {
+      "id": "META-COUNTS",
+      "requirement": "Runtime inventory",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "111 implemented operations; 51 migrated tables; m07_c_001. Designed counts are separate.",
+      "required_implementation": "Preserve compatibility and record every additive count transition.",
+      "required_test": "Live OpenAPI operation count and actual PostgreSQL table/revision query.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "services/api/tests/m09_acceptance.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "111 implemented operations; 51 migrated tables; m07_c_001. Designed counts are separate."
+    },
+    {
+      "id": "META-ISSUES",
+      "requirement": "Milestone closure",
+      "historical_status": "PASS",
+      "current_status": "PASS",
+      "root_cause": "Issues #6 and #9 closed after green M09 main; #7 and #10 remain open.",
+      "required_implementation": "Close #7 only against original criteria; no M10 before readiness review.",
+      "required_test": "Direct GitHub state and linked acceptance evidence.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "MEDIUM",
+      "source_files": [
+        ".github/backlog.json"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Issues #6 and #9 closed after green M09 main; #7 and #10 remain open."
+    },
+    {
+      "id": "EVIDENCE-01",
+      "requirement": "Stale HTTPS evidence migration label",
+      "historical_status": "FAIL",
+      "current_status": "PASS",
+      "root_cause": "demo_backend.py hardcodes m07_a_001 despite actual m07_c_001.",
+      "required_implementation": "Query live alembic_version; explicitly version source-baseline transition without rewriting historical evidence.",
+      "required_test": "Execute real HTTPS demonstration and compare summary to actual migrated DB.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "LOW",
+      "source_files": [
+        "services/api/tools/demo_backend.py"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "services/api/tools/demo_backend.py",
+        "PRE_M10_COMPLETION_REGISTER.md#executed-foundation-validation"
+      ],
+      "remaining_limitations": "Local synthetic HTTPS workflow passed with a live m07_c_001 query; four-job CI and merge still pending. Historical M03/M09 summaries remain unchanged."
+    },
+    {
+      "id": "DOC-01",
+      "requirement": "Current repository presentation",
+      "historical_status": "FAIL",
+      "current_status": "FAIL",
+      "root_cause": "Root README has stale milestone status, budget and private-repository claim; GitHub is public.",
+      "required_implementation": "Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation.",
+      "required_test": "Rendered README, links, mobile image readability, claims against source.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "README.md"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Root README has stale milestone status, budget and private-repository claim; GitHub is public."
+    },
+    {
+      "id": "DOC-02",
+      "requirement": "Subsystem documentation",
+      "historical_status": "NOT TESTED",
+      "current_status": "NOT TESTED",
+      "root_cause": "Current subsystem documentation has not undergone pre-M10 audit.",
+      "required_implementation": "Audit important folder guides and distinguish implementation from proposals.",
+      "required_test": "Link/path/command verification.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "docs/README.md"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Current subsystem documentation has not undergone pre-M10 audit."
+    },
+    {
+      "id": "UI-01",
+      "requirement": "Website quality audit",
+      "historical_status": "NOT TESTED",
+      "current_status": "NOT TESTED",
+      "root_cause": "M09 browser evidence is accepted; current pre-M10 visual audit has not run.",
+      "required_implementation": "Inspect actual public/auth/role workflows and fix only demonstrated defects using accepted design system.",
+      "required_test": "Real browser desktop/mobile/keyboard/zoom and accessible error/loading states.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "MEDIUM",
+      "source_files": [
+        "apps/web/browser/m09-acceptance.spec.ts"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "M09 browser evidence is accepted; current pre-M10 visual audit has not run."
+    },
+    {
+      "id": "DEP-01",
+      "requirement": "Development dependency and license limitations",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Accepted development-only advisory and license limitations remain; project license undecided.",
+      "required_implementation": "Assess affected tools and safe targeted upgrades; preserve attribution; owner chooses project license.",
+      "required_test": "Dependency advisory and installed-license evidence; regression tests after changes.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "HIGH",
+      "source_files": [
+        "apps/web/package.json"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Accepted development-only advisory and license limitations remain; project license undecided."
+    },
+    {
+      "id": "HW-01",
+      "requirement": "Physical and fabrication evidence",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Digital geometry is not fit-tested; native ERC/complete firmware/physical calibration absent. All 41 BOM prices estimated, pressure range unsuitable for sensitive low-pressure work, GUARD-5 collector unverified.",
+      "required_implementation": "Keep accurate digital-only labels and procurement risk; actual hardware testing requires separate authorization.",
+      "required_test": "No software test may claim physical or field validation.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "HIGH",
+      "source_files": [
+        "docs/engineering/HARDWARE_STATUS.md"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Digital geometry is not fit-tested; native ERC/complete firmware/physical calibration absent. All 41 BOM prices estimated, pressure range unsuitable for sensitive low-pressure work, GUARD-5 collector unverified."
+    },
+    {
+      "id": "GATE-01",
+      "requirement": "Privacy and deployment controls",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "D6 visit-access, D7 media, D8 external sends, D9 offline, D10 legal retention and public deployment prerequisites remain unresolved.",
+      "required_implementation": "Implement safe independent development work while retaining each activation gate.",
+      "required_test": "Negative authorization, disabled activation, secret/audit/privacy tests.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "HIGH",
+      "source_files": [
+        "docs/project/m07-planning/M07_OWNER_REVIEW_DECISION.md"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "D6 visit-access, D7 media, D8 external sends, D9 offline, D10 legal retention and public deployment prerequisites remain unresolved."
+    },
+    {
+      "id": "DEMO-01",
+      "requirement": "Pre-M10 readiness",
+      "historical_status": "BLOCKED",
+      "current_status": "BLOCKED",
+      "root_cause": "Original 40 cases are 21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED. M10 is not authorized by this register.",
+      "required_implementation": "Complete safe slices, final exact-main CI and honest before/after acceptance review.",
+      "required_test": "Fresh combined acceptance and actual website/repository review.",
+      "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
+      "risk": "HIGH",
+      "source_files": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "completion_commit": null,
+      "completion_pr": null,
+      "evidence": [
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+      ],
+      "remaining_limitations": "Original 40 cases are 21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED. M10 is not authorized by this register."
+    }
+  ]
+}

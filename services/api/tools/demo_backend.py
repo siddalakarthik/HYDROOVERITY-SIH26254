@@ -279,12 +279,16 @@ def main():
         }
         test_complete_persistent_operational_workflow(fixture, private)
         summary = json.loads((private / "m03-workflow-evidence.json").read_text())
+        with owner.connect() as connection:
+            migration_head = connection.exec_driver_sql(
+                "SELECT version_num FROM alembic_version"
+            ).scalar_one()
         summary.update(
             transport="REAL_LOOPBACK_HTTPS",
             certificate_verification="PASS",
             actual_api_process_restart="PASS",
             database=name,
-            migration_head="m07_a_001",
+            migration_head=migration_head,
         )
         (private / "https-workflow-summary.json").write_text(json.dumps(summary, indent=2))
         print(
