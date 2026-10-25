@@ -128,6 +128,7 @@ jobs:
           "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07a_implementation.py
           "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m06.py
           "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07b.py
+          "$RUNNER_TEMP/m04-python/bin/python" scripts/check_m07c.py
           python3 - <<'PY'
           import os,pathlib,secrets
           root=pathlib.Path(os.environ['RUNNER_TEMP'])
@@ -173,11 +174,28 @@ jobs:
             sleep 1
           done
           curl --fail --silent --cacert "$RUNNER_TEMP/m04-private/localhost.crt" https://localhost:8443/api/v1/public/project-status >/dev/null
+      - name: Start utility-scoped private in-app notification worker
+        run: |
+          "$RUNNER_TEMP/m04-python/bin/python" - <<'PY'
+          import json,os,pathlib,subprocess
+          private=pathlib.Path(os.environ['RUNNER_TEMP'])/'m04-private'
+          fixture=json.loads((private/'browser.json').read_text())
+          env={**os.environ,'PYTHONPATH':'services/api'}
+          log=open(private/'notification-worker.log','w')
+          subprocess.Popen([str(pathlib.Path(os.environ['RUNNER_TEMP'])/'m04-python/bin/python'),'services/api/tools/notification_worker.py','--runtime-config',str(private/'runtime.json'),'--organization',fixture['org'],'--supervisor-user',fixture['comms_supervisor_user']],stdout=log,stderr=log,env=env,start_new_session=True)
+          PY
       - name: Real browser workflow, denials, mobile and accessibility
         working-directory: apps/web
         run: |
           pnpm exec playwright install --with-deps chromium
           pnpm run test:browser
+      - name: Upload M07-C sanitized communications evidence (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M07C_BROWSER_EVIDENCE
+          path: ${{ runner.temp }}/m04-evidence/M07C-*.png
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload sanitized synthetic M04 visual evidence
         id: m04-upload
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -272,6 +290,7 @@ jobs:
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m06.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07b.py --backend-only
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07c.py --backend-only
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/traceability.py --check --evidence /private/evidence-repeat/acceptance-summary.json
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pytest services/api/traceability_tests -q --acceptance-evidence /private/evidence/acceptance-summary.json --acceptance-evidence /private/evidence-repeat/acceptance-summary.json

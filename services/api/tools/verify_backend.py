@@ -59,6 +59,7 @@ def main():
     )
     if result.returncode:
         raise SystemExit(result.returncode)
+    from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
     from hydro.contracts import INVENTORY, OPERATIONS
     from hydro.scheduling_contracts import ACTIVE as SCHEDULING
     from hydro.service_contracts import ACTIVE
@@ -75,6 +76,14 @@ def main():
             "M07-B operations without executed positive conformance: "
             + ",".join(sorted(scheduling_missing))
         )
+    missing_c = {o["id"] for o in COMMUNICATIONS} - set(
+        summary.get("communications_operation_tests", {})
+    )
+    if missing_c:
+        raise SystemExit(
+            "M07-C operations without executed positive conformance: " + ",".join(sorted(missing_c))
+        )
+    summary["m07c_implemented_operations"] = len(COMMUNICATIONS)
     summary["m07b_implemented_operations"] = len(SCHEDULING)
     from hydro.science_contracts import OPERATIONS as science_operations
 
@@ -88,7 +97,11 @@ def main():
         )
     summary["m06_implemented_operations"] = len(science_operations)
     summary["combined_implemented_operations"] = (
-        len(OPERATIONS) + len(ACTIVE) + len(science_operations) + len(SCHEDULING)
+        len(OPERATIONS)
+        + len(ACTIVE)
+        + len(science_operations)
+        + len(SCHEDULING)
+        + len(COMMUNICATIONS)
     )
     if service_missing:
         raise SystemExit(
@@ -126,9 +139,10 @@ def main():
         total_implemented_operations=len(OPERATIONS)
         + len(ACTIVE)
         + len(science_operations)
-        + len(SCHEDULING),
+        + len(SCHEDULING)
+        + len(COMMUNICATIONS),
         designed_operations=168,
-        migrated_tables=45,
+        migrated_tables=51,
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

@@ -519,4 +519,4 @@ def test_complete_followup_and_unlinked_private_review_are_retained(env, monkeyp
     with pytest.raises(RuntimeError, match="Forward-only"):
         command.downgrade(Config(str(ROOT / "services/api/alembic.ini")), "m03_003")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_b_005"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_c_001"

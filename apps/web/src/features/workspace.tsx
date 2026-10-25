@@ -40,6 +40,7 @@ import { DispatchBoard, DispatchGovernance } from "./dispatch";
 import { Overview, Incidents, IncidentDetail } from "./incidents";
 import { WorkOrders, WorkDetail, VerificationPage } from "./work";
 import { NetworkPage } from "./network";
+import { Notifications, Feedback } from "./communications";
 import { Administration, Audit } from "./administration";
 import routes from "../lib/route-capabilities.json";
 
@@ -255,6 +256,8 @@ export function Workspace({ segments }: { segments: string[] }) {
                 suffix === item.suffix || suffix.startsWith(item.suffix + "/"),
             )?.label ?? "Workspace");
   const content = () => {
+    if (suffix === "notifications") return <Notifications org={org} />;
+    if (suffix === "feedback") return <Feedback {...common} />;
     if (tail[0] === "simulations") return <Science org={org} id={tail[1]} />;
     if (route.status === "DEFERRED")
       return (
@@ -401,6 +404,13 @@ export function Workspace({ segments }: { segments: string[] }) {
             member.roles.some((r) =>
               ["ENGINEER", "SUPERVISOR", "TECHNICIAN", "ADMIN"].includes(r),
             ) && <Link href={membershipHome(member)}>Team workspace</Link>}
+          {scope !== "citizen" && member.roles.includes("CITIZEN") && (
+            <Link href={`/citizen/${org}/service-requests`}>
+              My service requests
+            </Link>
+          )}
+          <Link href={`/app/${org}/notifications`}>Notifications</Link>
+          <Link href={`/app/${org}/feedback`}>Feedback</Link>
           <Link href="/account">
             <User size={18} aria-hidden="true" />
             My account

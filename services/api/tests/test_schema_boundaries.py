@@ -130,7 +130,9 @@ def test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles(env):
 
 def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
     client = login(env, "admin-a@example.invalid")
-    enabled = {op["id"] for op in OPERATIONS}
+    from hydro.communications_contracts import OPERATIONS as communications
+
+    enabled = {op["id"] for op in OPERATIONS + communications}
     for op in INVENTORY:
         if op["id"] in enabled:
             continue
@@ -138,7 +140,7 @@ def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
         response = client.raw(op["method"].upper(), "/api/v1" + path)
         assert response.status_code in {404, 405}, "A deferred operation was reachable"
     runtime = runtime_openapi()
-    assert sum(len(x) for x in runtime["paths"].values()) == 103
+    assert sum(len(x) for x in runtime["paths"].values()) == 111
     assert "EvaluationResult" not in runtime["components"]["schemas"]
     assert "deviceBearer" not in runtime["components"]["securitySchemes"]
 

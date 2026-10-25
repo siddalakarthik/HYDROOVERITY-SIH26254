@@ -7,6 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "services/api"))
+from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
 from hydro.contracts import runtime_openapi
 from hydro.science_contracts import OPERATIONS
 from hydro.science_data import load_catalogue, digest
@@ -17,11 +18,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--backend-only", action="store_true")
     args = parser.parse_args()
+    current = json.loads((ROOT/"data/schemas/m07c-implementation.json").read_text())
     manifest = json.loads((ROOT / "data/schemas/m06-implementation.json").read_text())
     assert manifest["baseline_commit"] == "1da657d59bccdb6b66fb7dd66cb9f8310c3e7931"
     spec = runtime_openapi()
     ids = {s["operationId"] for methods in spec["paths"].values() for s in methods.values()}
-    assert len(ids - SCHEDULING) == 77 and len(OPERATIONS) == 7
+    assert len(ids - SCHEDULING - {o["id"] for o in COMMUNICATIONS}) == 77 and len(OPERATIONS) == 7
     scheduling = json.loads((ROOT / "data/schemas/m07b-implementation.json").read_text())
     assert manifest["counts"] == {"preserved_operations": 70, "m06_operations": 7, "total_operations": 77,
                                   "preserved_tables": 35, "m06_tables": 1, "total_tables": 36,
@@ -45,7 +47,7 @@ def main():
     for name, expected in manifest["m07a_file_extensions"].items():
         if args.backend_only and not name.startswith("services/api/"):
             continue
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == scheduling["source_extensions"].get(name,{}).get("sha256",expected), name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == current["source_extensions"].get(name,{}).get("sha256",scheduling["source_extensions"].get(name,{}).get("sha256",expected)), name
     pins = json.loads((ROOT / "data/schemas/m06-observation-pins.json").read_text())
     catalogue = load_catalogue(ROOT / "data/samples/m06", pins["catalogue_sha256"])
     assert len(catalogue["cases"]) == 69

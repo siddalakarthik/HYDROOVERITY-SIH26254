@@ -1612,6 +1612,125 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List own or permitted internal feedback.
+         * @description List own or permitted internal feedback. Authorization: tenant; citizen own only; internal staff per role. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["feedback_get_orgs_organization_id_feedback"];
+        put?: never;
+        /**
+         * Create feedback
+         * @description Create feedback; safe acknowledgment. Authorization: tenant; citizen owns complaint if linked. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.
+         */
+        post: operations["feedback_post_orgs_organization_id_feedback"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/feedback/{feedback_id}/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Append triage/resolution and optional existing GitHub issue link
+         * @description Append triage/resolution and optional existing GitHub issue link; no automatic external message. Authorization: tenant + If-Match. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.
+         */
+        post: operations["feedback_post_orgs_organization_id_feedback_feedback_id_review"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/notifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Read safe in-app messages.
+         * @description Read safe in-app messages. Authorization: self membership only. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["notifications_get_orgs_organization_id_notifications"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/notifications/{notification_id}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Idempotently mark owned message read.
+         * @description Idempotently mark owned message read. Authorization: self membership only. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.
+         */
+        post: operations["notifications_post_orgs_organization_id_notifications_notification_id_read"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/notification-preferences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N40 GET /notification-preferences — proposed only */
+        get: operations["m07_n40"];
+        /** N41 PUT /notification-preferences — proposed only */
+        put: operations["m07_n41"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/service-requests/{request_id}/delivery-audit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** N42 GET /service-requests/{request_id}/delivery-audit — proposed only */
+        get: operations["m07_n42"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3443,6 +3562,117 @@ export interface components {
             availability_state: "AVAILABLE" | "NO_PUBLISHED_WINDOWS" | "UNCONFIGURED" | "DISABLED" | "SERVICE_REVIEW_REQUIRED";
             message: string;
         } & unknown;
+        M07Page_DeliveryAttempt: {
+            items: components["schemas"]["M07DeliveryAttempt"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07DeliveryAttempt: {
+            /** Format: uuid */
+            notification_id: string;
+            event_kind: string;
+            /** @constant */
+            channel: "IN_APP";
+            /** @enum {string} */
+            state: "QUEUED" | "SENDING" | "DELIVERED" | "RETRY_WAIT" | "FAILED" | "SUPPRESSED";
+            attempt_number: number;
+            attempted_at: string | null;
+            next_attempt_at: string | null;
+            safe_error_code: string | null;
+        };
+        M07NotificationPreferencesWrite: {
+            channels: {
+                in_app: boolean;
+                /** @constant */
+                email: false;
+                /** @constant */
+                sms: false;
+                /** @constant */
+                push: false;
+            };
+            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK")[];
+            quiet_hours: {
+                start_local: string;
+                end_local: string;
+                /** @constant */
+                timezone: "Asia/Kolkata";
+            } | null;
+        };
+        M07NotificationPreferences: {
+            version: number;
+            channels: {
+                in_app: boolean;
+                /** @constant */
+                email: false;
+                /** @constant */
+                sms: false;
+                /** @constant */
+                push: false;
+            };
+            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK")[];
+            quiet_hours: {
+                start_local: string;
+                end_local: string;
+                /** @constant */
+                timezone: "Asia/Kolkata";
+            } | null;
+            /** @constant */
+            email_available: false;
+        };
+        M07Page_Notification: {
+            items: components["schemas"]["M07Notification"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07Notification: {
+            /** Format: uuid */
+            id: string;
+            message: string;
+            /** Format: date-time */
+            created_at: string;
+            read: boolean;
+            version: number;
+            /** @enum {string} */
+            event_category: "SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK";
+            resource_path: string;
+        };
+        M07FeedbackReview: {
+            /** @enum {string} */
+            status: "NEW" | "TRIAGED" | "PLANNED" | "RESOLVED" | "DECLINED";
+            severity: string;
+            /** Format: uuid */
+            assignee_membership_id: string | null;
+            resolution_note: string;
+            /** Format: uri */
+            linked_github_issue_url: string | null;
+        };
+        M07Feedback: {
+            /** Format: uuid */
+            id: string;
+            summary: string;
+            status: string;
+            resolution_note: string | null;
+            version: number;
+            service_request_id?: string | null;
+            service_rating?: number | null;
+            description: string;
+        };
+        M07Page_Feedback: {
+            items: components["schemas"]["M07Feedback"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        M07FeedbackWrite: {
+            summary: string;
+            description: string;
+            /** Format: uuid */
+            complaint_id: string | null;
+            service_request_id?: string | null;
+            service_rating?: number | null;
+        };
     };
     responses: {
         /** @description Dependency unavailable; no fake success */
@@ -8467,6 +8697,327 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["M07DispatchPolicy"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    feedback_get_orgs_organization_id_feedback: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                service_request_id?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    /** @description Mutable entity version when applicable; list items expose their own versions */
+                    ETag?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_Feedback"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    feedback_post_orgs_organization_id_feedback: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07FeedbackWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Feedback"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    feedback_post_orgs_organization_id_feedback_feedback_id_review: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+                /** @description Expected quoted integer resource version; 428 missing, 412 stale. Binary upload uses ticket state rather than aggregate version. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                feedback_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07FeedbackReview"];
+            };
+        };
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Feedback"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    notifications_get_orgs_organization_id_notifications: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    /** @description Mutable entity version when applicable; list items expose their own versions */
+                    ETag?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_Notification"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    notifications_post_orgs_organization_id_notifications_notification_id_read: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+                notification_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Receipt"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n40: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    /** @description Resource version; unsupplied visit access omits child ETag and uses the service precondition plus null expected_access_version for first write. */
+                    ETag: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07NotificationPreferences"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n41: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+                /** @description Current PREFERENCES resource version; body contains any additional parent/calendar versions. */
+                "If-Match": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["M07NotificationPreferencesWrite"];
+            };
+        };
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07NotificationPreferences"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    m07_n42: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Proposed authorized result, not an implemented endpoint */
+            200: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["M07Page_DeliveryAttempt"];
                 };
             };
             400: components["responses"]["Error400"];

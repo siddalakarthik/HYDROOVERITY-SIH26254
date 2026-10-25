@@ -113,8 +113,9 @@ def runtime_openapi():
         "sessionCookie": DESIGN["components"]["securitySchemes"]["sessionCookie"]
     }
     result["components"] = components
+    from .communications_contracts import extend_openapi as extend_communications
     from .scheduling_contracts import extend_openapi as extend_scheduling
     from .science_contracts import extend_openapi as extend_science
     from .service_contracts import extend_openapi
 
-    return extend_scheduling(extend_science(extend_openapi(result)))
+    return extend_communications(extend_scheduling(extend_science(extend_openapi(result))))

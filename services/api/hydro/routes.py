@@ -147,6 +147,19 @@ def bind_routes(app):
             include_in_schema=False,
         )
 
+    from .communications_contracts import DESIGN as communications_design
+    from .communications_contracts import OPERATIONS as communications_operations
+    from .services.communications import dispatch as communications_dispatch
+
+    for op in communications_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            endpoint(app, op, communications_design, communications_dispatch),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
+
     @app.get("/internal/openapi.json", include_in_schema=False)
     def development_contract():
         return runtime_openapi()
