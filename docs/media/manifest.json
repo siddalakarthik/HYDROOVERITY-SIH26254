@@ -1,0 +1,103 @@
+{
+  "baseline_commit": "848c1c8a1dbf72f980c1f58454a41d0bd332eab8",
+  "policy": "Seven exact reviewed PNG copies, each under 1 MiB. No raw evaluator truth, seeds, STEP bundles, credentials, personal files or environments. Original editable source remains authoritative.",
+  "assets": [
+    {
+      "path": "docs/media/guard5-cad.png",
+      "sha256": "e21d3a341c8dd65f6f54409c647abd7656342748c98a2ac76baa8d09865220c7",
+      "bytes": 355779,
+      "kind": "PROPOSED_DESIGN_NOT_PHYSICALLY_TESTED",
+      "origin": "hardware/results/ppt/H02_guard5_cad.png",
+      "source_sha256": {
+        "hardware/mechanical-cad/guard5.py": "894a4ff86aa35e957ad3f4334f66284a4c21e9c0550f6e06f91c3b4a34b95e5c",
+        "hardware/guard5-collar/envelope.json": "e453dd2031d499a47581dfebc769d8e5fdd035074d3cc35765a7375b4fda2513",
+        "hardware/render_m08.py": "bf74f568b6ea6f6dad6a599c9e4b99ae1d0cc2de8119e39c2ea2c6d178e381ed"
+      },
+      "caption": "Assembled and exploded solid-model views. Fastener access, tolerances and retention remain physical/detail-design gates.",
+      "reproduction": "hardware/results/README.md"
+    },
+    {
+      "path": "docs/media/guard5-channels.png",
+      "sha256": "2aa5150152cd0a052cdf92b986ce87ac00b52cc724842e57d7d75e237bd455a1",
+      "bytes": 223727,
+      "kind": "PROPOSED_DESIGN_NOT_PHYSICALLY_TESTED",
+      "origin": "hardware/results/ppt/H03_guard5_cutaway.png",
+      "source_sha256": {
+        "hardware/mechanical-cad/guard5.py": "894a4ff86aa35e957ad3f4334f66284a4c21e9c0550f6e06f91c3b4a34b95e5c",
+        "hardware/guard5-collar/envelope.json": "e453dd2031d499a47581dfebc769d8e5fdd035074d3cc35765a7375b4fda2513",
+        "hardware/render_m08.py": "bf74f568b6ea6f6dad6a599c9e4b99ae1d0cc2de8119e39c2ea2c6d178e381ed"
+      },
+      "caption": "Radial layout plus actual longitudinal BRep slice; arrows show intended gravity paths, not simulated fluid flow.",
+      "reproduction": "hardware/results/README.md"
+    },
+    {
+      "path": "docs/media/acoustic-clock.png",
+      "sha256": "26dff88c19d19d5ae314ba6f4d84c3bd3aa3ff0b194e3d02f53abb3855671ff5",
+      "bytes": 227761,
+      "kind": "PROPOSED_DESIGN_NOT_PHYSICALLY_TESTED",
+      "origin": "hardware/results/ppt/H05_ear_shared_clock.png",
+      "source_sha256": {
+        "hardware/electronics/interfaces.json": "ade91572999bf3d7cec0fb4fd8490912e9186ec45d2a07c40d0f9939ac48f635",
+        "hardware/electronics/ear.kicad_sch": "5b7d947459659a5e050a4271f5659b5fe74832990ed602aa8aa086047f486821",
+        "hardware/acoustic-acquisition/acquisition.schema.json": "7de3dd932dd8de7660af4528ec2fbf043f57fb50daeffd69ca2230db33d9ce7f",
+        "hardware/render_m08.py": "bf74f568b6ea6f6dad6a599c9e4b99ae1d0cc2de8119e39c2ea2c6d178e381ed"
+      },
+      "caption": "Clock ratios are derived from selected PCM1808 master mode; board straps, jitter, alias rejection and uninterrupted SD capture need validation.",
+      "reproduction": "hardware/results/README.md"
+    },
+    {
+      "path": "docs/media/test-rig.png",
+      "sha256": "a91e8df1ae894a3214a8fa5e096a0173379393e350e144bf0d9306cc60924848",
+      "bytes": 182658,
+      "kind": "PROPOSED_DESIGN_NOT_PHYSICALLY_TESTED",
+      "origin": "hardware/results/ppt/H06_test_rig.png",
+      "source_sha256": {
+        "hardware/mechanical-cad/rig_layout.json": "f9ee973ecee9a0a264e91b481ad410a8b97abaab4449e41f750684eff66b8d2a",
+        "hardware/bom/m08_bom.json": "fe27dc3ad3076dd3e563df45c32df5ab953bae0a6d49708912722e96c5545eb0",
+        "hardware/render_m08.py": "bf74f568b6ea6f6dad6a599c9e4b99ae1d0cc2de8119e39c2ea2c6d178e381ed"
+      },
+      "caption": "Conceptual P&ID and positioning; 0.5/1.0/1.5 bar are contingent future points, not authorized conditions.",
+      "reproduction": "hardware/results/README.md"
+    },
+    {
+      "path": "docs/media/budget.png",
+      "sha256": "c71bbcc516c5c4b7c589e905ed147058a506a48cce2e35f9433972d603c1c1c5",
+      "bytes": 209942,
+      "kind": "PROPOSED_DESIGN_NOT_PHYSICALLY_TESTED",
+      "origin": "hardware/results/ppt/H07_budget.png",
+      "source_sha256": {
+        "hardware/bom/m08_bom.json": "fe27dc3ad3076dd3e563df45c32df5ab953bae0a6d49708912722e96c5545eb0",
+        "hardware/electronics/interfaces.json": "ade91572999bf3d7cec0fb4fd8490912e9186ec45d2a07c40d0f9939ac48f635",
+        "hardware/render_m08.py": "bf74f568b6ea6f6dad6a599c9e4b99ae1d0cc2de8119e39c2ea2c6d178e381ed"
+      },
+      "caption": "Complete materials estimate reconciles previous allocation; narrow residual margin is a procurement risk, not proof of affordability.",
+      "reproduction": "hardware/results/README.md"
+    },
+    {
+      "path": "docs/media/guard5-comparison.png",
+      "sha256": "900f8cc7c832cdd51243d9570c80e90873e1cb44b0f04ea6a7e8390196c650d3",
+      "bytes": 95814,
+      "kind": "SIMULATION_ONLY_PHYSICALLY_UNVALIDATED",
+      "origin": "simulations/results/ppt/07_guard5_comparison.png",
+      "source_sha256": {
+        "simulations/figures.py": "65bf5f0401c06a21058422383e82fee5d183aa37f4728dd49f9c7b532e5d9b1b",
+        "simulations/evaluation/reference_summary.json": "d02f38da9cbf4e849c4ecd5d094cfefd1971f46d891085e5c699c097cd274b7e"
+      },
+      "caption": "Unfavorable GUARD-5 results retained; modeled collection assumptions, no physical performance.",
+      "reproduction": "simulations/README.md"
+    },
+    {
+      "path": "docs/media/website-public.png",
+      "sha256": "aafbc192d460dfa9140c75d4cb2c9621b574e19160ddc3d4594e8b8a850464ef",
+      "bytes": 82748,
+      "kind": "SYNTHETIC_SOFTWARE_SCREENSHOT",
+      "origin": "M09 public-page browser acceptance at 1440 CSS pixels",
+      "source_sha256": {
+        "apps/web/browser/m09-acceptance.spec.ts": "871df98b0aa4971dee51585726c93ec371452c106e36159d8a853383b455413d",
+        "apps/web/src/features/public.tsx": "d782b186c696bfdae0e62a83521223d90430fdbed738d6fa3047cd31a8c416cc"
+      },
+      "caption": "Actual public homepage screenshot from M09; no resident or private operational data.",
+      "reproduction": "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+    }
+  ]
+}
