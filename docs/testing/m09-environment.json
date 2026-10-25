@@ -1,0 +1,27 @@
+{
+  "tested_date": "2026-10-25",
+  "baseline_commit": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
+  "os": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.14",
+  "node": "24.21.0",
+  "chrome": "155.0.8059.85",
+  "postgres": "17.11",
+  "postgis": "3.6.2",
+  "logical_cpus": 16,
+  "memory_cpu_sampling": "NOT MEASURED; CIM access unavailable",
+  "dependency_locks_sha256": {
+    "services/api/requirements-lock.txt": "4ec880d6ee25a376cac3df2e9f308ddc38eb335445835f1a18cae6790f27d2c0",
+    "apps/web/pnpm-lock.yaml": "7da0e33941c4100aef1a2a859b792bd9e350780ea0a38e079a2fe11663374c60",
+    "simulations/requirements-m05.txt": "e7044d74ba7512cccca447ad52f88dda67cabb3e29c72e7b6d8da14d94f48ff3",
+    "hardware/requirements-m08-cad.txt": "fa13e49b76df76168e09be97704c7844be1ffe831d46fb981c6a3e960d65fa6f"
+  },
+  "synthetic_business_fixture_sha256_excluding_credentials": "31aa552e344e3540a1c8c82d684f6491482dc5d8ca8fc5d3338045c617d3d489",
+  "fixtures": "two synthetic utilities; synthetic resident/staff identities; M09-only databases",
+  "catalogue_sha256": "1921fae430c22f2c05c74862e5e1dfe65bffbb9d936171eb637ca61325ca097a",
+  "local_backend_environment": "existing work/m03-py312",
+  "local_science_environment": "existing work/m05-py312",
+  "local_frontend_dependencies": "existing approved M04 node_modules; ignored junction",
+  "ci": "existing pinned Ubuntu/PostGIS/browser setup; actual browser/runtime version included in CI artifact",
+  "physical_trials": 0,
+  "field_trials": 0
+}
