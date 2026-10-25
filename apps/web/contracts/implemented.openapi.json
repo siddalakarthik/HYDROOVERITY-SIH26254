@@ -23171,7 +23171,7 @@
     "/orgs/{organization_id}/notification-preferences": {
       "get": {
         "operationId": "m07_n40",
-        "summary": "N40 GET /notification-preferences \u00e2\u20ac\u201d proposed only",
+        "summary": "N40 GET /notification-preferences \u2014 proposed only",
         "tags": [
           "M07 M07-C"
         ],
@@ -23274,7 +23274,7 @@
       },
       "put": {
         "operationId": "m07_n41",
-        "summary": "N41 PUT /notification-preferences \u00e2\u20ac\u201d proposed only",
+        "summary": "N41 PUT /notification-preferences \u2014 proposed only",
         "tags": [
           "M07 M07-C"
         ],
@@ -23409,7 +23409,7 @@
     "/orgs/{organization_id}/service-requests/{request_id}/delivery-audit": {
       "get": {
         "operationId": "m07_n42",
-        "summary": "N42 GET /service-requests/{request_id}/delivery-audit \u00e2\u20ac\u201d proposed only",
+        "summary": "N42 GET /service-requests/{request_id}/delivery-audit \u2014 proposed only",
         "tags": [
           "M07 M07-C"
         ],

@@ -310,10 +310,10 @@
     "M07Page_ResidentWindow": "bbc8f5d2315bbd3c606edd77a009612a611eb96926e8ef59b2ea55eccdd174f6"
   },
   "new_source_sha256": {
-    "apps/web/browser/communications.spec.ts": "06b8b25e6b0127c845a3c883fb77ddba8c13b981327296187bb6d74daa6a1065",
+    "apps/web/browser/communications.spec.ts": "a1e87b1e7901dc1cfa91d6b688c34321d4f6f9ed7f95aa5133789ae47f76ff9f",
     "apps/web/src/features/communications.tsx": "997133b5df39ed35e8507e00d04189aa592380c6746d1d028b2cd1a2e4fb39f6",
     "scripts/check_m07c.py": "20f72c8b576ce9fb3fcf2f2e3d23780242838a824e20cdc1f97096847b7c4a63",
-    "services/api/hydro/communications_contracts.py": "7ed0272420183b06fb327b303a7db06134e0ff81e795a766ad4ba5b86590b49e",
+    "services/api/hydro/communications_contracts.py": "d8c34de02d3f2ab2cfb07c093cfd011cd1e2d8a72e6f4108bc0f6523675cd878",
     "services/api/hydro/notification_worker.py": "ad4c83c31c66962a3d5450a6d429474f16ea99de44ac779e454d07b1be7943e6",
     "services/api/hydro/services/communications.py": "2c2552e668542a76d2e7bb9c514fc9034477672dbdbec8b68ae47a9bb9b062a2",
     "services/api/migrations/m07_c.sql": "554fe76dd5ad1f44c75727b1f95451aeed447ed88fa81280dc9ddceb93e830b8",
@@ -324,7 +324,7 @@
   "source_extensions": {
     "apps/web/contracts/implemented.openapi.json": {
       "baseline_sha256": "d12dd90e24d13b15291d714acf1619981538bf1603e5b5d71c4f465efdb10100",
-      "sha256": "46ce1bd010b72b49f896cbf345aea9a80634c32cd798d1502c99090db69d268d"
+      "sha256": "6342bab0f6821061206def9dffd1e88513b12d91312d7ad4f8b031f5827d819e"
     },
     "apps/web/src/features/service-requests.tsx": {
       "baseline_sha256": "0c8f3ecc297ed3515009e873b161f8573e515a64c39e4e3f90dcdefc8fc1628c",
@@ -336,7 +336,7 @@
     },
     "apps/web/src/lib/generated.ts": {
       "baseline_sha256": "0d4ded2448a88b27b9154ca0ea4f169d00551acb8c6a0bba25f6ef1bc0ad099e",
-      "sha256": "c025b13bf5fa1267ea685f423346c63b1364cd1facf9fc3e1153efd9f82762df"
+      "sha256": "37753715f1040ca2c1807c0d9792683199aa03bdf21d8ce133ff2a056b1b949b"
     },
     "apps/web/src/lib/route-capabilities.json": {
       "baseline_sha256": "c843ae44cdb0e5f37eff4ab9867d1ae4af00dcb5d4122efb270909016b442ad5",

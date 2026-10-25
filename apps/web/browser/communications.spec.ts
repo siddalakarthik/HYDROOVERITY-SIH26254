@@ -71,9 +71,15 @@ test("M07-C real inbox, versioned preferences, service feedback, supervisor revi
   await page.goto(inbox);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByLabel("Enable optional in-app notifications").uncheck();
+  const saveDisabled = page.waitForResponse(
+    (r) =>
+      r.url().endsWith("/notification-preferences") &&
+      r.request().method() === "PUT",
+  );
   await page
     .getByRole("button", { name: "Save notification preferences" })
     .click();
+  expect((await saveDisabled).status()).toBe(200);
   await expect(
     page.getByLabel("Enable optional in-app notifications"),
   ).not.toBeChecked();
@@ -87,9 +93,15 @@ test("M07-C real inbox, versioned preferences, service feedback, supervisor revi
     fullPage: true,
   });
   await page.getByLabel("Enable optional in-app notifications").check();
+  const saveEnabled = page.waitForResponse(
+    (r) =>
+      r.url().endsWith("/notification-preferences") &&
+      r.request().method() === "PUT",
+  );
   await page
     .getByRole("button", { name: "Save notification preferences" })
     .click();
+  expect((await saveEnabled).status()).toBe(200);
   await page.goto(`/citizen/${f.org}/service-requests/${f.comms_case}`);
   await page
     .getByLabel("Feedback summary", { exact: true })

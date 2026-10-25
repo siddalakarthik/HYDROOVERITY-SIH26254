@@ -1703,9 +1703,9 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** N40 GET /notification-preferences â€” proposed only */
+        /** N40 GET /notification-preferences — proposed only */
         get: operations["m07_n40"];
-        /** N41 PUT /notification-preferences â€” proposed only */
+        /** N41 PUT /notification-preferences — proposed only */
         put: operations["m07_n41"];
         post?: never;
         delete?: never;
@@ -1721,7 +1721,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** N42 GET /service-requests/{request_id}/delivery-audit â€” proposed only */
+        /** N42 GET /service-requests/{request_id}/delivery-audit — proposed only */
         get: operations["m07_n42"];
         put?: never;
         post?: never;

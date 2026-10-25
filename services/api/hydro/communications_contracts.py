@@ -10,7 +10,9 @@ from referencing.jsonschema import DRAFT202012
 
 from .config import ROOT
 
-DESIGN = json.loads((ROOT / "docs/architecture/m07/openapi-proposed.json").read_text())
+DESIGN = json.loads(
+    (ROOT / "docs/architecture/m07/openapi-proposed.json").read_text(encoding="utf-8")
+)
 SCHEMAS = DESIGN["components"]["schemas"]
 SCHEMAS["M07Notification"]["properties"].update(
     {
