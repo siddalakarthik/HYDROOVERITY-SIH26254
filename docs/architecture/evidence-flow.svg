@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">HYDROOVERITY evidence and service workflow</title>
+<desc id="desc">Qualified hydraulic, five-channel wetness and common-clock acoustic evidence inform authorized triage. Resident concerns remain distinct from measured evidence. Authorized work leads to independent review, supported outcomes or NOT_VERIFIABLE.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#376578"/></marker></defs>
+<rect width="1600" height="1000" rx="20" fill="#f3f7fa"/>
+<g fill="none" stroke="#376578" stroke-width="4" marker-end="url(#arrow)">
+<path d="M270 165V210H800V245"/><path d="M800 165V245"/><path d="M1330 165V210H800"/>
+<path d="M800 335V390"/><path d="M510 435H555"/><path d="M800 480V535"/><path d="M800 625V680"/><path d="M800 770V825"/></g>
+<rect x="40" y="75" width="460" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="270.0" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">HYDRO-WATCH</text>
+<text x="270.0" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Pressure, flow and supply state</text>
+<rect x="570" y="75" width="460" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">GUARD-5 wetness channels</text>
+<text x="800.0" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">A / B / C / EXT / BYPASS</text>
+<rect x="1100" y="75" width="460" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="1330.0" y="111" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">HYDRO-EAR / EAR-PAIR</text>
+<text x="1330.0" y="144" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Two pickups, one ADC clock</text>
+<rect x="555" y="245" width="490" height="90" rx="12" fill="#123e50" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="281" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Evidence qualification</text>
+<text x="800.0" y="314" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Provenance, quality, uncertainty</text>
+<rect x="40" y="390" width="470" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="275.0" y="426" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Resident concern</text>
+<text x="275.0" y="459" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Not automatically an incident</text>
+<rect x="555" y="390" width="490" height="90" rx="12" fill="#123e50" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="426" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Authorized triage</text>
+<text x="800.0" y="459" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Incident and work authorization</text>
+<rect x="440" y="535" width="720" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="571" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Investigation findings or genuine repair record</text>
+<text x="800.0" y="604" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Work completion is not proof of effectiveness</text>
+<rect x="440" y="680" width="720" height="90" rx="12" fill="#123e50" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="716" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Independent HYDRO-VERIFY review</text>
+<text x="800.0" y="749" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="white">Eligibility and before/after comparability</text>
+<rect x="345" y="825" width="910" height="90" rx="12" fill="white" stroke="#98b4c2" stroke-width="2"/>
+<text x="800.0" y="861" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Supported outcome, revisit or NOT_VERIFIABLE</text>
+<text x="800.0" y="894" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#16384b">Insufficient evidence must remain inconclusive</text>
+<text x="800" y="965" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#576875">SOFTWARE / SCIENTIFIC DESIGN · NO PHYSICAL OR FIELD VALIDATION CLAIMED</text>
+</svg>

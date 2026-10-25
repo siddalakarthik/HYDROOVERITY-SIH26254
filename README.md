@@ -33,18 +33,9 @@ M01–M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are
 
 ## Evidence before conclusions
 
-```mermaid
-flowchart TD
-    W[HYDRO-WATCH: pressure, flow and supply state] --> Q[Evidence qualification]
-    G[GUARD-5: A / B / C / EXT / BYPASS] --> Q
-    E[HYDRO-EAR: eligible span, two pickups, one ADC clock] --> Q
-    C[Resident concern] --> T[Authorized triage]
-    Q --> T
-    T --> I[Incident and authorized work]
-    I --> R[Investigation findings or genuine repair record]
-    R --> V[Independent HYDRO-VERIFY review]
-    V --> O[Supported outcome, revisit or NOT_VERIFIABLE]
-```
+![HYDROOVERITY evidence qualification and authorized service workflow](docs/architecture/evidence-flow.svg)
+
+[Editable architecture diagram](docs/architecture/evidence-flow.svg). Resident concerns and scientific evidence remain distinct inputs; neither automatically proves a leak.
 
 - **HYDRO-WATCH** qualifies OFF, FILLING, STEADY, DRAINING or UNKNOWN context. Hydraulic imbalance is not automatically a leak; filling and unknown demand limit inference.
 - **GUARD-5** investigates an accessible exposed joint with exactly five independent wetness channels: three protected collectors A/B/C, environmental witness EXT and separate lower BYPASS. Wetness does not establish its source.
