@@ -19,7 +19,10 @@ jobs:
         with:
           persist-credentials: false
       - name: Validate foundation
-        run: python3 scripts/check_repository.py
+        run: |
+          python3 scripts/check_repository.py
+          python3 scripts/check_pre_m10.py
+          python3 scripts/test_pre_m10_sources.py -v
       - name: Validate M02 design contracts
         run: python3 scripts/check_m02_design.py
       - name: Test design checker regression examples

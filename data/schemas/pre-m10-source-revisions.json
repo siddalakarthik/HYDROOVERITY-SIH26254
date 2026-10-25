@@ -1,0 +1,31 @@
+{
+  "baseline_commit": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+  "scope": "Evidence label correction and explicit checker compatibility only; runtime OpenAPI, migrations and scientific results unchanged.",
+  "source_revisions": {
+    "scripts/check_m07_design.py": {
+      "baseline_sha256": "aee6824e45d7c2a0470a5f2b4bb98ff6278414496fa0dd9866872510a6445cba",
+      "sha256": "48e3689fc59b0bcec1439442913f15eba168bdb7d9dffb591ee971d87a0138de",
+      "reason": "Apply exact prior-to-current pre-M10 source revision chain while preserving historical manifests and scientific pins."
+    },
+    "scripts/check_m07b.py": {
+      "baseline_sha256": "eaed0dc2d7e61b8979cf910bf31d4850a51029ebdc0f054a8a99175bf8193a66",
+      "sha256": "0582b5d0c0b025f5e05aad6f81b25006bbcd956c5d48691f8e08d7b8edcb67a3",
+      "reason": "Apply exact prior-to-current pre-M10 source revision chain while preserving historical manifests and scientific pins."
+    },
+    "scripts/check_m07c.py": {
+      "baseline_sha256": "20f72c8b576ce9fb3fcf2f2e3d23780242838a824e20cdc1f97096847b7c4a63",
+      "sha256": "b765c2a4f53efedf6b1279e24c5f0f1ed0f79d34ba60f6f775402621a145e49b",
+      "reason": "Apply exact prior-to-current pre-M10 source revision chain while preserving historical manifests and scientific pins."
+    },
+    "scripts/check_m09.py": {
+      "baseline_sha256": "d3a41e1104c9acf29eeded6feefe536d004c2d0166c5060bd3162e3fe2b68a59",
+      "sha256": "4366d3a0cba639297ebb3ab68e873824060996f9750ae983fb39276641ffc121",
+      "reason": "Apply exact prior-to-current pre-M10 source revision chain while preserving historical manifests and scientific pins."
+    },
+    "services/api/tools/demo_backend.py": {
+      "baseline_sha256": "dc10a2b7f36f033c279973a3ad1e50986f87444b8bce0b78b5f01878b5a1cad3",
+      "sha256": "606fba6901b56878f3c31cfbf7f65439d9e52cf9bef37e5b1f4225eb20e113e9",
+      "reason": "Query actual database migration revision in HTTPS evidence; no API, schema, transport or workflow change."
+    }
+  }
+}
