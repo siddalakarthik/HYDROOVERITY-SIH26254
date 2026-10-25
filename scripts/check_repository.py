@@ -20,6 +20,16 @@ REVIEWED_BINARY = {
     "apps/web/public/engineering/guard5.png":
         "e21d3a341c8dd65f6f54409c647abd7656342748c98a2ac76baa8d09865220c7",
 }
+# Owner-authorized pre-M10 documentation previews: exact bytes, not a broad binary exemption.
+REVIEWED_BINARY.update({
+    'docs/media/guard5-cad.png': 'e21d3a341c8dd65f6f54409c647abd7656342748c98a2ac76baa8d09865220c7',
+    'docs/media/guard5-channels.png': '2aa5150152cd0a052cdf92b986ce87ac00b52cc724842e57d7d75e237bd455a1',
+    'docs/media/acoustic-clock.png': '26dff88c19d19d5ae314ba6f4d84c3bd3aa3ff0b194e3d02f53abb3855671ff5',
+    'docs/media/test-rig.png': 'a91e8df1ae894a3214a8fa5e096a0173379393e350e144bf0d9306cc60924848',
+    'docs/media/budget.png': 'c71bbcc516c5c4b7c589e905ed147058a506a48cce2e35f9433972d603c1c1c5',
+    'docs/media/guard5-comparison.png': '900f8cc7c832cdd51243d9570c80e90873e1cb44b0f04ea6a7e8390196c650d3',
+    'docs/media/website-public.png': 'aafbc192d460dfa9140c75d4cb2c9621b574e19160ddc3d4594e8b8a850464ef',
+})
 REQUIRED_DIRS = """
 apps/web services/api services/ingestion services/notifications
 packages/shared-types packages/shared-config

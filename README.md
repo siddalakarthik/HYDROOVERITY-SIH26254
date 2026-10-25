@@ -1,87 +1,119 @@
 # HYDROOVERITY
 
-**Find the leak. Understand the evidence. Verify the repair.**
+### Find the leak. Understand the evidence. Verify the repair.
 
-Team **TARK** · Team ID **155480** · Smart India Hackathon 2026 · **SIH26254** · Hardware / Clean & Green Technology
+**Team TARK · Team ID 155480 · SIH26254 · Smart India Hackathon 2026**
+Hardware · Clean & Green Technology · Ministry of Jal Shakti
 
-Problem setter: **Ministry of Jal Shakti**. Problem statement: **Development of Indigenous Leak Detection Sensor Systems for Operation & Maintenance of Water Supply Pipelines**.
+[![Repository checks](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/workflows/repository-integrity.yml/badge.svg?branch=main)](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/workflows/repository-integrity.yml)
 
-HYDROOVERITY proposes affordable, indigenous, evidence-qualified leak detection, bounded localization and accountable maintenance for water-distribution networks. Treated-water leakage can waste resources, disrupt service and create ingress risk. The system does not directly detect contamination.
+[Website setup](apps/web/README.md) · [Engineering evidence](docs/README.md) · [Current completion register](docs/testing/PRE_M10_COMPLETION_REGISTER.md) · [Digital hardware](hardware/README.md)
 
-## Current status
+HYDROOVERITY connects resident reports, utility investigation and independent repair review with qualified hydraulic, wetness and acoustic evidence. It addresses **Development of Indigenous Leak Detection Sensor Systems for Operation & Maintenance of Water Supply Pipelines**.
 
-M01/M02/M03/M05/M08 and M03 recovery are merged foundations. M05 supplies three scientific simulation engines with documented unfavorable results; M08 supplies digitally checked hardware designs and presentation figures. M03 supplies a private, persistent backend: [startup and tests](services/api/README.md), [implementation report](docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md). M04 frontend implementation is in progress on its feature branch: [web guide](apps/web/README.md), [execution ledger](docs/testing/M04_EXECUTION_LEDGER.md). Live ingestion, field firmware and physical testing remain future work. No project license has been selected. The repository remains private unless the owner authorizes release.
+**Working software. Simulation-only scientific evidence. Proposed digital hardware.** The repository is public; the application remains restricted to private development. No deployed village installation, physically tested device or field performance is claimed.
 
-| Evidence category | Current status |
-| --- | --- |
-| Designed | M02 architecture and M08 digital designs reviewed; physical qualification pending |
-| Implemented in software | Repository tooling, M05 engines and M03 backend foundation under review |
-| Simulated | M05 primary synthetic benchmarks executed; historic results remain separately attributed |
-| Physically tested | No physical prototype or trials established; context reports 0 physical trials |
-| Field validated | Context reports 0 field trials |
+![Actual HYDROOVERITY public website, showing the evidence chain and development limitations](docs/media/website-public.png)
 
-See the [evidence register](docs/testing/EVIDENCE_REGISTER.md) for attribution and limits. A successful repository check is not a sensor-performance test.
+*Actual application capture from M09 browser acceptance; synthetic development environment. [Frontend source](apps/web/src/features/public.tsx) · [Browser evidence](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).*
 
-## How the proposed system works
+## What works today
 
-`HYDRO-WATCH -> [GUARD-5 local joint evidence || HYDRO-EAR eligible-span evidence] -> evidence assessment -> incident -> work order -> repair -> HYDRO-VERIFY`
+| Area | Implemented scope | Boundary |
+| --- | --- | --- |
+| Residents | Authenticated complaints and service requests, secure ownership-based tracking, timelines, follow-ups, appointment requests and feedback | A request is not an incident, booking or confirmed leak |
+| Utility operations | Supervisor triage, authorized incident/work linkage, investigation findings, technician assignment and dispatch, versioned changes | Scheduling is disabled until actual utility policy, shifts, skills and service areas are configured |
+| Communications | Durable in-app queue, preferences, delivery/read history and guarded feedback review | External email/SMS/push and media remain gated; three total delivery attempts |
+| Scientific workspace | Authorized synthetic ingestion, bounded stream/replay, observation-only exports and visible simulation mode | No live hardware adapter or ordinary-dashboard evaluator truth |
+| Platform | FastAPI, PostgreSQL/PostGIS, tenant/role/owner enforcement, RLS, CSRF, idempotency and audit history | Production/public deployment remains disabled |
 
-- **HYDRO-WATCH** uses available pressure, flow, demand/storage context and device health to qualify `OFF`, `FILLING`, `STEADY`, `DRAINING` or `UNKNOWN`. Intermittent supply makes fixed night-flow windows unreliable. Unexplained imbalance is not automatically a leak.
-- **GUARD-5** is a removable, non-pressure-bearing collar at an accessible exposed joint. Five independent wetness channels are `COLLAR_A`, `COLLAR_B`, `COLLAR_C`, `COLLAR_EXT` and `COLLAR_BYPASS`. Three protected collection pockets, an outside environmental witness, a separate lower bypass, guards, drainage and external service-challenge ports help investigate water arrival and collection faults. Mechanical separation remains an untested hypothesis.
-- **HYDRO-EAR / EAR-PAIR** investigates a surveyed, adequately pressurized, eligible simple span using two matched pipe-contact pickups, analog front ends and one stereo PCM1808-class ADC with one physical sampling clock. It may provide a candidate distance interval when passive signal and path knowledge support it. A portable pair does not continuously pinpoint an entire village.
-- **Evidence qualification** retains competing explanations: local joint suspicion, hydraulic abnormality, environmental exposure, collection failure, sensor fault, ambiguous path and insufficient signal. Confirmed wetness is not proof of leak origin. Decisions carry reasons, provenance, uncertainty and next actions.
-- **HYDRO-VERIFY** connects investigation, assignment, notes/photos, repair records and comparable before/after checks. A case can close, reopen or remain unverifiable. Citizen reports coexist with sensor evidence without automatically confirming leakage.
+Current runtime: **111 implemented API operations · 51 migrated application tables · migration `m07_c_001`**. Design catalogues contain additional proposed operations; they are not implemented endpoints. [Runtime contracts](services/api/hydro/contracts.py) · [Current acceptance inventory](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
 
-Rural networks may combine PVC/HDPE and mixed materials, sparse access, low pressure, unknown customer demand, tanks, pump vibration, rainfall, condensation and unreliable connectivity. These are required test conditions, not exceptions to hide.
+M01–M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are merged, while the original M07 milestone remains open for residual scope. **M10 has not started.** The original 40-case acceptance matrix remains **21 PASS, 13 BLOCKED, 6 NOT IMPLEMENTED**; passing CI does not mean every planned feature exists.
 
-## Planned product and engineering outputs
+## Evidence before conclusions
 
-- Public explanation and citizen complaint/status pages; authenticated utility, supervisor, technician and administrator workflows.
-- Tenant-aware authentication/authorization, persistent observations, network maps, incidents, work orders, diagnostics, repair verification, reports, audit history and feedback. Mobile/offline notes and retries; visible simulation mode.
-- Three reproducible engines: hydraulics with WNTR/EPANET where valid, acoustic parameter sweeps and GUARD-5 water-path/fault logic. Hidden truth, holdouts, baseline comparisons and honest unresolved results.
-- FreeCAD-compatible mechanical designs, KiCad electronics, firmware, calibration plans, BOM and safety/power analyses in later milestones.
-- A 2–3 minute **CONCEPT ANIMATION / SIMULATED EXAMPLE**, genuine software screen capture and final SIH presentation. Hardware validation remains future work; animation does not replace it.
-
-Provisional stack: Next.js / React / TypeScript / Tailwind, Python FastAPI, PostgreSQL / PostGIS, MapLibre, Recharts or equivalent, Docker Compose, pytest, Vitest and Playwright. Compatibility and integration decisions precede dependency installation. No stack packages are installed by M01.
-
-## Budget and limitations
-
-The potential complete demonstration has a **₹60,000 INR materials ceiling**. Current estimated allocation is **₹56,750**, including **₹5,000 contingency**, leaving **₹3,250 headroom**. This is not a supplier quotation, village installation cost or government reimbursement promise. No procurement is authorized now.
-
-Weak plastic-pipe signals, zero pressure, unknown wave speed, branches/multiple leaks and environmental moisture can prevent diagnosis. EPANET is not a complete filling/transient/water-hammer model. Simplified water-transfer models do not validate manufactured collectors. No measured accuracy, range, battery life, savings or patent novelty is claimed. Read [engineering limitations](docs/engineering/ENGINEERING_LIMITATIONS.md).
-
-## Repository navigation
-
-| Path | Responsibility |
-| --- | --- |
-| [apps/](apps/README.md) | Future public website and role-specific web workflows |
-| [services/](services/README.md) | Future API, ingestion and notification responsibilities |
-| [packages/](packages/README.md) | Future shared contracts and configuration |
-| [simulations/](simulations/README.md) | Three engines, scenarios, evaluation and result policy |
-| [hardware/](hardware/README.md) | Future mechanical, electrical, embedded and calibration work |
-| [data/](data/README.md) | Synthetic examples, future schemas and privacy boundaries |
-| [docs/](docs/README.md) | Authoritative source, requirements, decisions and evidence |
-| [tests/](tests/README.md) | Future application and system tests; none fabricated |
-| [scripts/](scripts/README.md) | Dependency-free repository validation |
-| [design/](design/README.md) | Future UX, wireframes and design system |
-| [animation/](animation/README.md) | Future storyboard and concept-video assets |
-| [.github/](.github/README.md) | CI, issue templates, PR template and backlog definitions |
-
-## Validate the foundation
-
-With Git and Python 3.12+ already available, from this repository root run:
-
-```sh
-python scripts/check_repository.py
-git diff --check
+```mermaid
+flowchart TD
+    W[HYDRO-WATCH: pressure, flow and supply state] --> Q[Evidence qualification]
+    G[GUARD-5: A / B / C / EXT / BYPASS] --> Q
+    E[HYDRO-EAR: eligible span, two pickups, one ADC clock] --> Q
+    C[Resident concern] --> T[Authorized triage]
+    Q --> T
+    T --> I[Incident and authorized work]
+    I --> R[Investigation findings or genuine repair record]
+    R --> V[Independent HYDRO-VERIFY review]
+    V --> O[Supported outcome, revisit or NOT_VERIFIABLE]
 ```
 
-The validator checks tracked/unignored files, required paths, local documentation links, source integrity, ignore rules and common credential patterns without printing matched secret values. It is a limited hygiene check, not a comprehensive security audit. M03 application startup and disposable database checks are documented in [the backend guide](services/api/README.md).
+- **HYDRO-WATCH** qualifies OFF, FILLING, STEADY, DRAINING or UNKNOWN context. Hydraulic imbalance is not automatically a leak; filling and unknown demand limit inference.
+- **GUARD-5** investigates an accessible exposed joint with exactly five independent wetness channels: three protected collectors A/B/C, environmental witness EXT and separate lower BYPASS. Wetness does not establish its source.
+- **HYDRO-EAR / EAR-PAIR** uses two matched contact pickups and one physical common-clock stereo ADC on an eligible surveyed span. Unknown wave speed, weak plastic-pipe signals, low pressure, branches and competing sources can prevent localization.
+- **HYDRO-VERIFY** separates completed work from independently supported effectiveness. Manual records alone remain NOT_VERIFIABLE.
 
-## Roadmap and contributions
+## Digital engineering, with physical limits visible
 
-M01 GitHub foundation -> M02 website architecture and database design -> M03 backend -> M04 frontend -> M05 scientific simulations -> M06 simulation integration -> M07 maintenance operations -> M08 digital hardware -> M09 system testing -> M10 final demonstration.
+![GUARD-5 parametric assembled and exploded CAD views, proposed and not physically tested](docs/media/guard5-cad.png)
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md), [SECURITY.md](SECURITY.md), the [documentation index](docs/README.md) and [roadmap](docs/project/ROADMAP.md). Use focused branches and PRs, record decisions, and distinguish executed tests from plans. Follow the [master context](docs/project/HYDROOVERITY_MASTER_CONTEXT.md); its onboarding-only stop instructions are historical and the separate M01 request authorizes this foundation.
+*Removable, non-pressure-bearing split collar. [Editable CadQuery source](hardware/mechanical-cad/guard5.py). Geometry checks are not physical fit tests.*
 
-[M05 simulation results and reproduction](docs/testing/M05_SIMULATION_EVIDENCE_REPORT.md) include eight presentation figures, accepted/unresolved acoustic coverage and unfavorable collar comparisons.
+![Five distinguished GUARD-5 channels and intended collection and service paths](docs/media/guard5-channels.png)
+
+*Exactly A/B/C, EXT and BYPASS. Collection efficiency, blockage, crosstalk and environmental discrimination remain unverified.*
+
+![Proposed test rig with complete supply and return pipework](docs/media/test-rig.png)
+
+*Proposed rig, not an assembled device. [Rig source](hardware/mechanical-cad/rig_layout.json). Any future pressure points require safety review.*
+
+[Common-clock acoustic diagram](docs/media/acoustic-clock.png) · [Estimated budget figure](docs/media/budget.png) · [Seven editable engineering figures and STEP reproduction](hardware/results/README.md)
+
+The **₹60,000 materials ceiling** currently has a **₹59,870 estimate**, including reserve, and only **₹130 residual headroom**. All **41 prices are estimates**, not supplier quotations. That margin is a procurement risk. The proposed pressure sensor range is poorly suited to sensitive low-pressure measurements. KiCad files are connectivity drafts; native ERC, complete field firmware, a validated recorder and physical trials remain absent. [Itemized BOM](hardware/bom/M08_BOM.md) · [Engineering limitations](docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md).
+
+## Scientific results include the unfavorable cases
+
+![Simulated GUARD-5 comparison retaining unfavorable baseline results](docs/media/guard5-comparison.png)
+
+*SIMULATED / PHYSICALLY UNVALIDATED. GUARD-5 nominal F1 was **0.714**, compared with **0.778** for a simple pad and **0.824** for a multizone baseline. Digital collector geometry does not overturn this result.*
+
+The acoustic benchmark accepted **190/264** eligible captures; **74 remained unresolved**, and **20 accepted intervals excluded truth**. Small ideal-model errors do not establish hardware precision. WATCH missed a small modeled leak and produced drift-related suspicion. EPANET is not a complete filling/transient or water-hammer model.
+
+[Full M05 denominators, controls and limitations](docs/testing/M05_SIMULATION_EVIDENCE_REPORT.md) · [Reproduction](simulations/README.md) · [M06 integration boundary](docs/testing/M06_SCIENTIFIC_INTEGRATION.md)
+
+## Run locally and verify
+
+Use the pinned versions and isolated environments in the subsystem guides. No paid API or public deployment is required.
+
+```sh
+# Repository root: foundation and design checks
+python scripts/check_repository.py
+python scripts/check_m02_design.py
+python scripts/check_pre_m10.py
+git diff --check
+
+# Node 24 and the repository-pinned pnpm version
+cd apps/web
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm run build
+pnpm run start
+```
+
+The public-page preview listens on `http://127.0.0.1:3000`. Authentication needs the real backend and verified localhost HTTPS described in the [web guide](apps/web/README.md) and [API guide](services/api/README.md); do not weaken Secure cookies or TLS verification. A localhost URL works only on the machine running those services.
+
+Four CI jobs cover repository/design/scientific checks, PostgreSQL/backend acceptance, real frontend browser workflows, and regenerated CAD/figures. CI artifacts have a **14-day retention period**; durable source and evidence reports remain in Git. [CI runs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions) · [M09 report](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
+
+## Find the source
+
+| Path | Contents |
+| --- | --- |
+| [apps/web](apps/web/README.md) | Next.js / React / TypeScript application, generated contracts and browser tests |
+| [services/api](services/api/README.md) | FastAPI domain logic, PostgreSQL migrations, authorization and acceptance tools |
+| [simulations](simulations/README.md) | Hydraulic, acoustic and GUARD-5 engines and reproducible evaluation |
+| [hardware](hardware/README.md) | Parametric CAD, connectivity drafts, interfaces, calibration plans and estimated BOM |
+| [docs](docs/README.md) | Contracts, decisions, engineering reports and current completion register |
+| [docs/media](docs/media/README.md) | Small reviewed presentation previews, source hashes and reproduction |
+| [tests](tests/README.md) | Scientific, design and hardware checks; application tests also live beside their source |
+| [.github](.github/README.md) | Required CI, issue templates and original backlog |
+
+Visit-access data, images, offline mutations, external delivery, legal retention and public deployment retain their respective D6–D10/release gates. Native zoom, full assistive-technology coverage and long-duration field reliability are not certified. Accepted development dependency/license limitations remain recorded in the [M04 execution ledger](docs/testing/M04_EXECUTION_LEDGER.md).
+
+Read [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md). The project license is undecided: a public repository does not grant an open-source license. Preserve third-party attribution and never commit credentials, resident data, evaluator ground truth or raw private experiments.
