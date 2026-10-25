@@ -2,12 +2,12 @@
 
 ### Find the leak. Understand the evidence. Verify the repair.
 
-**Team TARK Â· Team ID 155480 Â· SIH26254 Â· Smart India Hackathon 2026**
-Hardware Â· Clean & Green Technology Â· Ministry of Jal Shakti
+**Team TARK · Team ID 155480 · SIH26254 · Smart India Hackathon 2026**
+Hardware · Clean & Green Technology · Ministry of Jal Shakti
 
 [![Repository checks](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/workflows/repository-integrity.yml/badge.svg?branch=main)](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/workflows/repository-integrity.yml)
 
-[Website setup](apps/web/README.md) Â· [Engineering evidence](docs/README.md) Â· [Current completion register](docs/testing/PRE_M10_COMPLETION_REGISTER.md) Â· [Digital hardware](hardware/README.md)
+[Website setup](apps/web/README.md) · [Engineering evidence](docs/README.md) · [Current completion register](docs/testing/PRE_M10_COMPLETION_REGISTER.md) · [Digital hardware](hardware/README.md)
 
 HYDROOVERITY connects resident reports, utility investigation and independent repair review with qualified hydraulic, wetness and acoustic evidence. It addresses **Development of Indigenous Leak Detection Sensor Systems for Operation & Maintenance of Water Supply Pipelines**.
 
@@ -15,7 +15,7 @@ HYDROOVERITY connects resident reports, utility investigation and independent re
 
 ![Actual HYDROOVERITY public website, showing the evidence chain and development limitations](docs/media/website-public.png)
 
-*Actual application capture from M09 browser acceptance; synthetic development environment. [Frontend source](apps/web/src/features/public.tsx) Â· [Browser evidence](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).*
+*Actual application capture from M09 browser acceptance; synthetic development environment. [Frontend source](apps/web/src/features/public.tsx) · [Browser evidence](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).*
 
 ## What works today
 
@@ -27,9 +27,9 @@ HYDROOVERITY connects resident reports, utility investigation and independent re
 | Scientific workspace | Authorized synthetic ingestion, bounded stream/replay, observation-only exports and visible simulation mode | No live hardware adapter or ordinary-dashboard evaluator truth |
 | Platform | FastAPI, PostgreSQL/PostGIS, tenant/role/owner enforcement, RLS, CSRF, idempotency and audit history | Production/public deployment remains disabled |
 
-Current runtime: **111 implemented API operations Â· 51 migrated application tables Â· migration `m07_c_001`**. Design catalogues contain additional proposed operations; they are not implemented endpoints. [Runtime contracts](services/api/hydro/contracts.py) Â· [Current acceptance inventory](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
+Current runtime: **111 implemented API operations · 51 migrated application tables · migration `m07_c_001`**. Design catalogues contain additional proposed operations; they are not implemented endpoints. [Runtime contracts](services/api/hydro/contracts.py) · [Current acceptance inventory](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
 
-M01â€“M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are merged, while the original M07 milestone remains open for residual scope. **M10 has not started.** The original 40-case acceptance matrix remains **21 PASS, 13 BLOCKED, 6 NOT IMPLEMENTED**; passing CI does not mean every planned feature exists.
+M01–M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are merged, while the original M07 milestone remains open for residual scope. **M10 has not started.** The original 40-case acceptance matrix remains **21 PASS, 13 BLOCKED, 6 NOT IMPLEMENTED**; passing CI does not mean every planned feature exists.
 
 ## Evidence before conclusions
 
@@ -65,9 +65,9 @@ flowchart TD
 
 *Proposed rig, not an assembled device. [Rig source](hardware/mechanical-cad/rig_layout.json). Any future pressure points require safety review.*
 
-[Common-clock acoustic diagram](docs/media/acoustic-clock.png) Â· [Estimated budget figure](docs/media/budget.png) Â· [Seven editable engineering figures and STEP reproduction](hardware/results/README.md)
+[Common-clock acoustic diagram](docs/media/acoustic-clock.png) · [Estimated budget figure](docs/media/budget.png) · [Seven editable engineering figures and STEP reproduction](hardware/results/README.md)
 
-The **â‚¹60,000 materials ceiling** currently has a **â‚¹59,870 estimate**, including reserve, and only **â‚¹130 residual headroom**. All **41 prices are estimates**, not supplier quotations. That margin is a procurement risk. The proposed pressure sensor range is poorly suited to sensitive low-pressure measurements. KiCad files are connectivity drafts; native ERC, complete field firmware, a validated recorder and physical trials remain absent. [Itemized BOM](hardware/bom/M08_BOM.md) Â· [Engineering limitations](docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md).
+The **₹60,000 materials ceiling** currently has a **₹59,870 estimate**, including reserve, and only **₹130 residual headroom**. All **41 prices are estimates**, not supplier quotations. That margin is a procurement risk. The proposed pressure sensor range is poorly suited to sensitive low-pressure measurements. KiCad files are connectivity drafts; native ERC, complete field firmware, a validated recorder and physical trials remain absent. [Itemized BOM](hardware/bom/M08_BOM.md) · [Engineering limitations](docs/engineering/M08_DIGITAL_HARDWARE_REPORT.md).
 
 ## Scientific results include the unfavorable cases
 
@@ -77,7 +77,7 @@ The **â‚¹60,000 materials ceiling** currently has a **â‚¹59,870 estimate
 
 The acoustic benchmark accepted **190/264** eligible captures; **74 remained unresolved**, and **20 accepted intervals excluded truth**. Small ideal-model errors do not establish hardware precision. WATCH missed a small modeled leak and produced drift-related suspicion. EPANET is not a complete filling/transient or water-hammer model.
 
-[Full M05 denominators, controls and limitations](docs/testing/M05_SIMULATION_EVIDENCE_REPORT.md) Â· [Reproduction](simulations/README.md) Â· [M06 integration boundary](docs/testing/M06_SCIENTIFIC_INTEGRATION.md)
+[Full M05 denominators, controls and limitations](docs/testing/M05_SIMULATION_EVIDENCE_REPORT.md) · [Reproduction](simulations/README.md) · [M06 integration boundary](docs/testing/M06_SCIENTIFIC_INTEGRATION.md)
 
 ## Run locally and verify
 
@@ -99,7 +99,7 @@ pnpm run start
 
 The public-page preview listens on `http://127.0.0.1:3000`. Authentication needs the real backend and verified localhost HTTPS described in the [web guide](apps/web/README.md) and [API guide](services/api/README.md); do not weaken Secure cookies or TLS verification. A localhost URL works only on the machine running those services.
 
-Four CI jobs cover repository/design/scientific checks, PostgreSQL/backend acceptance, real frontend browser workflows, and regenerated CAD/figures. CI artifacts have a **14-day retention period**; durable source and evidence reports remain in Git. [CI runs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions) Â· [M09 report](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
+Four CI jobs cover repository/design/scientific checks, PostgreSQL/backend acceptance, real frontend browser workflows, and regenerated CAD/figures. CI artifacts have a **14-day retention period**; durable source and evidence reports remain in Git. [CI runs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions) · [M09 report](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
 
 ## Find the source
 
@@ -114,6 +114,6 @@ Four CI jobs cover repository/design/scientific checks, PostgreSQL/backend accep
 | [tests](tests/README.md) | Scientific, design and hardware checks; application tests also live beside their source |
 | [.github](.github/DEVELOPMENT_SETUP.md) | Required CI, issue templates and original backlog |
 
-Visit-access data, images, offline mutations, external delivery, legal retention and public deployment retain their respective D6â€“D10/release gates. Native zoom, full assistive-technology coverage and long-duration field reliability are not certified. Accepted development dependency/license limitations remain recorded in the [M04 execution ledger](docs/testing/M04_EXECUTION_LEDGER.md).
+Visit-access data, images, offline mutations, external delivery, legal retention and public deployment retain their respective D6–D10/release gates. Native zoom, full assistive-technology coverage and long-duration field reliability are not certified. Accepted development dependency/license limitations remain recorded in the [M04 execution ledger](docs/testing/M04_EXECUTION_LEDGER.md).
 
 Read [AGENTS.md](AGENTS.md), [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md). The project license is undecided: a public repository does not grant an open-source license. Preserve third-party attribution and never commit credentials, resident data, evaluator ground truth or raw private experiments.
