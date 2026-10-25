@@ -42,7 +42,7 @@ def main():
     p.add_argument("--openssl", default="openssl")
     args = p.parse_args()
     name = args.confirm_disposable_database
-    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser", "hydro_disposable_m06_browser", "hydro_disposable_m07b_browser"}:
+    if name not in {"hydro_disposable_m04", "hydro_disposable_m07a_browser", "hydro_disposable_m06_browser", "hydro_disposable_m07b_browser", "hydro_disposable_m07c_browser"}:
         raise SystemExit("Only explicitly confirmed M04 or M07-A disposable browser fixtures may be reset")
     private = args.private_directory.resolve()
     if private.is_relative_to(ROOT):
@@ -124,6 +124,28 @@ def main():
     dispatch_citizen=register(fixture,"dispatch-citizen@example.invalid")
     login(fixture,"dispatch-citizen@example.invalid",dispatch_citizen)
     dispatch_flow=booking_fixture(fixture,{**flow,"admin":dispatch_admin,"supervisor":dispatch_sup,"technician":dispatch_tech,"tech_membership":dispatch_member,"citizen":dispatch_citizen,"engineer":dispatch_engineer})
+    # Isolated communications identities and real API state, independent of previous suites.
+    from test_service_foundation import create as create_service, triage as triage_service
+    from test_communications import enable
+    from hydro.notification_worker import run_once
+    comms_sup, comms_supervisor = provision(fixture, "SUPERVISOR", "comms-supervisor@example.invalid", flow["admin"])
+    comms_tech, comms_technician = provision(fixture, "TECHNICIAN", "comms-technician@example.invalid", flow["admin"])
+    comms_citizen = register(fixture, "comms-citizen@example.invalid")
+    login(fixture, "comms-citizen@example.invalid", comms_citizen)
+    enable(comms_citizen, base)
+    enable(comms_tech, base)
+    comms_case = create_service(comms_citizen, base)
+    comms_path = base+"/service-requests/"+comms_case["id"]
+    comms_case = triage_service(comms_sup, comms_path, comms_case, "UNDER_REVIEW")
+    comms_case = triage_service(comms_sup, comms_path, comms_case, "ACCEPTED")
+    comms_case = expect(mutate(comms_sup, comms_path+"/transitions", {"action":"CANCEL", "reason_code":"SYNTHETIC_CASE", "public_message":"Synthetic case cancelled after review", "internal_reason":"PRIVATE_SYNTHETIC_NOT_FOR_RESIDENT", "expected_work_versions":[], "child_dispositions":[]}, comms_case["version"]), 200)
+    comms_work = expect(mutate(comms_sup, base+"/work-orders", {"incident_id":incident["id"], "priority":"MEDIUM", "instructions":"SYNTHETIC communications task"}),201)
+    comms_work = expect(mutate(comms_sup, base+"/work-orders/"+comms_work["id"]+"/assignment", {"assignee_membership_id":comms_technician["id"], "due_at":None, "reason":"SYNTHETIC communications assignment"}, comms_work["version"]),201)
+    with owner.begin() as c:
+        comms_user = one(c, "SELECT user_id FROM organization_memberships WHERE id=:i", i=comms_supervisor["id"])["user_id"]
+    for _ in range(100):
+        if run_once(app.state.engine, comms_user, org["id"]) == "IDLE": break
+    else: raise AssertionError("Synthetic communications queue did not drain")
     for item in clients:
         item.close()
     app.state.engine.dispose()
@@ -133,6 +155,9 @@ def main():
     public_key = subprocess.check_output([args.openssl, "x509", "-in", str(certificate), "-pubkey", "-noout"])
     der = subprocess.check_output([args.openssl, "pkey", "-pubin", "-outform", "der"], input=public_key)
     browser = {"provenance": "SYNTHETIC_BROWSER_INTEGRATION_ONLY", "password": password, "other_complaint": stranger_report["id"], "org": str(org["id"]), "other_org": str(other["id"]), "zone": flow["zone"]["id"], "tech_membership": flow["tech_membership"]["id"], "other_tech_membership": other_tech["id"], "incident": incident["id"], "work_order": work["id"], "junctions": [j["id"] for j in junctions], "pipe": pipe["id"], "certificate_spki": base64.b64encode(hashlib.sha256(der).digest()).decode()}
+    browser["comms_case"] = comms_case["id"]
+    browser["comms_supervisor_user"] = str(comms_user)
+    browser["comms_work"] = comms_work["id"]
     browser["service_tech_membership"] = service_tech["id"]
     browser["dispatch_case"] = dispatch_flow["case_path"].rsplit("/",1)[1]
     browser["dispatch_tech"] = dispatch_member["id"]

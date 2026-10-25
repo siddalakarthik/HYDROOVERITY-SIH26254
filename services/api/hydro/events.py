@@ -2,7 +2,7 @@
 
 import json
 
-from .db import execute
+from .db import execute, one
 
 
 def record(
@@ -20,12 +20,16 @@ def record(
         q=request_id,
         metadata=json.dumps(metadata),
     )
-    execute(
+    event = one(
         c,
-        "INSERT INTO domain_events(organization_id,event_type,resource_type,resource_id,workspace_mode,minimum_permission,occurred_at,safe_summary) VALUES(:o,:x,:t,:i,'OPERATIONAL',:p,now(),'{}')",
+        "INSERT INTO domain_events(organization_id,event_type,resource_type,resource_id,workspace_mode,minimum_permission,occurred_at,safe_summary) VALUES(:o,:x,:t,:i,'OPERATIONAL',:p,now(),'{}') RETURNING id",
         o=organization_id,
         x=action,
         t=table,
         i=resource_id,
         p=permission,
     )
+
+    from .notification_worker import enqueue
+
+    enqueue(c, organization_id, event["id"], table, resource_id, action)

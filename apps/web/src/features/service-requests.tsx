@@ -27,6 +27,7 @@ import {
   value,
 } from "@/components/ui";
 import { Pager, usePage } from "@/components/pagination";
+import { Feedback, DeliveryAudit } from "./communications";
 import { Appointments } from "./appointments";
 
 type Case = Model<"M07ServiceCaseCitizen"> | Model<"M07ServiceCaseStaff">;
@@ -197,10 +198,10 @@ function Intake({ org, root }: { org: string; root: string }) {
             required
           />
           <Notice>
-            Private development service. No appointment booking, visit-access
-            collection, uploads or notifications are enabled. No service SLA or
-            live retention policy is approved. Unsent input stays in memory; an
-            online server receipt is required.
+            Private development service. Scheduling requires reviewed utility
+            configuration. Visit-access collection and uploads are disabled. No
+            service SLA or live retention policy is approved. Unsent input stays
+            in memory; an online server receipt is required.
           </Notice>
         </ActionForm>
       </section>
@@ -543,6 +544,13 @@ function Detail({
                 Refresh request and history
               </button>
             </section>
+            {staff && <DeliveryAudit org={org} requestId={row.id} />}
+            <Feedback
+              org={org}
+              roles={staff ? ["SUPERVISOR"] : ["CITIZEN"]}
+              serviceId={row.id}
+              eligible={["SERVICE_CLOSED", "CANCELLED"].includes(row.status)}
+            />
             <Appointments
               org={org}
               service={row}
@@ -812,9 +820,8 @@ function Detail({
               </section>
             )}
             <Notice>
-              Visit preferences, access instructions, uploads and notifications
-              are disabled. Please do not enter access codes or sensitive home
-              information.
+              Visit preferences, access instructions and uploads are disabled.
+              Please do not enter access codes or sensitive home information.
             </Notice>
           </>
         )}

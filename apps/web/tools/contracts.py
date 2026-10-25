@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[3]
 WEB = ROOT / "apps/web"
 sys.path.insert(0, str(ROOT / "services/api"))
 from hydro.contracts import runtime_openapi  # noqa: E402
+from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
 from hydro.service_contracts import ACTIVE  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
 from hydro.scheduling_contracts import ACTIVE as SCHEDULING  # noqa: E402
@@ -21,7 +22,7 @@ def outputs():
     implemented = {o["id"] for o in matrix["operations"] if o["status"] == "CODE_TESTED"}
     contract = runtime_openapi()
     advertised = {operation["operationId"] for methods in contract["paths"].values() for operation in methods.values()}
-    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE}, "Browser contract must match exactly the implemented operations"
+    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS}, "Browser contract must match exactly the implemented operations"
     assert not {"EvaluationResult", "SimulationParameters", "SimulationRun", "RunOutput"}.intersection(contract["components"]["schemas"]), "Deferred scientific/evaluation models must not enter the browser contract"
     groups = {
         7: ["Public"], 8: ["Public"], 18: ["Current user"], 19: ["Current user"],
@@ -74,16 +75,23 @@ def outputs():
         number = int(p["id"].split("-")[1])
         pages.append({"id": p["id"], "route": p["route"], "roles": p["roles"], "title": p["objective"],
                       "status": "ACTIVE_FUNCTIONAL", "operations": [{"operation_id": f"m07_n{i:02}", "status": "IMPLEMENTED"} for i in page_operations[number]],
-                      "component": "service-requests", "future_dependency": "Visit preferences/access, scheduling, attachments and notifications disabled"})
+                      "component": "service-requests", "future_dependency": "Visit access/privacy review, attachments and offline remain gated; scheduling requires authorized configuration"})
     scheduling_pages={"PAGE-33":[25,28,29,30,31,32,33,34,35,36,37,38],"PAGE-44":[25,26,27,38,39],"PAGE-49":[14,15,16,17,19,20,21,22,23],"PAGE-51":[14,16,17,18,21,22,23]}
     for p in pages:
         if p["id"] in scheduling_pages:
             p["operations"].extend({"operation_id":f"m07_n{i:02}","status":"IMPLEMENTED"} for i in scheduling_pages[p["id"]])
-            p["future_dependency"]="Visit access/privacy review, attachments, notifications and offline remain gated; scheduling requires authorized configuration"
+            p["future_dependency"]="Visit access/privacy review, attachments, external delivery and offline remain gated; scheduling requires authorized configuration"
     # Assigned technicians record visit events from their personal calendar on PAGE-33.
     next(p for p in pages if p["id"]=="PAGE-33")["operations"].append({"operation_id":"m07_n24","status":"IMPLEMENTED"})
+    for p in pages:
+        if p["id"] in {"PAGE-42", "PAGE-43"}:
+            p["status"] = "ACTIVE_FUNCTIONAL"
+            p["future_dependency"] = "External delivery, uploads and offline remain disabled"
+            p["operations"] = [{"operation_id":o["id"], "status":"IMPLEMENTED"} for o in COMMUNICATIONS if ("feedback" in o["path"]) == (p["id"]=="PAGE-42") and o["id"]!="m07_n42"]
+        if p["id"]=="PAGE-51":
+            p["operations"].append({"operation_id":"m07_n42","status":"IMPLEMENTED"})
     return {WEB / "contracts/implemented.openapi.json": contract,
-            WEB / "src/lib/route-capabilities.json": {"milestone": "M04 + M07-A + M06 + M07-B", "pages": pages}}
+            WEB / "src/lib/route-capabilities.json": {"milestone": "M04 + M07-A + M06 + M07-B + M07-C", "pages": pages}}
 
 
 if __name__ == "__main__":
@@ -97,4 +105,4 @@ if __name__ == "__main__":
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected)
-    print("PASS: 103 implemented operations and 51 route classifications; privacy-gated routes excluded")
+    print("PASS: 111 implemented operations and 51 route classifications; privacy-gated routes excluded")

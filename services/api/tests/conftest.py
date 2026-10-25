@@ -21,12 +21,23 @@ COVERAGE = {}
 SERVICE_COVERAGE = {}
 SCIENCE_COVERAGE = {}
 SCHEDULING_COVERAGE = {}
+COMMUNICATIONS_COVERAGE = {}
 
 
 def capture_response(response):
     from hydro.contracts import OPERATIONS
 
     if 200 <= response.status_code < 300:
+        from hydro.communications_contracts import OPERATIONS as communications_operations
+
+        for op in communications_operations:
+            pattern = re.sub(r"\{[^}]+\}", r"[^/]+", "/api/v1" + op["path"])
+            if response.request.method.lower() == op["method"] and re.fullmatch(
+                pattern, response.request.url.path
+            ):
+                COMMUNICATIONS_COVERAGE.setdefault(op["id"], set()).add(
+                    os.environ.get("PYTEST_CURRENT_TEST", "unknown").split(" ")[0]
+                )
         from hydro.scheduling_contracts import OPERATIONS as scheduling_operations
 
         for op in scheduling_operations:
@@ -85,6 +96,9 @@ def pytest_sessionfinish(session, exitstatus):
             "operation_tests": {k: sorted(v) for k, v in sorted(COVERAGE.items())},
             "service_operation_tests": {k: sorted(v) for k, v in sorted(SERVICE_COVERAGE.items())},
             "science_operation_tests": {k: sorted(v) for k, v in sorted(SCIENCE_COVERAGE.items())},
+            "communications_operation_tests": {
+                k: sorted(v) for k, v in sorted(COMMUNICATIONS_COVERAGE.items())
+            },
             "scheduling_operation_tests": {
                 k: sorted(v) for k, v in sorted(SCHEDULING_COVERAGE.items())
             },

@@ -8,6 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "services/api"))
+from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
 from hydro.contracts import DESIGN, OPERATIONS, runtime_openapi  # noqa: E402
 from hydro.service_contracts import ACTIVE, DISABLED  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
@@ -18,6 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--backend-only", action="store_true", help="Validate backend source hashes inside the intentionally frontend-free API image")
     args = parser.parse_args()
+    current = json.loads((ROOT/"data/schemas/m07c-implementation.json").read_text())
     manifest = json.loads((ROOT / "data/schemas/m07a-implementation.json").read_text())
     assert manifest["verified_main"] == "c3f785c4fa2974ec45e473786bca4ea8806e2c7a"
     assert manifest["approved_contract_head"] == "5893c5c79831d77fc228d3eae9b814915c071d98"
@@ -26,7 +28,7 @@ def main():
     assert manifest["counts"] == {"baseline_implemented":58,"m07a_implemented":12,"total_implemented":70,"designed_operations":161,"baseline_migrated_tables":30,"m07a_migrated_tables":5,"total_migrated_tables":35,"designed_tables":74}
     runtime = runtime_openapi()
     ids = {o["operationId"] for ms in runtime["paths"].values() for o in ms.values()}
-    assert ids == {o["id"] for o in OPERATIONS} | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE}
+    assert ids == {o["id"] for o in OPERATIONS} | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS}
     assert not ids & DISABLED
     for op in OPERATIONS:
         actual = copy.deepcopy(runtime["paths"][op["path"]][op["method"]])
@@ -43,7 +45,7 @@ def main():
         extensions = json.loads((ROOT / "data/schemas/m06-implementation.json").read_text())["m07a_file_extensions"]
         assert set(extensions) == {"scripts/check_m07a_implementation.py", "apps/web/tools/browser-suite.mjs"}
         scheduling = json.loads((ROOT / "data/schemas/m07b-implementation.json").read_text())["source_extensions"]
-        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == scheduling.get(name,{}).get("sha256",extensions.get(name, digest)), name
+        assert hashlib.sha256((ROOT/name).read_text("utf-8").encode()).hexdigest() == current["source_extensions"].get(name,{}).get("sha256",scheduling.get(name,{}).get("sha256",extensions.get(name, digest))), name
     print("PASS: 58 compatible baseline + 12 M07-A operations = 70; 35 migrated / 74 designed tables; privacy and future-operation gates retained; source hash scope=" + ("backend image" if args.backend_only else "complete checkout"))
 
 

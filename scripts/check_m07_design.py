@@ -185,6 +185,10 @@ def frozen_files():
         if name in scheduling:
             if scheduling[name]["baseline_sha256"] != expected: errors.append("Invalid M07-B activation boundary: " + name)
             expected = scheduling[name]["sha256"]
+        communications = read("data/schemas/m07c-implementation.json").get("source_extensions", {}) if (ROOT/"data/schemas/m07c-implementation.json").exists() else {}
+        if name in communications:
+            if communications[name]["baseline_sha256"] != expected: errors.append("Invalid M07-C activation boundary: " + name)
+            expected = communications[name]["sha256"]
         if not (ROOT/name).is_file() or hashlib.sha256((ROOT/name).read_bytes()).hexdigest() != expected:
             errors.append("Frozen runtime/scientific/hardware contract changed: " + name)
     for source in read("data/schemas/m07-planning-source-manifest.json")["sources"]:

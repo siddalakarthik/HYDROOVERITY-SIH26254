@@ -31,3 +31,6 @@
 **/*.pem
 **/*.key
 **/secrets/**
+
+!scripts/check_m07c.py
+!data/schemas/m07c-implementation.json
