@@ -340,7 +340,7 @@
     },
     "apps/web/src/lib/route-capabilities.json": {
       "baseline_sha256": "c843ae44cdb0e5f37eff4ab9867d1ae4af00dcb5d4122efb270909016b442ad5",
-      "sha256": "f80d6b7597cc20eccfc88fb9f6490fd84c6854ac63c801556bf9a3087820f7f6"
+      "sha256": "332c106e06a6e6834a5b4f7cb6c54ca0207f8ceecb7cf0bdb5d4bc0788c35aed"
     },
     "apps/web/tools/browser-suite.mjs": {
       "baseline_sha256": "73a66c4d096b5185c35fb466b4f2e4651d8ebe9a577ee18013aa9a51ee63e9cc",

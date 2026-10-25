@@ -12,4 +12,4 @@ Feedback is resident experience, never scientific verification. Service-linked s
 
 Runtime overlays may add notification category, safe resource link and feedback description to previously unimplemented projections to support usable inbox/review experiences. All 103 existing implemented operation schemas and behavior are to remain compatible. D1–D10, M05/M06/M08 evidence, online-only behavior and private-development release gates remain controlling. No legal retention or purge policy is invented.
 
-Status: implementation in progress; no new acceptance or delivery claim yet.
+Status: private-development review candidate. Executed acceptance is recorded in the acceptance report and review PR; delivery requires a committed inbox record. Owner merge approval remains required.
