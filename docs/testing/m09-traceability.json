@@ -1,0 +1,959 @@
+{
+  "provenance": "SYNTHETIC_SOFTWARE_ACCEPTANCE_ONLY",
+  "baseline_commit": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
+  "status_rule": "Full original M02 requirement is BLOCKED/NOT IMPLEMENTED where deferred scope remains; passing implemented subsets are stated explicitly",
+  "m02_cases": [
+    {
+      "id": "F01",
+      "requirement": "Citizen creates report",
+      "expected": "One complaint/tracking number and public receipt, one notification; different body same key409",
+      "implemented_capability": "Complaint/service receipts deduplicate; service notifications delivered",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+      "observed": "Complaint/service receipts deduplicate; service notifications delivered",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Legacy complaint notifications are not implemented; separate service lifecycle is tested",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F02",
+      "requirement": "Citizen ownership",
+      "expected": "Uniform404 and no row/content disclosure",
+      "implemented_capability": "Other owners and tenants receive no resource content",
+      "procedure": "Execute services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+      "observed": "Other owners and tenants receive no resource content",
+      "tests": [
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Media absent; boundary denial is not secure-media functionality",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F03",
+      "requirement": "Triage",
+      "expected": "Guarded versioned transition, immutable event/audit and same-mode evidence links",
+      "implemented_capability": "Real guarded review, acceptance and immutable public/internal history",
+      "procedure": "Execute services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline",
+      "observed": "Real guarded review, acceptance and immutable public/internal history",
+      "tests": [
+        "services/api/tests/test_service_foundation.py::test_supervisor_triage_followup_private_and_public_timeline"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Synthetic operator decisions, no actual utility triage",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F04",
+      "requirement": "Assignment",
+      "expected": "Assignment version increments; old worker sync denied without discarding local draft",
+      "implemented_capability": "Reassignment revokes old technician and retry authorization",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+      "observed": "Reassignment revokes old technician and retry authorization",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Offline synchronization remains deferred D9",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F05",
+      "requirement": "Worker repair",
+      "expected": "Persistent immutable receipts and review state; no scientific PASSED invented",
+      "implemented_capability": "Persisted manual actions and repair receipts",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+      "observed": "Persisted manual actions and repair receipts",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "D7 photo processing/storage not implemented",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F06",
+      "requirement": "Verification",
+      "expected": "PASSED/FAILED only comparable; otherwise NOT_VERIFIABLE; work completion independent",
+      "implemented_capability": "Independent manual-only review remains NOT_VERIFIABLE; simulated three outcomes reproduced",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+      "observed": "Independent manual-only review remains NOT_VERIFIABLE; simulated three outcomes reproduced",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Operational comparable before/after acquisition and positive field verification are not implemented",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "F07",
+      "requirement": "Reopen",
+      "expected": "New reopen event; prior repairs/evidence preserved",
+      "implemented_capability": "Guarded incident/repair histories preserve independent review",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow",
+      "observed": "Guarded incident/repair histories preserve independent review",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_complete_persistent_operational_workflow"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Full comparable failed-verification and revisit workflow is unverified",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S01",
+      "requirement": "No authentication",
+      "expected": "401, no private data or hidden side effects",
+      "implemented_capability": "Anonymous resource access denied and secure cookie enforced",
+      "procedure": "Execute services/api/tests/test_foundation.py, services/api/tests/test_governance.py",
+      "observed": "Anonymous resource access denied and secure cookie enforced",
+      "tests": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Private loopback only",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S02",
+      "requirement": "Tenant isolation",
+      "expected": "Uniform denial; composite FK and RLS deny cross-tenant reads/writes; context reset",
+      "implemented_capability": "Two-tenant API/RLS/foreign-key denials and connection-context clearing",
+      "procedure": "Execute services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage",
+      "observed": "Two-tenant API/RLS/foreign-key denials and connection-context clearing",
+      "tests": [
+        "services/api/tests/test_service_foundation.py::test_service_rls_blocks_other_owner_internal_history_and_pool_leakage"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No third-party penetration testing",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S03",
+      "requirement": "CSRF/session",
+      "expected": "403/401; login rotates; reset revokes sessions; no cookie/token in logs",
+      "implemented_capability": "CSRF/Origin/session rotation/expiry/logout/reset tests pass",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "CSRF/Origin/session rotation/expiry/logout/reset tests pass",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Single-process in-memory rate limiter; public release blocked",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S04",
+      "requirement": "Role/resource checks",
+      "expected": "Deny; no ADMIN wildcard or evaluator self-grant",
+      "implemented_capability": "Current roles checked; administrator has no engineer inheritance",
+      "procedure": "Execute services/api/tests/test_foundation.py, services/api/tests/test_governance.py",
+      "observed": "Current roles checked; administrator has no engineer inheritance",
+      "tests": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No broader production identity certification",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S05",
+      "requirement": "Uploads",
+      "expected": "Reject413/422 or quarantine; no original/EXIF/public object exposure",
+      "implemented_capability": "Upload/download routes remain unregistered",
+      "procedure": "Execute services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise, services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+      "observed": "Upload/download routes remain unregistered",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "D7 scanner, licensing, processing and storage review required",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S06",
+      "requirement": "Audit",
+      "expected": "Safe actor/action/resource/time/request evidence; no credentials or private bodies",
+      "implemented_capability": "Immutable audit/history, transaction rollback and safe log contents asserted",
+      "procedure": "Execute services/api/tests/test_concurrency_resilience.py, services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+      "observed": "Immutable audit/history, transaction rollback and safe log contents asserted",
+      "tests": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Audit retention/operations policy requires review",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P01",
+      "requirement": "Truth exclusion",
+      "expected": "No actual labels/positions/private truth seed; ordinary DB/object roles denied",
+      "implemented_capability": "69 safe M06 exports/frames exclude forbidden evaluator keys",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "69 safe M06 exports/frames exclude forbidden evaluator keys",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Sealed evaluator/artifact access system deferred",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P02",
+      "requirement": "Origin integrity",
+      "expected": "Reject; server-derived SIMULATION survives queries and export",
+      "implemented_capability": "SIMULATION provenance pinned; caller source spoofing rejected",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "SIMULATION provenance pinned; caller source spoofing rejected",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No live sensor adapter",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P03",
+      "requirement": "Lab versus field",
+      "expected": "Distinct immutable acquisition environments; no source relabeling by UI",
+      "implemented_capability": "Lab/field adapter operations absent; manual and simulation remain distinct",
+      "procedure": "Execute services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise, services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+      "observed": "Lab/field adapter operations absent; manual and simulation remain distinct",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "Physical adapters and evidence not implemented",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P04",
+      "requirement": "Acoustic abstention",
+      "expected": "No fake pinpoint; reasons and empty candidate list for abstention",
+      "implemented_capability": "Acoustic abstention and accepted wrong intervals retained",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "Acoustic abstention and accepted wrong intervals retained",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Modeled common clock; no passive audibility/field location proof",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P05",
+      "requirement": "Guard wetness",
+      "expected": "Competing explanations; no automatic joint-confirmed state; unsupported health UNKNOWN",
+      "implemented_capability": "Exactly A/B/C/EXT/BYPASS; unsupported health UNKNOWN; unfavorable comparisons preserved",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "Exactly A/B/C/EXT/BYPASS; unsupported health UNKNOWN; unfavorable comparisons preserved",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Physical collector and electrical supervision unverified",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P06",
+      "requirement": "Staleness",
+      "expected": "Retain quality/freshness; no routine false attribution; urgent/fault lane retained",
+      "implemented_capability": "Modeled gaps/fault/qualification tests and safe replay pass",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "Modeled gaps/fault/qualification tests and safe replay pass",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Live late/out-of-order ingestion/freshness pipeline deferred",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "R01",
+      "requirement": "Idempotency",
+      "expected": "One stable receipt; conflicts reject atomically, no duplicated incident side effects",
+      "implemented_capability": "Concurrent same-key mutations produce one result; changed content conflicts",
+      "procedure": "Execute services/api/tests/test_concurrency_resilience.py, services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+      "observed": "Concurrent same-key mutations produce one result; changed content conflicts",
+      "tests": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Short bounded races, not long-duration load",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "R02",
+      "requirement": "Realtime recovery",
+      "expected": "Watermark/replay or reset snapshot; no lost authorized event; bounded queue; no waveform",
+      "implemented_capability": "Bounded simulation SSE checkpoints and offset resume pass",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "Bounded simulation SSE checkpoints and offset resume pass",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "R03",
+      "requirement": "Offline vault",
+      "expected": "Clear safe error/expiry/purge behavior; no plaintext cached keys/data or false synced badge",
+      "implemented_capability": "Online-only interfaces expose interruption, never false sync",
+      "procedure": "Execute services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise, services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+      "observed": "Online-only interfaces expose interruption, never false sync",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "D9 encrypted offline vault deferred",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "R04",
+      "requirement": "Offline conflict",
+      "expected": "Current authorization and versions checked; conflict preserved for reconciliation, not last-write-wins",
+      "implemented_capability": "Online retries reject stale assignment/current permissions",
+      "procedure": "Execute services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay",
+      "observed": "Online retries reject stale assignment/current permissions",
+      "tests": [
+        "services/api/tests/test_workflow.py::test_reassignment_denies_former_technician_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "No offline reconciliation engine",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "R05",
+      "requirement": "Jobs and delivery",
+      "expected": "Bounded retries; partial outputs incomplete; notification deduplication/failed status visible",
+      "implemented_capability": "Persisted worker claims, process restart, lease expiry, dedup, max3 attempts pass",
+      "procedure": "Execute services/api/tests/test_communications.py, services/api/tests/m09_acceptance.py::test_actual_worker_process_restart_retains_queue_and_safe_delivery",
+      "observed": "Persisted worker claims, process restart, lease expiry, dedup, max3 attempts pass",
+      "tests": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/m09_acceptance.py::test_actual_worker_process_restart_retains_queue_and_safe_delivery"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "External providers and provider timeout handling deferred D8",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "U01",
+      "requirement": "Responsive UI",
+      "expected": "Readable labeled data, usable task controls, no obscured focus; map/table alternative",
+      "implemented_capability": "320/390/640/768/1440 CSS pixel layouts, no overflow; map text alternative",
+      "procedure": "Execute apps/web/browser/workflow.spec.ts, apps/web/browser/service-foundation.spec.ts, apps/web/browser/m09-acceptance.spec.ts",
+      "observed": "320/390/640/768/1440 CSS pixel layouts, no overflow; map text alternative",
+      "tests": [
+        "apps/web/browser/workflow.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/m09-acceptance.spec.ts"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "640/320 reflow approximates 200/400% of1280px; native browser zoom not executed",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "U02",
+      "requirement": "Accessible forms",
+      "expected": "Labels, error summary, focus restore and no drag/color-only action; password paste allowed",
+      "implemented_capability": "Axe, labels, skip navigation, keyboard focus and validation pass",
+      "procedure": "Execute apps/web/browser/workflow.spec.ts, apps/web/browser/service-foundation.spec.ts, apps/web/browser/m09-acceptance.spec.ts",
+      "observed": "Axe, labels, skip navigation, keyboard focus and validation pass",
+      "tests": [
+        "apps/web/browser/workflow.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/m09-acceptance.spec.ts"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Full screen reader/manual assistive technology certification not performed",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "U03",
+      "requirement": "Mode/freshness",
+      "expected": "Persistent SIMULATED DATA and timestamps; no synthetic field-performance savings",
+      "implemented_capability": "Simulation labels, timestamps, unfavorable denominators and replay remain visible",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "Simulation labels, timestamps, unfavorable denominators and replay remain visible",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No field savings or sensor-performance claim",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "U04",
+      "requirement": "States",
+      "expected": "Useful distinct states; every visible mutation tied to actual API receipt",
+      "implemented_capability": "Real loading/empty/denied/interruption states and persisted receipts exercised",
+      "procedure": "Execute apps/web/browser/workflow.spec.ts, apps/web/browser/service-foundation.spec.ts, apps/web/browser/m09-acceptance.spec.ts",
+      "observed": "Real loading/empty/denied/interruption states and persisted receipts exercised",
+      "tests": [
+        "apps/web/browser/workflow.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/m09-acceptance.spec.ts"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Bounded local/CI browser runs",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A01",
+      "requirement": "Registration retries",
+      "expected": "Generic result, unique identity/CITIZEN-only membership; existing password/grants unchanged; bounded verification delivery",
+      "implemented_capability": "Generic duplicate/racing registration and citizen-only grants",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Generic duplicate/racing registration and citizen-only grants",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Private auth mail adapter only",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A02",
+      "requirement": "Login lost response and logout",
+      "expected": "Fresh validation/CSRF and rotation; commit-time credential-version/user-state check; revoked/pre-reset session never resurrected or previous secret redisclosed",
+      "implemented_capability": "Fresh login rotation, reset/login races and immediate revocation asserted",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Fresh login rotation, reset/login races and immediate revocation asserted",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No public deployment or distributed session load",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A03",
+      "requirement": "Logout retry",
+      "expected": "Monotonic cleanup with no new auth token; unknown verifier401, wrong CSRF403; no access granted by cleanup verifier",
+      "implemented_capability": "Recognized logout cleanup monotonic; wrong CSRF fails",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Recognized logout cleanup monotonic; wrong CSRF fails",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No credentials redisclosed",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A04",
+      "requirement": "Recovery retry",
+      "expected": "Generic no-store response, no old token exposure; later new token invalidates unused prior reset token; no fake tenant/job",
+      "implemented_capability": "Generic recovery cooldown/replacement; no cached verifier exposure",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Generic recovery cooldown/replacement; no cached verifier exposure",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Private development delivery only",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A05",
+      "requirement": "One-use reset race",
+      "expected": "Exactly one password update/token consumption; sessions revoked; loser/replay uniform422; no auto-login/cache",
+      "implemented_capability": "Exactly one racing reset wins; previous sessions revoked",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Exactly one racing reset wins; previous sessions revoked",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "Synthetic identities only",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A06",
+      "requirement": "Verification retry",
+      "expected": "No extra activation/grants/session; token replay422; resend only to same account under cooldown, no secret response",
+      "implemented_capability": "Verification token replay rejected; no extra grants",
+      "procedure": "Execute services/api/tests/test_auth.py",
+      "observed": "Verification token replay rejected; no extra grants",
+      "tests": [
+        "services/api/tests/test_auth.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "External email disabled",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A07",
+      "requirement": "Invitation retry",
+      "expected": "Matching verified user accepts exact server grant once without membership prerequisite; replay422, status via /me/memberships; wrong identity denied",
+      "implemented_capability": "Matching verified identity accepts server invitation once; misuse denied",
+      "procedure": "Execute services/api/tests/test_foundation.py, services/api/tests/test_governance.py",
+      "observed": "Matching verified identity accepts server invitation once; misuse denied",
+      "tests": [
+        "services/api/tests/test_foundation.py",
+        "services/api/tests/test_governance.py"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No external identity provider",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "A08",
+      "requirement": "Business versus auth receipts",
+      "expected": "Header400 on exempt writes; no credentials or their fingerprints/bodies; tenant business dedup preserved; issuance retry409 with no secret",
+      "implemented_capability": "Auth/global header rejection, business receipts and logs tested",
+      "procedure": "Execute services/api/tests/test_concurrency_resilience.py, services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+      "observed": "Auth/global header rejection, business receipts and logs tested",
+      "tests": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Contact endpoint/device credential issuance remain deferred",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "C01",
+      "requirement": "Project contact ownership",
+      "expected": "Unknown fields422; only fixed private global inbox receives valid payload; no public retrieval or tenant ADMIN access",
+      "implemented_capability": "Project contact submission endpoint unregistered",
+      "procedure": "Execute services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise, services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+      "observed": "Project contact submission endpoint unregistered",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "No global private contact inbox implemented",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "C02",
+      "requirement": "Project contact abuse/retention",
+      "expected": "429/413/503 as appropriate; escaped review with no URL fetch; no raw IP; rate buckets<=24h, message/email/row removed30days; uncertain retry may duplicate",
+      "implemented_capability": "Contact storage and purge not activated",
+      "procedure": "Execute services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise, services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+      "observed": "Contact storage and purge not activated",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "NOT IMPLEMENTED",
+      "limitation": "D10 retention not approved legal policy",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "P07",
+      "requirement": "Artifact and truth isolation",
+      "expected": "Current membership plus nontruth classification/parent ACL checked; no truth IDs/content; evaluator requires sealed run and explicit grant",
+      "implemented_capability": "M06 detail/export/frame/SSE and UI safe boundaries tested",
+      "procedure": "Execute services/api/tests/test_science.py, tests/unit/test_m05.py, tests/unit/test_m06_reproduction.py, services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private",
+      "observed": "M06 detail/export/frame/SSE and UI safe boundaries tested",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "BLOCKED",
+      "limitation": "Restricted sealed-run object downloads/evaluator grants deferred",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    },
+    {
+      "id": "S07",
+      "requirement": "Authorization on retry",
+      "expected": "No cached response bypass of current tenant/own/assigned rights; ADMIN still lacks engineer/evaluator privileges",
+      "implemented_capability": "Current tenant/owner/assignment checked before idempotent replay",
+      "procedure": "Execute services/api/tests/test_concurrency_resilience.py, services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay",
+      "observed": "Current tenant/owner/assignment checked before idempotent replay",
+      "tests": [
+        "services/api/tests/test_concurrency_resilience.py",
+        "services/api/tests/test_service_foundation.py::test_findings_reassignment_revokes_read_write_and_receipt_replay"
+      ],
+      "artifacts": [
+        "HYDROOVERITY_M03_ACCEPTANCE_EVIDENCE",
+        "HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE",
+        "HYDROOVERITY_M09_BROWSER_AND_RECOVERY"
+      ],
+      "result": "PASS",
+      "limitation": "No privilege widening for cached results",
+      "owner_implication": "Accept scoped private-development evidence; retain the stated release/deferred gate"
+    }
+  ],
+  "m09_risks": [
+    {
+      "id": "M09-E2E",
+      "requirement": "Persisted resident-to-feedback chain",
+      "expected": "Booking, manual visit, findings, closure, inbox read and feedback persist without repair fabrication",
+      "implemented_capability": "Booking, manual visit, findings, closure, inbox read and feedback persist without repair fabrication",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "Booking, manual visit, findings, closure, inbox read and feedback persist without repair fabrication",
+      "tests": [
+        "services/api/tests/m09_acceptance.py::test_cross_role_investigation_booking_closure_notifications_and_feedback"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Investigation has NOT_APPLICABLE verification; separate manual repair remains NOT_VERIFIABLE",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-RACES",
+      "requirement": "Competing scheduling transactions",
+      "expected": "Single booking winner; replacement/cancellation/withdrawal/alternative/assignment/overrun preserve ledger",
+      "implemented_capability": "Single booking winner; replacement/cancellation/withdrawal/alternative/assignment/overrun preserve ledger",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "Single booking winner; replacement/cancellation/withdrawal/alternative/assignment/overrun preserve ledger",
+      "tests": [
+        "services/api/tests/m09_acceptance.py",
+        "services/api/tests/test_scheduling.py"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Short deterministic scenarios, not exhaustive interleavings",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-QUEUE",
+      "requirement": "Real worker process restart and attempts",
+      "expected": "Delivered inbox distinct from read; lost leases do not invent delivery; max3 total attempts",
+      "implemented_capability": "Delivered inbox distinct from read; lost leases do not invent delivery; max3 total attempts",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "Delivered inbox distinct from read; lost leases do not invent delivery; max3 total attempts",
+      "tests": [
+        "services/api/tests/test_communications.py",
+        "services/api/tests/m09_acceptance.py::test_actual_worker_process_restart_retains_queue_and_safe_delivery"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "No external adapters or default retry delays",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-RECOVERY",
+      "requirement": "Actual HTTPS/API/database failure",
+      "expected": "60 successful reads; API stop yields503; restart same session200; isolated DB deny yields sanitized503 then200",
+      "implemented_capability": "60 successful reads; API stop yields503; restart same session200; isolated DB deny yields sanitized503 then200",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "60 successful reads; API stop yields503; restart same session200; isolated DB deny yields sanitized503 then200",
+      "tests": [
+        "services/api/tools/m09_https_probe.py"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Only marked disposable DB disrupted; no infrastructure failover/long soak",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-SCIENCE",
+      "requirement": "Numerical reproduction and all69 public snapshots",
+      "expected": "69 reproduced within documented tolerances; all69 safe API exports/frames checked",
+      "implemented_capability": "69 reproduced within documented tolerances; all69 safe API exports/frames checked",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "69 reproduced within documented tolerances; all69 safe API exports/frames checked",
+      "tests": [
+        "services/api/tests/test_science.py",
+        "tests/unit/test_m05.py",
+        "tests/unit/test_m06_reproduction.py",
+        "services/api/tests/m09_acceptance.py::test_all_69_replay_exports_and_frames_keep_truth_private"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Simulation-only; M05 unfavorable results unchanged",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-UI",
+      "requirement": "Responsive and inert hostile text",
+      "expected": "Existing7 plus M09 browser cases; 16 reduced-motion public views and stored text inert on reload",
+      "implemented_capability": "Existing7 plus M09 browser cases; 16 reduced-motion public views and stored text inert on reload",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "Existing7 plus M09 browser cases; 16 reduced-motion public views and stored text inert on reload",
+      "tests": [
+        "apps/web/browser/workflow.spec.ts",
+        "apps/web/browser/service-foundation.spec.ts",
+        "apps/web/browser/m09-acceptance.spec.ts"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Native zoom/full assistive technology certification not performed",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-HARDWARE",
+      "requirement": "Digital consistency and physical boundary",
+      "expected": "13 source checks pass; final CI regenerates CAD/figures; BOM59870/headroom130",
+      "implemented_capability": "13 source checks pass; final CI regenerates CAD/figures; BOM59870/headroom130",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "13 source checks pass; final CI regenerates CAD/figures; BOM59870/headroom130",
+      "tests": [
+        "scripts/check_m08.py",
+        "tests/unit/test_m08_checks.py",
+        "tests/unit/test_m08_package.py"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Digital only; native ERC, MCU firmware, physical fit/calibration/field tests absent",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    },
+    {
+      "id": "M09-RELEASE",
+      "requirement": "Fail-closed negative capabilities",
+      "expected": "111 operations/51 tables; nonowner nonbypassRLS runtime; gated routes remain closed",
+      "implemented_capability": "111 operations/51 tables; nonowner nonbypassRLS runtime; gated routes remain closed",
+      "procedure": "Execute listed tests/tools in M09 report",
+      "observed": "111 operations/51 tables; nonowner nonbypassRLS runtime; gated routes remain closed",
+      "tests": [
+        "services/api/tests/test_schema_boundaries.py::test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise",
+        "services/api/tests/test_communications.py::test_attachment_paths_remain_unregistered_and_runtime_rls",
+        "services/api/tests/m09_acceptance.py::test_runtime_inventory_and_database_principal_remain_private"
+      ],
+      "artifacts": [
+        "M09 review report and explicit allowlisted CI artifacts"
+      ],
+      "result": "PASS",
+      "limitation": "Boundary PASS is not implementation of D6/D7/D8/D9/D10/public deployment",
+      "owner_implication": "Review scoped evidence and preserve limitations"
+    }
+  ]
+}

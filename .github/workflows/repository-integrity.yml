@@ -36,6 +36,11 @@ jobs:
           "$RUNNER_TEMP/openapi-review/bin/python" -m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json
           "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_openapi_design.py
           "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_m07_openapi.py
+      - name: Check M09 accepted-source and requirement boundaries
+        run: |
+          python3 -m venv "$RUNNER_TEMP/m09-contracts"
+          "$RUNNER_TEMP/m09-contracts/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
+          "$RUNNER_TEMP/m09-contracts/bin/python" scripts/check_m09.py
       - name: Validate scientific simulations
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
@@ -189,6 +194,26 @@ jobs:
         run: |
           pnpm exec playwright install --with-deps chromium
           pnpm run test:browser
+      - name: M09 reflow, keyboard, reduced motion and stored-text acceptance
+        working-directory: apps/web
+        run: pnpm exec playwright test browser/m09-acceptance.spec.ts
+      - name: M09 verified HTTPS measurements and isolated recovery
+        run: >-
+          "$RUNNER_TEMP/m04-python/bin/python" services/api/tools/m09_https_probe.py
+          --fixture-directory "$RUNNER_TEMP/m04-private"
+          --operator-config "$RUNNER_TEMP/m04-source-private/operator.json"
+          --confirm-disposable-database hydro_disposable_m04
+          --output-directory "$RUNNER_TEMP/m09-https-private"
+      - name: Upload sanitized M09 browser and recovery evidence (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M09_BROWSER_AND_RECOVERY
+          path: |
+            ${{ runner.temp }}/m04-evidence/M09-*.png
+            ${{ runner.temp }}/m04-evidence/M09-browser-measurements.json
+            ${{ runner.temp }}/m09-https-private/m09-https-summary.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload M07-C sanitized communications evidence (14 days)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -299,6 +324,27 @@ jobs:
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python -m pip check
       - name: Independently validate implemented OpenAPI in an isolated environment
         run: docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/validate_runtime_openapi.py
+      - name: Independent M09 cross-role, concurrency and worker process acceptance
+        run: >-
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+          python services/api/tools/verify_m09.py
+          --operator-config /private/operator/operator.json
+          --runtime-config /private/runtime/runtime.json
+          --confirm-disposable-database hydro_disposable_m03
+          --evidence-directory /private/m09-evidence
+      - name: Collect sanitized M09 scenario evidence
+        run: |
+          mkdir -p "$RUNNER_TEMP/m09-evidence"
+          for name in m09-summary.json worker-process-measurement.json replay-boundary-measurement.json; do
+            docker compose -f services/api/compose.yaml exec -T --user 0 api cat "/private/m09-evidence/$name" > "$RUNNER_TEMP/m09-evidence/$name"
+          done
+      - name: Upload sanitized M09 independent evidence (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_M09_INDEPENDENT_ACCEPTANCE
+          path: ${{ runner.temp }}/m09-evidence/*.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Complete real HTTPS workflow and actual API restart
         run: >-
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
