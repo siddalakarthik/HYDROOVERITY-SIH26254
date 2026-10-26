@@ -58,7 +58,9 @@ def exercise(fake, retry_policy):
 
 
 @pytest.mark.parametrize(
-    "name", ["email", "sms", "push", "https://unrelated.invalid", "", "python:plugin"]
+    "name",
+    ["email", "sms", "push", "https://unrelated.invalid", "", "python:plugin"],
+    ids=["email", "sms", "push", "untrusted-url", "empty-name", "plugin-name"],
 )
 def test_every_external_provider_remains_disabled(name):
     with pytest.raises(Problem) as error:
