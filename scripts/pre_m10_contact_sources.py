@@ -82,7 +82,8 @@ def extend_digest(name, expected):
 
 
 def before_contact(spec):
-    previous = copy.deepcopy(spec)
+    from pre_m10_realtime_sources import before_realtime
+    previous = copy.deepcopy(before_realtime(spec))
     if "/public/contact" not in previous["paths"]:
         assert "ContactWrite" not in previous["components"]["schemas"]
         return previous

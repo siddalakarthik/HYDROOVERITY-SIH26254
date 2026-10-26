@@ -193,7 +193,7 @@ def test_populated_migration_roundtrip_and_failed_destructive_downgrade(env, mon
         command.downgrade(cfg, "base")
     assert snapshot() == before
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_003"
 
 
 def test_unsafe_owner_principal_fails_closed_and_no_internal_error_secrets(env):

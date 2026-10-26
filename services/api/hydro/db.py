@@ -8,7 +8,7 @@ from sqlalchemy.engine import Engine
 
 from .config import Settings
 
-MIGRATION_HEAD = "pre_m10_002"
+MIGRATION_HEAD = "pre_m10_003"
 
 
 def engine(settings: Settings) -> Engine:

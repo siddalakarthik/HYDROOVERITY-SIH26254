@@ -406,13 +406,13 @@ def test_m07c_empty_roundtrip_and_populated_downgrade_refusal(env):
     command.downgrade(config, "m07_b_005")
     command.upgrade(config, "head")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_003"
         assert one(c, "SELECT count(*) AS n FROM notification_preferences")["n"] == 2
         count = one(
             c,
             "SELECT count(*) AS n FROM pg_tables WHERE schemaname='public' AND tablename NOT IN ('spatial_ref_sys','alembic_version')",
         )["n"]
-        assert count == 53
+        assert count == 54
     citizen, sup, admin, user, base = fixture(env)
     item = expect(
         mutate(

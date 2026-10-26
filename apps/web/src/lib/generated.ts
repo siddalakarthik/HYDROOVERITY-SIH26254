@@ -1751,6 +1751,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Read bounded safe SSE
+         * @description Read bounded safe SSE; no implicit access to all tenant events. Authorization: tenant + per-event current permission. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["realtime_get_orgs_organization_id_events"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/events/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Poll/recover authorized missed event summaries with opaque cursor.
+         * @description Poll/recover authorized missed event summaries with opaque cursor. Authorization: tenant + per-event current permission. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["realtime_get_orgs_organization_id_events_history"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3700,6 +3740,22 @@ export interface components {
             message: string;
             /** Format: email */
             reply_email?: string;
+        };
+        EventEnvelope: {
+            id: string;
+            event_type: string;
+            /** Format: uuid */
+            resource_id: string;
+            /** Format: date-time */
+            occurred_at: string;
+            workspace_mode: components["schemas"]["WorkspaceMode"];
+            safe_summary: string;
+        };
+        Page_EventEnvelope: {
+            items: components["schemas"]["EventEnvelope"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
         };
     };
     responses: {
@@ -9084,6 +9140,83 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Message"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    realtime_get_orgs_organization_id_events: {
+        parameters: {
+            query?: {
+                /** @description Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access. */
+                workspace_mode?: components["schemas"]["WorkspaceMode"];
+            };
+            header?: {
+                /** @description Opaque authorized replay cursor; expired cursor triggers reset snapshot. */
+                "Last-Event-ID"?: string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/event-stream": string;
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    realtime_get_orgs_organization_id_events_history: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                /** @description Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access. */
+                workspace_mode?: components["schemas"]["WorkspaceMode"];
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_EventEnvelope"];
                 };
             };
             400: components["responses"]["Error400"];

@@ -14,15 +14,10 @@ import {
   Settings,
   User,
 } from "lucide-react";
-import {
-  api,
-  ApiError,
-  clearPrivateState,
-  orgPath,
-  type Model,
-  type Page,
-} from "@/lib/api";
+import { clearPrivateState, orgPath, type Model } from "@/lib/api";
 import { Wordmark } from "@/components/shells";
+import { RecordUpdates } from "@/components/record-updates";
+import { useMemberships } from "@/lib/use-memberships";
 import {
   Badge,
   ErrorPanel,
@@ -44,87 +39,6 @@ import { Notifications, Feedback } from "./communications";
 import { Administration, Audit } from "./administration";
 import routes from "../lib/route-capabilities.json";
 
-function useMemberships() {
-  const [state, setState] = useState<{
-    data?: Model<"MembershipView">[];
-    error?: unknown;
-    loading: boolean;
-  }>({ loading: true });
-  useEffect(() => {
-    const controller = new AbortController();
-    let signature = "";
-    const load = async () => {
-      try {
-        const items: Model<"MembershipView">[] = [];
-        let cursor: string | null = null;
-        do {
-          const result: {
-            data: Page<Model<"MembershipView">>;
-            etag: string | null;
-          } = await api<Page<Model<"MembershipView">>>(
-            `/me/memberships?limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`,
-            { signal: controller.signal },
-          );
-          items.push(...result.data.items);
-          cursor = result.data.next_cursor;
-        } while (cursor);
-        signature = JSON.stringify(items);
-        if (!controller.signal.aborted)
-          setState({ data: items, loading: false });
-      } catch (error) {
-        if (!controller.signal.aborted) setState({ error, loading: false });
-      }
-    };
-    void load();
-    const clear = () => {
-      controller.abort();
-      setState({
-        loading: false,
-        error: new ApiError(
-          401,
-          "SESSION_CHANGED",
-          "Session or membership changed. Sign in to reload current access.",
-        ),
-      });
-    };
-    const check = async () => {
-      try {
-        await api("/me");
-        const items: Model<"MembershipView">[] = [];
-        let cursor: string | null = null;
-        do {
-          const response: {
-            data: Page<Model<"MembershipView">>;
-            etag: string | null;
-          } = await api<Page<Model<"MembershipView">>>(
-            `/me/memberships?limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`,
-          );
-          items.push(...response.data.items);
-          cursor = response.data.next_cursor;
-        } while (cursor);
-        if (signature && JSON.stringify(items) !== signature)
-          clearPrivateState();
-      } catch {
-        clear();
-      }
-    };
-    window.addEventListener("hydro:scope-cleared", clear);
-    window.addEventListener("focus", check);
-    const timer = setInterval(check, 30000);
-    const onPageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) window.location.reload();
-    };
-    window.addEventListener("pageshow", onPageShow);
-    return () => {
-      controller.abort();
-      clearInterval(timer);
-      window.removeEventListener("hydro:scope-cleared", clear);
-      window.removeEventListener("focus", check);
-      window.removeEventListener("pageshow", onPageShow);
-    };
-  }, []);
-  return state;
-}
 const navItems = [
   {
     suffix: "simulations",
@@ -464,18 +378,27 @@ export function Workspace({ segments }: { segments: string[] }) {
           <Logout />
         </header>
         <main id="main" className="workspace-content">
-          <p className="breadcrumbs">
-            <Link href="/account">Account</Link> /{" "}
-            {organization.data?.name ?? "Utility"} / {breadcrumb}
-          </p>
-          <ResourceState {...organization}>
-            <Notice>
-              {tail[0] === "simulations"
-                ? "SIMULATION MODE · M05 modeled observations. Not live measurements or physically validated evidence."
-                : "Operational record workspace · Manual reports and work receipts. No live sensor measurements are connected."}
-            </Notice>
-            <div key={`${org}-${suffix}`}>{content()}</div>
-          </ResourceState>
+          {memberships.warning && (
+            <Notice tone="warning">{memberships.warning}</Notice>
+          )}
+          <RecordUpdates
+            key={`${org}-${tail[0] === "simulations"}`}
+            org={org}
+            mode={tail[0] === "simulations" ? "SIMULATION" : "OPERATIONAL"}
+          >
+            <p className="breadcrumbs">
+              <Link href="/account">Account</Link> /{" "}
+              {organization.data?.name ?? "Utility"} / {breadcrumb}
+            </p>
+            <ResourceState {...organization}>
+              <Notice>
+                {tail[0] === "simulations"
+                  ? "SIMULATION MODE · M05 modeled observations. Not live measurements or physically validated evidence."
+                  : "Operational record workspace · Manual reports and work receipts. No live sensor measurements are connected."}
+              </Notice>
+              <div key={`${org}-${suffix}`}>{content()}</div>
+            </ResourceState>
+          </RecordUpdates>
         </main>
       </div>
     </div>

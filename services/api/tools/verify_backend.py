@@ -62,6 +62,7 @@ def main():
     from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
     from hydro.contracts import INVENTORY, OPERATIONS
     from hydro.project_contact import OPERATIONS as CONTACT
+    from hydro.realtime import OPERATIONS as REALTIME
     from hydro.scheduling_contracts import ACTIVE as SCHEDULING
     from hydro.service_contracts import ACTIVE
 
@@ -143,12 +144,16 @@ def main():
         + len(science_operations)
         + len(SCHEDULING)
         + len(COMMUNICATIONS)
-        + len(CONTACT),
+        + len(CONTACT)
+        + len(REALTIME),
         designed_operations=168,
-        migrated_tables=53,
+        migrated_tables=54,
         contact_operation_status="GATED_SYNTHETIC_POLICY_ONLY",
         contact_gated_operations=len(CONTACT),
-        current_m02_deferred_operations=len(INVENTORY) - len(OPERATIONS) - len(CONTACT),
+        current_m02_deferred_operations=len(INVENTORY)
+        - len(OPERATIONS)
+        - len(CONTACT)
+        - len(REALTIME),
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

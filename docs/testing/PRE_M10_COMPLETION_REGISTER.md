@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **112 registered operations (111 previous + one gated contact protocol), 53 migrated tables, `pre_m10_002`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **22 PASS / 14 BLOCKED / 4 NOT IMPLEMENTED**. C01/C02 now have tested gated foundations and remain incomplete pending governance and activation. Revision 4 starts from green main `6c211066b75f21e4bc65a273a2aac4472530bb51` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40282063124); contact remains gated and the disabled provider interface is a new reviewed increment. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **114 registered operations (113 active + one gated contact protocol), 54 migrated tables, `pre_m10_003`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **23 PASS / 13 BLOCKED / 4 NOT IMPLEMENTED**. Revision 5 starts from green main `3b14b40024d424a173c60f12462ee8b1603d3221` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40301577033). R02 has executed PostgreSQL/transport/browser recovery evidence; final exact-head release gates are recorded in its PR. Contact and external provider gates remain. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -34,7 +34,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | P05 | Guard wetness | PASS | PASS | Physical collector and electrical supervision unverified |
 | P06 | Staleness | BLOCKED | BLOCKED | Live late/out-of-order ingestion/freshness pipeline deferred |
 | R01 | Idempotency | PASS | PASS | Short bounded races, not long-duration load |
-| R02 | Realtime recovery | BLOCKED | BLOCKED | Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented |
+| R02 | Realtime recovery | BLOCKED | PASS | Bounded synthetic replay/expiry, revocation and backpressure verified; no production SLA or physical freshness |
 | R03 | Offline vault | NOT IMPLEMENTED | NOT IMPLEMENTED | D9 encrypted offline vault deferred |
 | R04 | Offline conflict | NOT IMPLEMENTED | NOT IMPLEMENTED | No offline reconciliation engine |
 | R05 | Jobs and delivery | BLOCKED | BLOCKED | Disabled provider interface/fake timeout decisions tested; real transport, reconciliation and D8 activation remain open |

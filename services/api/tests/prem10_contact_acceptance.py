@@ -246,7 +246,7 @@ def test_contact_clean_migration_roundtrip_preserves_other_tables(contact_env):
         assert one(c, "SELECT count(*) AS n FROM organizations")["n"] == 2
     command.upgrade(cfg, "head")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_003"
         assert one(c, "SELECT count(*) AS n FROM organizations")["n"] == 2
 
 
@@ -260,7 +260,7 @@ def test_contact_populated_downgrade_refuses_without_erasing_data(contact_env):
     with pytest.raises(RuntimeError, match="non-destructive downgrade refused"):
         command.downgrade(cfg, "pre_m10_001")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_003"
         assert one(c, "SELECT count(*) AS n FROM project_contact_submissions")["n"] == 1
         assert one(c, "SELECT count(*) AS n FROM project_contact_operator_audit")["n"] == 1
     for sql in (

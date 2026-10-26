@@ -175,6 +175,10 @@ def bind_routes(app):
             include_in_schema=False,
         )
 
+    from .realtime import bind as bind_realtime
+
+    bind_realtime(app)
+
     @app.get("/internal/openapi.json", include_in_schema=False)
     def development_contract():
         return runtime_openapi()

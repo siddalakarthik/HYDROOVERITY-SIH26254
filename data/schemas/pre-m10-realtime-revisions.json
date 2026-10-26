@@ -1,0 +1,179 @@
+{
+  "baseline_commit": "3b14b40024d424a173c60f12462ee8b1603d3221",
+  "source_revisions": {
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "e8700d6a665978e6ef6d604a81381355ffc12274d2212731ea430307343cf168",
+      "sha256": "991387b59c22b5be4514f6524cb688e472011de293f39acf9ff7de8e621420b1",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/contracts/implemented.openapi.json": {
+      "baseline_sha256": "a13e67f881e9dc653d6785bef25775df6bda608022f7132ddf2a333dc7602c3a",
+      "sha256": "16b780b46cad6d286ebbbf917301038877747a4cd7e023f5abcdec715dac4063",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/src/components/ui.tsx": {
+      "baseline_sha256": "5143a5e4c7cb9466c81d84092320368e08503c8a90f6068532256612dd788dfe",
+      "sha256": "6ed1b298c1f59917ad7de1269b70aa076b140519365bf67a0abcf0d24b7405d0",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/src/features/workspace.tsx": {
+      "baseline_sha256": "f0177d35b4fa897acb712a5133c02d63efa3b64be49f972fc530d86c69103e72",
+      "sha256": "4694f1f1c2963bc185483d9c23dd2dee2ea75ea969f54c9a04dcd6b299568163",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/src/lib/generated.ts": {
+      "baseline_sha256": "c4af8ab5ae92a48155b73926552c6148014629aeea2af730067df271e2d6f90d",
+      "sha256": "4db242bcdd109300addf60075d0ebee911b5e4c4099534c6c13e87ab9fcfbbbf",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/tools/browser-suite.mjs": {
+      "baseline_sha256": "f1b50db6e0a2fbf429a898a00fc9ef359179a461eb35662c3df63a1c7de6f9cc",
+      "sha256": "0835749419859c0497b847dbbae20384546486c519f994b9c935eed6ed6c6cd9",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/tools/contracts.py": {
+      "baseline_sha256": "7bf58b662c93fbf360ae798b87cd180a8af83be088938850a239942605b3a308",
+      "sha256": "47116e34c03ea01a1c6f070695e63a45a8e302b5c6b415e00a288f119f6980e6",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "apps/web/tools/local_proxy.py": {
+      "baseline_sha256": "013f6d9f4b6821998be24cd9a661ff5f672e32d0530aa8c7682c73cae6c7afe4",
+      "sha256": "50562cb6f086845af752f93f79ab653ca980669053f76ed7f4a83c824e33d436",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "scripts/check_pre_m10_contact.py": {
+      "baseline_sha256": "c4f698239fb12c28dd8417cd55e54cf0713a608a72cdc7d1f5665efae2e46871",
+      "sha256": "73c11ef1f8b6a8fd27c20c7b94365ec47eff7e312cd41b2bda130f8ac7e6aa70",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "scripts/check_pre_m10_f01.py": {
+      "baseline_sha256": "3f469272a3ba5a7dcd5d409d1b0553a9ea1a8ea57066574f5e3fb3cf6b0444b5",
+      "sha256": "0458ffa7be9ecf08b54b9ac3b2a206c75ef0aee0299080e78596e77166eed92c",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "scripts/check_pre_m10_revisit.py": {
+      "baseline_sha256": "9cd617f6f16b28916bb75a69474d041acc2e5c807a0341db4cfe5013b1cde6d1",
+      "sha256": "5163d45473f76ee1571c19f30bbfa83af7588a2269c20cad4c474d50ac002694",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "scripts/pre_m10_contact_sources.py": {
+      "baseline_sha256": "9ed384f2dcc022ed59c203f7710ee32327ab7e77483b1032325db020745891ed",
+      "sha256": "92bfe3e1f9bf240aa3ef42bd0b8c9efa4128f4877cf6ec54eb3e3fc17293d6e8",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "scripts/pre_m10_sources.py": {
+      "baseline_sha256": "93a28f30ca8c777a428a4cde1530031bf6d99c6a45b1c620cf2227b7e46ccb06",
+      "sha256": "d43f617e08b39d9208305917013165f66beb37b9d3c23b82f6e7d7e94759a7ef",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/auth.py": {
+      "baseline_sha256": "50651fe363868bda8e6b8aa028a1422e6aaf92eb74d2797d0062c76f6c297b45",
+      "sha256": "96ce8026464a1b37ef00c327242fb38f166cd67d46a038c5490c2081bd4cc213",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/cli.py": {
+      "baseline_sha256": "84f41ea4e4d9a86b3971b5fc147997af0018415894b25500e496718fc47a6d9a",
+      "sha256": "b1bad57e94f6cb1242a94c60f91a909b9c707b2e1f431f97e6d152e3df8a7c1b",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/contracts.py": {
+      "baseline_sha256": "ed49738e7c25e5332462c31bd73f4ba6e918872423a6fb8cb05a76a70d05229f",
+      "sha256": "368e2ed4c82f849afd547c7a63b951c38719c2b93dfa43fd454c543895a8344b",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/db.py": {
+      "baseline_sha256": "e2d9b0da3917bbb9f353f96cc570bda7d60b11a822ce217b015e91958bf38500",
+      "sha256": "1539c08938cf44912844004a8fe075f4383dd67967391ac6e3697fd8a6948d1f",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/local.py": {
+      "baseline_sha256": "c18f8d65774956dde2e17ebcf7a495dcbf94fb8a3f1384cb342a134a52a688e1",
+      "sha256": "4f5689d8f5496c318d5722616f0b65ffa6f73e1c466841b2511098ee56d96954",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/routes.py": {
+      "baseline_sha256": "67307dca2af23b7745416708e43b5fbc708bed8a47f11c9ec7bdabb75b4ea8f6",
+      "sha256": "0dffa480ec124e86debae5c82b1be85d639e41c9ab120c89d19f87e4ea9cb2a6",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/hydro/services/bookings.py": {
+      "baseline_sha256": "2f2307108f567e555896a5bc091b3dea19476db280c2bf380d90d169632b5b9d",
+      "sha256": "ef76dd0f307858bedabb5cf556e45eedeaeac6dfb3d4e218a0ef8c17589d7c1b",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/m09_acceptance.py": {
+      "baseline_sha256": "3f84dcba80887778056aae47163c17e3e045981bc6659ffd0ffa8a9a6251bfd8",
+      "sha256": "6cb98621a473426b4841548dd79553a4ffc2e41a428c47bb4be097fb210c636e",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/prem10_complaint_acceptance.py": {
+      "baseline_sha256": "07b284ca49fae64d4e8dd7de1e9c53900c368aca8abf20499f481a2111dd344d",
+      "sha256": "fc05bd11788b17c77a910b968590c2cd0070ff1c300a35982e836b8eeac09dee",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/prem10_contact_acceptance.py": {
+      "baseline_sha256": "6c81fc9c9a5c4bcff711920aa5f6671f12450113b62d2acd02689752928115d1",
+      "sha256": "b99d085505480640d8eb655db4961aeb6e7ca5960df70fbca336cca924575cd0",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/test_communications.py": {
+      "baseline_sha256": "f49740bb1cbd2b5c0b802491b496cf5c8c24413fea7861eed97f4af811a82ee5",
+      "sha256": "745fca5ce0060aa9fb6cde5bfc301ab51d7d019f54adcaa222389b1c2be7fee1",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/test_concurrency_resilience.py": {
+      "baseline_sha256": "135ef1b9e4f3e6a518c718de7b5e69b7b156b43fb047124667550a4a2e1981ba",
+      "sha256": "f8bf29785d1b9692c7975f22ce86acea4018df5efbbbbda98a906b9a73cf59b8",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/test_foundation.py": {
+      "baseline_sha256": "5b7fc2ddaed7a5382b2cf941320c05f082c629664e80062a12ca03c9f2d40fcb",
+      "sha256": "5685bc87f07112be8b13939a49faa91afe53ec807913cbfda8841cd1ba34cfb4",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/test_schema_boundaries.py": {
+      "baseline_sha256": "f862d040403789df759ce74f462714b507c7ab8a0c67647c5b2f0c32b66c7fc0",
+      "sha256": "92e461cfadab18337cf3a406298c13b405767027d387c767086d3e6d91aaa5a2",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tests/test_workflow.py": {
+      "baseline_sha256": "917471026435565084f1e7442281f9614ea2283977579ecc231d39e419f30eac",
+      "sha256": "4a48abff11b79ee95b491d9fee82db64857d4e21c0e113efa01e2ddbd5b61b1e",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    },
+    "services/api/tools/verify_backend.py": {
+      "baseline_sha256": "ec5b3b67a8a9e50e990f0f441cfd6d5ce20842ac7549379f0ce0883caca644c1",
+      "sha256": "6bde35f184e84175ab1c7e822cc277d6a54e9c2a6a8e5308cc35a35a325641c8",
+      "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
+    }
+  },
+  "new_source_sha256": {
+    "apps/web/browser/realtime.spec.ts": "308b1734b9478908842b2527309c1c81b740100092e38a42a169393d09691403",
+    "apps/web/src/components/record-updates.tsx": "47a336dde015ba8b695ac3ff7aac2f38e28ffbb0856d695905d6e2d379bb5767",
+    "apps/web/src/lib/record-events.ts": "40c64ae73670a22eb2dbf7771a79ac51b4c5976ea3c3506148fc792e66cdba82",
+    "apps/web/src/lib/use-memberships.ts": "8e59c142ca4d119b863a57b54edd3724f685ecee64d7a772ecf1d3eadba9db6a",
+    "apps/web/tests/record-events.test.tsx": "14f14a52c0a2df711fa4376bf9d4bed61a65d36928e66cc0eb4b2ee6abcc4cea",
+    "services/api/hydro/realtime.py": "402c6be3e867c23583f172c51260c5daff8f948169083ad20c5386c858cb9185",
+    "services/api/migrations/versions/pre_m10_003.py": "8fd32ed3d1436e5b49af96d4c189694b63a205cb1a5ebbd162a38027e682a4c7",
+    "services/api/tests/prem10_realtime_acceptance.py": "7b74c949b663c4a1cf5585dded6e260d1abb4c5ebbaa8e62d894fd0252ab17ba",
+    "services/api/tools/verify_prem10_realtime.py": "a19c4e5e6d13c5c132c9e9d6485b85fc98f8e5958221743513b9bce99168496f"
+  },
+  "previous_openapi_sha256": "b1bf1028375f46a8b755048959fcb54e81ffeba2579a56edf75b4d8b09740526",
+  "added_paths": {
+    "/orgs/{organization_id}/events": "ea06c10e63f9fdf1483c65f82577f776ca6a5254e238e7f74507473cafa12228",
+    "/orgs/{organization_id}/events/history": "7b2de5680c603de796103727944a97978843e74449272573f283f253d4d4cd83"
+  },
+  "added_schemas": {
+    "EventEnvelope": "5667d6ddc45d3e23f7aff7aaee7fdb7317cc00b272019f5503e0a5927b2722c7",
+    "Page_EventEnvelope": "fd610efd20aa595d21f3628ccea0ba386094a54e532c05b2a3942beeac22c512"
+  },
+  "runtime": {
+    "registered_operations": 114,
+    "previous_operations": 112,
+    "gated_contact_operations": 1,
+    "tables": 54,
+    "migration_head": "pre_m10_003",
+    "physical_trials": 0,
+    "field_trials": 0
+  }
+}
