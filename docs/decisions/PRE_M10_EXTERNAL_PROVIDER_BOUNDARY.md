@@ -38,3 +38,7 @@ The existing in-app worker and its PostgreSQL/process-restart tests are unchange
 No API/table/scientific/physical claim changes are made.
 
 Executed locally: 34 pure local fake-provider cases passed in 0.17 s; Ruff and repository/whitespace checks passed. Pytest reported one nonessential cache-write permission warning; no acceptance was skipped. This evidence does not establish durable external-job recovery or actual provider delivery. Mandatory combined CI remains required on the integrated branch.
+
+Integrated with green main `6c211066b75f21e4bc65a273a2aac4472530bb51` only after four post-merge jobs passed in run 40282063124. The new test file is collected by the existing backend CI (84 prior + 34 new = 118 tests); original historical test evidence stays unchanged. No existing source, API, schema, media asset or historical hash is amended by this slice. The completion register preserves R05 BLOCKED. Native Chrome zoom was separately attempted with the Computer Use skill, but app approval timed out; U01 remains unverified for native zoom.
+
+The integrated real-PostgreSQL backend suite passed all 118 cases locally (4755.41 s, unusually slow wall-clock environment). No failure or skip was suppressed. Targeted pure tests completed in 0.17 s; the earlier cache-write warning was avoided for the full run with the nonessential pytest cache plugin disabled. Final CI timing is a separate measurement, not a claimed production SLA.
