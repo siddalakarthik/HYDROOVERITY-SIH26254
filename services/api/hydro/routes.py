@@ -11,7 +11,7 @@ from .dispatch import dispatch
 from .errors import Problem, require
 
 
-def endpoint(app, op, design=DESIGN, dispatcher=dispatch):
+def endpoint(app, op, design=DESIGN, dispatcher=dispatch, body_limit=16384):
     async def handle(request: Request):
         spec = design["paths"][op["path"]][op["method"]]
         allowed = {p["name"] for p in spec.get("parameters", []) if p["in"] == "query"}
@@ -31,7 +31,10 @@ def endpoint(app, op, design=DESIGN, dispatcher=dispatch):
         async for chunk in request.stream():
             payload.extend(chunk)
             require(
-                len(payload) <= 16384, 413, "BODY_TOO_LARGE", "Request body exceeds the M03 limit"
+                len(payload) <= body_limit,
+                413,
+                "BODY_TOO_LARGE",
+                "Request body exceeds the operation limit",
             )
         value = None
         if payload:
@@ -155,6 +158,18 @@ def bind_routes(app):
         app.add_api_route(
             "/api/v1" + op["path"],
             endpoint(app, op, communications_design, communications_dispatch),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
+
+    from .project_contact import OPERATIONS as contact_operations
+    from .project_contact import dispatch as contact_dispatch
+
+    for op in contact_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            endpoint(app, op, DESIGN, contact_dispatch, body_limit=8192),
             methods=[op["method"].upper()],
             operation_id=op["id"],
             include_in_schema=False,

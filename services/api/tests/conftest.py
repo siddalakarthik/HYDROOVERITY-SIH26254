@@ -158,7 +158,13 @@ def env(tmp_path):
         assert database == confirmed and database.startswith("hydro_disposable_"), (
             "Refusing to reset an unconfirmed database"
         )
-        c.exec_driver_sql("TRUNCATE " + ",".join(sorted(TABLES)) + " RESTART IDENTITY CASCADE")
+        c.exec_driver_sql(
+            "TRUNCATE "
+            + ",".join(
+                sorted(TABLES | {"project_contact_submissions", "project_contact_operator_audit"})
+            )
+            + " RESTART IDENTITY CASCADE"
+        )
         password = secrets.token_urlsafe(24)
         org, admin, _ = bootstrap(
             c,

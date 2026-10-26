@@ -304,7 +304,7 @@ def test_f01_migration_roundtrip_and_data_preservation(env, stored):
     with pytest.raises(RuntimeError, match="non-destructive downgrade refused"):
         command.downgrade(config, "m07_c_001")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
         if stored == "preferences":
             assert (
                 one(
@@ -376,7 +376,7 @@ def test_f01_upgrade_preserves_configured_service_preferences_and_delivery_histo
         } == original
     command.upgrade(config, "head")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
         assert {
             table: query(c, f"SELECT * FROM {table} ORDER BY id") for table in tables
         } == original

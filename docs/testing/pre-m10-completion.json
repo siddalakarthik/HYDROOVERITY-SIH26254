@@ -1,12 +1,12 @@
 {
-  "revision": 2,
-  "accepted_main": "008bd507c09352dcbb8098ec9812448693e0d99b",
+  "revision": 3,
+  "accepted_main": "630b28cc396d29f03f5e9fb3f7ea076eecc86821",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40261562317",
-  "implemented_operations": 111,
-  "migrated_tables": 51,
-  "migration_head": "pre_m10_001",
-  "scope_rule": "Original 40-case denominator and historical results remain immutable. F01 now satisfies its opt-in in-app receipt criterion with executed PostgreSQL/browser evidence and four green post-merge jobs. Physical, external delivery and deployment gates remain applicable.",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40264040358",
+  "implemented_operations": 112,
+  "migrated_tables": 53,
+  "migration_head": "pre_m10_002",
+  "scope_rule": "Original forty-case denominator and historical results remain immutable. Contact review branch registers one executable but default-disabled synthetic-policy protocol alongside 111 preserved operations; it does not provide normal intake. C01/C02 remain incomplete and blocked pending operator/privacy/retention review and activation. No legal policy or external delivery is approved.",
   "items": [
     {
       "id": "F01",
@@ -810,51 +810,59 @@
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
         "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
       ],
-      "remaining_limitations": "Contact endpoint/device credential issuance remain deferred"
+      "remaining_limitations": "Contact idempotency/CSRF protocol is tested under a disabled synthetic policy gate; device credential issuance/rotation remains deferred, and normal contact activation requires review."
     },
     {
       "id": "C01",
       "requirement": "Project contact ownership",
       "historical_status": "NOT IMPLEMENTED",
-      "current_status": "NOT IMPLEMENTED",
-      "root_cause": "No global private contact inbox implemented",
+      "current_status": "BLOCKED",
+      "root_cause": "Gated private development storage/protocol and restricted synthetic operator procedures are implemented and tested. Normal intake, real operator custody, legal retention/holds/audit disposal and live purge remain unapproved.",
       "required_implementation": "Implement fixed global private project-contact inbox separate from utility complaints.",
       "required_test": "Unknown fields422; only fixed private global inbox receives valid payload; no public retrieval or tenant ADMIN access",
       "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
       "risk": "MEDIUM",
       "source_files": [
-        "services/api/tests/test_communications.py",
-        "services/api/tests/test_schema_boundaries.py"
+        "services/api/hydro/project_contact.py",
+        "services/api/hydro/contact_policy.py",
+        "services/api/migrations/versions/pre_m10_002.py",
+        "services/api/tests/prem10_contact_acceptance.py",
+        "services/api/tools/project_contact_operator.py"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/testing/PRE_M10_CONTACT_ACCEPTANCE.md"
       ],
-      "remaining_limitations": "No global private contact inbox implemented"
+      "remaining_limitations": "No normal activation path, live retention approval, operational operator deployment or enabled resident contact form. Synthetic 30-day policy tests do not satisfy legal governance or the original full contact acceptance."
     },
     {
       "id": "C02",
       "requirement": "Project contact abuse/retention",
       "historical_status": "NOT IMPLEMENTED",
-      "current_status": "NOT IMPLEMENTED",
-      "root_cause": "D10 retention not approved legal policy",
+      "current_status": "BLOCKED",
+      "root_cause": "Gated private development storage/protocol and restricted synthetic operator procedures are implemented and tested. Normal intake, real operator custody, legal retention/holds/audit disposal and live purge remain unapproved.",
       "required_implementation": "Implement bounded preauth CSRF, rate controls, generic responses and test-only retention policy; retain D10 live gate.",
       "required_test": "429/413/503 as appropriate; escaped review with no URL fetch; no raw IP; rate buckets<=24h, message/email/row removed30days; uncertain retry may duplicate",
       "dependency_or_approval": "D10 legal retention/holds/erasure and operator review before live release",
       "risk": "HIGH",
       "source_files": [
-        "services/api/tests/test_communications.py",
-        "services/api/tests/test_schema_boundaries.py"
+        "services/api/hydro/project_contact.py",
+        "services/api/hydro/contact_policy.py",
+        "services/api/migrations/versions/pre_m10_002.py",
+        "services/api/tests/prem10_contact_acceptance.py",
+        "services/api/tools/project_contact_operator.py"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/testing/PRE_M10_CONTACT_ACCEPTANCE.md"
       ],
-      "remaining_limitations": "D10 retention not approved legal policy"
+      "remaining_limitations": "No normal activation path, live retention approval, operational operator deployment or enabled resident contact form. Synthetic 30-day policy tests do not satisfy legal governance or the original full contact acceptance."
     },
     {
       "id": "P07",
@@ -1086,7 +1094,7 @@
       "requirement": "Runtime inventory",
       "historical_status": "PASS",
       "current_status": "PASS",
-      "root_cause": "111 implemented operations; 51 migrated tables; pre_m10_001. Designed counts remain separate.",
+      "root_cause": "112 registered protocol operations: 111 previous plus one gated contact operation; 53 migrated tables; pre_m10_002. Historical candidate counts remain separate.",
       "required_implementation": "Preserve compatibility and record every additive count transition.",
       "required_test": "Live OpenAPI operation count and actual PostgreSQL table/revision query.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
@@ -1288,5 +1296,7 @@
       ],
       "remaining_limitations": "Original 40 cases are 21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED. M10 is not authorized by this register."
     }
-  ]
+  ],
+  "gated_operations": 1,
+  "previous_operations": 111
 }

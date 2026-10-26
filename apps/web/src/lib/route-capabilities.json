@@ -161,7 +161,7 @@
       "states": ["informational", "mobile"],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+      "future_dependency": "Contact persistence is gated to explicit synthetic test policy; no normal intake, public inbox or external sending"
     },
     {
       "id": "PAGE-10",

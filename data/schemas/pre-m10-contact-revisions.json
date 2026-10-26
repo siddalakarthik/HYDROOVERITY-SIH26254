@@ -1,0 +1,173 @@
+{
+  "baseline_commit": "630b28cc396d29f03f5e9fb3f7ea076eecc86821",
+  "source_revisions": {
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "475ffc8232f670fbefd2acf3d98cc8a94cbf5f710011818b2a546267ce6d4725",
+      "sha256": "e8700d6a665978e6ef6d604a81381355ffc12274d2212731ea430307343cf168",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/browser/communications.spec.ts": {
+      "baseline_sha256": "451ae5bf5be9691adb8bdc47734a120641f30d360b1f25e9129789c0fb7a2ada",
+      "sha256": "a4cbcb1710feb1ef8f3ea631e975d56d86db877116dee0ba317ec60ed4cbc3e6",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/contracts/implemented.openapi.json": {
+      "baseline_sha256": "5da45a54c6cfa99ea8f49855122a7c5d9bebc8a1db42aa5abc92210496dbb803",
+      "sha256": "a13e67f881e9dc653d6785bef25775df6bda608022f7132ddf2a333dc7602c3a",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/src/features/public.tsx": {
+      "baseline_sha256": "d782b186c696bfdae0e62a83521223d90430fdbed738d6fa3047cd31a8c416cc",
+      "sha256": "829ef9577fff083026bec2f9ad5b15e91b0ed62b751e65350f1dc0897d98c089",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/src/lib/generated.ts": {
+      "baseline_sha256": "18b7a924cc2e330c74feec4118d81d7b665c7d34b59ab23ff1f2567c07f9127e",
+      "sha256": "c4af8ab5ae92a48155b73926552c6148014629aeea2af730067df271e2d6f90d",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/src/lib/route-capabilities.json": {
+      "baseline_sha256": "332c106e06a6e6834a5b4f7cb6c54ca0207f8ceecb7cf0bdb5d4bc0788c35aed",
+      "sha256": "b503e777950fe705d08e1a2eab94311840ccbba569555ab1e9b0449936ece9ac",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "apps/web/tools/contracts.py": {
+      "baseline_sha256": "b2252d5ed8edec1c5bad206d86921a8522e52e30f33a5a3ac3c78cae67160c82",
+      "sha256": "7bf58b662c93fbf360ae798b87cd180a8af83be088938850a239942605b3a308",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_m06.py": {
+      "baseline_sha256": "be7c01f9b00d319e4646ea19addd05eb0ce0e1ff87c661bf5f0c6f2736506970",
+      "sha256": "cbceaa5576e19f343d4c668d82b46a4aec1a9159aac65ba4c35ff9a54764725f",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_m07a_implementation.py": {
+      "baseline_sha256": "70e93c380021a71708b07afd4bc39a31f85b765f166e112a8f31983ccb2876da",
+      "sha256": "e53b2a75e305b2ab47d4387a8193b473f1e0139976d544eb9732172a52883a38",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_m07b.py": {
+      "baseline_sha256": "0582b5d0c0b025f5e05aad6f81b25006bbcd956c5d48691f8e08d7b8edcb67a3",
+      "sha256": "a091dd9eeb455f4d93b405dfba21299bb2ff2895078a70fd90a4f5f1ee198b87",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_m07c.py": {
+      "baseline_sha256": "b765c2a4f53efedf6b1279e24c5f0f1ed0f79d34ba60f6f775402621a145e49b",
+      "sha256": "6767fe17d54d24cb22253546ad44d3cff13630c4498c3182e34c0bb52a3fc936",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_m09.py": {
+      "baseline_sha256": "7bb83cf09f5a129799d879b99090f407ec6c554749461e2e7a3592f539b37c12",
+      "sha256": "bf389fe4aba0aefe933b755013822fe2738f65b78d107dbcc29d7cc598fa840a",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_pre_m10_f01.py": {
+      "baseline_sha256": "e985c6c012c11f9267b40e65c0c8e9a21c9dd5ee49b2796ee215252f54a172ef",
+      "sha256": "3f469272a3ba5a7dcd5d409d1b0553a9ea1a8ea57066574f5e3fb3cf6b0444b5",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_pre_m10_revisit.py": {
+      "baseline_sha256": "9a66d9f0285cfc7a0fd7d83085024f7aa496c4719b55425e4cd975c317a2f257",
+      "sha256": "9cd617f6f16b28916bb75a69474d041acc2e5c807a0341db4cfe5013b1cde6d1",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/check_repository_media.py": {
+      "baseline_sha256": "9e70889cd8b7376cc47bc032d0c10c6d57065c9adc67702271a6fa602dd13122",
+      "sha256": "d9773b2ed6ce5cf8d751b1924e70abfe4ef5746bf4fc93a49c014e590f4fdca4",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/pre_m10_f01_sources.py": {
+      "baseline_sha256": "16dd7edec21bb8689187c2281aa6b8c2e25d48c3da33732f4f1036c2d9470e6b",
+      "sha256": "c10009cfbd128964c07f958ec1754e937dd178e7aacd3e50c3652f70a656bd94",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "scripts/pre_m10_sources.py": {
+      "baseline_sha256": "29c5b8c56f33931113bc8b9275e9a48226608d0c0542e38948e810732a3e1a37",
+      "sha256": "93a28f30ca8c777a428a4cde1530031bf6d99c6a45b1c620cf2227b7e46ccb06",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/hydro/config.py": {
+      "baseline_sha256": "ce2948c78d44a3f7c29ddc4266ffac8d1084cd8ff8b720a15abd8225e2802170",
+      "sha256": "1ff7364a30d8ba7e6ec24855f8da2dfa4ca20ecff620b0668d1e15b9edc37109",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/hydro/contracts.py": {
+      "baseline_sha256": "740ddce3670d224eb4c6ac54583268a2a2a5e0234e946e8682ae1e61fec8618c",
+      "sha256": "ed49738e7c25e5332462c31bd73f4ba6e918872423a6fb8cb05a76a70d05229f",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/hydro/db.py": {
+      "baseline_sha256": "228de9f2b7e9bab1d46afd6ccf71c20353358865e05e1c79316e50ce82a8e1e8",
+      "sha256": "e2d9b0da3917bbb9f353f96cc570bda7d60b11a822ce217b015e91958bf38500",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/hydro/routes.py": {
+      "baseline_sha256": "14cd6d5deea811f635b33aa6e6058d39ecc5a326478f3aaa8eb569c06cacfd72",
+      "sha256": "67307dca2af23b7745416708e43b5fbc708bed8a47f11c9ec7bdabb75b4ea8f6",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/conftest.py": {
+      "baseline_sha256": "9e85ab35982d9c4b4343036cfe20d517f28ccb5161d9a7dd00f6736d9f8fc6cb",
+      "sha256": "8c5b545eb64c5f0026132ef19eabf750f8fc472dc5eff35e846d1d104969c52e",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/m09_acceptance.py": {
+      "baseline_sha256": "ef615061508f17c44709f690458fca0a8bc8215050d8fd48339d86a9308a946e",
+      "sha256": "3f84dcba80887778056aae47163c17e3e045981bc6659ffd0ffa8a9a6251bfd8",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/prem10_complaint_acceptance.py": {
+      "baseline_sha256": "369d396d8b244430c5d9c04bc5f05a9e7515af19d003ff47ba232b38b62bc108",
+      "sha256": "07b284ca49fae64d4e8dd7de1e9c53900c368aca8abf20499f481a2111dd344d",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/test_communications.py": {
+      "baseline_sha256": "606d093ff45668b8dcaa996b3731cfc010f4544fe2f7b4bb21f8d13ae08158c1",
+      "sha256": "f49740bb1cbd2b5c0b802491b496cf5c8c24413fea7861eed97f4af811a82ee5",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/test_concurrency_resilience.py": {
+      "baseline_sha256": "ab2b7f96e2aa1a78dbf323c998604bc10f219e0e807e10e69f379722a6f01cd7",
+      "sha256": "135ef1b9e4f3e6a518c718de7b5e69b7b156b43fb047124667550a4a2e1981ba",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/test_foundation.py": {
+      "baseline_sha256": "d69a090bd4b1b1d7d7525f741c79889ec7d01c6c4ca6ecf4ada99d66187e3ff0",
+      "sha256": "5b7fc2ddaed7a5382b2cf941320c05f082c629664e80062a12ca03c9f2d40fcb",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/test_schema_boundaries.py": {
+      "baseline_sha256": "c8b3c779219caee779485d6a85ea1e2f1dae0aa5e9d0da80a1a4cd7ab5eb064e",
+      "sha256": "f862d040403789df759ce74f462714b507c7ab8a0c67647c5b2f0c32b66c7fc0",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tests/test_workflow.py": {
+      "baseline_sha256": "8850752af4318ec940bddd4845060316662d541e23b14ef7117e709b8e85a447",
+      "sha256": "917471026435565084f1e7442281f9614ea2283977579ecc231d39e419f30eac",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    },
+    "services/api/tools/verify_backend.py": {
+      "baseline_sha256": "5f717a58e63caf0b21c4f01a3742756fd932a5abdba3294a89890ffda4d0fa71",
+      "sha256": "ec5b3b67a8a9e50e990f0f441cfd6d5ce20842ac7549379f0ce0883caca644c1",
+      "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
+    }
+  },
+  "new_source_sha256": {
+    "services/api/hydro/contact_policy.py": "22b5114a295b3443135e53017f313a971c5b54c3196e78173eafede773a31e54",
+    "services/api/hydro/project_contact.py": "734e80173b4c4a0dc6710c199fe14bd9fa551da5d1167a4d9512b4d19c51d8c0",
+    "services/api/migrations/versions/pre_m10_002.py": "117b5c0963627c6a5b37b89618b25689008cc4ed1d69e80d6025b0f881d562f1",
+    "services/api/tests/prem10_contact_acceptance.py": "6c81fc9c9a5c4bcff711920aa5f6671f12450113b62d2acd02689752928115d1",
+    "services/api/tools/project_contact_operator.py": "f6a2b51398335343169fad9cb3f937a1f1d03c3f61acf10f320f07fdfbb886c4",
+    "services/api/tools/verify_prem10_contact.py": "73e201c76b51b9ece63978e6950e88113853a155e840eef9c4adfa7e94de3820"
+  },
+  "previous_openapi_sha256": "648f65020b57b9a6063cd2c2a45b17d6241bfc36c0d26512f66caa55c6381536",
+  "contact_operation_sha256": "44c36c892368e8f6dba4b267d2e2a04436aa8c2e1e816c71c38955d168bddacb",
+  "contact_schema_sha256": "27d9910ee582f0ef74f4ab30e587e9a249460625cfdfff19956cd81b39a1af63",
+  "runtime": {
+    "registered_operations": 112,
+    "previous_operations": 111,
+    "gated_contact_operations": 1,
+    "tables": 53,
+    "normal_contact_activation": "DISABLED"
+  }
+}

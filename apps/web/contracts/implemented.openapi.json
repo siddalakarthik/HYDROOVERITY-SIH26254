@@ -8980,6 +8980,35 @@
           "description",
           "complaint_id"
         ]
+      },
+      "ContactWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "category": {
+            "type": "string",
+            "maxLength": 30,
+            "enum": [
+              "QUESTION",
+              "FEEDBACK"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 10
+          },
+          "reply_email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          }
+        },
+        "required": [
+          "category",
+          "message"
+        ],
+        "description": "HYDROOVERITY project-team inbox only; no tenant, member, assignee, storage or retrieval fields. Private text, escaped on review; no attachments."
       }
     },
     "securitySchemes": {
@@ -23529,6 +23558,97 @@
             "$ref": "#/components/responses/Error503"
           }
         }
+      }
+    },
+    "/public/contact": {
+      "post": {
+        "operationId": "public_post_public_contact",
+        "tags": [
+          "Public"
+        ],
+        "summary": "Gated project enquiry to the fixed HYDROOVERITY inbox",
+        "description": "Insert project_contact_submissions in fixed server-owned HYDROOVERITY project inbox; no organization/member mapping, caller-selected owner or public retrieval. Generic 202 after bounded intake; no automatic reply. Require preauth/session CSRF and Origin checks, 8 KiB body cap, 3/min per session and daily-rotating IP HMAC, 5/day normalized reply email when supplied. Discard rate buckets within 24h. No raw IP persisted. Retain inbox text/email 30 days; private designated project operator only, not tenant ADMIN. Escape text; do not fetch links or forward untrusted HTML. No Idempotency-Key (400 if supplied), duplicate submissions possible after lost reply; bounded retries, no cached credentials or public receipt ID.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": "Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "PUBLIC"
+        ],
+        "x-required-permission": "public.write",
+        "x-scope": "preauth/session + fixed private project inbox; no tenant selection",
+        "x-database-effect": "Insert project_contact_submissions in fixed server-owned HYDROOVERITY project inbox; no organization/member mapping, caller-selected owner or public retrieval. Generic 202 after bounded intake; no automatic reply.",
+        "x-restricted-truth": false,
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          },
+          "202": {
+            "description": "Generic accepted intake; no inbox record ID, tenant identity or retrieval token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactWrite"
+              }
+            }
+          }
+        },
+        "x-retry-policy": "PROJECT_CONTACT",
+        "x-authorization-guards": []
       }
     }
   }

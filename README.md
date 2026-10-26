@@ -27,9 +27,9 @@ HYDROOVERITY connects resident reports, utility investigation and independent re
 | Scientific workspace | Authorized synthetic ingestion, bounded stream/replay, observation-only exports and visible simulation mode | No live hardware adapter or ordinary-dashboard evaluator truth |
 | Platform | FastAPI, PostgreSQL/PostGIS, tenant/role/owner enforcement, RLS, CSRF, idempotency and audit history | Production/public deployment remains disabled |
 
-Current runtime: **111 implemented API operations · 51 migrated application tables · migration `pre_m10_001`**. Design catalogues contain additional proposed operations; they are not implemented endpoints. [Runtime contracts](services/api/hydro/contracts.py) · [Current acceptance inventory](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
+Current runtime: **112 registered API operations (111 existing + one gated contact protocol) · 53 migrated application tables · migration `pre_m10_002`**. Design catalogues contain additional proposed operations; they are not implemented endpoints. [Runtime contracts](services/api/hydro/contracts.py) · [Current acceptance inventory](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
 
-M01–M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are merged, while the original M07 milestone remains open for residual scope. **M10 has not started.** Historical M09 recorded **21 PASS, 13 BLOCKED, 6 NOT IMPLEMENTED**. The current original-40 matrix is **22 PASS, 12 BLOCKED, 6 NOT IMPLEMENTED** after tested complaint notifications ([current register](docs/testing/PRE_M10_COMPLETION_REGISTER.md)); passing CI does not mean every planned feature exists.
+M01–M06 and the reviewed M08/M09 packages are merged. M07-A/B/C increments are merged, while the original M07 milestone remains open for residual scope. **M10 has not started.** Historical M09 recorded **21 PASS, 13 BLOCKED, 6 NOT IMPLEMENTED**. The current original-40 matrix is **22 PASS, 14 BLOCKED, 4 NOT IMPLEMENTED** after tested complaint notifications and blocked contact foundations ([current register](docs/testing/PRE_M10_COMPLETION_REGISTER.md)); passing CI does not mean every planned feature exists.
 
 ## Evidence before conclusions
 
