@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 from pre_m10_sources import revised_digest
+from pre_m10_contact_sources import before_contact
 from pathlib import Path
 import sys
 
@@ -27,7 +28,7 @@ def main():
     assert set(manifest["implemented_operation_ids"]) == ACTIVE
     assert set(manifest["privacy_disabled_operation_ids"]) == DISABLED
     assert manifest["counts"] == {"baseline_implemented":58,"m07a_implemented":12,"total_implemented":70,"designed_operations":161,"baseline_migrated_tables":30,"m07a_migrated_tables":5,"total_migrated_tables":35,"designed_tables":74}
-    runtime = runtime_openapi()
+    runtime = before_contact(runtime_openapi())
     ids = {o["operationId"] for ms in runtime["paths"].values() for o in ms.values()}
     assert ids == {o["id"] for o in OPERATIONS} | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS}
     assert not ids & DISABLED

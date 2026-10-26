@@ -10,7 +10,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -24,7 +27,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -38,7 +44,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -52,7 +61,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -66,7 +78,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -80,7 +95,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -158,10 +176,13 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
+      "future_dependency": "Contact persistence is gated to explicit synthetic test policy; no normal intake, public inbox or external sending"
     },
     {
       "id": "PAGE-10",
@@ -172,7 +193,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -186,7 +210,10 @@
       "operations": [],
       "shared_operations": [],
       "data_boundary": "Editorial or allow-listed public projection only",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "public",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Attachments, telemetry, offline queue and scientific integration remain disabled"
@@ -1008,7 +1035,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1026,7 +1056,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1044,7 +1077,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1062,7 +1098,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1080,7 +1119,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1098,7 +1140,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1660,7 +1705,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1678,7 +1726,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1696,7 +1747,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Deferred M03 operation; no active navigation"
@@ -1757,7 +1811,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "science",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred"
@@ -1818,7 +1875,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "science",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred"
@@ -1849,7 +1909,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "External delivery, uploads and offline remain disabled"
@@ -1884,7 +1947,10 @@
         "GET /orgs/{organization_id}"
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
-      "states": ["informational", "mobile"],
+      "states": [
+        "informational",
+        "mobile"
+      ],
       "component": "unavailable",
       "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
       "future_dependency": "External delivery, uploads and offline remain disabled"

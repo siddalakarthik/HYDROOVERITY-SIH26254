@@ -1,12 +1,18 @@
 """Synthetic-policy-only project inbox acceptance; no real legal policy approved."""
 
+import json
+import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
 import pytest
+from alembic import command
+from alembic.config import Config
 from helpers import expect
 from sqlalchemy.exc import DBAPIError, OperationalError
 
+from hydro.config import ROOT
 from hydro.contact_policy import ContactTestPolicy
 from hydro.db import execute, one
 from hydro.errors import Problem
@@ -25,7 +31,10 @@ def contact_env(env):
     with env["owner"].begin() as c:
         assert one(c, "SELECT current_database() AS name")["name"].startswith("hydro_disposable_")
         c.exec_driver_sql("TRUNCATE project_contact_submissions,project_contact_operator_audit")
-    return env
+    yield env
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT current_database() AS name")["name"].startswith("hydro_disposable_")
+        c.exec_driver_sql("TRUNCATE project_contact_submissions,project_contact_operator_audit")
 
 
 def enabled(env, capacity=5):
@@ -75,6 +84,7 @@ def test_contact_actual_persistence_fixed_owner_and_escaped_operator_review(cont
         assert "<script>" not in rows[0]["message"]
         audit = one(c, "SELECT * FROM project_contact_operator_audit")
         assert audit["action"] == "READ" and audit["contact_id"] == row["id"]
+        assert audit["database_role"] == "hydro_migrator"
     with env["app"].state.engine.begin() as c:
         assert (
             one(c, "SELECT count(capacity_marker) AS n FROM project_contact_submissions")["n"] == 1
@@ -225,3 +235,122 @@ def test_contact_owner_review_version_hold_and_synthetic_purge(contact_env):
         review_inbox(c, policy)
     with pytest.raises(DBAPIError), env["owner"].begin() as c:
         c.exec_driver_sql("DELETE FROM project_contact_operator_audit")
+
+
+def test_contact_clean_migration_roundtrip_preserves_other_tables(contact_env):
+    env = contact_env
+    cfg = Config(str(ROOT / "services/api/alembic.ini"))
+    command.downgrade(cfg, "pre_m10_001")
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
+        assert one(c, "SELECT count(*) AS n FROM organizations")["n"] == 2
+    command.upgrade(cfg, "head")
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT count(*) AS n FROM organizations")["n"] == 2
+
+
+def test_contact_populated_downgrade_refuses_without_erasing_data(contact_env):
+    env = contact_env
+    policy = enabled(env)
+    expect(env["client"]().request("POST", PATH, json=BODY), 202)
+    with env["owner"].begin() as c:
+        review_inbox(c, policy)
+    cfg = Config(str(ROOT / "services/api/alembic.ini"))
+    with pytest.raises(RuntimeError, match="non-destructive downgrade refused"):
+        command.downgrade(cfg, "pre_m10_001")
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
+        assert one(c, "SELECT count(*) AS n FROM project_contact_submissions")["n"] == 1
+        assert one(c, "SELECT count(*) AS n FROM project_contact_operator_audit")["n"] == 1
+    for sql in (
+        "UPDATE project_contact_submissions SET status='REVIEWED'",
+        "DELETE FROM project_contact_submissions",
+        "INSERT INTO project_contact_submissions(category,message,status) VALUES('QUESTION','SYNTHETIC unauthorized status','REVIEWED')",
+    ):
+        with pytest.raises(DBAPIError), env["app"].state.engine.begin() as c:
+            c.exec_driver_sql(sql)
+
+
+def test_contact_actual_operator_process_exports_only_private_escaped_output(contact_env, tmp_path):
+    env = contact_env
+    policy = enabled(env)
+    expect(env["client"]().request("POST", PATH, json=BODY), 202)
+    with env["owner"].begin() as c:
+        database = one(c, "SELECT current_database() AS name")["name"]
+    operator = tmp_path / "operator.json"
+    settings = tmp_path / "policy.json"
+    output = tmp_path / "private-review.json"
+    operator.write_text(
+        json.dumps(
+            {
+                "migration_url": env["owner"].url.render_as_string(hide_password=False),
+                "database": database,
+            }
+        ),
+        encoding="utf-8",
+    )
+    settings.write_text(policy.model_dump_json(), encoding="utf-8")
+    command_line = [
+        sys.executable,
+        str(ROOT / "services/api/tools/project_contact_operator.py"),
+        "--operator-config",
+        str(operator),
+        "--policy-config",
+        str(settings),
+        "--confirm-disposable-database",
+        database,
+        "list",
+        "--output",
+        str(output),
+    ]
+    result = subprocess.run(command_line, capture_output=True, text=True)
+    assert result.returncode == 0 and "records=1" in result.stdout
+    assert BODY["message"] not in result.stdout + result.stderr
+    exported = json.loads(output.read_text(encoding="utf-8"))
+    assert exported["provenance"] == "SYNTHETIC_TEST_POLICY_ONLY"
+    assert "&lt;script&gt;" in exported["items"][0]["message"]
+    assert subprocess.run(command_line, capture_output=True).returncode != 0
+    operator.write_text(
+        json.dumps(
+            {
+                "migration_url": env["app"].state.engine.url.render_as_string(hide_password=False),
+                "database": database,
+            }
+        ),
+        encoding="utf-8",
+    )
+    denied_output = tmp_path / "denied.json"
+    command_line[-1] = str(denied_output)
+    denied = subprocess.run(command_line, capture_output=True, text=True)
+    assert denied.returncode != 0 and not denied_output.exists()
+    assert BODY["message"] not in denied.stdout + denied.stderr
+
+
+def test_contact_synthetic_policy_refuses_non_disposable_identity(contact_env, monkeypatch):
+    env = contact_env
+    policy = enabled(env)
+    import hydro.project_contact as module
+
+    original = module.one
+
+    def non_disposable(c, sql, **values):
+        if sql == "SELECT current_database() AS name":
+            return {"name": "ordinary_private_development"}
+        return original(c, sql, **values)
+
+    # Inject only the database identity. The request/session and real rollback
+    # still use PostgreSQL; no ordinary database is created or modified.
+    with monkeypatch.context() as patch:
+        patch.setattr(module, "one", non_disposable)
+        response = env["client"]().request("POST", PATH, json=BODY)
+        assert expect(response, 503)["error"]["code"] == "SYNTHETIC_DATABASE_REQUIRED"
+        with pytest.raises(Problem), env["owner"].begin() as c:
+            review_inbox(c, policy)
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT count(*) AS n FROM project_contact_submissions")["n"] == 0
+        check = one(
+            c,
+            "SELECT pg_get_expr(polwithcheck,polrelid) AS rule FROM pg_policy WHERE polname='contact_intake'",
+        )["rule"]
+        assert "current_database()" in check and "hydro_disposable_" in check

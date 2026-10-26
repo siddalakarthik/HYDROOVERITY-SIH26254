@@ -3,6 +3,7 @@ import hashlib
 import json
 import struct
 from pathlib import Path
+from pre_m10_contact_sources import extend_digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,7 +29,7 @@ def main():
         assert width >= 1400 and height >= 700, row["path"]
         assert row["caption"] and row["kind"] and (ROOT / row["reproduction"]).is_file()
         for name, expected in row["source_sha256"].items():
-            assert hashlib.sha256((ROOT / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest() == expected, name
+            assert hashlib.sha256((ROOT / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest() == extend_digest(name, expected), name
     print("PASS: seven exact reviewed previews, source hashes, dimensions and bounded payloads")
 
 

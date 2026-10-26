@@ -25,19 +25,19 @@ def test_runtime_inventory_and_database_principal_remain_private(env):
     from hydro.contracts import runtime_openapi
 
     spec = runtime_openapi()
-    assert sum(len(methods) for methods in spec["paths"].values()) == 111
+    assert sum(len(methods) for methods in spec["paths"].values()) == 112
     assert not any(
         any(word in p for word in ("/actuate", "/valves/", "/uploads", "/attachments"))
         for p in spec["paths"]
     )
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
         assert (
             one(
                 c,
                 "SELECT count(*) AS n FROM pg_tables WHERE schemaname='public' AND tablename NOT IN ('spatial_ref_sys','alembic_version')",
             )["n"]
-            == 51
+            == 53
         )
     with env["app"].state.engine.begin() as c:
         role = one(c, "SELECT rolsuper,rolbypassrls FROM pg_roles WHERE rolname=current_user")

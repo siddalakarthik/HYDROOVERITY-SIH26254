@@ -1731,6 +1731,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/public/contact": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Gated project enquiry to the fixed HYDROOVERITY inbox
+         * @description Insert project_contact_submissions in fixed server-owned HYDROOVERITY project inbox; no organization/member mapping, caller-selected owner or public retrieval. Generic 202 after bounded intake; no automatic reply. Require preauth/session CSRF and Origin checks, 8 KiB body cap, 3/min per session and daily-rotating IP HMAC, 5/day normalized reply email when supplied. Discard rate buckets within 24h. No raw IP persisted. Retain inbox text/email 30 days; private designated project operator only, not tenant ADMIN. Escape text; do not fetch links or forward untrusted HTML. No Idempotency-Key (400 if supplied), duplicate submissions possible after lost reply; bounded retries, no cached credentials or public receipt ID.
+         */
+        post: operations["public_post_public_contact"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3672,6 +3692,14 @@ export interface components {
             complaint_id: string | null;
             service_request_id?: string | null;
             service_rating?: number | null;
+        };
+        /** @description HYDROOVERITY project-team inbox only; no tenant, member, assignee, storage or retrieval fields. Private text, escaped on review; no attachments. */
+        ContactWrite: {
+            /** @enum {string} */
+            category: "QUESTION" | "FEEDBACK";
+            message: string;
+            /** Format: email */
+            reply_email?: string;
         };
     };
     responses: {
@@ -9018,6 +9046,44 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["M07Page_DeliveryAttempt"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    public_post_public_contact: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ContactWrite"];
+            };
+        };
+        responses: {
+            /** @description Generic accepted intake; no inbox record ID, tenant identity or retrieval token. */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
                 };
             };
             400: components["responses"]["Error400"];

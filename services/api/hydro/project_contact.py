@@ -1,5 +1,6 @@
 """Fixed private inbox. Operational intake/purge activation remains unavailable."""
 
+import copy
 import html
 import unicodedata
 
@@ -16,7 +17,10 @@ LOCK = "hydro-project-contact-capacity"
 
 
 def extend_openapi(spec):
-    spec["paths"]["/public/contact"] = DESIGN["paths"]["/public/contact"]
+    spec["paths"]["/public/contact"] = copy.deepcopy(DESIGN["paths"]["/public/contact"])
+    spec["paths"]["/public/contact"]["post"]["summary"] = (
+        "Gated project enquiry to the fixed HYDROOVERITY inbox"
+    )
     spec["components"]["schemas"]["ContactWrite"] = DESIGN["components"]["schemas"]["ContactWrite"]
     return spec
 
@@ -33,6 +37,15 @@ def configured(policy):
 
 def capacity_lock(c):
     execute(c, "SELECT pg_advisory_xact_lock(hashtextextended(:key,0))", key=LOCK)
+
+
+def synthetic_database(c):
+    require(
+        one(c, "SELECT current_database() AS name")["name"].startswith("hydro_disposable_"),
+        503,
+        "SYNTHETIC_DATABASE_REQUIRED",
+        "Synthetic contact policy is restricted to disposable test databases",
+    )
 
 
 def text_body(value):
@@ -75,6 +88,7 @@ def dispatch(app, request, op, value, params):
             "Project contact has no business receipt",
         )
         policy = configured(app.state.settings.contact_test_policy)
+        synthetic_database(c)
         limits = app.state.limits
         limits.hit("project-contact-session", str(auth.session["id"]), 3, 60)
         limits.hit("project-contact-ip", request.client.host if request.client else "local", 3, 60)
@@ -99,6 +113,7 @@ def dispatch(app, request, op, value, params):
 
 def owner(c, policy):
     configured(policy)
+    synthetic_database(c)
     require(
         one(
             c,

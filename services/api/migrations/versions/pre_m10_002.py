@@ -32,7 +32,8 @@ CREATE POLICY contact_owner ON project_contact_submissions TO hydro_migrator
  USING(true) WITH CHECK(true);
 CREATE POLICY contact_capacity_read ON project_contact_submissions FOR SELECT TO hydro_app USING(true);
 CREATE POLICY contact_intake ON project_contact_submissions FOR INSERT TO hydro_app
- WITH CHECK(status='NEW' AND version=1 AND hold_reference IS NULL);
+ WITH CHECK(left(current_database(),17)='hydro_disposable_'
+ AND status='NEW' AND version=1 AND hold_reference IS NULL);
 REVOKE ALL ON project_contact_submissions FROM PUBLIC,hydro_app;
 GRANT INSERT(category,message,reply_email) ON project_contact_submissions TO hydro_app;
 GRANT SELECT(capacity_marker) ON project_contact_submissions TO hydro_app;
@@ -40,6 +41,7 @@ GRANT SELECT(capacity_marker) ON project_contact_submissions TO hydro_app;
 CREATE TABLE project_contact_operator_audit (
  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
  created_at timestamptz NOT NULL DEFAULT now(),
+ database_role text NOT NULL DEFAULT current_user,
  contact_id uuid NOT NULL,
  operator_reference text NOT NULL CHECK(char_length(operator_reference) BETWEEN 10 AND 128),
  action text NOT NULL CHECK(action IN ('READ','REVIEW','HOLD','RELEASE_HOLD','PURGE')),

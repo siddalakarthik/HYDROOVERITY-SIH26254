@@ -29,3 +29,5 @@ reply email. No raw IP, session secret, automatic reply or fetched URL is stored
 Review output escapes text. Synthetic expiry/hold tests may exercise deletion;
 normal intake and real purge activation stay disabled. Historical acceptance
 statuses will change only after actual implementation and executed evidence.
+
+API/operator helpers and runtime INSERT RLS additionally require the disposable database namespace. No production policy type or normal environment activation is representable. The M02 normative fixed-global-ownership description is retained; only the new runtime short summary clarifies the old misleading tenant wording. The additional operator-audit table and hold/capacity-marker columns are explicit implementation extensions; historical design counts are not rewritten. Operator audit retention/disposal remains a separate D10 gate.
