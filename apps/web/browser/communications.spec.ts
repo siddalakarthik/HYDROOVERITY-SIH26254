@@ -190,6 +190,77 @@ test("M07-C real inbox, versioned preferences, service feedback, supervisor revi
   await expect(page.locator("main")).not.toContainText(
     "PRIVATE_REVIEW_SYNTHETIC",
   );
+  // Real complaint receipt -> durable worker -> opt-in inbox -> owned report.
+  await page.goto(inbox);
+  await page.getByLabel("Enable optional in-app notifications").check();
+  await page.getByLabel("Complaint progress", { exact: true }).check();
+  const complaintPreferences = page.waitForResponse(
+    (r) =>
+      r.url().endsWith("/notification-preferences") &&
+      r.request().method() === "PUT",
+  );
+  await page
+    .getByRole("button", { name: "Save notification preferences" })
+    .click();
+  expect((await complaintPreferences).status()).toBe(200);
+  await page.goto(`/citizen/${f.org}/reports/new`);
+  await page
+    .getByLabel("Issue category", { exact: true })
+    .selectOption("VISIBLE_LEAK");
+  await page
+    .getByLabel("Describe the issue")
+    .fill("SYNTHETIC report for notification delivery acceptance.");
+  await page
+    .getByLabel("Rough area or landmark")
+    .fill("SYNTHETIC public landmark");
+  await page
+    .getByRole("button", { name: "Submit report", exact: true })
+    .click();
+  await expect(page).toHaveURL(
+    new RegExp(`/citizen/${f.org}/reports/[0-9a-f-]{36}$`),
+  );
+  const reportUrl = page.url();
+  await expect(
+    page.getByRole("heading", { name: "Your report", exact: true }),
+  ).toBeVisible();
+  await page.goto(inbox);
+  const reportNotice = page.locator("article").filter({
+    hasText:
+      "A report update is available. Open your report timeline for the current status.",
+  });
+  await expect
+    .poll(async () => {
+      const refreshed = page.waitForResponse(
+        (r) =>
+          new URL(r.url()).pathname.endsWith("/notifications") &&
+          r.request().method() === "GET",
+      );
+      await page
+        .getByRole("button", { name: "Refresh notifications", exact: true })
+        .click();
+      expect((await refreshed).status()).toBe(200);
+      await expect(
+        page
+          .getByRole("status")
+          .filter({ hasText: "Loading authorized records" }),
+      ).toHaveCount(0);
+      return reportNotice.count();
+    })
+    .toBe(1);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await accessible();
+  await page.screenshot({
+    path: join(output, "PREM10-F01-complaint-inbox-mobile.png"),
+    fullPage: true,
+  });
+  await reportNotice
+    .getByRole("link", { name: "Open current authorized record", exact: true })
+    .click();
+  await expect(page).toHaveURL(reportUrl);
+  await expect(
+    page.getByRole("heading", { name: "Your report", exact: true }),
+  ).toBeVisible();
+  await accessible();
   const denied = await page.evaluate(
     async (other) =>
       (await fetch(`/api/v1/orgs/${other}/notifications`)).status,

@@ -31,7 +31,7 @@ def test_runtime_inventory_and_database_principal_remain_private(env):
         for p in spec["paths"]
     )
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_c_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
         assert (
             one(
                 c,

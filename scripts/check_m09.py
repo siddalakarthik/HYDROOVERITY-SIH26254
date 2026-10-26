@@ -3,6 +3,7 @@
 import hashlib
 import json
 from pre_m10_sources import revised_digest
+from pre_m10_f01_sources import previous_openapi
 import sys
 from pathlib import Path
 
@@ -21,7 +22,7 @@ def main():
     assert manifest["implemented_operations"] == 111 and manifest["migrated_tables"] == 51
     for name, expected in manifest["accepted_text_source_sha256"].items():
         assert hashlib.sha256((ROOT / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest() == revised_digest(name, expected), name
-    assert digest(runtime_openapi()) == manifest["implemented_openapi_sha256"]
+    assert digest(previous_openapi(runtime_openapi())) == manifest["implemented_openapi_sha256"]
     trace = json.loads((ROOT / "docs/testing/m09-traceability.json").read_text())
     plan = (ROOT / "docs/testing/M02_ACCEPTANCE_AND_TEST_PLAN.md").read_text()
     import re

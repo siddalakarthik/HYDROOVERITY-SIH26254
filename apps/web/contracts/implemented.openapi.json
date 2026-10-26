@@ -8573,10 +8573,11 @@
                 "SERVICE_PROGRESS",
                 "APPOINTMENT",
                 "WORK_ASSIGNMENT",
-                "SERVICE_FEEDBACK"
+                "SERVICE_FEEDBACK",
+                "COMPLAINT_PROGRESS"
               ]
             },
-            "maxItems": 4,
+            "maxItems": 5,
             "uniqueItems": true
           },
           "quiet_hours": {
@@ -8660,10 +8661,11 @@
                 "SERVICE_PROGRESS",
                 "APPOINTMENT",
                 "WORK_ASSIGNMENT",
-                "SERVICE_FEEDBACK"
+                "SERVICE_FEEDBACK",
+                "COMPLAINT_PROGRESS"
               ]
             },
-            "maxItems": 4,
+            "maxItems": 5,
             "uniqueItems": true
           },
           "quiet_hours": {
@@ -8768,7 +8770,8 @@
               "SERVICE_PROGRESS",
               "APPOINTMENT",
               "WORK_ASSIGNMENT",
-              "SERVICE_FEEDBACK"
+              "SERVICE_FEEDBACK",
+              "COMPLAINT_PROGRESS"
             ]
           },
           "resource_path": {

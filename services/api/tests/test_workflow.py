@@ -516,7 +516,10 @@ def test_complete_followup_and_unlinked_private_review_are_retained(env, monkeyp
     from hydro.config import ROOT
 
     monkeypatch.setenv("HYDRO_MIGRATION_URL", os.environ["HYDRO_TEST_OWNER_URL"])
-    with pytest.raises(RuntimeError, match="Forward-only"):
+    # The newer complaint queue guard refuses before the older forward-only migration.
+    with pytest.raises(
+        RuntimeError, match="Complaint notification data exists; non-destructive downgrade refused"
+    ):
         command.downgrade(Config(str(ROOT / "services/api/alembic.ini")), "m03_003")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_c_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"

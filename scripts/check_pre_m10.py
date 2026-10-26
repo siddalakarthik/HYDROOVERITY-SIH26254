@@ -4,7 +4,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from pre_m10_sources import changes
+from pre_m10_sources import changes, revised_digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -37,7 +37,7 @@ def main():
             assert row.get("scope_reason"), row["id"]
     for name, change in changes().items():
         actual = hashlib.sha256((ROOT / name).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
-        assert actual == change["sha256"], name
+        assert actual == revised_digest(name, change["baseline_sha256"]), name
     print(f"PASS: original 40 + 8 risks, {len(items)} register items, explicit source revisions")
 
 

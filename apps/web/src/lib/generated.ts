@@ -3591,7 +3591,7 @@ export interface components {
                 /** @constant */
                 push: false;
             };
-            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK")[];
+            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK" | "COMPLAINT_PROGRESS")[];
             quiet_hours: {
                 start_local: string;
                 end_local: string;
@@ -3610,7 +3610,7 @@ export interface components {
                 /** @constant */
                 push: false;
             };
-            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK")[];
+            event_categories: ("SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK" | "COMPLAINT_PROGRESS")[];
             quiet_hours: {
                 start_local: string;
                 end_local: string;
@@ -3635,7 +3635,7 @@ export interface components {
             read: boolean;
             version: number;
             /** @enum {string} */
-            event_category: "SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK";
+            event_category: "SERVICE_PROGRESS" | "APPOINTMENT" | "WORK_ASSIGNMENT" | "SERVICE_FEEDBACK" | "COMPLAINT_PROGRESS";
             resource_path: string;
         };
         M07FeedbackReview: {

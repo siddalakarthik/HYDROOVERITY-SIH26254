@@ -406,7 +406,7 @@ def test_m07c_empty_roundtrip_and_populated_downgrade_refusal(env):
     command.downgrade(config, "m07_b_005")
     command.upgrade(config, "head")
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "m07_c_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
         assert one(c, "SELECT count(*) AS n FROM notification_preferences")["n"] == 2
         count = one(
             c,
