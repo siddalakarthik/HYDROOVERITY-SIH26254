@@ -92,6 +92,8 @@ The public-page preview listens on `http://127.0.0.1:3000`. Authentication needs
 
 Four CI jobs cover repository/design/scientific checks, PostgreSQL/backend acceptance, real frontend browser workflows, and regenerated CAD/figures. CI artifacts have a **14-day retention period**; durable source and evidence reports remain in Git. [CI runs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions) · [M09 report](docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md).
 
+The [current frontend dependency review](docs/testing/CURRENT_DEPENDENCY_REVIEW.md) records zero active registry advisories on 26 October 2026 for the unchanged lockfile. The earlier development-only `braces` advisory was withdrawn upstream; historical audit evidence is preserved. Project licensing and native-binary redistribution obligations remain unresolved.
+
 ## Find the source
 
 | Path | Contents |

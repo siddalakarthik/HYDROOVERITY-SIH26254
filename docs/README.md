@@ -2,7 +2,7 @@
 
 Current baseline: **111 implemented operations, 51 migrated application tables, `m07_c_001`**. M04, M06, M07-A/B/C, M08 and scoped M09 are merged. The original M07 milestone remains open for residual requirements; M10 has not started. The public GitHub repository is distinct from the private-development application.
 
-Begin with the [pre-M10 completion register](testing/PRE_M10_COMPLETION_REGISTER.md), [M09 full-system evidence](testing/M09_FULL_SYSTEM_ACCEPTANCE.md), [M06 synthetic integration](testing/M06_SCIENTIFIC_INTEGRATION.md), [M07-B scheduling acceptance](testing/M07_B_SCHEDULING_ACCEPTANCE.md), [M07-C communications acceptance](testing/M07_C_COMMUNICATIONS_ACCEPTANCE.md) and [reviewed media](media/README.md).
+Begin with the [pre-M10 completion register](testing/PRE_M10_COMPLETION_REGISTER.md), [M09 full-system evidence](testing/M09_FULL_SYSTEM_ACCEPTANCE.md), [M06 synthetic integration](testing/M06_SCIENTIFIC_INTEGRATION.md), [M07-B scheduling acceptance](testing/M07_B_SCHEDULING_ACCEPTANCE.md), [M07-C communications acceptance](testing/M07_C_COMMUNICATIONS_ACCEPTANCE.md) and [reviewed media](media/README.md) and the [current dependency review](testing/CURRENT_DEPENDENCY_REVIEW.md).
 
 [M07 candidate contracts](architecture/m07/README.md) remain a design catalogue, not a claim that every operation is implemented. [Owner decisions D1–D10](project/m07-planning/M07_OWNER_REVIEW_DECISION.md) retain their privacy, offline, media, external-delivery and release gates. Historical report language below describes its execution-time scope.
 
@@ -19,7 +19,7 @@ The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved pr
 | [DATA_DICTIONARY](architecture/DATA_DICTIONARY.md) | Proposed entities, provenance and unresolved schema decisions |
 | [ENGINEERING_LIMITATIONS](engineering/ENGINEERING_LIMITATIONS.md) | Physical observability, model and claim boundaries |
 | [DECISION_LOG](decisions/DECISION_LOG.md) | Frozen, provisional and pending decisions |
-| [ROADMAP](project/ROADMAP.md) | M01â€“M10 scope and exit criteria |
+| [ROADMAP](project/ROADMAP.md) | M01–M10 scope and exit criteria |
 | [EVIDENCE_REGISTER](testing/EVIDENCE_REGISTER.md) | Attributed history, current evidence and future proof |
 | [ARTIFACT_POLICY](engineering/ARTIFACT_POLICY.md) | Large/generated/private artifact handling |
 | [THREAT_MODEL](architecture/THREAT_MODEL.md) | Initial assets, trust boundaries and planned controls |
@@ -27,7 +27,7 @@ The [master context](project/HYDROOVERITY_MASTER_CONTEXT.md) is the preserved pr
 Research source claims in the master context are inherited, not independently reverified in M01. The original submitted six-slide deck and historic source/test packages are not included. Do not claim they were inspected or rerun.
 
 
-## M02 detailed design â€” approved and merged
+## M02 detailed design — approved and merged
 
 - [Product routes](architecture/PRODUCT_INFORMATION_ARCHITECTURE.md) and [role/action matrix](architecture/ROLE_PERMISSION_MATRIX.md).
 - [UI system](../design/design-system/UI_UX_DESIGN_SYSTEM.md) and [page specifications / ten wireframes](../design/wireframes/PAGE_AND_WIREFRAME_SPECIFICATIONS.md).
@@ -45,7 +45,7 @@ M05: [executed simulation evidence, limitations and reproduction](testing/M05_SI
 
 M08: [digital hardware engineering report](engineering/M08_DIGITAL_HARDWARE_REPORT.md), [hardware source index](../hardware/README.md), [estimated materials ledger](../hardware/bom/M08_BOM.md). Review package only; no physical validation.
 
-M03: [backend implementation report](engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [runtime decisions](decisions/M03_RUNTIME_DECISIONS.md), [acceptance results](testing/M03_ACCEPTANCE_RESULTS.md), [PowerShell/Compose reproduction](../services/api/README.md) and [117-operation/57-table traceability](../data/schemas/m03-implementation-matrix.json). Published for owner review; not merged automatically. No public deployment or physical validation.
+M03: [backend implementation report](engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [runtime decisions](decisions/M03_RUNTIME_DECISIONS.md), [acceptance results](testing/M03_ACCEPTANCE_RESULTS.md), [PowerShell/Compose reproduction](../services/api/README.md) and [117-operation/57-table traceability](../data/schemas/m03-implementation-matrix.json). This historical M03 package is merged; execution-time reports remain historical. No public deployment or physical validation.
 
 M03 and recovery PR #15 were subsequently approved and merged at main `e0122f5ee4146e49ae6113a1aa6a5ee444b25973`; issue #3 is closed. The original milestone reports retain their execution-time status.
 
