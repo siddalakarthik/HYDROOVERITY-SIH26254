@@ -1,19 +1,19 @@
 {
-  "revision": 1,
-  "accepted_main": "d772045ba6d44ddd1bbee1e4baf890c5786628d5",
+  "revision": 2,
+  "accepted_main": "008bd507c09352dcbb8098ec9812448693e0d99b",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40261562317",
   "implemented_operations": 111,
   "migrated_tables": 51,
   "migration_head": "pre_m10_001",
-  "scope_rule": "Original 40-case denominator and historical results remain immutable. Current F01 work is implemented on the review branch; PASS requires executed acceptance and exact-head CI. No external delivery or deployment activation.",
+  "scope_rule": "Original 40-case denominator and historical results remain immutable. F01 now satisfies its opt-in in-app receipt criterion with executed PostgreSQL/browser evidence and four green post-merge jobs. Physical, external delivery and deployment gates remain applicable.",
   "items": [
     {
       "id": "F01",
       "requirement": "Citizen creates report",
       "historical_status": "BLOCKED",
-      "current_status": "BLOCKED",
-      "root_cause": "The legacy complaint lifecycle was absent from the in-app worker source catalogue. This review branch adds opt-in COMPLAINT_PROGRESS with current-owner authorization.",
+      "current_status": "PASS",
+      "root_cause": "Legacy complaint lifecycle targets were absent from the durable in-app queue. COMPLAINT_PROGRESS now uses existing opt-in consent, safe templates, current ownership and permission checks.",
       "required_implementation": "Connect complaint lifecycle to deduplicated customer-safe in-app notifications without creating service/incident records.",
       "required_test": "One complaint/tracking number and public receipt, one notification; different body same key409",
       "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
@@ -24,14 +24,18 @@
         "services/api/tests/prem10_complaint_acceptance.py",
         "apps/web/browser/communications.spec.ts"
       ],
-      "completion_commit": null,
-      "completion_pr": null,
+      "completion_commit": "1a353d7a53fc822c5a1405493c619b462f5de95a",
+      "completion_pr": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/pull/25",
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
         "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
-        "docs/testing/PRE_M10_F01_ACCEPTANCE.md"
+        "docs/testing/PRE_M10_F01_ACCEPTANCE.md",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40260748591",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40261562317",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40260748591/artifacts/12624503473",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40260748591/artifacts/12623674173"
       ],
-      "remaining_limitations": "Review and final CI/browser execution pending. Default opt-out is preserved; no external delivery, forced notifications, synthetic service requests or field claims."
+      "remaining_limitations": "Residents must opt in. External delivery, offline/media and physical verification remain separately gated. Lost-response deduplication and inbox ownership are tested; no exactly-once external delivery is claimed."
     },
     {
       "id": "F02",
@@ -143,21 +147,24 @@
       "requirement": "Reopen",
       "historical_status": "BLOCKED",
       "current_status": "BLOCKED",
-      "root_cause": "Full comparable failed-verification and revisit workflow is unverified",
+      "root_cause": "Prior-cycle completed work, receipts and reviews could satisfy a reconsidered incident. Current-cycle guards now reject that reuse, permit explicit authorized resumption of unfinished work, and require fresh recorded/performed receipts.",
       "required_implementation": "Add explicit versioned reopen/revisit transitions preserving immutable findings and independent verification.",
       "required_test": "New reopen event; prior repairs/evidence preserved",
       "dependency_or_approval": "Explicit reopen policy and comparable verification; never fabricate repair or PASSED evidence",
       "risk": "HIGH",
       "source_files": [
-        "services/api/tests/test_workflow.py"
+        "services/api/tests/test_workflow.py",
+        "services/api/tests/prem10_revisit_acceptance.py",
+        "docs/decisions/PRE_M10_F07_REVISIT_GUARDS.md"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/decisions/PRE_M10_F07_REVISIT_GUARDS.md"
       ],
-      "remaining_limitations": "Full comparable failed-verification and revisit workflow is unverified"
+      "remaining_limitations": "Guard fix tested locally with actual PostgreSQL, immutable history, consecutive reconsiderations, stale versions, cancellation contention and role denial. Full original acceptance remains blocked by the comparable measured-verification path and final integrated review."
     },
     {
       "id": "S01",
@@ -1079,7 +1086,7 @@
       "requirement": "Runtime inventory",
       "historical_status": "PASS",
       "current_status": "PASS",
-      "root_cause": "111 implemented operations; 51 migrated tables; m07_c_001. Designed counts are separate.",
+      "root_cause": "111 implemented operations; 51 migrated tables; pre_m10_001. Designed counts remain separate.",
       "required_implementation": "Preserve compatibility and record every additive count transition.",
       "required_test": "Live OpenAPI operation count and actual PostgreSQL table/revision query.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
@@ -1140,8 +1147,8 @@
       "id": "DOC-01",
       "requirement": "Current repository presentation",
       "historical_status": "FAIL",
-      "current_status": "NOT TESTED",
-      "root_cause": "Stale root claims corrected on this review branch; seven source-checked previews added. GitHub rendering and final CI not yet verified.",
+      "current_status": "PASS",
+      "root_cause": "Outdated README and overriding .github/README.md were corrected; real compact media, source manifests and editable architecture SVG now render on GitHub.",
       "required_implementation": "Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation.",
       "required_test": "Rendered README, links, mobile image readability, claims against source.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
@@ -1151,12 +1158,15 @@
         "docs/media/manifest.json",
         "scripts/check_repository_media.py"
       ],
-      "completion_commit": null,
-      "completion_pr": null,
+      "completion_commit": "e4364e6aa3e112800b8c97d8b9393d108f4077f8",
+      "completion_pr": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/pull/24",
       "evidence": [
-        "scripts/check_repository_media.py"
+        "scripts/check_repository_media.py",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/pull/24",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40214843053",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40222558826"
       ],
-      "remaining_limitations": "Review branch only; remote rendered verification and all four CI gates pending."
+      "remaining_limitations": "Actual supported-browser review verified all seven embedded images plus linked acoustic and budget figures. Screenshots are retained locally in work/pre-m10-readme-audit. This does not certify native zoom or assistive technology; hardware visuals remain proposed digital designs."
     },
     {
       "id": "DOC-02",
