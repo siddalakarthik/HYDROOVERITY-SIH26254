@@ -28,7 +28,7 @@
     },
     "apps/web/src/lib/route-capabilities.json": {
       "baseline_sha256": "332c106e06a6e6834a5b4f7cb6c54ca0207f8ceecb7cf0bdb5d4bc0788c35aed",
-      "sha256": "e998b8d912b883facd86be0b525a37e687814ff316c14477660580951e9fb3af",
+      "sha256": "b503e777950fe705d08e1a2eab94311840ccbba569555ab1e9b0449936ece9ac",
       "reason": "Gated contact route/storage, exact prior compatibility, accurate inventory, private test isolation or executed acceptance integration."
     },
     "apps/web/tools/contracts.py": {
