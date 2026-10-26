@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **111 implemented operations, 51 migrated tables, `pre_m10_001`**. Original M02 acceptance: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **111 implemented operations, 51 migrated tables, `pre_m10_001`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status after F01: **22 PASS / 12 BLOCKED / 6 NOT IMPLEMENTED**. Revision 2 records green main `008bd507c09352dcbb8098ec9812448693e0d99b` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40261562317). Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -14,13 +14,13 @@ Each ID below has historical/current status, root cause, implementation, test, g
 
 | ID | Requirement | Historical | Current | Remaining limitation |
 | --- | --- | --- | --- | --- |
-| F01 | Citizen creates report | BLOCKED | BLOCKED | Opt-in complaint notifications implemented; final browser/CI review pending |
+| F01 | Citizen creates report | BLOCKED | PASS | Real opt-in receipt, replay/ownership tests and browser inbox workflow; PR25 and post-merge CI green |
 | F02 | Citizen ownership | PASS | PASS | Media absent; boundary denial is not secure-media functionality |
 | F03 | Triage | PASS | PASS | Synthetic operator decisions, no actual utility triage |
 | F04 | Assignment | BLOCKED | BLOCKED | Offline synchronization remains deferred D9 |
 | F05 | Worker repair | BLOCKED | BLOCKED | D7 photo processing/storage not implemented |
 | F06 | Verification | BLOCKED | BLOCKED | Operational comparable before/after acquisition and positive field verification are not implemented |
-| F07 | Reopen | BLOCKED | BLOCKED | Full comparable failed-verification and revisit workflow is unverified |
+| F07 | Reopen | BLOCKED | BLOCKED | Current-cycle guard fix tested; comparable measured verification and final integrated review remain open |
 | S01 | No authentication | PASS | PASS | Private loopback only |
 | S02 | Tenant isolation | PASS | PASS | No third-party penetration testing |
 | S03 | CSRF/session | PASS | PASS | Single-process in-memory rate limiter; public release blocked |
@@ -70,7 +70,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | META-COUNTS | Runtime inventory | PASS | Preserve compatibility and record every additive count transition. |
 | META-ISSUES | Milestone closure | PASS | Close #7 only against original criteria; no M10 before readiness review. |
 | EVIDENCE-01 | Stale HTTPS evidence migration label | PASS | Query live alembic_version; explicitly version source-baseline transition without rewriting historical evidence. |
-| DOC-01 | Current repository presentation | NOT TESTED | Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation. |
+| DOC-01 | Current repository presentation | PASS | Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation. |
 | DOC-02 | Subsystem documentation | NOT TESTED | Audit important folder guides and distinguish implementation from proposals. |
 | UI-01 | Website quality audit | NOT TESTED | Inspect actual public/auth/role workflows and fix only demonstrated defects using accepted design system. |
 | DEP-01 | Development dependency and license limitations | BLOCKED | Assess affected tools and safe targeted upgrades; preserve attribution; owner chooses project license. |
