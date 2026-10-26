@@ -1,0 +1,36 @@
+{
+  "observed_date": "2026-10-26",
+  "scope": "UNCHANGED_FROZEN_FRONTEND_LOCKFILE_REGISTRY_AUDIT",
+  "command": "pnpm audit --json",
+  "working_directory": "apps/web",
+  "exit_status": 0,
+  "lockfile_sha256": "7da0e33941c4100aef1a2a859b792bd9e350780ea0a38e079a2fe11663374c60",
+  "raw_audit_sha256": "c9e770e9c4b611823141bb7c44370e3c117dd928c48a8478c9b929f28359eaaf",
+  "historical_m04_raw_audit_sha256": "4daf3c70f2dd61c3340b937314a917e9dd1a9d19a249cb57ef80f4264236efd2",
+  "registry_metadata": {
+    "vulnerabilities": {"info": 0, "low": 0, "moderate": 0, "high": 0, "critical": 0},
+    "dependencies": 99,
+    "devDependencies": 236,
+    "optionalDependencies": 87,
+    "totalDependencies": 395
+  },
+  "previous_advisory": {
+    "id": "GHSA-vfj7-8cjw-p6xm",
+    "package": "braces",
+    "historical_severity": "high",
+    "historical_affected_versions": "<=3.0.3",
+    "status": "WITHDRAWN",
+    "withdrawn_date": "2026-10-23",
+    "source": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+    "patched_version_claimed": false
+  },
+  "dependency_changes": false,
+  "audit_exemptions_added": false,
+  "project_license": "OWNER_DECISION_REQUIRED",
+  "limitations": [
+    "Registry snapshot is not proof of zero security risk.",
+    "Historical M04 audit remains unchanged and accurately records its execution-time finding.",
+    "Third-party license notices and native-binary redistribution obligations remain applicable.",
+    "Backend, scientific, hardware and system-tool dependencies are outside this audit scope."
+  ]
+}

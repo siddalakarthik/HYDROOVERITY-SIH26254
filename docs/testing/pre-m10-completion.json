@@ -1,8 +1,8 @@
 {
   "revision": 4,
-  "accepted_main": "6c211066b75f21e4bc65a273a2aac4472530bb51",
+  "accepted_main": "c6a4d172facc89c22f95dac8473a0bec76ca94e3",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40282063124",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40298292093",
   "implemented_operations": 112,
   "migrated_tables": 53,
   "migration_head": "pre_m10_002",
@@ -1224,7 +1224,7 @@
       "requirement": "Development dependency and license limitations",
       "historical_status": "BLOCKED",
       "current_status": "BLOCKED",
-      "root_cause": "Accepted development-only advisory and license limitations remain; project license undecided.",
+      "root_cause": "The unchanged frontend lockfile now reports zero active registry advisories. The previously recorded braces advisory was withdrawn upstream on 2026-10-23; historical evidence is preserved. Project license and redistribution review remain unresolved.",
       "required_implementation": "Assess affected tools and safe targeted upgrades; preserve attribution; owner chooses project license.",
       "required_test": "Dependency advisory and installed-license evidence; regression tests after changes.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
@@ -1235,9 +1235,11 @@
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
-        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
+        "docs/testing/CURRENT_DEPENDENCY_REVIEW.md",
+        "data/schemas/pre-m10-dependency-review.json"
       ],
-      "remaining_limitations": "Accepted development-only advisory and license limitations remain; project license undecided."
+      "remaining_limitations": "Registry snapshot is not a security certification; no package fix or upgrade is claimed. Project license selection, native Sharp/LGPL notices and target-platform redistribution review still require owner review. Backend/scientific/system tools were not covered by this audit."
     },
     {
       "id": "HW-01",
