@@ -20,6 +20,27 @@ INCIDENT_EDGES = {
 }
 
 
+def review_cycle(c, incident_id):
+    """Server history, not caller timestamps, identifies a reconsidered incident."""
+    return one(
+        c,
+        "SELECT max(created_at) AS boundary FROM incident_events WHERE incident_id=:i "
+        "AND event_type='TRANSITION' AND (to_status='REOPENED' OR "
+        "(to_status='UNDER_REVIEW' AND from_status IN ('NOT_VERIFIABLE','DISMISSED')))",
+        i=incident_id,
+    )["boundary"]
+
+
+# Completed history is never reused as an active assignment. Existing unfinished
+# work can be explicitly reassigned/resumed in the new cycle; a note alone cannot
+# qualify it. Strict timestamps fail closed if transaction start times overlap.
+CURRENT_WORK = """(CAST(:cycle AS timestamptz) IS NULL OR w.created_at>:cycle OR EXISTS(
+ SELECT 1 FROM work_order_actions a WHERE a.work_order_id=w.id AND a.created_at>:cycle
+ AND a.action_type IN ('ASSIGNMENT','TRANSITION_ACCEPTED','TRANSITION_IN_PROGRESS')))"""
+CURRENT_REPAIR = """(CAST(:cycle AS timestamptz) IS NULL OR
+ (r.created_at>:cycle AND r.performed_at>:cycle))"""
+
+
 class IncidentService(Service):
     def run(self, b, parent):
         s, c = self.s, self.c
@@ -113,27 +134,34 @@ class IncidentService(Service):
             "INVALID_TRANSITION",
             "Incident transition is not allowed",
         )
+        cycle = review_cycle(c, parent["id"])
         if target == "IN_PROGRESS":
             require(
                 one(
                     c,
-                    "SELECT id FROM work_orders WHERE incident_id=:i AND assignee_id IS NOT NULL AND status NOT IN ('CREATED','CANCELLED') LIMIT 1",
+                    "SELECT w.id FROM work_orders w WHERE w.incident_id=:i "
+                    "AND w.assignee_id IS NOT NULL AND w.status NOT IN ('CREATED','CANCELLED','COMPLETED') "
+                    "AND " + CURRENT_WORK + " LIMIT 1",
                     i=parent["id"],
+                    cycle=cycle,
                 ),
                 409,
                 "WORK_REQUIRED",
-                "Assigned work required",
+                "Current-cycle assigned work required",
             )
         if target == "VERIFICATION_PENDING":
             require(
                 one(
                     c,
-                    "SELECT r.id FROM repair_records r JOIN work_orders w ON w.id=r.work_order_id WHERE w.incident_id=:i AND w.status IN ('SUBMITTED_FOR_REVIEW','COMPLETED') LIMIT 1",
+                    "SELECT r.id FROM repair_records r JOIN work_orders w ON w.id=r.work_order_id "
+                    "WHERE w.incident_id=:i AND w.status IN ('SUBMITTED_FOR_REVIEW','COMPLETED') "
+                    "AND " + CURRENT_WORK + " AND " + CURRENT_REPAIR + " LIMIT 1",
                     i=parent["id"],
+                    cycle=cycle,
                 ),
                 409,
                 "REPAIR_REQUIRED",
-                "Submitted repair receipt required",
+                "Current-cycle submitted repair receipt required",
             )
         if (
             target in {"RESOLVED", "REOPENED", "NOT_VERIFIABLE"}
@@ -146,8 +174,16 @@ class IncidentService(Service):
             }[target]
             latest = one(
                 c,
-                "SELECT v.outcome FROM verification_records v JOIN repair_records r ON r.id=v.repair_id JOIN work_orders w ON w.id=r.work_order_id WHERE w.incident_id=:i ORDER BY v.created_at DESC,v.id DESC LIMIT 1",
+                "SELECT v.outcome FROM verification_records v JOIN repair_records r ON r.id=v.repair_id "
+                "JOIN work_orders w ON w.id=r.work_order_id WHERE w.incident_id=:i "
+                "AND w.status IN ('SUBMITTED_FOR_REVIEW','COMPLETED') "
+                "AND "
+                + CURRENT_WORK
+                + " AND "
+                + CURRENT_REPAIR
+                + " ORDER BY v.created_at DESC,v.id DESC LIMIT 1",
                 i=parent["id"],
+                cycle=cycle,
             )
             require(
                 latest and latest["outcome"] == expected,
