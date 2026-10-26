@@ -49,3 +49,7 @@ FAILED result. Executed locally on 2026-10-26 against the separate PostgreSQL da
 No M03/M05/M08 historical hash is replaced. The integration change should extend
 the additive pre-M10 source manifest for `services/incidents.py`; the integration
 owner will finalize manifest linkage and mandatory checks on the accepted head.
+
+Integration baseline: PR25 merged normally as `008bd507c09352dcbb8098ec9812448693e0d99b`; all four main CI jobs passed in run 40261562317 before integration. A seventh case executes two consecutive real NOT_VERIFIABLE reconsiderations (passed separately, 4.50 s); each later visit uses fresh authenticated sessions to respect the unchanged CSRF-bootstrap throttle. CI runs the complete explicit revisit suite separately and uploads only its sanitized summary for fourteen days. No operation/table/migration or scientific-source change is introduced.
+
+After integrating green F01 main and applying `pre_m10_001` to the dedicated disposable database, the published runner executed all seven cases successfully (20.65 s). Repository/M02/M07 design, M07-A/B/C and M06 source compatibility, all 277 historical M09 source pins through explicit amendments, reviewed-media consistency, Ruff and source-amendment regressions passed locally. Final PR and post-merge CI remain separate gates.

@@ -16,7 +16,7 @@ The worker checks current recipient membership, permission, complaint ownership 
 - Thirteen focused real-PostgreSQL cases passed, including duplicate submission/body conflict, replay, worker contention, default opt-out, stale versions, tenant/owner isolation, session/membership/permission revocation, atomic audit rollback, queued ownership changes, clean migration roundtrip, populated downgrade refusal and preservation of prior service notification history.
 - The existing backend suite initially produced 83 passes and one outdated downgrade-error assertion: the new data-preservation guard is reached before the older forward-only guard. The assertion now names the exact new refusal and still checks the unchanged migration head. It passed alongside all thirteen focused cases (**14 passed**).
 - Nineteen frontend unit tests, TypeScript, lint and production build passed. Repository integrity, M02/M07 design, M07-A/B/C, M06, M09 source boundaries and seven baseline amendment regressions passed.
-- The added real browser scenario opts in, submits a complaint, waits for the actual worker, opens the owned report from the inbox and checks mobile reflow/accessibility. Execution and all four final CI gates remain required; no browser result is claimed here before execution.
+- The added real browser scenario opts in, submits a complaint, waits for the actual worker, opens the owned report from the inbox and checks mobile reflow/accessibility. The actual CI browser workflow passed on reviewed head `1a353d7a53fc822c5a1405493c619b462f5de95a` in run 40260748591; its sanitized screenshot artifact was downloaded and SHA256-verified.
 
 ## Reproduction and evidence
 
@@ -24,7 +24,7 @@ Use the existing isolated backend dependencies and operator-generated disposable
 
 The backend CI job runs this tool and uploads only its sanitized summary. The frontend CI job executes the existing communications workflow with the additional real complaint scenario and uploads `PREM10-F01-complaint-inbox-mobile.png`. Both artifacts retain evidence for fourteen days. No credentials, resident data or scientific truth are published.
 
-The original F01 status remains BLOCKED pending final reviewed execution. All physical, media, offline, external delivery, privacy and public deployment limitations remain applicable.
+F01 is now PASS for the original opt-in in-app complaint receipt criterion. All four PR jobs passed in run 40260748591; PR25 merged normally as `008bd507c09352dcbb8098ec9812448693e0d99b`, and all four post-merge jobs passed in run 40261562317. The 13-case acceptance and mobile screenshot artifacts were checksum-verified; no failures, errors or skips were reported. All physical, media, offline, external delivery, privacy and public deployment limitations remain applicable.
 
 ## Integration update, 2026-10-26
 

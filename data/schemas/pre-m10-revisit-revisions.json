@@ -1,0 +1,25 @@
+{
+  "baseline_commit": "008bd507c09352dcbb8098ec9812448693e0d99b",
+  "source_revisions": {
+    "services/api/hydro/services/incidents.py": {
+      "baseline_sha256": "65a2f894f653e371d2756350fb36a53cd6beeecc191c9913cba796c8b6a94e91",
+      "sha256": "8052b67b7b9c6053db34cd5b836a56816be5d790fe5104dafaa0fa09c6409bfc",
+      "reason": "Current-cycle incident revisit guards, explicit chained source verification, and isolated PostgreSQL acceptance."
+    },
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "95ac5ad3462d93feca7e30fd6be512dd6d2f8b292215618b8a25c4d1f654c6ec",
+      "sha256": "475ffc8232f670fbefd2acf3d98cc8a94cbf5f710011818b2a546267ce6d4725",
+      "reason": "Current-cycle incident revisit guards, explicit chained source verification, and isolated PostgreSQL acceptance."
+    },
+    "scripts/pre_m10_sources.py": {
+      "baseline_sha256": "7dfee3cd7935c44ae1191358c258739297cbf557c87092707ec6c247f904dbcf",
+      "sha256": "29c5b8c56f33931113bc8b9275e9a48226608d0c0542e38948e810732a3e1a37",
+      "reason": "Current-cycle incident revisit guards, explicit chained source verification, and isolated PostgreSQL acceptance."
+    },
+    "scripts/check_pre_m10_f01.py": {
+      "baseline_sha256": "0b2f309f6802cbd05c94aae3393bdc07410f7c966fc33d1e1c4a5512f37211b0",
+      "sha256": "e985c6c012c11f9267b40e65c0c8e9a21c9dd5ee49b2796ee215252f54a172ef",
+      "reason": "Current-cycle incident revisit guards, explicit chained source verification, and isolated PostgreSQL acceptance."
+    }
+  }
+}
