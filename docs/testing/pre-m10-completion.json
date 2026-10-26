@@ -1,8 +1,8 @@
 {
-  "revision": 3,
-  "accepted_main": "630b28cc396d29f03f5e9fb3f7ea076eecc86821",
+  "revision": 4,
+  "accepted_main": "6c211066b75f21e4bc65a273a2aac4472530bb51",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40264040358",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40282063124",
   "implemented_operations": 112,
   "migrated_tables": 53,
   "migration_head": "pre_m10_002",
@@ -532,22 +532,25 @@
       "requirement": "Jobs and delivery",
       "historical_status": "BLOCKED",
       "current_status": "BLOCKED",
-      "root_cause": "External providers and provider timeout handling deferred D8",
+      "root_cause": "In-app persistence, deduplication and worker restart remain implemented. A separate disabled external-provider interface now has tested explicit retry/unknown-effect decisions with local fake fault injection.",
       "required_implementation": "Implement disabled provider interface with deterministic timeout/retry/dead-letter fake-provider tests.",
       "required_test": "Bounded retries; partial outputs incomplete; notification deduplication/failed status visible",
       "dependency_or_approval": "D8; external sends disabled; local fake-provider tests allowed; three total attempts",
       "risk": "HIGH",
       "source_files": [
         "services/api/tests/m09_acceptance.py",
-        "services/api/tests/test_communications.py"
+        "services/api/tests/test_communications.py",
+        "services/api/hydro/external_provider_boundary.py",
+        "services/api/tests/test_external_provider_boundary.py"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/decisions/PRE_M10_EXTERNAL_PROVIDER_BOUNDARY.md"
       ],
-      "remaining_limitations": "External providers and provider timeout handling deferred D8"
+      "remaining_limitations": "R05 remains BLOCKED: no real external adapter, destination/consent workflow, approved retry policy, durable external-send reconciliation or delivery evidence. Fake acknowledgement is not delivery/read proof; unknown effects remain uncertain and retries may duplicate."
     },
     {
       "id": "U01",
@@ -570,7 +573,7 @@
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
         "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
       ],
-      "remaining_limitations": "640/320 reflow approximates 200/400% of1280px; native browser zoom not executed"
+      "remaining_limitations": "640/320 reflow approximates 200/400% of1280px; native browser zoom not executed Native Chrome attempt on 2026-10-26 ended with Computer Use app approval timed out; no native zoom or security-bypass action was performed."
     },
     {
       "id": "U02",
