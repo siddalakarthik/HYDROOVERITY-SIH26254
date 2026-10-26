@@ -9075,6 +9075,152 @@
           "next_cursor",
           "as_of"
         ]
+      },
+      "DeviceWrite": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "serial_ref": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "device_kind": {
+            "type": "string",
+            "maxLength": 40,
+            "enum": [
+              "WATCH",
+              "GUARD5",
+              "EAR_PAIR",
+              "VIRTUAL"
+            ]
+          },
+          "provisioning_environment": {
+            "$ref": "#/components/schemas/AcquisitionEnvironment"
+          }
+        },
+        "required": [
+          "serial_ref",
+          "device_kind",
+          "provisioning_environment"
+        ]
+      },
+      "Device": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "serial_ref": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "device_kind": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "environment": {
+            "$ref": "#/components/schemas/AcquisitionEnvironment"
+          },
+          "health": {
+            "$ref": "#/components/schemas/DeviceHealth"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "id",
+          "serial_ref",
+          "device_kind",
+          "environment",
+          "health",
+          "version"
+        ]
+      },
+      "DeviceHealth": {
+        "type": "string",
+        "enum": [
+          "HEALTHY",
+          "DEGRADED",
+          "DISCONNECTED",
+          "STALE",
+          "CALIBRATION_NEEDED",
+          "FAULT",
+          "UNKNOWN"
+        ]
+      },
+      "Page_Device": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            },
+            "maxItems": 100
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of"
+        ]
+      },
+      "CredentialIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/AcquisitionEnvironment"
+          }
+        },
+        "required": [
+          "expires_at",
+          "environment"
+        ]
+      },
+      "CredentialView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "one_time_secret": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "one_time_secret",
+          "expires_at"
+        ],
+        "description": "Only issuance response; no logs/stream/cache. Credential environment must match reviewed device profile; hardware/site approval still required."
       }
     },
     "securitySchemes": {
@@ -23921,6 +24067,579 @@
           }
         },
         "x-retry-policy": "READ_ONLY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/devices": {
+      "get": {
+        "operationId": "devices_get_orgs_organization_id_devices",
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Read permitted device identity/health, not raw telemetry.",
+        "description": "Read permitted device identity/health, not raw telemetry. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "health",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "description": "Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access."
+          },
+          {
+            "name": "environment",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/AcquisitionEnvironment"
+            },
+            "description": "Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ENGINEER",
+          "SUPERVISOR",
+          "ADMIN"
+        ],
+        "x-required-permission": "devices.read",
+        "x-scope": "tenant",
+        "x-database-effect": "Read permitted device identity/health, not raw telemetry.",
+        "x-restricted-truth": false,
+        "responses": {
+          "200": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_Device"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-retry-policy": "READ_ONLY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
+      },
+      "post": {
+        "operationId": "devices_post_orgs_organization_id_devices",
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Register reviewed device identity",
+        "description": "Register reviewed device identity; cannot bypass future physical provisioning gate. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409."
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": "Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ADMIN"
+        ],
+        "x-required-permission": "devices.write",
+        "x-scope": "tenant + fresh reauth",
+        "x-database-effect": "Register reviewed device identity; cannot bypass future physical provisioning gate.",
+        "x-restricted-truth": false,
+        "responses": {
+          "201": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceWrite"
+              }
+            }
+          }
+        },
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/devices/{device_id}": {
+      "get": {
+        "operationId": "devices_get_orgs_organization_id_devices_device_id",
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Read device metadata.",
+        "description": "Read device metadata. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ENGINEER",
+          "SUPERVISOR",
+          "ADMIN"
+        ],
+        "x-required-permission": "devices.read",
+        "x-scope": "tenant",
+        "x-database-effect": "Read device metadata.",
+        "x-restricted-truth": false,
+        "responses": {
+          "200": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Device"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-retry-policy": "READ_ONLY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/devices/{device_id}/credentials": {
+      "post": {
+        "operationId": "devices_post_orgs_organization_id_devices_device_id_credentials",
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Issue one-time scoped credential matching device profile",
+        "description": "Issue one-time scoped credential matching device profile; audit without secret. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence. Credential issuance: first successful response alone includes one_time_secret, Cache-Control:no-store. Same-key replay returns 409 without secret (even identical body). Receipt stores resource/status only, never secret. Lost reply requires authorized revocation and new issuance/key; no redisclosure.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409."
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": "Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ADMIN"
+        ],
+        "x-required-permission": "devices.write",
+        "x-scope": "tenant + fresh reauth",
+        "x-database-effect": "Issue one-time scoped credential matching device profile; audit without secret.",
+        "x-restricted-truth": false,
+        "responses": {
+          "201": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialView"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredentialIssue"
+              }
+            }
+          }
+        },
+        "x-retry-policy": "TENANT_7_DAY",
+        "x-authorization-guards": [
+          "TENANT"
+        ],
+        "x-secret-replay": "REJECT_409"
+      }
+    },
+    "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}": {
+      "delete": {
+        "operationId": "devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id",
+        "tags": [
+          "Devices"
+        ],
+        "summary": "Revoke only same-device credential and audit.",
+        "description": "Revoke only same-device credential and audit. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "device_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "credential_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409."
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": "Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ADMIN"
+        ],
+        "x-required-permission": "devices.write",
+        "x-scope": "tenant + fresh reauth",
+        "x-database-effect": "Revoke only same-device credential and audit.",
+        "x-restricted-truth": false,
+        "responses": {
+          "200": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-retry-policy": "TENANT_7_DAY",
         "x-authorization-guards": [
           "TENANT"
         ]

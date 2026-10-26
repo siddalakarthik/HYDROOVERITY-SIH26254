@@ -10,6 +10,7 @@ for (const [index, file] of [
   "browser/dispatch.spec.ts",
   "browser/communications.spec.ts",
   "browser/realtime.spec.ts",
+  "browser/devices.spec.ts",
 ].entries()) {
   if (index) {
     console.log(

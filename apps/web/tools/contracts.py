@@ -12,6 +12,7 @@ from hydro.contracts import runtime_openapi  # noqa: E402
 from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
 from hydro.project_contact import OPERATIONS as CONTACT
 from hydro.realtime import OPERATIONS as REALTIME
+from hydro.device_credentials import OPERATIONS as DEVICES
 from hydro.service_contracts import ACTIVE  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
 from hydro.scheduling_contracts import ACTIVE as SCHEDULING  # noqa: E402
@@ -24,7 +25,7 @@ def outputs():
     implemented = {o["id"] for o in matrix["operations"] if o["status"] == "CODE_TESTED"}
     contract = runtime_openapi()
     advertised = {operation["operationId"] for methods in contract["paths"].values() for operation in methods.values()}
-    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS + CONTACT + REALTIME}, "Browser contract must match exactly the implemented operations"
+    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS + CONTACT + REALTIME + DEVICES}, "Browser contract must match exactly the implemented operations"
     assert not {"EvaluationResult", "SimulationParameters", "SimulationRun", "RunOutput"}.intersection(contract["components"]["schemas"]), "Deferred scientific/evaluation models must not enter the browser contract"
     groups = {
         7: ["Public"], 8: ["Public"], 18: ["Current user"], 19: ["Current user"],
@@ -71,6 +72,10 @@ def outputs():
                      operations=[{"operation_id": o["id"], "method": o["method"].upper(), "path": o["path"], "status": "IMPLEMENTED"} for o in SCIENCE],
                      data_boundary="Engineer-only tenant-scoped SIMULATION snapshots; no evaluator truth or operational linkage",
                      future_dependency="Arbitrary run jobs, simulator credentials and evaluator endpoints remain deferred")
+    for page in pages:
+        if page['id'] in {'PAGE-26','PAGE-27'}:
+            selected=[op for op in DEVICES if (op['path'].endswith('/devices')) == (page['id']=='PAGE-26')]
+            page.update(status='ACTIVE_FUNCTIONAL' if page['id']=='PAGE-26' else 'ACTIVE_READ_ONLY',component='devices',operations=[{'operation_id':op['id'],'method':op['method'].upper(),'path':op['path'],'status':'IMPLEMENTED'} for op in selected],title='Proposed device identities; physical provisioning remains gated',future_dependency='Physical bindings, acquisition, channels, calibration and measured evidence are not approved by metadata registration',browser_evidence='New device workflow evidence is recorded only after the private browser scenario executes.')
     proposed = json.loads((ROOT / "design/ui-ux/m07-route-catalog.json").read_text())
     page_operations = {47:[2,5],48:[1],49:[3,4,6,8],50:[2,7],51:[3,4,7,8,9,13]}
     for p in proposed["pages"][-5:]:
@@ -108,4 +113,4 @@ if __name__ == "__main__":
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected)
-    print("PASS: 114 registered operations (contact gated), including authorized record replay, and 51 route classifications")
+    print("PASS: 119 registered operations (contact gated), including authorized record replay, and 51 route classifications")

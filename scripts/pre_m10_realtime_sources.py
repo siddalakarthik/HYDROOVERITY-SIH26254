@@ -77,7 +77,7 @@ def manifest():
     return validate_manifest(json.loads((ROOT/'data/schemas/pre-m10-realtime-revisions.json').read_text(encoding='utf-8')))
 
 
-def extend_digest(name, expected):
+def realtime_digest(name, expected):
     row=manifest()['source_revisions'].get(name)
     if row is None:
         row_hash=manifest()['new_source_sha256'].get(name)
@@ -88,8 +88,14 @@ def extend_digest(name, expected):
     return row['sha256']
 
 
+def extend_digest(name, expected):
+    from pre_m10_devices_sources import extend_digest as extend_devices
+    return extend_devices(name, realtime_digest(name, expected))
+
+
 def before_realtime(spec):
-    previous=copy.deepcopy(spec)
+    from pre_m10_devices_sources import before_devices
+    previous=before_devices(spec)
     present=PATHS.intersection(previous['paths'])
     if not present:
         assert not SCHEMAS.intersection(previous['components']['schemas'])

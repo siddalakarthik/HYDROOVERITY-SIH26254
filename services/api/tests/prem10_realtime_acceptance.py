@@ -386,7 +386,7 @@ def test_realtime_populated_migration_downgrade_refuses_to_erase_cursors(env):
     finally:
         cfg.attributes["connection"].close()
     with env["owner"].begin() as c:
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_003"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_004"
         assert one(c, "SELECT count(*) AS n FROM realtime_cursors")["n"] == 1
 
 

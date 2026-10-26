@@ -38,8 +38,15 @@ import { NetworkPage } from "./network";
 import { Notifications, Feedback } from "./communications";
 import { Administration, Audit } from "./administration";
 import routes from "../lib/route-capabilities.json";
+import { Devices } from "./devices";
 
 const navItems = [
+  {
+    suffix: "devices",
+    label: "Proposed devices",
+    roles: ["ADMIN", "ENGINEER", "SUPERVISOR"],
+    icon: HardHat,
+  },
   {
     suffix: "simulations",
     label: "Scientific lab",
@@ -171,6 +178,7 @@ export function Workspace({ segments }: { segments: string[] }) {
             )?.label ?? "Workspace");
   const content = () => {
     if (suffix === "notifications") return <Notifications org={org} />;
+    if (tail[0] === "devices") return <Devices {...common} id={tail[1]} />;
     if (suffix === "feedback") return <Feedback {...common} />;
     if (tail[0] === "simulations") return <Science org={org} id={tail[1]} />;
     if (route.status === "DEFERRED")
