@@ -1,9 +1,10 @@
 """Synthetic manual revisit guards; no measured repair outcome is asserted."""
 
+from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
 
 import pytest
-from helpers import expect, mutate
+from helpers import expect, login, mutate
 from test_workflow import assigned_work, setup, transition
 
 from hydro.db import execute, one, query
@@ -235,3 +236,40 @@ def test_reconsideration_replay_and_stale_version(env):
     ip = f["base"] + "/incidents/" + incident["id"]
     current = transition(f["supervisor"], ip, current, "ACCEPTED")
     deny_transition(f, current, "IN_PROGRESS", "WORK_REQUIRED")
+
+
+def test_revisit_resumption_and_cancellation_are_version_serialized(env):
+    f, incident, work, _, _ = first_cycle(env, completed=False)
+    incident = reconsider(f, incident)
+    other = login(env, "supervisor@example.invalid")
+    path = f["base"] + "/work-orders/" + work["id"] + "/transitions"
+    before = expect(f["supervisor"].request("GET", path.rsplit("/", 1)[0]), 200)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        responses = list(
+            pool.map(
+                lambda pair: mutate(
+                    pair[0],
+                    path,
+                    {"target": pair[1], "reason": "SYNTHETIC concurrent revisit decision"},
+                    before["version"],
+                ),
+                [(f["supervisor"], "IN_PROGRESS"), (other, "CANCELLED")],
+            )
+        )
+    assert sorted(r.status_code for r in responses) == [200, 412]
+    current = expect(f["supervisor"].request("GET", path.rsplit("/", 1)[0]), 200)
+    assert current["version"] == before["version"] + 1
+    if current["status"] == "CANCELLED":
+        deny_transition(f, incident, "IN_PROGRESS", "WORK_REQUIRED")
+    else:
+        ip = f["base"] + "/incidents/" + incident["id"]
+        transition(f["supervisor"], ip, incident, "IN_PROGRESS")
+    expect(
+        mutate(
+            f["citizen"],
+            path,
+            {"target": "IN_PROGRESS", "reason": "SYNTHETIC unauthorized revisit"},
+            current["version"],
+        ),
+        403,
+    )
