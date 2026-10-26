@@ -5,29 +5,33 @@
   "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
   "implemented_operations": 111,
   "migrated_tables": 51,
-  "migration_head": "m07_c_001",
-  "scope_rule": "Original 40-case denominator and historical results are immutable. A current PASS requires executed evidence satisfying the original criterion. This register introduces no runtime activation.",
+  "migration_head": "pre_m10_001",
+  "scope_rule": "Original 40-case denominator and historical results remain immutable. Current F01 work is implemented on the review branch; PASS requires executed acceptance and exact-head CI. No external delivery or deployment activation.",
   "items": [
     {
       "id": "F01",
       "requirement": "Citizen creates report",
       "historical_status": "BLOCKED",
       "current_status": "BLOCKED",
-      "root_cause": "Legacy complaint notifications are not implemented; separate service lifecycle is tested",
+      "root_cause": "The legacy complaint lifecycle was absent from the in-app worker source catalogue. This review branch adds opt-in COMPLAINT_PROGRESS with current-owner authorization.",
       "required_implementation": "Connect complaint lifecycle to deduplicated customer-safe in-app notifications without creating service/incident records.",
       "required_test": "One complaint/tracking number and public receipt, one notification; different body same key409",
       "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
       "risk": "MEDIUM",
       "source_files": [
-        "services/api/tests/test_workflow.py"
+        "services/api/hydro/notification_worker.py",
+        "services/api/migrations/versions/pre_m10_001.py",
+        "services/api/tests/prem10_complaint_acceptance.py",
+        "apps/web/browser/communications.spec.ts"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/testing/PRE_M10_F01_ACCEPTANCE.md"
       ],
-      "remaining_limitations": "Legacy complaint notifications are not implemented; separate service lifecycle is tested"
+      "remaining_limitations": "Review and final CI/browser execution pending. Default opt-out is preserved; no external delivery, forced notifications, synthetic service requests or field claims."
     },
     {
       "id": "F02",

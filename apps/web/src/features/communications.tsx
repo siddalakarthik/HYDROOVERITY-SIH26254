@@ -17,6 +17,7 @@ import {
 import { Pager, usePage } from "@/components/pagination";
 
 const categories = [
+  "COMPLAINT_PROGRESS",
   "SERVICE_PROGRESS",
   "APPOINTMENT",
   "WORK_ASSIGNMENT",
@@ -31,8 +32,8 @@ function Preferences({ org }: { org: string }) {
     <section className="panel" aria-labelledby="notification-preferences-title">
       <h2 id="notification-preferences-title">Notification preferences</h2>
       <p>
-        Optional in-app alerts. Your service timeline and confirmed commitments
-        remain available when alerts are off.
+        Optional in-app alerts. Your report and service timelines and confirmed
+        commitments remain available when alerts are off.
       </p>
       <ResourceState {...state}>
         {state.data && (
@@ -116,6 +117,8 @@ function Preferences({ org }: { org: string }) {
 
 function destination(org: string, item: Model<"M07Notification">) {
   const [kind, id] = item.resource_path.slice(1).split("/");
+  if (kind === "complaints" && /^[0-9a-f-]{36}$/i.test(id ?? ""))
+    return `/citizen/${org}/reports/${id}`;
   if (kind === "feedback") return `/app/${org}/feedback`;
   if (item.event_category === "WORK_ASSIGNMENT")
     return `/app/${org}/work-orders`;

@@ -10,12 +10,15 @@ from .errors import require
 from .security import now
 
 TEMPLATES = {
+    "COMPLAINT_PROGRESS": "A report update is available. Open your report timeline for the current status.",
     "SERVICE_PROGRESS": "A service progress update is available. Open your service timeline for the current status.",
     "APPOINTMENT": "An appointment update is available. Open your service record for the current visit status.",
     "WORK_ASSIGNMENT": "Your assigned work has an update. Check your current task and agenda before taking action.",
     "SERVICE_FEEDBACK": "A feedback response is available. Open your feedback history to read it.",
 }
 SOURCE_TABLES = {
+    "citizen_complaints",
+    "complaint_status_events",
     "service_requests",
     "service_public_updates",
     "appointments",
@@ -36,6 +39,16 @@ def enqueue(c, organization, event, table, identifier, action):
     )
     if not source:
         return
+    if table == "complaint_status_events":
+        source = one(
+            c,
+            "SELECT * FROM citizen_complaints WHERE organization_id=:o AND id=:i",
+            o=organization,
+            i=source["complaint_id"],
+        )
+        if not source:
+            return
+        table = "citizen_complaints"
     if table == "service_public_updates":
         source = one(
             c,
@@ -53,7 +66,9 @@ def enqueue(c, organization, event, table, identifier, action):
         )
         table = "appointments"
     targets = []
-    if table == "service_requests":
+    if table == "citizen_complaints":
+        targets.append((source["reporter_id"], None, "COMPLAINT_PROGRESS"))
+    elif table == "service_requests":
         targets.append((source["owner_membership_id"], source["id"], "SERVICE_PROGRESS"))
     elif table in {"appointments", "appointment_requests"}:
         case = one(
@@ -96,7 +111,8 @@ def enqueue(c, organization, event, table, identifier, action):
 
 def inbox_access_sql():
     # Correlated RLS-filtered parent reads; assignment is rechecked even for delivered inbox rows.
-    return """EXISTS(SELECT 1 FROM role_assignments ra JOIN role_permissions rp ON rp.role_id=ra.role_id JOIN permissions p ON p.id=rp.permission_id WHERE ra.membership_id=notifications.recipient_id AND ra.revoked_at IS NULL AND p.code=CASE notifications.resource_type WHEN 'service_requests' THEN 'service_requests.read' WHEN 'feedback_items' THEN 'feedback.read' WHEN 'work_orders' THEN 'work_orders.read' ELSE 'dispatch.read' END) AND (
+    return """EXISTS(SELECT 1 FROM role_assignments ra JOIN role_permissions rp ON rp.role_id=ra.role_id JOIN permissions p ON p.id=rp.permission_id WHERE ra.membership_id=notifications.recipient_id AND ra.revoked_at IS NULL AND p.code=CASE notifications.resource_type WHEN 'citizen_complaints' THEN 'complaints.read' WHEN 'service_requests' THEN 'service_requests.read' WHEN 'feedback_items' THEN 'feedback.read' WHEN 'work_orders' THEN 'work_orders.read' ELSE 'dispatch.read' END) AND (
+      (resource_type='citizen_complaints' AND EXISTS(SELECT 1 FROM citizen_complaints c WHERE c.id=notifications.resource_id AND c.reporter_id=notifications.recipient_id)) OR
       (resource_type='service_requests' AND EXISTS(SELECT 1 FROM service_requests s WHERE s.id=notifications.resource_id AND s.owner_membership_id=notifications.recipient_id)) OR
       (resource_type='feedback_items' AND EXISTS(SELECT 1 FROM feedback_items f WHERE f.id=notifications.resource_id AND f.owner_membership_id=notifications.recipient_id)) OR
       (resource_type='work_orders' AND hydro_m07_role(ARRAY['TECHNICIAN']) AND EXISTS(SELECT 1 FROM work_orders w WHERE w.id=notifications.resource_id AND w.assignee_id=notifications.recipient_id)) OR
@@ -109,9 +125,10 @@ def inbox_access_sql():
 
 def authorized_target(c, target, member, exact_version=False):
     table = target["resource_type"]
-    if table not in SOURCE_TABLES - {"service_public_updates"}:
+    if table not in SOURCE_TABLES - {"service_public_updates", "complaint_status_events"}:
         return False
     permission = {
+        "citizen_complaints": "complaints.read",
         "service_requests": "service_requests.read",
         "feedback_items": "feedback.read",
         "work_orders": "work_orders.read",
@@ -129,6 +146,8 @@ def authorized_target(c, target, member, exact_version=False):
     resource = one(c, f"SELECT * FROM {table} WHERE id=:i", i=target["resource_id"])
     if not resource or (exact_version and resource["version"] != target["resource_version"]):
         return False
+    if table == "citizen_complaints":
+        return str(resource["reporter_id"]) == str(member)
     if table in {"service_requests", "feedback_items"}:
         return str(resource["owner_membership_id"]) == str(member)
     if table in {"appointment_requests", "appointments"}:
@@ -206,6 +225,7 @@ def resource_path(target):
     return (
         "/"
         + {
+            "citizen_complaints": "complaints",
             "service_requests": "service-requests",
             "feedback_items": "feedback",
             "work_orders": "work-orders",

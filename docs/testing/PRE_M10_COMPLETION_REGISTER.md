@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **111 implemented operations, 51 migrated tables, `m07_c_001`**. Original M02 acceptance: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **111 implemented operations, 51 migrated tables, `pre_m10_001`**. Original M02 acceptance: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -14,7 +14,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 
 | ID | Requirement | Historical | Current | Remaining limitation |
 | --- | --- | --- | --- | --- |
-| F01 | Citizen creates report | BLOCKED | BLOCKED | Legacy complaint notifications are not implemented; separate service lifecycle is tested |
+| F01 | Citizen creates report | BLOCKED | BLOCKED | Opt-in complaint notifications implemented; final browser/CI review pending |
 | F02 | Citizen ownership | PASS | PASS | Media absent; boundary denial is not secure-media functionality |
 | F03 | Triage | PASS | PASS | Synthetic operator decisions, no actual utility triage |
 | F04 | Assignment | BLOCKED | BLOCKED | Offline synchronization remains deferred D9 |

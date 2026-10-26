@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   repository-integrity:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Check out repository
@@ -23,6 +23,8 @@ jobs:
           python3 scripts/check_repository.py
           python3 scripts/check_repository_media.py
           python3 scripts/check_pre_m10.py
+          python3 scripts/check_pre_m10_f01.py
+          python3 scripts/test_pre_m10_f01.py -v
           python3 scripts/test_pre_m10_sources.py -v
       - name: Validate M02 design contracts
         run: python3 scripts/check_m02_design.py
@@ -35,21 +37,21 @@ jobs:
           python3 scripts/test_m07_design_checker.py -v
       - name: Independently validate OpenAPI 3.1 in isolated environment
         run: |
-          python3 -m venv "$RUNNER_TEMP/openapi-review"
+          python3.12 -m venv "$RUNNER_TEMP/openapi-review"
           "$RUNNER_TEMP/openapi-review/bin/python" -m pip install --disable-pip-version-check --only-binary=:all: -r scripts/openapi-validation-requirements.txt
           "$RUNNER_TEMP/openapi-review/bin/python" -m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json
           "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_openapi_design.py
           "$RUNNER_TEMP/openapi-review/bin/python" scripts/validate_m07_openapi.py
       - name: Check M09 accepted-source and requirement boundaries
         run: |
-          python3 -m venv "$RUNNER_TEMP/m09-contracts"
+          python3.12 -m venv "$RUNNER_TEMP/m09-contracts"
           "$RUNNER_TEMP/m09-contracts/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
           "$RUNNER_TEMP/m09-contracts/bin/python" scripts/check_m09.py
       - name: Validate scientific simulations
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
         run: |
-          python3 -m venv "$RUNNER_TEMP/m05"
+          python3.12 -m venv "$RUNNER_TEMP/m05"
           "$RUNNER_TEMP/m05/bin/python" -m pip install --only-binary=:all: -r simulations/requirements-m05.txt
           "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m05.py -q
           "$RUNNER_TEMP/m05/bin/python" -m pytest tests/unit/test_m06_reproduction.py -q
@@ -218,6 +220,13 @@ jobs:
             ${{ runner.temp }}/m09-https-private/m09-https-summary.json
           if-no-files-found: error
           retention-days: 14
+      - name: Upload complaint notification browser evidence (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_PREM10_F01_BROWSER
+          path: ${{ runner.temp }}/m04-evidence/PREM10-F01-*.png
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload M07-C sanitized communications evidence (14 days)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -314,6 +323,25 @@ jobs:
         run: |
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python services/api/tools/verify_backend.py --operator-config /private/operator/operator.json --runtime-config /private/runtime/runtime.json --confirm-disposable-database hydro_disposable_m03 --evidence-directory /private/evidence-repeat
+      - name: Complaint notification ownership, consent, replay and migration acceptance
+        run: >-
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+          python services/api/tools/verify_prem10_f01.py
+          --operator-config /private/operator/operator.json
+          --runtime-config /private/runtime/runtime.json
+          --confirm-disposable-database hydro_disposable_m03
+          --evidence-directory /private/prem10-f01-evidence
+      - name: Collect sanitized complaint notification evidence
+        run: |
+          mkdir -p "$RUNNER_TEMP/prem10-f01-evidence"
+          docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/prem10-f01-evidence/prem10-f01-summary.json > "$RUNNER_TEMP/prem10-f01-evidence/summary.json"
+      - name: Upload complaint notification acceptance (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_PREM10_F01_ACCEPTANCE
+          path: ${{ runner.temp }}/prem10-f01-evidence/summary.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Backend source quality and dependency compatibility
         run: |
           docker compose -f services/api/compose.yaml --profile tools run --rm backend-check python scripts/check_m07a_implementation.py --backend-only
