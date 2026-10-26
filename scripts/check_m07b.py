@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pre_m10_sources import revised_digest
+from pre_m10_contact_sources import before_contact
 from pathlib import Path
 import sys
 
@@ -24,7 +25,7 @@ def main():
     assert m['baseline_commit']=='5c4c06aa915abbbd12c342aff3f08c9b37b340bb'
     assert m['counts']=={'preserved_operations':77,'m07b_operations':26,'total_operations':103,'preserved_tables':36,'m07b_tables':9,'total_tables':45}
     current=json.loads((ROOT/"data/schemas/m07c-implementation.json").read_text())
-    spec=runtime_openapi();ids={s['operationId'] for ms in spec['paths'].values() for s in ms.values()}
+    spec=before_contact(runtime_openapi());ids={s['operationId'] for ms in spec['paths'].values() for s in ms.values()}
     assert len(ids)==111 and set(m['operation_ids'])==ACTIVE=={f'm07_n{i:02}' for i in range(14,40)}
     assert not ids & DISABLED and {o["id"] for o in COMMUNICATIONS} <= ids
     assert len(m['baseline_operations'])==77

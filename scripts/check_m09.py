@@ -41,7 +41,7 @@ def main():
                 assert symbol in (ROOT / name).read_text(encoding="utf-8"), source
         if row["result"] == "PASS":
             assert row["tests"], row["id"]
-    print(f"PASS: {len(manifest['accepted_text_source_sha256'])} accepted source pins with explicit pre-M10 revisions, unchanged 111 operations, 40 M02 cases and {len(trace['m09_risks'])} M09 risks")
+    print(f"PASS: {len(manifest['accepted_text_source_sha256'])} accepted source pins with explicit pre-M10 revisions, 111 preserved operations, 40 M02 cases and {len(trace['m09_risks'])} M09 risks")
 
 
 if __name__ == "__main__":

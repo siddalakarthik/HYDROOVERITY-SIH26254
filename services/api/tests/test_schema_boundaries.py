@@ -131,16 +131,27 @@ def test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles(env):
 def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
     client = login(env, "admin-a@example.invalid")
     from hydro.communications_contracts import OPERATIONS as communications
+    from hydro.project_contact import OPERATIONS as contact
 
-    enabled = {op["id"] for op in OPERATIONS + communications}
+    registered = {op["id"] for op in OPERATIONS + communications + contact}
     for op in INVENTORY:
-        if op["id"] in enabled:
+        if op["id"] in registered:
             continue
         path = re.sub(r"\{[^}]+\}", str(uuid4()), op["path"])
         response = client.raw(op["method"].upper(), "/api/v1" + path)
         assert response.status_code in {404, 405}, "A deferred operation was reachable"
+    # Contact is a newly registered gated protocol, not an unregistered route.
+    expect(client.raw("POST", "/api/v1/public/contact"), 403)
+    response = client.request(
+        "POST",
+        "/api/v1/public/contact",
+        json={"category": "QUESTION", "message": "SYNTHETIC default-disabled contact boundary"},
+    )
+    assert expect(response, 503)["error"]["code"] == "PROJECT_CONTACT_DISABLED"
+    with env["owner"].begin() as c:
+        assert one(c, "SELECT count(*) AS n FROM project_contact_submissions")["n"] == 0
     runtime = runtime_openapi()
-    assert sum(len(x) for x in runtime["paths"].values()) == 111
+    assert sum(len(x) for x in runtime["paths"].values()) == 112
     assert "EvaluationResult" not in runtime["components"]["schemas"]
     assert "deviceBearer" not in runtime["components"]["securitySchemes"]
 

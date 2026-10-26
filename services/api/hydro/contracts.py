@@ -114,8 +114,11 @@ def runtime_openapi():
     }
     result["components"] = components
     from .communications_contracts import extend_openapi as extend_communications
+    from .project_contact import extend_openapi as extend_contact
     from .scheduling_contracts import extend_openapi as extend_scheduling
     from .science_contracts import extend_openapi as extend_science
     from .service_contracts import extend_openapi
 
-    return extend_communications(extend_scheduling(extend_science(extend_openapi(result))))
+    return extend_contact(
+        extend_communications(extend_scheduling(extend_science(extend_openapi(result))))
+    )

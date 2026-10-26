@@ -10,6 +10,7 @@ WEB = ROOT / "apps/web"
 sys.path.insert(0, str(ROOT / "services/api"))
 from hydro.contracts import runtime_openapi  # noqa: E402
 from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
+from hydro.project_contact import OPERATIONS as CONTACT
 from hydro.service_contracts import ACTIVE  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
 from hydro.scheduling_contracts import ACTIVE as SCHEDULING  # noqa: E402
@@ -22,7 +23,7 @@ def outputs():
     implemented = {o["id"] for o in matrix["operations"] if o["status"] == "CODE_TESTED"}
     contract = runtime_openapi()
     advertised = {operation["operationId"] for methods in contract["paths"].values() for operation in methods.values()}
-    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS}, "Browser contract must match exactly the implemented operations"
+    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS + CONTACT}, "Browser contract must match exactly the implemented operations"
     assert not {"EvaluationResult", "SimulationParameters", "SimulationRun", "RunOutput"}.intersection(contract["components"]["schemas"]), "Deferred scientific/evaluation models must not enter the browser contract"
     groups = {
         7: ["Public"], 8: ["Public"], 18: ["Current user"], 19: ["Current user"],
@@ -81,6 +82,7 @@ def outputs():
         if p["id"] in scheduling_pages:
             p["operations"].extend({"operation_id":f"m07_n{i:02}","status":"IMPLEMENTED"} for i in scheduling_pages[p["id"]])
             p["future_dependency"]="Visit access/privacy review, attachments, external delivery and offline remain gated; scheduling requires authorized configuration"
+    next(p for p in pages if p["id"] == "PAGE-09")["future_dependency"] = "Contact persistence is gated to explicit synthetic test policy; no normal intake, public inbox or external sending"
     # Assigned technicians record visit events from their personal calendar on PAGE-33.
     next(p for p in pages if p["id"]=="PAGE-33")["operations"].append({"operation_id":"m07_n24","status":"IMPLEMENTED"})
     for p in pages:
@@ -105,4 +107,4 @@ if __name__ == "__main__":
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected)
-    print("PASS: 111 implemented operations and 51 route classifications; privacy-gated routes excluded")
+    print("PASS: 112 registered operations (contact gated) and 51 route classifications; privacy-gated routes excluded")

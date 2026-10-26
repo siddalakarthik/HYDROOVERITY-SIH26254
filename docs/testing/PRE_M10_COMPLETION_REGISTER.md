@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **111 implemented operations, 51 migrated tables, `pre_m10_001`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status after F01: **22 PASS / 12 BLOCKED / 6 NOT IMPLEMENTED**. Revision 2 records green main `008bd507c09352dcbb8098ec9812448693e0d99b` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40261562317). Eight additional M09 risks retain their scoped PASS results.
+Runtime: **112 registered operations (111 previous + one gated contact protocol), 53 migrated tables, `pre_m10_002`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **22 PASS / 14 BLOCKED / 4 NOT IMPLEMENTED**. C01/C02 now have tested gated foundations and remain incomplete pending governance and activation. Revision 3 starts from green main `630b28cc396d29f03f5e9fb3f7ea076eecc86821` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40264040358); contact changes are a new gated review increment. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -50,8 +50,8 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | A06 | Verification retry | PASS | PASS | External email disabled |
 | A07 | Invitation retry | PASS | PASS | No external identity provider |
 | A08 | Business versus auth receipts | BLOCKED | BLOCKED | Contact endpoint/device credential issuance remain deferred |
-| C01 | Project contact ownership | NOT IMPLEMENTED | NOT IMPLEMENTED | No global private contact inbox implemented |
-| C02 | Project contact abuse/retention | NOT IMPLEMENTED | NOT IMPLEMENTED | D10 retention not approved legal policy |
+| C01 | Project contact ownership | NOT IMPLEMENTED | BLOCKED | Gated fixed-inbox persistence tested; normal operator/privacy approval and contact-form activation pending |
+| C02 | Contact abuse and retention | NOT IMPLEMENTED | BLOCKED | Synthetic throttling/capacity/hold/purge tests passed; no legal retention or live purge approval |
 | P07 | Artifact and truth isolation | BLOCKED | BLOCKED | Restricted sealed-run object downloads/evaluator grants deferred |
 | S07 | Authorization on retry | PASS | PASS | No privilege widening for cached results |
 | M09-E2E | Persisted resident-to-feedback chain | PASS | PASS | Investigation has NOT_APPLICABLE verification; separate manual repair remains NOT_VERIFIABLE |

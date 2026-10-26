@@ -11,7 +11,7 @@ def test_actual_postgres_postgis_and_readiness(env):
         assert principal_is_safe(c)
         assert int(one(c, "SHOW server_version_num")["server_version_num"]) >= 170000
         assert one(c, "SELECT postgis_version() AS version")["version"].startswith("3.")
-        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_001"
+        assert one(c, "SELECT version_num FROM alembic_version")["version_num"] == "pre_m10_002"
     client = env["client"]()
     assert client.request("GET", "/internal/health/live").status_code == 200
     assert client.request("GET", "/internal/health/ready").status_code == 200

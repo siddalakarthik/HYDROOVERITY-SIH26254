@@ -49,7 +49,8 @@ def extend_digest(name, expected):
 
 def previous_openapi(spec):
     """Remove only the explicitly added opt-in category, then compare the entire old API."""
-    previous = copy.deepcopy(spec)
+    from pre_m10_contact_sources import before_contact
+    previous = copy.deepcopy(before_contact(spec))
     schemas = previous["components"]["schemas"]
     for name in ("M07NotificationPreferences", "M07NotificationPreferencesWrite"):
         categories = schemas[name]["properties"]["event_categories"]

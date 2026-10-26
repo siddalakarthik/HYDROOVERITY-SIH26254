@@ -13,6 +13,52 @@ const f = JSON.parse(
   comms_work: string;
 };
 
+test("Project contact remains visibly disabled without reviewed operator policy", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/contact");
+  await expect(
+    page.getByRole("heading", { name: "Contact the project", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator("main")).toContainText(
+    "disabled pending operator and privacy-policy review",
+  );
+  await expect(page.getByRole("textbox")).toHaveCount(0);
+  const result = await page.evaluate(async () => {
+    const csrf = await fetch("/api/v1/auth/csrf");
+    const session = await csrf.json();
+    const response = await fetch("/api/v1/public/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": session.csrf_token,
+      },
+      body: JSON.stringify({
+        category: "QUESTION",
+        message: "SYNTHETIC disabled-intake browser boundary",
+      }),
+    });
+    return {
+      status: response.status,
+      code: (await response.json()).error?.code,
+    };
+  });
+  expect(result).toEqual({ status: 503, code: "PROJECT_CONTACT_DISABLED" });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  const output = process.env.HYDRO_M04_SCREENSHOTS!;
+  mkdirSync(output, { recursive: true });
+  await page.screenshot({
+    path: join(output, "PREM10-CONTACT-gated-mobile.png"),
+    fullPage: true,
+  });
+});
+
 test("M07-C real inbox, versioned preferences, service feedback, supervisor review and technician links", async ({
   page,
   context,

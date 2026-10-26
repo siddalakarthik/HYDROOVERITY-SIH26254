@@ -39,4 +39,6 @@ def revised_digest(name, expected):
     from pre_m10_f01_sources import extend_digest
     expected = extend_digest(name, expected)
     from pre_m10_revisit_sources import extend_digest as extend_revisit
-    return extend_revisit(name, expected)
+    expected = extend_revisit(name, expected)
+    from pre_m10_contact_sources import extend_digest as extend_contact
+    return extend_contact(name, expected)

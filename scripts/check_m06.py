@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pre_m10_sources import revised_digest
+from pre_m10_contact_sources import before_contact
 from pathlib import Path
 import sys
 
@@ -22,7 +23,7 @@ def main():
     current = json.loads((ROOT/"data/schemas/m07c-implementation.json").read_text())
     manifest = json.loads((ROOT / "data/schemas/m06-implementation.json").read_text())
     assert manifest["baseline_commit"] == "1da657d59bccdb6b66fb7dd66cb9f8310c3e7931"
-    spec = runtime_openapi()
+    spec = before_contact(runtime_openapi())
     ids = {s["operationId"] for methods in spec["paths"].values() for s in methods.values()}
     assert len(ids - SCHEDULING - {o["id"] for o in COMMUNICATIONS}) == 77 and len(OPERATIONS) == 7
     scheduling = json.loads((ROOT / "data/schemas/m07b-implementation.json").read_text())
