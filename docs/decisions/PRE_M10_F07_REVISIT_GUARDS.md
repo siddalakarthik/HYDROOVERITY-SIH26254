@@ -44,7 +44,7 @@ completed work, old receipts, newly authored reviews of old receipts, legitimate
 new work and unfinished-work resumption, backdated receipt exclusion, immutable
 history, transition replay and stale versions. Reopened-state fixture injection
 is explicitly synthetic lifecycle setup, never a fabricated measured PASSED or
-FAILED result. Executed locally on 2026-10-26 against the separate PostgreSQL database `hydro_disposable_prem10_f07`: the initial five focused cases passed (13.97 s); a separate real resumption/cancellation race and unauthorized citizen attempt passed (1 case, 3.25 s); all eleven existing workflow/concurrency cases passed (22.65 s). The first run before applying existing migrations failed at fixture setup; applying the reviewed migration chain resolved that environment prerequisite. No acceptance assertion was weakened. Final integrated CI is still required.
+FAILED result. Executed locally on 2026-10-26 against the separate PostgreSQL database `hydro_disposable_prem10_f07`: the initial five focused cases passed (13.97 s); a separate real resumption/cancellation race and unauthorized citizen attempt passed (1 case, 3.25 s); all eleven existing workflow/concurrency cases passed (22.65 s). The first run before applying existing migrations failed at fixture setup; applying the reviewed migration chain resolved that environment prerequisite. No acceptance assertion was weakened. The complete final six-case revisit suite passed (17.46 s), and all 84 existing backend tests passed (172.07 s). Final integrated CI is still required.
 
 No M03/M05/M08 historical hash is replaced. The integration change should extend
 the additive pre-M10 source manifest for `services/incidents.py`; the integration
