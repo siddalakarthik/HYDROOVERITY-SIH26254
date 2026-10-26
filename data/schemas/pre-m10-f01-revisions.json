@@ -3,12 +3,12 @@
   "source_revisions": {
     ".github/workflows/repository-integrity.yml": {
       "baseline_sha256": "9640acc42e98dfd518664a0d69fe93f955f71f42cb5ab139d153d7c19afb904b",
-      "sha256": "5ca8323dd8ded5241ed55133b6f30bfb79bbdb9a3f89ab00b5de7eddd2463d18",
+      "sha256": "6367f36d50c4e981757dd1ad4decec6688cef0e93eed3ad39e869a3186a8405f",
       "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
     },
     "apps/web/browser/communications.spec.ts": {
       "baseline_sha256": "a1e87b1e7901dc1cfa91d6b688c34321d4f6f9ed7f95aa5133789ae47f76ff9f",
-      "sha256": "49f7b0d5fe6c62436d290a54056209ef10f9c77e89832ef1f2ade85591c9651f",
+      "sha256": "451ae5bf5be9691adb8bdc47734a120641f30d360b1f25e9129789c0fb7a2ada",
       "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
     },
     "apps/web/contracts/implemented.openapi.json": {
@@ -91,5 +91,6 @@
       "sha256": "8850752af4318ec940bddd4845060316662d541e23b14ef7117e709b8e85a447",
       "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
     }
-  }
+  },
+  "integration_main": "15cd3a10e25b9d78ab154c93ee8b19f42367171e"
 }

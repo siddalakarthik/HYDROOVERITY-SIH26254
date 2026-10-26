@@ -21,6 +21,7 @@ jobs:
       - name: Validate foundation
         run: |
           python3 scripts/check_repository.py
+          python3 scripts/check_repository_media.py
           python3 scripts/check_pre_m10.py
           python3 scripts/check_pre_m10_f01.py
           python3 scripts/test_pre_m10_f01.py -v

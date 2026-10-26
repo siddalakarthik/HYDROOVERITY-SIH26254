@@ -230,9 +230,20 @@ test("M07-C real inbox, versioned preferences, service feedback, supervisor revi
   });
   await expect
     .poll(async () => {
+      const refreshed = page.waitForResponse(
+        (r) =>
+          new URL(r.url()).pathname.endsWith("/notifications") &&
+          r.request().method() === "GET",
+      );
       await page
         .getByRole("button", { name: "Refresh notifications", exact: true })
         .click();
+      expect((await refreshed).status()).toBe(200);
+      await expect(
+        page
+          .getByRole("status")
+          .filter({ hasText: "Loading authorized records" }),
+      ).toHaveCount(0);
       return reportNotice.count();
     })
     .toBe(1);

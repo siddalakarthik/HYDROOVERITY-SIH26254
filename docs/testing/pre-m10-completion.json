@@ -1127,40 +1127,43 @@
       "source_files": [
         "services/api/tools/demo_backend.py"
       ],
-      "completion_commit": null,
-      "completion_pr": null,
+      "completion_commit": "848c1c8a1dbf72f980c1f58454a41d0bd332eab8",
+      "completion_pr": 23,
       "evidence": [
         "services/api/tools/demo_backend.py",
-        "PRE_M10_COMPLETION_REGISTER.md#executed-foundation-validation"
+        "PRE_M10_COMPLETION_REGISTER.md#executed-foundation-validation",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40193968696"
       ],
-      "remaining_limitations": "Local synthetic HTTPS workflow passed with a live m07_c_001 query; four-job CI and merge still pending. Historical M03/M09 summaries remain unchanged."
+      "remaining_limitations": "Both exact-head and post-merge four-job CI passed. Historical M03/M09 summaries remain unchanged; corrected evidence remains synthetic and NOT_VERIFIABLE."
     },
     {
       "id": "DOC-01",
       "requirement": "Current repository presentation",
       "historical_status": "FAIL",
-      "current_status": "FAIL",
-      "root_cause": "Root README has stale milestone status, budget and private-repository claim; GitHub is public.",
+      "current_status": "NOT TESTED",
+      "root_cause": "Stale root claims corrected on this review branch; seven source-checked previews added. GitHub rendering and final CI not yet verified.",
       "required_implementation": "Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation.",
       "required_test": "Rendered README, links, mobile image readability, claims against source.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
       "risk": "MEDIUM",
       "source_files": [
-        "README.md"
+        "README.md",
+        "docs/media/manifest.json",
+        "scripts/check_repository_media.py"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
-        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+        "scripts/check_repository_media.py"
       ],
-      "remaining_limitations": "Root README has stale milestone status, budget and private-repository claim; GitHub is public."
+      "remaining_limitations": "Review branch only; remote rendered verification and all four CI gates pending."
     },
     {
       "id": "DOC-02",
       "requirement": "Subsystem documentation",
       "historical_status": "NOT TESTED",
       "current_status": "NOT TESTED",
-      "root_cause": "Current subsystem documentation has not undergone pre-M10 audit.",
+      "root_cause": "Updated root apps/services/tests guides, documentation index and current roadmap. Historical pinned subsystem guides retain execution-time counts and are contextualized.",
       "required_implementation": "Audit important folder guides and distinguish implementation from proposals.",
       "required_test": "Link/path/command verification.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
@@ -1173,7 +1176,7 @@
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
       ],
-      "remaining_limitations": "Current subsystem documentation has not undergone pre-M10 audit."
+      "remaining_limitations": "Detailed subsystem reproduction guides still need a separately explicit baseline amendment before editing their pinned historical content."
     },
     {
       "id": "UI-01",

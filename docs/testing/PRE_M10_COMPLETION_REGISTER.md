@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **111 implemented operations, 51 migrated tables, `m07_c_001`**. Original M02 acceptance: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **111 implemented operations, 51 migrated tables, `pre_m10_001`**. Original M02 acceptance: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -14,7 +14,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 
 | ID | Requirement | Historical | Current | Remaining limitation |
 | --- | --- | --- | --- | --- |
-| F01 | Citizen creates report | BLOCKED | BLOCKED | Legacy complaint notifications are not implemented; separate service lifecycle is tested |
+| F01 | Citizen creates report | BLOCKED | BLOCKED | Opt-in complaint notifications implemented; final browser/CI review pending |
 | F02 | Citizen ownership | PASS | PASS | Media absent; boundary denial is not secure-media functionality |
 | F03 | Triage | PASS | PASS | Synthetic operator decisions, no actual utility triage |
 | F04 | Assignment | BLOCKED | BLOCKED | Offline synchronization remains deferred D9 |
@@ -70,7 +70,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | META-COUNTS | Runtime inventory | PASS | Preserve compatibility and record every additive count transition. |
 | META-ISSUES | Milestone closure | PASS | Close #7 only against original criteria; no M10 before readiness review. |
 | EVIDENCE-01 | Stale HTTPS evidence migration label | PASS | Query live alembic_version; explicitly version source-baseline transition without rewriting historical evidence. |
-| DOC-01 | Current repository presentation | FAIL | Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation. |
+| DOC-01 | Current repository presentation | NOT TESTED | Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation. |
 | DOC-02 | Subsystem documentation | NOT TESTED | Audit important folder guides and distinguish implementation from proposals. |
 | UI-01 | Website quality audit | NOT TESTED | Inspect actual public/auth/role workflows and fix only demonstrated defects using accepted design system. |
 | DEP-01 | Development dependency and license limitations | BLOCKED | Assess affected tools and safe targeted upgrades; preserve attribution; owner chooses project license. |
@@ -93,3 +93,5 @@ Each slice requires critical diff review, exact-head four-job CI, normal protect
 On 2026-10-25, the corrected tool executed the complete synthetic HTTPS workflow against `hydro_disposable_prem10_demo`: certificate verification PASS, actual API restart PASS and independent outcome NOT_VERIFIABLE. Its summary reported `m07_c_001`, independently matched against the live `alembic_version` query. Private output stays outside Git at workspace `work/pre-m10-https-demo`; no credentials, keys or mail are published.
 
 The existing CI backend job executes this same tool and uploads its sanitized summary. Exact-head CI remains required before merging. Local foundation, M02/M07 design mutations, M07-A/B/C, M06, M09 boundary and four new source-revision regression checks passed. This correction changes only the evidence label, not application runtime, API contracts, migrations or scientific results. Original 40-case statuses remain unchanged.
+
+PR #23 merged at `848c1c8a1dbf72f980c1f58454a41d0bd332eab8`; all four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40193968696) passed. Its exact-head CI artifact independently confirms the corrected revision, verified TLS, actual restart and NOT_VERIFIABLE outcome. The repository-presentation slice adds seven unchanged reviewed previews and corrects root/current navigation; GitHub rendering and its final CI are still pending. Original 40-case statuses remain unchanged.
