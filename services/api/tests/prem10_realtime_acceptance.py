@@ -36,7 +36,7 @@ def test_realtime_real_receipt_after_snapshot_watermark_is_replayed_safely(env):
     page = expect(response, 200)
     assert response.headers["x-hydro-reset-required"] == "false"
     assert [item["resource_id"] for item in page["items"]] == [receipt["id"]]
-    assert page["items"][0]["event_type"] == "record_changed"
+    assert page["items"][0]["event_type"] == "record_changed.citizen_complaints"
     assert complaint_body()["description"] not in response.text
     assert "An authorized record changed" in response.text
     assert (
@@ -339,6 +339,34 @@ def test_realtime_deactivated_identity_cannot_read_cursor_through_runtime_rls(en
         execute(c, "SELECT set_config('hydro.session_id',:s,true)", s=str(cursor["session_id"]))
         assert one(c, "SELECT count(*) AS n FROM realtime_cursors")["n"] == 0
     assert client.request("GET", path).status_code == 401
+
+
+def test_realtime_has_separate_bounded_admission_and_cannot_weaken_existing_limits(env):
+    from hydro.errors import Problem
+
+    client = resident(env)
+    path, _, _ = endpoints(env)
+    with env["owner"].begin() as c:
+        session = one(
+            c,
+            "SELECT id FROM sessions WHERE auth_level='AUTHENTICATED' ORDER BY created_at DESC LIMIT 1",
+        )
+    limits = env["app"].state.limits
+    for _ in range(121):
+        try:
+            limits.hit("general", str(session["id"]), 120, 60)
+        except Problem as error:
+            assert error.status == 429
+            break
+    else:
+        pytest.fail("Existing general limit did not enforce its original bound")
+    expect(client.request("GET", "/api/v1/me"), 429)
+    for _ in range(30):
+        expect(client.request("GET", path), 200)
+    response = client.request("GET", path)
+    expect(response, 429)
+    assert response.headers["retry-after"] == "60"
+    expect(client.request("GET", "/api/v1/me"), 429)
 
 
 def test_realtime_populated_migration_downgrade_refuses_to_erase_cursors(env):

@@ -57,18 +57,18 @@ migration downgrade refuses to erase cursor data; empty downgrade remains usable
 
 Both private development proxies forward Last-Event-ID and flush bounded SSE
 chunks. The website keeps cursors only in memory, uses one scoped subscription,
-bounded deduplication, coalesced refetch, a 35-second idle watchdog, jittered
+bounded deduplication, refetch bursts coalesced to at most once per five seconds, a 35-second idle watchdog, jittered
 1–30-second reconnect and 30-second fallback refresh. Network loss is shown
 immediately. Transient refresh failures preserve drafts with an explicit stale
 record notice; authorization failure and organization/mode changes purge scoped
 records. No offline storage or synchronization is introduced.
 
-Executed local evidence: 18 real PostgreSQL acceptance cases cover snapshot-lock
+Executed local evidence: 19 real PostgreSQL acceptance cases cover snapshot-lock
 races, replay/expiry, restart/key rotation, current ownership and reassignment,
 session/role revocation, deactivated-user SQL RLS, foreign cursor denial,
 transport backpressure/early disconnect, real loopback TCP SSE reconnect and
 non-destructive downgrade refusal. The existing backend suite passed 118 tests.
-Frontend passed 25 unit tests, typecheck, lint and production build. The real
+Frontend passed 30 unit tests, typecheck, lint and production build. The real
 HTTPS browser scenario recovered an actual authorized complaint created during
 disconnection, preserved category/text/location/privacy values, submitted the
 service request, and passed 320px overflow/axe checks. Browser TLS uses the
@@ -80,3 +80,40 @@ or delivery SLA; process-local admission is not a multi-instance global quota.
 No physical sensing freshness, field validation, external delivery or legal
 retention policy is established. Public deployment and D1–D10 gates remain.
 The final PR records exact head, mandatory four-job CI and artifact verification.
+
+The first PR CI run passed backend/repository/CAD but exposed request amplification
+in the existing complete M04 workflow: background invalidations reached the
+unchanged 120-request limit, and membership checks treated HTTP429 as permanent
+access loss. The real local workflow reproduced the same verification-form
+failure; a temporary bounded diagnostic confirmed RATE_LIMITED. Refresh bursts
+are now bounded to one per five seconds. Membership rechecks serialize, honor
+Retry-After, recover automatically, and qualify previously loaded access during
+transient failure. Actual denial or changed membership still clears private
+state. Four regressions cover initial429 recovery, transient/current-denial
+behavior burst coalescing and resource-family filtering. Safe event types now identify only the already-authorized record family, so unrelated mounted resources and organization metadata are not refetched for every event. No server throttle or browser timeout changed;
+the temporary diagnostic was removed and the original workflow test preserved.
+
+The initial snapshot now waits for the committed stream watermark before its
+resource reads begin. This removes speculative reads followed by an immediate
+duplicate reset refetch, while preserving the race guarantee. If stream capacity
+is unavailable, a bounded authorized history request establishes the same barrier
+and ordinary snapshots remain usable with disconnected status. Later reset frames
+still require refetch. Regression tests verify request ordering, no duplicate
+initial snapshot and the unavailable-stream fallback. No request limit is raised.
+
+Admission for the two new background endpoints is separately limited to 30
+initial subscription/history requests per authenticated session per minute,
+shared across utilities and modes. The unchanged existing business/auth APIs
+retain their 120-request general limit. Internal per-event authorization checks
+are not counted as fabricated HTTP requests. A real PostgreSQL regression proves
+an exhausted old general budget still denies /me, admits only the independently
+bounded new protocol, and denies its 31st request with Retry-After. Global stream
+capacity remains 20. This prevents background subscriptions from starving human
+work commands without weakening any pre-existing endpoint's limit.
+
+After the corrected admission and snapshot ordering, both unchanged original M04
+browser scenarios passed locally: the complete resident-to-independent-review
+workflow (40.2s) and account/GIS/offline-denial/map-alternative workflow (1.3m).
+These are synthetic local observations, not performance commitments. An interrupted
+local PostgreSQL process was restarted from its existing data with normal WAL
+recovery; no cluster or database was reset to hide a failure.

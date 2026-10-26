@@ -110,8 +110,13 @@ def authenticated_scope(app, request, op, c, organization, mode, *, count_reques
     )
     headers = Response()
     auth = Auth(c, request, headers, app)
-    auth.identify(count_request=count_request)
+    auth.identify(count_request=False)
     auth.authenticated()
+    if count_request:
+        # New background subscriptions/history have their own stricter bounded
+        # admission. They cannot consume the existing business/auth request
+        # budget; every pre-existing operation retains its unchanged limit.
+        app.state.limits.hit("record-updates", str(auth.session["id"]), 30, 60)
     # Match business mutations: auth/session -> organization lock -> member/role
     # locks. Reversing these last two can deadlock a concurrent role revocation.
     execute(
@@ -382,7 +387,7 @@ def history(
                 output.append(
                     {
                         "id": str(row["id"]),
-                        "event_type": "record_changed",
+                        "event_type": "record_changed." + row["resource_type"],
                         "resource_id": row["resource_id"],
                         "occurred_at": row["occurred_at"],
                         "workspace_mode": row["workspace_mode"],

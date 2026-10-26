@@ -13,12 +13,12 @@
     },
     "apps/web/src/components/ui.tsx": {
       "baseline_sha256": "5143a5e4c7cb9466c81d84092320368e08503c8a90f6068532256612dd788dfe",
-      "sha256": "2579aecd813028ea11d0b462953b80d253078efe56afc8159ff5f59f1432a341",
+      "sha256": "6ed1b298c1f59917ad7de1269b70aa076b140519365bf67a0abcf0d24b7405d0",
       "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
     },
     "apps/web/src/features/workspace.tsx": {
       "baseline_sha256": "f0177d35b4fa897acb712a5133c02d63efa3b64be49f972fc530d86c69103e72",
-      "sha256": "8fb4360dfa2fe008393e4a4e92ff47bfe9ce34a2c369239afd60adbbba76e7a1",
+      "sha256": "4694f1f1c2963bc185483d9c23dd2dee2ea75ea969f54c9a04dcd6b299568163",
       "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
     },
     "apps/web/src/lib/generated.ts": {
@@ -68,7 +68,7 @@
     },
     "services/api/hydro/auth.py": {
       "baseline_sha256": "50651fe363868bda8e6b8aa028a1422e6aaf92eb74d2797d0062c76f6c297b45",
-      "sha256": "63fb83a14cd703e06b0e83c78308ec3b518548f46e6ca8c809e1bc74c6aa2c22",
+      "sha256": "96ce8026464a1b37ef00c327242fb38f166cd67d46a038c5490c2081bd4cc213",
       "reason": "R02 bounded current-authorized replay, additive cursor migration, safe website refresh/proxy transport, exact compatibility or executed regression evidence."
     },
     "services/api/hydro/cli.py": {
@@ -149,12 +149,13 @@
   },
   "new_source_sha256": {
     "apps/web/browser/realtime.spec.ts": "308b1734b9478908842b2527309c1c81b740100092e38a42a169393d09691403",
-    "apps/web/src/components/record-updates.tsx": "1bc9efe11db5e27573388de11e7a8ef55746c38e5336a97afd042db831f056a2",
-    "apps/web/src/lib/record-events.ts": "87f848e8fa727fceacfb2c90f39facbdd52c179b111b22d750c3d9d34d09c0f4",
-    "apps/web/tests/record-events.test.tsx": "e59eb945de48a898063cd9edcb676b48084ed727b05c8e3c581917efed5b18df",
-    "services/api/hydro/realtime.py": "3d09d08500c76edae6fae9bfaae8239b5555b7f3f8029ce8ccf183cd8a15403a",
+    "apps/web/src/components/record-updates.tsx": "47a336dde015ba8b695ac3ff7aac2f38e28ffbb0856d695905d6e2d379bb5767",
+    "apps/web/src/lib/record-events.ts": "40c64ae73670a22eb2dbf7771a79ac51b4c5976ea3c3506148fc792e66cdba82",
+    "apps/web/src/lib/use-memberships.ts": "8e59c142ca4d119b863a57b54edd3724f685ecee64d7a772ecf1d3eadba9db6a",
+    "apps/web/tests/record-events.test.tsx": "14f14a52c0a2df711fa4376bf9d4bed61a65d36928e66cc0eb4b2ee6abcc4cea",
+    "services/api/hydro/realtime.py": "402c6be3e867c23583f172c51260c5daff8f948169083ad20c5386c858cb9185",
     "services/api/migrations/versions/pre_m10_003.py": "8fd32ed3d1436e5b49af96d4c189694b63a205cb1a5ebbd162a38027e682a4c7",
-    "services/api/tests/prem10_realtime_acceptance.py": "3ec84212cc4f7546d229c04dedc835d37e6c31f05d6b4584afdc1c9ef7563630",
+    "services/api/tests/prem10_realtime_acceptance.py": "7b74c949b663c4a1cf5585dded6e260d1abb4c5ebbaa8e62d894fd0252ab17ba",
     "services/api/tools/verify_prem10_realtime.py": "a19c4e5e6d13c5c132c9e9d6485b85fc98f8e5958221743513b9bce99168496f"
   },
   "previous_openapi_sha256": "b1bf1028375f46a8b755048959fcb54e81ffeba2579a56edf75b4d8b09740526",

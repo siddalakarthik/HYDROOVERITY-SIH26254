@@ -1,5 +1,57 @@
 // A bounded SSE parser. Cursors and event references stay in this tab's memory.
+import { createContext } from "react";
+export const RecordSnapshotReady = createContext(true);
 export type RecordFrame = { event: string; id?: string; data: unknown };
+const families: Record<string, string[]> = {
+  citizen_complaints: ["complaints"],
+  complaint_status_events: ["complaints"],
+  work_orders: ["work-orders"],
+  work_order_actions: ["work-orders"],
+  repair_records: ["work-orders", "repairs"],
+  verification_records: ["work-orders", "repairs"],
+  work_investigation_findings: ["work-orders"],
+  incidents: ["incidents"],
+  incident_links: ["incidents"],
+  water_zones: ["zones"],
+  network_junctions: ["junctions"],
+  pipe_segments: ["pipes"],
+  service_requests: ["service-requests"],
+  service_public_updates: ["service-requests"],
+  service_request_events: ["service-requests"],
+  service_work_order_links: ["service-requests", "work-orders"],
+  appointments: [
+    "appointments",
+    "appointment-requests",
+    "service-requests",
+    "work-orders",
+    "dispatch",
+  ],
+  appointment_requests: [
+    "appointment-requests",
+    "appointments",
+    "service-requests",
+    "dispatch",
+  ],
+  appointment_events: [
+    "appointments",
+    "service-requests",
+    "work-orders",
+    "dispatch",
+  ],
+  feedback_items: ["feedback"],
+};
+export function recordFamilies(type: unknown): string[] {
+  if (typeof type !== "string" || !type.startsWith("record_changed."))
+    throw new Error("Unknown record kind");
+  const result = families[type.slice("record_changed.".length)];
+  if (!result) throw new Error("Unknown record kind");
+  return result;
+}
+export function recordAffects(path: string, affected?: string[]) {
+  const match = /^\/orgs\/[^/?]+(?:\/([^/?]+))?(?:[/?]|$)/.exec(path);
+  if (match && !match[1]) return false; // Organization metadata is not an outbox record family.
+  return !affected || Boolean(match && affected.includes(match[1]));
+}
 export class RecordFrameParser {
   private buffer = "";
   push(chunk: string): RecordFrame[] {

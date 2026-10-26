@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { recordAffects, RecordSnapshotReady } from "@/lib/record-events";
 
 import {
   Children,
@@ -7,6 +8,7 @@ import {
   cloneElement,
   isValidElement,
   useEffect,
+  useContext,
   useId,
   useRef,
   useState,
@@ -146,6 +148,7 @@ export function ErrorPanel({
   );
 }
 export function useResource<T>(path: string | null) {
+  const snapshotReady = useContext(RecordSnapshotReady);
   const [revision, setRevision] = useState(0);
   const [state, setState] = useState<{
     path: string | null;
@@ -156,7 +159,7 @@ export function useResource<T>(path: string | null) {
     loading: boolean;
   }>({ path, loading: true });
   useEffect(() => {
-    if (!path) return;
+    if (!path || !snapshotReady) return;
     const controller = new AbortController();
     const clear = () => {
       controller.abort();
@@ -172,7 +175,15 @@ export function useResource<T>(path: string | null) {
     };
     window.addEventListener("hydro:scope-cleared", clear);
     // Background record invalidation preserves mounted forms and their values.
-    const update = () => setRevision((n) => n + 1);
+    const update = (event: Event) => {
+      if (
+        recordAffects(
+          path,
+          (event as CustomEvent<{ families?: string[] }>).detail?.families,
+        )
+      )
+        setRevision((n) => n + 1);
+    };
     window.addEventListener("hydro:record-refresh", update);
     api<T>(path, { signal: controller.signal })
       .then(({ data, etag }) => {
@@ -195,7 +206,7 @@ export function useResource<T>(path: string | null) {
       window.removeEventListener("hydro:scope-cleared", clear);
       window.removeEventListener("hydro:record-refresh", update);
     };
-  }, [path, revision]);
+  }, [path, revision, snapshotReady]);
   const valid = state.path === path;
   return {
     data: valid ? state.data : undefined,

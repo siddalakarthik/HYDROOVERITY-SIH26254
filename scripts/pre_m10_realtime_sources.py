@@ -45,6 +45,7 @@ NEW = frozenset({
     'services/api/tools/verify_prem10_realtime.py',
     'apps/web/src/components/record-updates.tsx',
     'apps/web/src/lib/record-events.ts',
+    'apps/web/src/lib/use-memberships.ts',
     'apps/web/tests/record-events.test.tsx',
     'apps/web/browser/realtime.spec.ts',
 })

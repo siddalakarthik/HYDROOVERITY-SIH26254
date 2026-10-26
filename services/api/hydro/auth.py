@@ -78,7 +78,8 @@ class Auth:
         context(self.c, self.user["id"] if self.user else None)
         # A stream's internal reauthorization repeats every security check but
         # does not invent additional HTTP requests for the session throttle.
-        # The initial subscription/history request always uses the default.
+        # Ordinary endpoints use the default; realtime separately bounds its
+        # initial subscription/history requests.
         if count_request:
             self.app.state.limits.hit("general", str(s["id"]), 120, 60)
 
