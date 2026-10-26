@@ -228,7 +228,7 @@ const editorial: Record<
   },
   "/contact": {
     title: "Contact the project",
-    lead: "Project contact intake is not enabled in the current backend.",
+    lead: "Project contact intake remains disabled pending operator and privacy-policy review.",
     sections: [
       [
         "Water service issues",
@@ -236,7 +236,7 @@ const editorial: Record<
       ],
       [
         "Project enquiries",
-        "No externally delivered contact form or approved public contact address is available here. This page does not accept or claim to send messages.",
+        "This page does not collect or send project messages. The gated development inbox is separate from utility reporting; real intake requires reviewed operator and retention controls.",
       ],
     ],
   },

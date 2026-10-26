@@ -6,6 +6,8 @@ from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field, SecretStr, model_validator
 
+from .contact_policy import ContactTestPolicy
+
 ROOT = Path(__file__).resolve().parents[3]
 
 
@@ -17,6 +19,8 @@ class Settings(BaseModel):
     development: bool = True
     mail_directory: Path
     pool_size: int = Field(default=5, ge=1, le=20)
+    # No environment activation: operator/privacy review is still required.
+    contact_test_policy: ContactTestPolicy | None = None
     science_catalogue_path: Path | None = ROOT / "data/samples/m06"
     science_catalogue_sha256: str | None = Field(
         default="1921fae430c22f2c05c74862e5e1dfe65bffbb9d936171eb637ca61325ca097a",
