@@ -3,7 +3,7 @@
   "source_revisions": {
     ".github/workflows/repository-integrity.yml": {
       "baseline_sha256": "9640acc42e98dfd518664a0d69fe93f955f71f42cb5ab139d153d7c19afb904b",
-      "sha256": "6367f36d50c4e981757dd1ad4decec6688cef0e93eed3ad39e869a3186a8405f",
+      "sha256": "95ac5ad3462d93feca7e30fd6be512dd6d2f8b292215618b8a25c4d1f654c6ec",
       "reason": "F01 opt-in complaint notifications, additive schema compatibility, migration head or focused acceptance integration."
     },
     "apps/web/browser/communications.spec.ts": {
