@@ -273,3 +273,46 @@ def test_revisit_resumption_and_cancellation_are_version_serialized(env):
         ),
         403,
     )
+
+
+def test_repeated_reconsideration_requires_a_new_receipt_each_cycle(env):
+    f, incident, work, original, _ = first_cycle(env, completed=False)
+    receipts = [original["id"]]
+    ip = f["base"] + "/incidents/" + incident["id"]
+    wp = f["base"] + "/work-orders/" + work["id"]
+    for _ in range(2):
+        # Each later visit uses new authenticated sessions. The test helper
+        # bootstraps CSRF on every write; keep its synthetic per-client burst
+        # below the real bootstrap rate limit rather than changing that limit.
+        f["supervisor"] = login(env, "supervisor@example.invalid")
+        f["technician"] = login(env, "technician@example.invalid")
+        incident = reconsider(f, incident)
+        deny_transition(f, incident, "IN_PROGRESS", "WORK_REQUIRED")
+        work = transition(f["supervisor"], wp, work, "IN_PROGRESS")
+        incident = transition(f["supervisor"], ip, incident, "IN_PROGRESS")
+        work = transition(f["technician"], wp, work, "SUBMITTED_FOR_REVIEW")
+        deny_transition(f, incident, "VERIFICATION_PENDING", "REPAIR_REQUIRED")
+        work = transition(f["supervisor"], wp, work, "IN_PROGRESS")
+        fresh = repair(f, work)
+        receipts.append(fresh["id"])
+        work = expect(f["technician"].request("GET", wp), 200)
+        work = transition(f["technician"], wp, work, "SUBMITTED_FOR_REVIEW")
+        incident = transition(f["supervisor"], ip, incident, "VERIFICATION_PENDING")
+        review(f, fresh)
+        incident = transition(f["supervisor"], ip, incident, "NOT_VERIFIABLE")
+    assert len(set(receipts)) == 3
+    with env["owner"].begin() as c:
+        assert (
+            one(c, "SELECT count(*) AS n FROM repair_records WHERE work_order_id=:w", w=work["id"])[
+                "n"
+            ]
+            == 3
+        )
+        assert (
+            one(
+                c,
+                "SELECT count(*) AS n FROM incident_events WHERE incident_id=:i AND from_status='NOT_VERIFIABLE' AND to_status='UNDER_REVIEW'",
+                i=incident["id"],
+            )["n"]
+            == 2
+        )
