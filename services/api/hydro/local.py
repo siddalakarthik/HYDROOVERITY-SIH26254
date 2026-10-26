@@ -71,6 +71,7 @@ class Proxy(BaseHTTPRequestHandler):
                 "idempotency-key",
                 "if-match",
                 "accept",
+                "last-event-id",
             }
             headers = {key: value for key, value in self.headers.items() if key.lower() in allowed}
             headers["Host"] = "127.0.0.1:8000"
@@ -78,6 +79,32 @@ class Proxy(BaseHTTPRequestHandler):
             headers["X-Forwarded-Proto"] = "https"
             connection.request(self.command, self.path, body=body, headers=headers)
             result = connection.getresponse()
+            if self.command == "GET" and result.getheader("Content-Type", "").startswith(
+                "text/event-stream"
+            ):
+                if connection.sock is not None:
+                    connection.sock.settimeout(35)
+                self.send_response(result.status)
+                for key, value in result.getheaders():
+                    if key.lower() not in {
+                        "connection",
+                        "transfer-encoding",
+                        "content-length",
+                        "server",
+                        "date",
+                    }:
+                        self.send_header(key, value)
+                self.send_header("Connection", "close")
+                self.close_connection = True
+                self.end_headers()
+                self.connection.settimeout(5)
+                try:
+                    while payload := result.read1(8192):
+                        self.wfile.write(payload)
+                        self.wfile.flush()
+                except (OSError, http.client.HTTPException):
+                    pass  # Interrupted records require cursor replay or reset.
+                return
             payload = result.read(1048577)
             if len(payload) > 1048576:
                 self.send_error(502)

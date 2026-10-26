@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "services/api"))
 from hydro.contracts import runtime_openapi  # noqa: E402
 from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
 from hydro.project_contact import OPERATIONS as CONTACT
+from hydro.realtime import OPERATIONS as REALTIME
 from hydro.service_contracts import ACTIVE  # noqa: E402
 from hydro.science_contracts import OPERATIONS as SCIENCE  # noqa: E402
 from hydro.scheduling_contracts import ACTIVE as SCHEDULING  # noqa: E402
@@ -23,7 +24,7 @@ def outputs():
     implemented = {o["id"] for o in matrix["operations"] if o["status"] == "CODE_TESTED"}
     contract = runtime_openapi()
     advertised = {operation["operationId"] for methods in contract["paths"].values() for operation in methods.values()}
-    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS + CONTACT}, "Browser contract must match exactly the implemented operations"
+    assert advertised == implemented | ACTIVE | SCHEDULING | {o["id"] for o in SCIENCE + COMMUNICATIONS + CONTACT + REALTIME}, "Browser contract must match exactly the implemented operations"
     assert not {"EvaluationResult", "SimulationParameters", "SimulationRun", "RunOutput"}.intersection(contract["components"]["schemas"]), "Deferred scientific/evaluation models must not enter the browser contract"
     groups = {
         7: ["Public"], 8: ["Public"], 18: ["Current user"], 19: ["Current user"],
@@ -107,4 +108,4 @@ if __name__ == "__main__":
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected)
-    print("PASS: 112 registered operations (contact gated) and 51 route classifications; privacy-gated routes excluded")
+    print("PASS: 114 registered operations (contact gated), including authorized record replay, and 51 route classifications")

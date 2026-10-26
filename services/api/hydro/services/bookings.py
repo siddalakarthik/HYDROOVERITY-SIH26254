@@ -614,6 +614,12 @@ class Bookings(Scheduler):
             internal_reason=reason,
         )
         self.history(case, "VISIT_CONFIRMED", message, reason)
+        from ..realtime import linked_booking_change
+
+        linked_booking_change(self.s, "appointments", appointment)
+        linked_booking_change(self.s, "work_orders", work)
+        if old:
+            linked_booking_change(self.s, "appointments", old)
         self.save("appointment_requests", row, reason)
         return self.decision_receipt(row)
 

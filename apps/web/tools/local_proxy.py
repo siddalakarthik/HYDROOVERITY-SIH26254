@@ -50,12 +50,30 @@ class Proxy(BaseHTTPRequestHandler):
             return
         body = self.rfile.read(length)
         upstream = http.client.HTTPConnection("127.0.0.1", self.server.api_port if is_api else self.server.web_port, timeout=90)
-        allowed = {"content-type", "cookie", "origin", "sec-fetch-site", "x-csrf-token", "idempotency-key", "if-match", "accept", "rsc", "next-router-state-tree", "next-router-prefetch", "next-url"}
+        allowed = {"content-type", "cookie", "origin", "sec-fetch-site", "x-csrf-token", "idempotency-key", "if-match", "accept", "last-event-id", "rsc", "next-router-state-tree", "next-router-prefetch", "next-url"}
         headers = {key: val for key, val in self.headers.items() if key.lower() in allowed}
         headers.update({"Host": f"localhost:{self.server.server_port}", "X-Forwarded-Proto": "https", "X-Forwarded-For": self.client_address[0]})
         try:
             upstream.request(self.command, self.path, body=body, headers=headers)
             response = upstream.getresponse()
+            if is_api and self.command == "GET" and response.getheader("Content-Type", "").startswith("text/event-stream"):
+                self.send_response(response.status)
+                for key, val in response.getheaders():
+                    if key.lower() not in {"connection", "transfer-encoding", "content-length", "server", "date", "cache-control"}:
+                        self.send_header(key, val)
+                self.send_header("Cache-Control", "no-store")
+                self.send_header("Connection", "close")
+                self.close_connection = True
+                self.end_headers()
+                self.connection.settimeout(5)
+                try:
+                    # read1 forwards available frames; read() buffers until EOF.
+                    while payload := response.read1(8192):
+                        self.wfile.write(payload)
+                        self.wfile.flush()
+                except (OSError, http.client.HTTPException):
+                    pass  # A partial stream closes; replay/reset handles uncertainty.
+                return
             payload = response.read(33554433)
             if len(payload) > 33554432:
                 self.reject(502)

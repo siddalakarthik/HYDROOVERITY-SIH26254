@@ -1,12 +1,12 @@
 {
-  "revision": 4,
-  "accepted_main": "c6a4d172facc89c22f95dac8473a0bec76ca94e3",
+  "revision": 5,
+  "accepted_main": "3b14b40024d424a173c60f12462ee8b1603d3221",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40298292093",
-  "implemented_operations": 112,
-  "migrated_tables": 53,
-  "migration_head": "pre_m10_002",
-  "scope_rule": "Original forty-case denominator and historical results remain immutable. Contact review branch registers one executable but default-disabled synthetic-policy protocol alongside 111 preserved operations; it does not provide normal intake. C01/C02 remain incomplete and blocked pending operator/privacy/retention review and activation. No legal policy or external delivery is approved.",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40301577033",
+  "implemented_operations": 114,
+  "migrated_tables": 54,
+  "migration_head": "pre_m10_003",
+  "scope_rule": "Original forty-case denominator and historical evidence remain immutable. Two existing M02 deferred record-update operations are executable; all112 previous contracts remain compatible. Contact remains default-disabled; external delivery, retention/legal policy, media/offline and physical validation gates remain.",
   "items": [
     {
       "id": "F01",
@@ -464,25 +464,28 @@
       "id": "R02",
       "requirement": "Realtime recovery",
       "historical_status": "BLOCKED",
-      "current_status": "BLOCKED",
-      "root_cause": "Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented",
+      "current_status": "PASS",
+      "root_cause": "Implemented committed snapshot watermarks, hashed durable scoped cursors, explicit reset and bounded current-authorized replay with actual transport recovery.",
       "required_implementation": "Implement authenticated snapshot/replay cursors, expiry/reset and backpressure with revocation checks.",
       "required_test": "Watermark/replay or reset snapshot; no lost authorized event; bounded queue; no waveform",
       "dependency_or_approval": "Existing D1–D10 and private-development deployment gates remain applicable.",
       "risk": "MEDIUM",
       "source_files": [
-        "services/api/tests/m09_acceptance.py",
-        "services/api/tests/test_science.py",
-        "tests/unit/test_m05.py",
-        "tests/unit/test_m06_reproduction.py"
+        "services/api/hydro/realtime.py",
+        "services/api/migrations/versions/pre_m10_003.py",
+        "services/api/tests/prem10_realtime_acceptance.py",
+        "apps/web/src/components/record-updates.tsx",
+        "apps/web/browser/realtime.spec.ts"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
-        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969"
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
+        "docs/decisions/PRE_M10_REALTIME_RECOVERY.md",
+        "data/schemas/pre-m10-realtime-revisions.json"
       ],
-      "remaining_limitations": "Live snapshot/subscription race, durable event cursor expiry and backpressure not implemented"
+      "remaining_limitations": "Bounded synthetic software acceptance only. Process-local capacity; no production delivery SLA, physical freshness, offline cache or legal retention approval. Final exact-head CI and artifacts are recorded in the review PR."
     },
     {
       "id": "R03",
@@ -1097,7 +1100,7 @@
       "requirement": "Runtime inventory",
       "historical_status": "PASS",
       "current_status": "PASS",
-      "root_cause": "112 registered protocol operations: 111 previous plus one gated contact operation; 53 migrated tables; pre_m10_002. Historical candidate counts remain separate.",
+      "root_cause": "114 registered operations: 113 active plus one default-disabled contact protocol; 54 migrated tables; pre_m10_003. Historical candidate counts remain separate.",
       "required_implementation": "Preserve compatibility and record every additive count transition.",
       "required_test": "Live OpenAPI operation count and actual PostgreSQL table/revision query.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",

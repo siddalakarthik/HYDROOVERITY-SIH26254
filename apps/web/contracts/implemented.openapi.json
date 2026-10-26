@@ -9009,6 +9009,72 @@
           "message"
         ],
         "description": "HYDROOVERITY project-team inbox only; no tenant, member, assignee, storage or retrieval fields. Private text, escaped on review; no attachments."
+      },
+      "EventEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "event_type": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "resource_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workspace_mode": {
+            "$ref": "#/components/schemas/WorkspaceMode"
+          },
+          "safe_summary": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "id",
+          "event_type",
+          "resource_id",
+          "occurred_at",
+          "workspace_mode",
+          "safe_summary"
+        ]
+      },
+      "Page_EventEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventEnvelope"
+            },
+            "maxItems": 100
+          },
+          "next_cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "as_of": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "as_of"
+        ]
       }
     },
     "securitySchemes": {
@@ -23649,6 +23715,215 @@
         },
         "x-retry-policy": "PROJECT_CONTACT",
         "x-authorization-guards": []
+      }
+    },
+    "/orgs/{organization_id}/events": {
+      "get": {
+        "operationId": "realtime_get_orgs_organization_id_events",
+        "tags": [
+          "Realtime"
+        ],
+        "summary": "Read bounded safe SSE",
+        "description": "Read bounded safe SSE; no implicit access to all tenant events. Authorization: tenant + per-event current permission. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "workspace_mode",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WorkspaceMode"
+            },
+            "description": "Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access."
+          },
+          {
+            "name": "Last-Event-ID",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 500
+            },
+            "description": "Opaque authorized replay cursor; expired cursor triggers reset snapshot."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ALL"
+        ],
+        "x-required-permission": "realtime.read",
+        "x-scope": "tenant + per-event current permission",
+        "x-database-effect": "Read bounded safe SSE; no implicit access to all tenant events.",
+        "x-restricted-truth": false,
+        "responses": {
+          "200": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string",
+                  "description": "SSE id/event/data framing; data matches EventEnvelope, heartbeat comments; see realtime design."
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-retry-policy": "READ_ONLY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
+      }
+    },
+    "/orgs/{organization_id}/events/history": {
+      "get": {
+        "operationId": "realtime_get_orgs_organization_id_events_history",
+        "tags": [
+          "Realtime"
+        ],
+        "summary": "Poll/recover authorized missed event summaries with opaque cursor.",
+        "description": "Poll/recover authorized missed event summaries with opaque cursor. Authorization: tenant + per-event current permission. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.",
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          {
+            "name": "workspace_mode",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/WorkspaceMode"
+            },
+            "description": "Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access."
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-roles": [
+          "ALL"
+        ],
+        "x-required-permission": "realtime.read",
+        "x-scope": "tenant + per-event current permission",
+        "x-database-effect": "Poll/recover authorized missed event summaries with opaque cursor.",
+        "x-restricted-truth": false,
+        "responses": {
+          "200": {
+            "description": "Successful authorized result; Set-Cookie on session creation/rotation as documented.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page_EventEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "x-retry-policy": "READ_ONLY",
+        "x-authorization-guards": [
+          "TENANT"
+        ]
       }
     }
   }

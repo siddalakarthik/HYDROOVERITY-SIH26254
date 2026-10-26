@@ -23,6 +23,7 @@ import {
   type Page,
 } from "@/lib/api";
 import { Wordmark } from "@/components/shells";
+import { RecordUpdates } from "@/components/record-updates";
 import {
   Badge,
   ErrorPanel,
@@ -464,6 +465,11 @@ export function Workspace({ segments }: { segments: string[] }) {
           <Logout />
         </header>
         <main id="main" className="workspace-content">
+          <RecordUpdates
+            key={`${org}-${tail[0] === "simulations"}`}
+            org={org}
+            mode={tail[0] === "simulations" ? "SIMULATION" : "OPERATIONAL"}
+          />
           <p className="breadcrumbs">
             <Link href="/account">Account</Link> /{" "}
             {organization.data?.name ?? "Utility"} / {breadcrumb}

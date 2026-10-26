@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import {
   Children,
+  Fragment,
   cloneElement,
   isValidElement,
   useEffect,
@@ -151,6 +152,7 @@ export function useResource<T>(path: string | null) {
     data?: T;
     etag?: string | null;
     error?: unknown;
+    backgroundError?: unknown;
     loading: boolean;
   }>({ path, loading: true });
   useEffect(() => {
@@ -169,6 +171,9 @@ export function useResource<T>(path: string | null) {
       });
     };
     window.addEventListener("hydro:scope-cleared", clear);
+    // Background record invalidation preserves mounted forms and their values.
+    const update = () => setRevision((n) => n + 1);
+    window.addEventListener("hydro:record-refresh", update);
     api<T>(path, { signal: controller.signal })
       .then(({ data, etag }) => {
         if (!controller.signal.aborted)
@@ -176,11 +181,19 @@ export function useResource<T>(path: string | null) {
       })
       .catch((error: unknown) => {
         if (!controller.signal.aborted)
-          setState({ path, error, loading: false });
+          setState((previous) =>
+            previous.path === path &&
+            previous.data !== undefined &&
+            error instanceof ApiError &&
+            (error.status === 0 || error.status === 429 || error.status >= 500)
+              ? { ...previous, backgroundError: error, loading: false }
+              : { path, error, loading: false },
+          );
       });
     return () => {
       controller.abort();
       window.removeEventListener("hydro:scope-cleared", clear);
+      window.removeEventListener("hydro:record-refresh", update);
     };
   }, [path, revision]);
   const valid = state.path === path;
@@ -188,9 +201,14 @@ export function useResource<T>(path: string | null) {
     data: valid ? state.data : undefined,
     etag: valid ? state.etag : undefined,
     error: valid ? state.error : undefined,
+    backgroundError: valid ? state.backgroundError : undefined,
     loading: !valid || state.loading,
     refresh: () => {
-      setState({ path, loading: true });
+      setState((previous) =>
+        previous.path === path && previous.data !== undefined
+          ? { ...previous, backgroundError: undefined }
+          : { path, loading: true },
+      );
       setRevision((n) => n + 1);
     },
   };
@@ -198,11 +216,13 @@ export function useResource<T>(path: string | null) {
 export function ResourceState({
   loading,
   error,
+  backgroundError,
   refresh,
   children,
 }: {
   loading: boolean;
   error?: unknown;
+  backgroundError?: unknown;
   refresh: () => void;
   children: ReactNode;
 }) {
@@ -213,7 +233,17 @@ export function ResourceState({
       </div>
     );
   if (error) return <ErrorPanel error={error} retry={refresh} />;
-  return <>{children}</>;
+  return (
+    <>
+      {backgroundError ? (
+        <div>
+          <p>Refresh failed. Showing the last loaded records.</p>
+          <ErrorPanel error={backgroundError} retry={refresh} />
+        </div>
+      ) : null}
+      <Fragment key="authorized-records">{children}</Fragment>
+    </>
+  );
 }
 export function Freshness({ at }: { at?: string }) {
   return (

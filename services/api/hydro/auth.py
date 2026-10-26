@@ -27,7 +27,9 @@ class Auth:
         self.user: dict[str, Any] | None = None
         self.deliveries: list[tuple[str, str, str]] = []
 
-    def identify(self, cleanup: bool = False, identity_write: bool = False) -> None:
+    def identify(
+        self, cleanup: bool = False, identity_write: bool = False, *, count_request: bool = True
+    ) -> None:
         raw = self.request.cookies.get(COOKIE, "")
         row = (
             one(self.c, "SELECT * FROM sessions WHERE token_hash=:h", h=verifier(raw))
@@ -74,7 +76,11 @@ class Auth:
                     i=s["id"],
                 )
         context(self.c, self.user["id"] if self.user else None)
-        self.app.state.limits.hit("general", str(s["id"]), 120, 60)
+        # A stream's internal reauthorization repeats every security check but
+        # does not invent additional HTTP requests for the session throttle.
+        # The initial subscription/history request always uses the default.
+        if count_request:
+            self.app.state.limits.hit("general", str(s["id"]), 120, 60)
 
     def authenticated(self) -> None:
         require(

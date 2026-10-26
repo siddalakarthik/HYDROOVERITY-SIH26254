@@ -24,6 +24,7 @@ jobs:
           python3 scripts/check_repository_media.py
           python3 scripts/check_pre_m10.py
           python3 scripts/test_pre_m10_contact.py -v
+          python3 scripts/test_pre_m10_realtime.py -v
           python3 scripts/check_pre_m10_revisit.py
           python3 scripts/test_pre_m10_revisit.py -v
           python3 scripts/check_pre_m10_f01.py
@@ -51,6 +52,7 @@ jobs:
           "$RUNNER_TEMP/m09-contracts/bin/python" -m pip install --only-binary=:all: -r services/api/requirements-lock.txt
           "$RUNNER_TEMP/m09-contracts/bin/python" scripts/check_m09.py
           "$RUNNER_TEMP/m09-contracts/bin/python" scripts/check_pre_m10_contact.py
+          "$RUNNER_TEMP/m09-contracts/bin/python" scripts/check_pre_m10_realtime.py
       - name: Validate scientific simulations
         env:
           MPLCONFIGDIR: ${{ runner.temp }}/matplotlib
@@ -231,6 +233,13 @@ jobs:
           path: ${{ runner.temp }}/m04-evidence/PREM10-CONTACT-*.png
           if-no-files-found: error
           retention-days: 14
+      - name: Upload realtime resident recovery browser evidence (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_PREM10_REALTIME_BROWSER
+          path: ${{ runner.temp }}/m04-evidence/PREM10-REALTIME-*.png
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload complaint notification browser evidence (14 days)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
@@ -389,6 +398,25 @@ jobs:
         with:
           name: HYDROOVERITY_PREM10_CONTACT_ACCEPTANCE
           path: ${{ runner.temp }}/prem10-contact-evidence/summary.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Realtime cursor, current authorization, race and transport recovery acceptance
+        run: >-
+          docker compose -f services/api/compose.yaml --profile tools run --rm backend-check
+          python services/api/tools/verify_prem10_realtime.py
+          --operator-config /private/operator/operator.json
+          --runtime-config /private/runtime/runtime.json
+          --confirm-disposable-database hydro_disposable_m03
+          --evidence-directory /private/prem10-realtime-evidence
+      - name: Collect sanitized realtime recovery evidence
+        run: |
+          mkdir -p "$RUNNER_TEMP/prem10-realtime-evidence"
+          docker compose -f services/api/compose.yaml exec -T --user 0 api cat /private/prem10-realtime-evidence/prem10-realtime-summary.json > "$RUNNER_TEMP/prem10-realtime-evidence/summary.json"
+      - name: Upload realtime recovery acceptance (14 days)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: HYDROOVERITY_PREM10_REALTIME_ACCEPTANCE
+          path: ${{ runner.temp }}/prem10-realtime-evidence/summary.json
           if-no-files-found: error
           retention-days: 14
       - name: Backend source quality and dependency compatibility
