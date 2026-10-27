@@ -26,6 +26,8 @@ jobs:
           python3 scripts/test_pre_m10_contact.py -v
           python3 scripts/test_pre_m10_realtime.py -v
           python3 scripts/test_pre_m10_devices.py -v
+          python3 scripts/check_pre_m10_docs.py
+          python3 scripts/test_pre_m10_docs.py -v
           python3 scripts/check_pre_m10_revisit.py
           python3 scripts/test_pre_m10_revisit.py -v
           python3 scripts/check_pre_m10_f01.py

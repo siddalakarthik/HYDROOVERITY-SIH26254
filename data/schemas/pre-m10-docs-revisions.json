@@ -1,0 +1,35 @@
+{
+  "baseline_commit": "496451f7dd4b215e3adba6ebefc4dd31b5d5c330",
+  "source_revisions": {
+    "services/api/README.md": {
+      "baseline_sha256": "e71fbc9ecd281068658186fd7d46853d1b468b0022cd56ed5ee78b3a476f4c0e",
+      "sha256": "e2cd5dccf149873e47907b68d595763426963822f1f183eea0c2d3c06a70b318",
+      "reason": "Current guide correction or narrow documentation source-amendment validation; no runtime/API/scientific changes."
+    },
+    "apps/web/README.md": {
+      "baseline_sha256": "431abb6bbfd28fd5561f8c19257b6d527e1185b2b309dae7f62216b8b9df3858",
+      "sha256": "a45ba9fb41edeed93338a7edd537197da5bae3dfb6018d6121c760b434e06836",
+      "reason": "Current guide correction or narrow documentation source-amendment validation; no runtime/API/scientific changes."
+    },
+    "scripts/pre_m10_devices_sources.py": {
+      "baseline_sha256": "bd1eb7cb96ee9f01ca8934ece0e5c87b0d589cd0fbf28b9709ea70be5d1ed8c0",
+      "sha256": "019b3f4e5e9b07e7c4e1bd4637dd1a2aa348a51f8e4162398cb7e69674123bee",
+      "reason": "Current guide correction or narrow documentation source-amendment validation; no runtime/API/scientific changes."
+    },
+    "scripts/check_pre_m10_devices.py": {
+      "baseline_sha256": "4c77bb0c5b9cc34b8dcb0629fea12ef854496a7fb6034e4d4b53767143104535",
+      "sha256": "82174e9978a4b9facdf7a3ae53be9e41fc7c7d33118f672db0630621d0f5ac13",
+      "reason": "Current guide correction or narrow documentation source-amendment validation; no runtime/API/scientific changes."
+    },
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "3bfb22d25b9ee35cb94788f87a8d6e75359400bc4b279048495b45b21734ebf3",
+      "sha256": "5163f3dd462a50791271a277908a314ce162d1247e0b7ea6d688a8baeb667916",
+      "reason": "Current guide correction or narrow documentation source-amendment validation; no runtime/API/scientific changes."
+    }
+  },
+  "new_source_sha256": {
+    "scripts/pre_m10_docs_sources.py": "ecfd22d738a7476f8f7f5ed94b5daa7c207101f2a2597ad25c85eb3a66ffc6db",
+    "scripts/check_pre_m10_docs.py": "9e85e6a3bbeaaa0a57ad0c05a920ae00b3f7369298cc1484522fca521365f13b",
+    "scripts/test_pre_m10_docs.py": "5c57c24a62810570a175de640656d02ab8e0637b6edfb0570ecd135b9c323860"
+  }
+}

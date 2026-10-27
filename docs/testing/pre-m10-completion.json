@@ -1,8 +1,8 @@
 {
-  "revision": 6,
-  "accepted_main": "506e9ed64f69d36703cc958350ef6c32bebaeb91",
+  "revision": 7,
+  "accepted_main": "496451f7dd4b215e3adba6ebefc4dd31b5d5c330",
   "original_m09_baseline": "500a349299ceb79994d618cc0208dca9b2fb6ed0",
-  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40361239810",
+  "postmerge_ci": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40435823064",
   "implemented_operations": 119,
   "migrated_tables": 57,
   "migration_head": "pre_m10_004",
@@ -814,13 +814,15 @@
         "services/api/tests/prem10_device_acceptance.py",
         "apps/web/src/features/devices.tsx"
       ],
-      "completion_commit": null,
-      "completion_pr": null,
+      "completion_commit": "130fb98c6f834d4d0b9cd4f204365dad1fc0605c",
+      "completion_pr": "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/pull/31",
       "evidence": [
         "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md",
         "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969",
         "docs/decisions/PRE_M10_DEVICE_CREDENTIALS.md",
-        "data/schemas/pre-m10-devices-revisions.json"
+        "data/schemas/pre-m10-devices-revisions.json",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40434586478",
+        "https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40435823064"
       ],
       "remaining_limitations": "SYNTHETIC_TEST_ONLY binding is constrained to explicitly named disposable databases. Actual physical provisioning, scalar ingestion, hardware connection and ordinary contact governance remain unresolved. A08 remains BLOCKED."
     },
@@ -1192,21 +1194,30 @@
       "id": "DOC-02",
       "requirement": "Subsystem documentation",
       "historical_status": "NOT TESTED",
-      "current_status": "NOT TESTED",
-      "root_cause": "Updated root apps/services/tests guides, documentation index and current roadmap. Historical pinned subsystem guides retain execution-time counts and are contextualized.",
+      "current_status": "PASS",
+      "root_cause": "Subsystem entry guides retained stale M01/M03/M04 status, old operation/page counts and an execution-time dependency advisory. Current leaf guides and umbrella indexes now distinguish delivered software, historical evidence and actual gates.",
       "required_implementation": "Audit important folder guides and distinguish implementation from proposals.",
       "required_test": "Link/path/command verification.",
       "dependency_or_approval": "Owner master pre-M10 authorization; D1–D10 retained; no physical/public-release authorization.",
       "risk": "MEDIUM",
       "source_files": [
-        "docs/README.md"
+        "apps/README.md",
+        "apps/web/README.md",
+        "services/README.md",
+        "services/api/README.md",
+        "data/README.md",
+        "design/README.md",
+        "data/schemas/pre-m10-docs-revisions.json"
       ],
       "completion_commit": null,
       "completion_pr": null,
       "evidence": [
-        "docs/testing/M09_FULL_SYSTEM_ACCEPTANCE.md"
+        "python scripts/check_repository.py",
+        "python scripts/check_pre_m10_docs.py",
+        "python scripts/test_pre_m10_docs.py -v",
+        "Current main and PR31 CI verified before guide amendment."
       ],
-      "remaining_limitations": "Detailed subsystem reproduction guides still need a separately explicit baseline amendment before editing their pinned historical content."
+      "remaining_limitations": "Guide links, current inventory and command entrypoints are checked; this is not a fresh dependency installation, native browser zoom certification or physical reproduction. Historical reports and original source hashes remain unchanged."
     },
     {
       "id": "UI-01",

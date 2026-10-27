@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **119 registered operations (114 previous + five device-boundary operations), 57 migrated tables, `pre_m10_004`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **23 PASS / 13 BLOCKED / 4 NOT IMPLEMENTED**. Revision 6 starts from green main `506e9ed64f69d36703cc958350ef6c32bebaeb91` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40361239810). R02 passed all four PR and postmerge jobs. Proposed-device metadata and a separately gated credential foundation are the current increment; A08 remains BLOCKED. Contact and external provider gates remain. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **119 registered operations (114 previous + five device-boundary operations), 57 migrated tables, `pre_m10_004`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **23 PASS / 13 BLOCKED / 4 NOT IMPLEMENTED**. Revision 7 starts from green main `496451f7dd4b215e3adba6ebefc4dd31b5d5c330` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40435823064). R02 passed all four PR and postmerge jobs. Proposed-device metadata and the separately gated credential foundation passed PR31 and postmerge CI; A08 remains BLOCKED. Contact and external provider gates remain. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -71,7 +71,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | META-ISSUES | Milestone closure | PASS | Close #7 only against original criteria; no M10 before readiness review. |
 | EVIDENCE-01 | Stale HTTPS evidence migration label | PASS | Query live alembic_version; explicitly version source-baseline transition without rewriting historical evidence. |
 | DOC-01 | Current repository presentation | PASS | Update actual status, estimated INR 59870 plus INR 130 margin, source-linked media and reproducible navigation. |
-| DOC-02 | Subsystem documentation | NOT TESTED | Audit important folder guides and distinguish implementation from proposals. |
+| DOC-02 | Subsystem documentation | PASS | Corrected current guide counts, delivered scope, historical status and dated advisory context; explicit narrow source amendment preserves old hashes. |
 | UI-01 | Website quality audit | NOT TESTED | Inspect actual public/auth/role workflows and fix only demonstrated defects using accepted design system. |
 | DEP-01 | Development dependency and license limitations | BLOCKED | Assess affected tools and safe targeted upgrades; preserve attribution; owner chooses project license. |
 | HW-01 | Physical and fabrication evidence | BLOCKED | Keep accurate digital-only labels and procurement risk; actual hardware testing requires separate authorization. |

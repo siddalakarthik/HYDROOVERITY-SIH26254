@@ -11,3 +11,5 @@ Review `git diff --check`, staged filenames and staged content before committing
 For M02 also run `python scripts/check_m02_design.py` and `python scripts/test_m02_design_checker.py -v`. These inspect design consistency and deliberate invalid-design examples; they do not execute an application backend.
 
 Independent OpenAPI review uses a separate virtual environment with `scripts/openapi-validation-requirements.txt`. Run its Python executable with `-m openapi_spec_validator --schema 3.1 --validation-errors all docs/architecture/openapi-design.json` and `scripts/validate_openapi_design.py`. Do not add these packages to an application environment. Exact executed versions/results and isolation notes are in [M02 review validation](../docs/testing/M02_REVIEW_VALIDATION.md).
+
+Current guide amendments are checked by `python scripts/check_pre_m10_docs.py` and `python scripts/test_pre_m10_docs.py -v`. They preserve the historical source inventories while validating current documented operation/table/page counts. These checks do not execute the reproduction commands or certify physical performance.
