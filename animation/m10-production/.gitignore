@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+out/
+public/audio/
+public/cad/
+public/captures/
+local/
+renders/
+*.log
+*.mp4
+*.wav
+*.mp3
+*.tsbuildinfo

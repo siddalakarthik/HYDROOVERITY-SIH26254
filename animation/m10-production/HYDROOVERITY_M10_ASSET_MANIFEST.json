@@ -1,0 +1,171 @@
+{
+  "baseline": "886bf01d1c775ce0f1f7ec9f2ff2f27bc65a1d91",
+  "assets": [
+    {
+      "path": "hardware/mechanical-cad/guard5.py",
+      "sha256": "894a4ff86aa35e957ad3f4334f66284a4c21e9c0550f6e06f91c3b4a34b95e5c",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "hardware/mechanical-cad/rig_layout.json",
+      "sha256": "f9ee973ecee9a0a264e91b481ad410a8b97abaab4449e41f750684eff66b8d2a",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "hardware/guard5-collar/envelope.json",
+      "sha256": "e453dd2031d499a47581dfebc769d8e5fdd035074d3cc35765a7375b4fda2513",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "hardware/bom/m08_bom.json",
+      "sha256": "fe27dc3ad3076dd3e563df45c32df5ab953bae0a6d49708912722e96c5545eb0",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "hardware/electronics/interfaces.json",
+      "sha256": "ade91572999bf3d7cec0fb4fd8490912e9186ec45d2a07c40d0f9939ac48f635",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "hardware/electronics/netlist.json",
+      "sha256": "3897b9c5c05cf81f0c49f53494dafc271fb92850ffb20b85775a01e858c0f0a9",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "simulations/evaluation/reference_summary.json",
+      "sha256": "d02f38da9cbf4e849c4ecd5d094cfefd1971f46d891085e5c699c097cd274b7e",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "path": "docs/testing/PRE_M10_COMPLETION_REGISTER.md",
+      "sha256": "5dc63e6a08c8fbb1028aa6d4ed439c4f939ffa98a9a75c8e82a17d7cfbff8b52",
+      "classification": "REVIEWED_PUBLIC_SOURCE"
+    },
+    {
+      "asset": "captures/home.png",
+      "source": "work/pre-m10-devices-browser-evidence/home-desktop.png",
+      "sha256": "e31a0748f1472cb885de325147bc863033235ade108f00a3a7423de9eabc7948",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/resident-intake.png",
+      "source": "work/pre-m10-realtime-browser-evidence/M07-A-01-resident-intake-desktop.png",
+      "sha256": "10fb3324f2d8dd1881fe484c4696952c74123abfb61d1155c585845bd9f5f81b",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/supervisor-triage.png",
+      "source": "work/pre-m10-realtime-browser-evidence/M07-A-02-supervisor-triage-desktop.png",
+      "sha256": "d484461671a5138ca4db6775d4fcebc9f84ad542337716a9b72e20a3f57d24fa",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/resident-timeline.png",
+      "source": "work/pre-m10-realtime-browser-evidence/M07-A-03-safe-resident-timeline.png",
+      "sha256": "1ab1bb0dc3c94fb74c38cf562e2059d3f26dba8de4dbcc48e602baa4cc2ca87d",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/findings.png",
+      "source": "work/pre-m10-realtime-browser-evidence/M07-A-04-technician-findings-desktop.png",
+      "sha256": "b6b364606e8e81a7d5bab666412371579079b82d2a03180ec1c95e1493438f9d",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/resident-mobile.png",
+      "source": "work/pre-m10-realtime-browser-evidence/M07-A-05-resident-mobile.png",
+      "sha256": "5cc59e51541e5ebfb70c4778d2b095c0b8cb02129f9db7eaa410301c8d7e2f91",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/supervisor.png",
+      "source": "work/pre-m10-devices-browser-evidence/supervisor-overview-desktop.png",
+      "sha256": "8c482247a1ebecd0b2f1dcf8e5937892729ee07928b465144fe30c30faaf89ff",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/technician-mobile.png",
+      "source": "work/pre-m10-devices-browser-evidence/technician-task-mobile.png",
+      "sha256": "1eaa7a5a5d0450ffd55218c5a531abef2f74dde37f709edb50d328c70d919022",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/verification.png",
+      "source": "work/pre-m10-devices-browser-evidence/verification-desktop.png",
+      "sha256": "37872fee0ce802277c7f3962c99b42af07b5e737e96c034db5a38fdb05b73024",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/science-watch.png",
+      "source": "work/m09-browser-evidence/M06-WATCH-desktop.png",
+      "sha256": "7af51277e2fa174833753e0b37e7d9519d952e0315c30835caf323140b47c1c7",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/science-ear.png",
+      "source": "work/m09-browser-evidence/M06-EAR-desktop.png",
+      "sha256": "4bab8e150b1d64e63ff1774e4b8b685daf6bc84223af5ac0ca71d91639d8fa0f",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/science-guard.png",
+      "source": "work/m09-browser-evidence/M06-GUARD5-mobile.png",
+      "sha256": "84eb0e80b429ddc59de997d164fe4c486a07c698d5d895dd1f7912ffe1c78d32",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/inbox.png",
+      "source": "work/m07c-browser-evidence/M07C-resident-inbox-desktop.png",
+      "sha256": "b7377011dcc1dbcc0ccc53ccf8772a6a7d0b6332466df5e080184f87279b7d4c",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "captures/feedback.png",
+      "source": "work/m07c-browser-evidence/M07C-resident-feedback-mobile.png",
+      "sha256": "c0dfc4532bc6cb50e72b1000de31123e889318afaa3e500a6e3525379bcfbafe",
+      "classification": "AUTHENTIC_SYNTHETIC_BROWSER_TEST_CAPTURE",
+      "continuity": "Within-test cases only; different test families are separate demonstrations.",
+      "visual_privacy_review": "Top/middle/end inspected: synthetic utility/test records, no credentials or real resident data observed. Full-pixel OCR not performed."
+    },
+    {
+      "asset": "audio/HYDROOVERITY_M10_VOICE_MASTER.wav",
+      "sha256": "b12931e4db1bc9b711127420c4c134078d0036811621874b4cb219c726fdd117",
+      "classification": "OWNER_NARRATION_LOCAL_ONLY"
+    },
+    {
+      "asset": "audio/HYDROOVERITY_M10_FINAL_MIX.wav",
+      "sha256": "e22fac0c66e0d079ff5555a941e20189b8eabdfb359c6f7d216d5af68dcaf8b3",
+      "classification": "OWNER_NARRATION_LOCAL_ONLY"
+    }
+  ],
+  "music": "None: owner-authorized clean voice-only fallback; no third-party soundtrack",
+  "mix": "Exact normalized voice PCM followed by silent visual hold. No narration cuts, overlaps, pitch or speed changes.",
+  "original_recordings": "Remain outside Git. SHA256 and per-track measurements in local public/audio/audio-measurements.json.",
+  "review_status": "Source and sampled privacy review complete; rendered-film QA recorded separately."
+}

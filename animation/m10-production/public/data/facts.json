@@ -1,0 +1,44 @@
+{
+  "baseline": "886bf01d1c775ce0f1f7ec9f2ff2f27bc65a1d91",
+  "operations": 119,
+  "tables": 57,
+  "guard_f1": {
+    "guard5": 0.7142857142857143,
+    "pad": 0.7777777777777778,
+    "multizone": 0.8235294117647058
+  },
+  "acoustics": {
+    "eligible": 264,
+    "accepted": 190,
+    "unresolved": 74,
+    "coverage": 0.7196969696969697,
+    "coverage_ci95": [
+      0.6626642498943998,
+      0.7704277759284437
+    ],
+    "accepted_median_error_m": 0.0007966093102349525,
+    "accepted_p95_error_m": 0.9285140857917137,
+    "accepted_within_1m": 184,
+    "correct_all_eligible": 0.696969696969697,
+    "correct_all_ci95": [
+      0.6390346879764629,
+      0.7492547144853968
+    ],
+    "confidently_wrong_intervals": 20,
+    "unresolved_error_policy": "No point error imputed: report accepted errors and correct/ALL eligible; unresolved count as not located.",
+    "cc_median_error_m": 0.0007803841003859446,
+    "phat_median_error_m": 0.0014428761391931388
+  },
+  "bom_groups": {
+    "Rig": 22270,
+    "Safety": 3600,
+    "Reference": 3800,
+    "WATCH": 7150,
+    "Digital": 6400,
+    "GUARD5": 3250,
+    "EAR": 5200,
+    "Power": 3200
+  },
+  "bom_item_count": 41,
+  "hardware_status": "DIGITAL DESIGN / NOT PHYSICALLY VALIDATED"
+}
