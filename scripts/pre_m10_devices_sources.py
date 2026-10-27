@@ -97,3 +97,10 @@ def before_devices(spec):
         del previous['components']['schemas'][name]
     assert digest(previous) == value['previous_openapi_sha256'], 'Previous 114-operation contract changed'
     return previous
+
+
+_device_digest = extend_digest
+
+def extend_digest(name, expected):
+    from pre_m10_docs_sources import extend_digest as extend_docs
+    return extend_docs(name, _device_digest(name, expected))

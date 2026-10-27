@@ -1,6 +1,8 @@
-# M03 backend foundation
+# HYDROOVERITY backend development guide
 
-Private development implementation: FastAPI, PostgreSQL/PostGIS, opaque cookie sessions and a persisted operational workflow. [Implementation report](../../docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [executed acceptance](../../docs/testing/M03_ACCEPTANCE_RESULTS.md), [all 117 operation statuses](../../data/schemas/m03-implementation-matrix.json). There are 58 implemented canonical operations; this is not a public deployment or a sensor validation.
+Private development implementation: FastAPI, PostgreSQL/PostGIS, opaque cookie sessions and a persisted operational workflow. [Implementation report](../../docs/engineering/M03_BACKEND_IMPLEMENTATION_REPORT.md), [executed acceptance](../../docs/testing/M03_ACCEPTANCE_RESULTS.md), [all 117 operation statuses](../../data/schemas/m03-implementation-matrix.json). Those historical M03 records describe the original 58 implemented canonical operations. The current combined runtime registers **119 operations and 57 application tables (`pre_m10_004`)**; see the [current completion register](../../docs/testing/PRE_M10_COMPLETION_REGISTER.md) and [generated runtime contract](../../apps/web/contracts/implemented.openapi.json). Public deployment and physical sensor validation remain gated.
+
+The combined service includes M07-A resident requests/investigation findings, M07-B configured scheduling/dispatch, M07-C in-app communications/feedback, M06 labeled synthetic integration, complaint notifications, current-cycle revisit guards, bounded authenticated record replay and proposed-device metadata. Contact intake remains default-disabled; one-time hardware credentials require independently reviewed provisioning, currently exercised only with operator-controlled synthetic bindings in disposable databases. No infrastructure actuation or live field stream is enabled.
 
 Run commands from the repository root in PowerShell 7. Keep private configuration, mail, certificates, database files and evidence **outside the Git checkout**. Acceptance resets only a separately confirmed `hydro_disposable_*` database. Never point it at an operational database. No default user/password is shipped. Operator bootstrap prompts privately; choose your own email and password. Bootstrap creates a verified ADMIN only, with no inherited engineering or evaluator powers.
 
@@ -120,11 +122,11 @@ Stop a native cluster only with its own `pg_ctl -D <dedicated-data-directory> st
 git diff --check
 ```
 
-M05 and M08 retain their own isolated environments, requirements and reproduction commands. They must not be installed into this backend environment. Generated raw scientific truth and seeds stay outside ordinary APIs, dashboard artifacts and this acceptance evidence. Private development mail is bounded and post-commit; external delivery, shared multi-instance limits, upload handling, ingestion, live scientific verification and production operations require separately authorized work.
+M05 and M08 retain their own isolated environments, requirements and reproduction commands. They must not be installed into this backend environment. Generated raw scientific truth and seeds stay outside ordinary APIs, dashboard artifacts and this acceptance evidence. Private development mail is bounded and post-commit; external delivery, shared multi-instance limits, secure image handling, physical device ingestion, comparable measured verification and production operations retain their approval and implementation gates. The existing synthetic replay must not be advertised as measured hardware ingestion.
 
 ## Traceability recovery checks
 
-The [post-merge recovery report](../../docs/testing/M03_POST_MERGE_CI_RECOVERY.md) records the reproduced race-dependent reference and focused correction. Acceptance still executes the original 45 tests. Run it twice with separate evidence directories, then check both outputs and the negative regressions:
+The [post-merge recovery report](../../docs/testing/M03_POST_MERGE_CI_RECOVERY.md) records the reproduced race-dependent reference and focused correction. The original M03 recovery report records its execution-time 45-test suite. The current verifier executes 118 backend tests per run and includes the additive runtime inventory; CI repeats that suite and separately runs focused pre-M10 acceptance. Run the verifier twice with separate evidence directories, then check both outputs and the negative regressions:
 
 ```powershell
 & $py services/api/tools/traceability.py --check --evidence "$private/evidence/acceptance-summary.json"

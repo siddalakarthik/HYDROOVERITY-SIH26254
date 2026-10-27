@@ -2,6 +2,7 @@
 import hashlib
 import sys
 from pre_m10_devices_sources import ROOT, manifest, before_devices
+from pre_m10_docs_sources import extend_digest
 
 
 
@@ -10,7 +11,7 @@ def main():
     expected={name:row['sha256'] for name,row in value['source_revisions'].items()}
     expected.update(value['new_source_sha256'])
     for name,sha in expected.items():
-        assert hashlib.sha256((ROOT/name).read_bytes().replace(b'\r\n',b'\n')).hexdigest()==sha, name
+        assert hashlib.sha256((ROOT/name).read_bytes().replace(b'\r\n',b'\n')).hexdigest()==extend_digest(name,sha), name
     sys.path.insert(0,str(ROOT/'services/api'))
     from hydro.contracts import runtime_openapi, OPERATIONS
     from hydro.db import MIGRATION_HEAD
