@@ -1791,6 +1791,90 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/orgs/{organization_id}/devices": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Read permitted device identity/health, not raw telemetry.
+         * @description Read permitted device identity/health, not raw telemetry. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["devices_get_orgs_organization_id_devices"];
+        put?: never;
+        /**
+         * Register reviewed device identity
+         * @description Register reviewed device identity; cannot bypass future physical provisioning gate. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.
+         */
+        post: operations["devices_post_orgs_organization_id_devices"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/devices/{device_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Read device metadata.
+         * @description Read device metadata. Authorization: tenant. All behavior is a future contract, not implemented. Read operations are side-effect free except explicitly bounded preauth bootstrap.
+         */
+        get: operations["devices_get_orgs_organization_id_devices_device_id"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/devices/{device_id}/credentials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Issue one-time scoped credential matching device profile
+         * @description Issue one-time scoped credential matching device profile; audit without secret. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence. Credential issuance: first successful response alone includes one_time_secret, Cache-Control:no-store. Same-key replay returns 409 without secret (even identical body). Receipt stores resource/status only, never secret. Lost reply requires authorized revocation and new issuance/key; no redisclosure.
+         */
+        post: operations["devices_post_orgs_organization_id_devices_device_id_credentials"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Revoke only same-device credential and audit.
+         * @description Revoke only same-device credential and audit. Authorization: tenant + fresh reauth. All behavior is a future contract, not implemented. Write and matching history/audit/outbox updates commit atomically; no success before persistence.
+         */
+        delete: operations["devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3756,6 +3840,42 @@ export interface components {
             next_cursor: string | null;
             /** Format: date-time */
             as_of: string;
+        };
+        DeviceWrite: {
+            serial_ref: string;
+            /** @enum {string} */
+            device_kind: "WATCH" | "GUARD5" | "EAR_PAIR" | "VIRTUAL";
+            provisioning_environment: components["schemas"]["AcquisitionEnvironment"];
+        };
+        Device: {
+            /** Format: uuid */
+            id: string;
+            serial_ref: string;
+            device_kind: string;
+            environment: components["schemas"]["AcquisitionEnvironment"];
+            health: components["schemas"]["DeviceHealth"];
+            version: number;
+        };
+        /** @enum {string} */
+        DeviceHealth: "HEALTHY" | "DEGRADED" | "DISCONNECTED" | "STALE" | "CALIBRATION_NEEDED" | "FAULT" | "UNKNOWN";
+        Page_Device: {
+            items: components["schemas"]["Device"][];
+            next_cursor: string | null;
+            /** Format: date-time */
+            as_of: string;
+        };
+        CredentialIssue: {
+            /** Format: date-time */
+            expires_at: string;
+            environment: components["schemas"]["AcquisitionEnvironment"];
+        };
+        /** @description Only issuance response; no logs/stream/cache. Credential environment must match reviewed device profile; hardware/site approval still required. */
+        CredentialView: {
+            /** Format: uuid */
+            id: string;
+            one_time_secret: string;
+            /** Format: date-time */
+            expires_at: string;
         };
     };
     responses: {
@@ -9217,6 +9337,206 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Page_EventEnvelope"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    devices_get_orgs_organization_id_devices: {
+        parameters: {
+            query?: {
+                limit?: number;
+                cursor?: string;
+                /** @description Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access. */
+                health?: string;
+                /** @description Allow-listed filter; invalid or unauthorized filter returns 422/403, never broadens access. */
+                environment?: components["schemas"]["AcquisitionEnvironment"];
+            };
+            header?: never;
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Page_Device"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    devices_post_orgs_organization_id_devices: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+            };
+            path: {
+                organization_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DeviceWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Device"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    devices_get_orgs_organization_id_devices_device_id: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                organization_id: string;
+                device_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Device"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    devices_post_orgs_organization_id_devices_device_id_credentials: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+            };
+            path: {
+                organization_id: string;
+                device_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CredentialIssue"];
+            };
+        };
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            201: {
+                headers: {
+                    "Cache-Control": "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CredentialView"];
+                };
+            };
+            400: components["responses"]["Error400"];
+            401: components["responses"]["Error401"];
+            403: components["responses"]["Error403"];
+            404: components["responses"]["Error404"];
+            409: components["responses"]["Error409"];
+            412: components["responses"]["Error412"];
+            413: components["responses"]["Error413"];
+            422: components["responses"]["Error422"];
+            428: components["responses"]["Error428"];
+            429: components["responses"]["Error429"];
+            503: components["responses"]["Error503"];
+        };
+    };
+    devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description 7-day actor/tenant/route/body fingerprint receipt; repeated key with changed content -> 409. */
+                "Idempotency-Key": string;
+                /** @description Session-bound synchronizer token. Preauth session for public/login actions; SameSite alone is insufficient. */
+                "X-CSRF-Token": string;
+            };
+            path: {
+                organization_id: string;
+                device_id: string;
+                credential_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful authorized result; Set-Cookie on session creation/rotation as documented. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Message"];
                 };
             };
             400: components["responses"]["Error400"];

@@ -178,6 +178,17 @@ def bind_routes(app):
     from .realtime import bind as bind_realtime
 
     bind_realtime(app)
+    from .device_credentials import OPERATIONS as device_operations
+    from .device_credentials import dispatch as device_dispatch
+
+    for op in device_operations:
+        app.add_api_route(
+            "/api/v1" + op["path"],
+            endpoint(app, op, DESIGN, device_dispatch),
+            methods=[op["method"].upper()],
+            operation_id=op["id"],
+            include_in_schema=False,
+        )
 
     @app.get("/internal/openapi.json", include_in_schema=False)
     def development_contract():

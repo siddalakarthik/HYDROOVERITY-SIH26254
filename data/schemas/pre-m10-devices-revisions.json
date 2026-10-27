@@ -1,0 +1,157 @@
+{
+  "baseline_commit": "506e9ed64f69d36703cc958350ef6c32bebaeb91",
+  "source_revisions": {
+    ".github/workflows/repository-integrity.yml": {
+      "baseline_sha256": "991387b59c22b5be4514f6524cb688e472011de293f39acf9ff7de8e621420b1",
+      "sha256": "3bfb22d25b9ee35cb94788f87a8d6e75359400bc4b279048495b45b21734ebf3",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/browser/workflow.spec.ts": {
+      "baseline_sha256": "1e9c8ea860f03eb0566e71dfccee211e96a4ed249d42ae2213889354fddf47a8",
+      "sha256": "c5710ba06d1276dba3989aa7dea49e006c42fbc1ff45bf8fd4407749248b7a2e",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/contracts/implemented.openapi.json": {
+      "baseline_sha256": "16b780b46cad6d286ebbbf917301038877747a4cd7e023f5abcdec715dac4063",
+      "sha256": "0600fdec5aa9b3728679655ca629a2d566db89cc18b773792ee83907cb6f9994",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/src/features/workspace.tsx": {
+      "baseline_sha256": "4694f1f1c2963bc185483d9c23dd2dee2ea75ea969f54c9a04dcd6b299568163",
+      "sha256": "e0143aaf1a8f612ea53bdcc5d312396d7b81a0ad40dcd7e3b25634211cb23020",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/src/lib/generated.ts": {
+      "baseline_sha256": "4db242bcdd109300addf60075d0ebee911b5e4c4099534c6c13e87ab9fcfbbbf",
+      "sha256": "0d707145caf2a6fa8fe821888eac1b5bd65c2b5442857a29e0345c6ecd67f312",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/src/lib/route-capabilities.json": {
+      "baseline_sha256": "b503e777950fe705d08e1a2eab94311840ccbba569555ab1e9b0449936ece9ac",
+      "sha256": "f0152e2408f1a9cfb2bd64ed16a8e1a74c7718e1729d17525ab81e34d111ff75",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/tools/browser-suite.mjs": {
+      "baseline_sha256": "0835749419859c0497b847dbbae20384546486c519f994b9c935eed6ed6c6cd9",
+      "sha256": "9f5abb678faa9ddc43876885de8f7f94a9762009cba0f49e2257391256365e60",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "apps/web/tools/contracts.py": {
+      "baseline_sha256": "47116e34c03ea01a1c6f070695e63a45a8e302b5c6b415e00a288f119f6980e6",
+      "sha256": "6f4965a988049c1f888813e5eadbdf7cd48fbb0fe21129444f628417266c6ce5",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "scripts/check_pre_m10_realtime.py": {
+      "baseline_sha256": "2eeb2e349e4c98cd522382fee8315e701b696dd024868cb3d96ccff99f495a48",
+      "sha256": "65504907ccbee90b150b0dc8bbed7178976f32b45fcf81b877ca32a8127c5ff1",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "scripts/pre_m10_realtime_sources.py": {
+      "baseline_sha256": "4d87468a8ebcaa427a3c17835ab44df4e63a5879dd0e00257e5d16cbfd0a2bed",
+      "sha256": "f9d3479e3cd1540a08be23b8fa11d1a862dcdb8270f73375f81c0f8803986882",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/hydro/cli.py": {
+      "baseline_sha256": "b1bad57e94f6cb1242a94c60f91a909b9c707b2e1f431f97e6d152e3df8a7c1b",
+      "sha256": "3ca87f7631a402c1d710a2d792b3e79dd92b44b0443b31b0815a2bd735d2db19",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/hydro/contracts.py": {
+      "baseline_sha256": "368e2ed4c82f849afd547c7a63b951c38719c2b93dfa43fd454c543895a8344b",
+      "sha256": "f090c85a8a0749f0a58abd90dc65069558b4f1c3a5202cf35ad775e2095feeda",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/hydro/db.py": {
+      "baseline_sha256": "1539c08938cf44912844004a8fe075f4383dd67967391ac6e3697fd8a6948d1f",
+      "sha256": "f17e71166e772ec34dbebc1e1778e496a4ab93baee6bf72618d2623b6894b2f7",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/hydro/routes.py": {
+      "baseline_sha256": "0dffa480ec124e86debae5c82b1be85d639e41c9ab120c89d19f87e4ea9cb2a6",
+      "sha256": "d9f27421856ad1c586abbd1fd3363bd79f2f05053465dec157625256a8b57e0f",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/m09_acceptance.py": {
+      "baseline_sha256": "6cb98621a473426b4841548dd79553a4ffc2e41a428c47bb4be097fb210c636e",
+      "sha256": "082fd564d95db2a212533fca22ae001eb30c72e59e273aab0d8f248cf67e2cf8",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/prem10_complaint_acceptance.py": {
+      "baseline_sha256": "fc05bd11788b17c77a910b968590c2cd0070ff1c300a35982e836b8eeac09dee",
+      "sha256": "4c68903cc94587ca106304302980f03b12b8d90e19b22d1da941770ab4599916",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/prem10_contact_acceptance.py": {
+      "baseline_sha256": "b99d085505480640d8eb655db4961aeb6e7ca5960df70fbca336cca924575cd0",
+      "sha256": "dff7d2f161bd49a3203a939eda05526e5e09d9ba4f8ec9b674da6f27aa6a7922",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/prem10_realtime_acceptance.py": {
+      "baseline_sha256": "7b74c949b663c4a1cf5585dded6e260d1abb4c5ebbaa8e62d894fd0252ab17ba",
+      "sha256": "6e849f1e53114f8baf44cb47419b5c39370bc05ef6d5ed86f44739b5a9d9ca83",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/test_communications.py": {
+      "baseline_sha256": "745fca5ce0060aa9fb6cde5bfc301ab51d7d019f54adcaa222389b1c2be7fee1",
+      "sha256": "ffa1f76c6e0e63eaadbc79f88ffc8b533d37ccceab82a78300b11e593088682c",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/test_concurrency_resilience.py": {
+      "baseline_sha256": "f8bf29785d1b9692c7975f22ce86acea4018df5efbbbbda98a906b9a73cf59b8",
+      "sha256": "7161a27a6c63654980ec17da103761dfadf84ee30dea08588c102a8d2b9f9ad1",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/test_foundation.py": {
+      "baseline_sha256": "5685bc87f07112be8b13939a49faa91afe53ec807913cbfda8841cd1ba34cfb4",
+      "sha256": "5fabe6a489cd87d6bb5a26c251c49d27db494ab86271fbd535bd6dc427d78bbf",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/test_schema_boundaries.py": {
+      "baseline_sha256": "92e461cfadab18337cf3a406298c13b405767027d387c767086d3e6d91aaa5a2",
+      "sha256": "f5966e55c37c440d0bcd898b428c58046215842d76f34692d3e7a177d148f0d6",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tests/test_workflow.py": {
+      "baseline_sha256": "4a48abff11b79ee95b491d9fee82db64857d4e21c0e113efa01e2ddbd5b61b1e",
+      "sha256": "6ba3c6685e13a7684c41ecd4d1788e189d33d93987dbca6b22154bca23ef883e",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    },
+    "services/api/tools/verify_backend.py": {
+      "baseline_sha256": "6bde35f184e84175ab1c7e822cc277d6a54e9c2a6a8e5308cc35a35a325641c8",
+      "sha256": "486548dd6a36ab6baf68e9a9c5b3e2b49d3104d5c5736b262f43c61dfaa088b7",
+      "reason": "Additive proposed-device and one-time credential foundation, exact prior API compatibility, current inventory or executed device regression evidence."
+    }
+  },
+  "new_source_sha256": {
+    "apps/web/browser/devices.spec.ts": "200e9b722a4c4875a67d6ecfe2aac7276952f45cccd5211a205b22f7796b144e",
+    "apps/web/src/features/devices.tsx": "f47f43101aa3b5540041251ced25b56717c383df6c10c1af7a364b924d6adc94",
+    "services/api/hydro/device_credentials.py": "c49241cb9c07ea60e44eff69a36315d8131ae56577fc47481c24849252310e47",
+    "services/api/migrations/versions/pre_m10_004.py": "74fd1ccb8811ebd7fd2a5ec31b7120e42400563ff0241003849af12da1821fc2",
+    "services/api/tests/prem10_device_acceptance.py": "f75c591e7b8fea430248e4ffbca0931472f79800db4cf98aea11d4434b42cefc",
+    "services/api/tools/verify_prem10_devices.py": "ca4b8934f209b2e26edb954d75361f3755813f89e852f17cf4f61d4fa23fac7d"
+  },
+  "previous_openapi_sha256": "948c507aece794ea19e35a9775190d94cbc0dbac48495af8810a2e60d6b7208f",
+  "added_paths": {
+    "/orgs/{organization_id}/devices": "1cc7130ce3745ba74f37e519c0645f27764692f89fb0f9a540727e8f24285ad0",
+    "/orgs/{organization_id}/devices/{device_id}": "dce8dd1c2319faa2a90e03b0ddfeec21fb61afadfec3d282e9283d0cbaf84f94",
+    "/orgs/{organization_id}/devices/{device_id}/credentials": "c07ba0251c5b272ec8f075d9c7f84bef0c814e9b1269d011b1c9239fbd6e3cdc",
+    "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}": "52db2b32ca87d207ae8f70401086046131cff9b80767822973212b11b1a7a5fc"
+  },
+  "added_schemas": {
+    "CredentialIssue": "5d5da1a93e34a349e918186438f9a61f0fbb4eddf357f2e50d38bac929d7f0cf",
+    "CredentialView": "5407b3dc5d8199e202f0427eb622f06a2a6eadb92787a338b00f8d4503b63087",
+    "Device": "01f73ac8751a9f6b4e0314be295528f9b4c38e9c3d0eaa0f1df0ffc9767d964a",
+    "DeviceHealth": "61576afcd0c70a193bc762bb74fe2728f3b72b89a0532e0a1bb5096d13a5445e",
+    "DeviceWrite": "ecec63c47954e5ed45880ff7b4476224c20fcb48e011e41af9b137149d1a053c",
+    "Page_Device": "3926bccb9c96b8a0a03183f296b796753505469731eb7a13dd36f0a5aa2e6eea"
+  },
+  "runtime": {
+    "registered_operations": 119,
+    "previous_operations": 114,
+    "gated_contact_operations": 1,
+    "tables": 57,
+    "migration_head": "pre_m10_004",
+    "physical_trials": 0,
+    "field_trials": 0
+  }
+}

@@ -32,6 +32,7 @@ def seed_catalogue(c):
             )
     grants = set()
     from .communications_contracts import OPERATIONS as communications_operations
+    from .device_credentials import OPERATIONS as device_operations
     from .realtime import OPERATIONS as realtime_operations
     from .scheduling_contracts import OPERATIONS as scheduling_operations
     from .science_contracts import OPERATIONS as science_operations
@@ -44,6 +45,7 @@ def seed_catalogue(c):
         + science_operations
         + scheduling_operations
         + communications_operations
+        + device_operations
         + realtime_operations
     ):
         permission = op["permission"]

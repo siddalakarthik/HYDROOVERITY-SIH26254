@@ -131,10 +131,11 @@ def test_expired_tokens_and_revoked_pending_grants_cannot_reactivate_roles(env):
 def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
     client = login(env, "admin-a@example.invalid")
     from hydro.communications_contracts import OPERATIONS as communications
+    from hydro.device_credentials import OPERATIONS as devices
     from hydro.project_contact import OPERATIONS as contact
     from hydro.realtime import OPERATIONS as realtime
 
-    registered = {op["id"] for op in OPERATIONS + communications + contact + realtime}
+    registered = {op["id"] for op in OPERATIONS + communications + contact + realtime + devices}
     for op in INVENTORY:
         if op["id"] in registered:
             continue
@@ -152,7 +153,7 @@ def test_deferred_routes_remain_unregistered_and_runtime_schema_is_precise(env):
     with env["owner"].begin() as c:
         assert one(c, "SELECT count(*) AS n FROM project_contact_submissions")["n"] == 0
     runtime = runtime_openapi()
-    assert sum(len(x) for x in runtime["paths"].values()) == 114
+    assert sum(len(x) for x in runtime["paths"].values()) == 119
     assert "EvaluationResult" not in runtime["components"]["schemas"]
     assert "deviceBearer" not in runtime["components"]["securitySchemes"]
 

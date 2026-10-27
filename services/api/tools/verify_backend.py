@@ -61,6 +61,7 @@ def main():
         raise SystemExit(result.returncode)
     from hydro.communications_contracts import OPERATIONS as COMMUNICATIONS
     from hydro.contracts import INVENTORY, OPERATIONS
+    from hydro.device_credentials import OPERATIONS as DEVICES
     from hydro.project_contact import OPERATIONS as CONTACT
     from hydro.realtime import OPERATIONS as REALTIME
     from hydro.scheduling_contracts import ACTIVE as SCHEDULING
@@ -105,6 +106,8 @@ def main():
         + len(SCHEDULING)
         + len(COMMUNICATIONS)
         + len(CONTACT)
+        + len(REALTIME)
+        + len(DEVICES)
     )
     if service_missing:
         raise SystemExit(
@@ -145,15 +148,17 @@ def main():
         + len(SCHEDULING)
         + len(COMMUNICATIONS)
         + len(CONTACT)
-        + len(REALTIME),
+        + len(REALTIME)
+        + len(DEVICES),
         designed_operations=168,
-        migrated_tables=54,
+        migrated_tables=57,
         contact_operation_status="GATED_SYNTHETIC_POLICY_ONLY",
         contact_gated_operations=len(CONTACT),
         current_m02_deferred_operations=len(INVENTORY)
         - len(OPERATIONS)
         - len(CONTACT)
-        - len(REALTIME),
+        - len(REALTIME)
+        - len(DEVICES),
         deferred_operations=len(INVENTORY) - len(OPERATIONS),
         positive_response_conformance="PASS",
         git_head_at_execution=head,

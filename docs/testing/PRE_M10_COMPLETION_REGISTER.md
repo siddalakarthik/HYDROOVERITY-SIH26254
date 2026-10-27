@@ -4,7 +4,7 @@ Authoritative current register: [machine-readable details](pre-m10-completion.js
 
 All four [post-merge CI jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40181138969) passed. This is the starting baseline, not a claim that pre-M10 completion work has passed.
 
-Runtime: **114 registered operations (113 active + one gated contact protocol), 54 migrated tables, `pre_m10_003`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **23 PASS / 13 BLOCKED / 4 NOT IMPLEMENTED**. Revision 5 starts from green main `3b14b40024d424a173c60f12462ee8b1603d3221` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40301577033). R02 has executed PostgreSQL/transport/browser recovery evidence; final exact-head release gates are recorded in its PR. Contact and external provider gates remain. Eight additional M09 risks retain their scoped PASS results.
+Runtime: **119 registered operations (114 previous + five device-boundary operations), 57 migrated tables, `pre_m10_004`**. Historical M09: **21 PASS / 13 BLOCKED / 6 NOT IMPLEMENTED**. Current original-40 status: **23 PASS / 13 BLOCKED / 4 NOT IMPLEMENTED**. Revision 6 starts from green main `506e9ed64f69d36703cc958350ef6c32bebaeb91` and [four passing post-merge jobs](https://github.com/siddalakarthik/HYDROOVERITY-SIH26254/actions/runs/40361239810). R02 passed all four PR and postmerge jobs. Proposed-device metadata and a separately gated credential foundation are the current increment; A08 remains BLOCKED. Contact and external provider gates remain. Eight additional M09 risks retain their scoped PASS results.
 
 Issues #6 (synthetic integration) and #9 (scoped acceptance) were closed with evidence after post-merge verification. #7 and #10 remain open. The repository is public; application deployment remains private-development only.
 
@@ -49,7 +49,7 @@ Each ID below has historical/current status, root cause, implementation, test, g
 | A05 | One-use reset race | PASS | PASS | Synthetic identities only |
 | A06 | Verification retry | PASS | PASS | External email disabled |
 | A07 | Invitation retry | PASS | PASS | No external identity provider |
-| A08 | Business versus auth receipts | BLOCKED | BLOCKED | Contact endpoint/device credential issuance remain deferred |
+| A08 | Business versus auth receipts | BLOCKED | BLOCKED | Actual physical binding and live contact governance remain unapproved; proposed identity/credential foundation is tested separately |
 | C01 | Project contact ownership | NOT IMPLEMENTED | BLOCKED | Gated fixed-inbox persistence tested; normal operator/privacy approval and contact-form activation pending |
 | C02 | Contact abuse and retention | NOT IMPLEMENTED | BLOCKED | Synthetic throttling/capacity/hold/purge tests passed; no legal retention or live purge approval |
 | P07 | Artifact and truth isolation | BLOCKED | BLOCKED | Restricted sealed-run object downloads/evaluator grants deferred |

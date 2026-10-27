@@ -1017,9 +1017,22 @@
       "id": "PAGE-26",
       "route": "/app/{org}/devices",
       "roles": "ENGINEER,SUPERVISOR,ADMIN",
-      "title": "Find devices by identity, health and source environment",
-      "status": "DEFERRED",
-      "operations": [],
+      "title": "Proposed device identities; physical provisioning remains gated",
+      "status": "ACTIVE_FUNCTIONAL",
+      "operations": [
+        {
+          "operation_id": "devices_get_orgs_organization_id_devices",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/devices",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "devices_post_orgs_organization_id_devices",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/devices",
+          "status": "IMPLEMENTED"
+        }
+      ],
       "shared_operations": [
         "GET /me",
         "GET /me/memberships",
@@ -1027,17 +1040,36 @@
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
-      "component": "unavailable",
-      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Deferred M03 operation; no active navigation"
+      "component": "devices",
+      "browser_evidence": "New device workflow evidence is recorded only after the private browser scenario executes.",
+      "future_dependency": "Physical bindings, acquisition, channels, calibration and measured evidence are not approved by metadata registration"
     },
     {
       "id": "PAGE-27",
       "route": "/app/{org}/devices/{id}",
       "roles": "ENGINEER,SUPERVISOR,ADMIN",
-      "title": "Inspect permitted device metadata, diagnostics and calibration tabs",
-      "status": "DEFERRED",
-      "operations": [],
+      "title": "Proposed device identities; physical provisioning remains gated",
+      "status": "ACTIVE_READ_ONLY",
+      "operations": [
+        {
+          "operation_id": "devices_get_orgs_organization_id_devices_device_id",
+          "method": "GET",
+          "path": "/orgs/{organization_id}/devices/{device_id}",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "devices_post_orgs_organization_id_devices_device_id_credentials",
+          "method": "POST",
+          "path": "/orgs/{organization_id}/devices/{device_id}/credentials",
+          "status": "IMPLEMENTED"
+        },
+        {
+          "operation_id": "devices_delete_orgs_organization_id_devices_device_id_credentials_credential_id",
+          "method": "DELETE",
+          "path": "/orgs/{organization_id}/devices/{device_id}/credentials/{credential_id}",
+          "status": "IMPLEMENTED"
+        }
+      ],
       "shared_operations": [
         "GET /me",
         "GET /me/memberships",
@@ -1045,9 +1077,9 @@
       ],
       "data_boundary": "Current membership plus own/assigned/role checks enforced by M03",
       "states": ["informational", "mobile"],
-      "component": "unavailable",
-      "browser_evidence": "Executed scoped cross-role and account/GIS suites; see M04_EXECUTION_LEDGER.md. This classification does not imply individual assertions for every route.",
-      "future_dependency": "Deferred M03 operation; no active navigation"
+      "component": "devices",
+      "browser_evidence": "New device workflow evidence is recorded only after the private browser scenario executes.",
+      "future_dependency": "Physical bindings, acquisition, channels, calibration and measured evidence are not approved by metadata registration"
     },
     {
       "id": "PAGE-28",
