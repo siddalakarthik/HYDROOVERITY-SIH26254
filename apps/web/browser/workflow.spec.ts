@@ -949,8 +949,11 @@ test("real account lifecycle, asset editing, offline recovery and map fallback",
   ).toBeVisible();
   await fallback.goto(`/app/${fixture.org}/devices`);
   await expect(
+    fallback.getByRole("heading", { name: "Proposed device identities" }),
+  ).toBeVisible();
+  await expect(
     fallback.getByText(
-      "Hardware connection, monitoring, scientific integration and offline synchronization are pending. No records or successful actions are fabricated here.",
+      "These records are proposed metadata. Health remains UNKNOWN. Registration does not approve physical provisioning, establish calibration, connect a sensor or prove field validation.",
     ),
   ).toBeVisible();
   const visitor = await browser.newContext({

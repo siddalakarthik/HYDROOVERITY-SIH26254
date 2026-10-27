@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED = frozenset({
     '.github/workflows/repository-integrity.yml',
+    'apps/web/browser/workflow.spec.ts',
     'apps/web/contracts/implemented.openapi.json',
     'apps/web/src/features/workspace.tsx',
     'apps/web/src/lib/generated.ts',

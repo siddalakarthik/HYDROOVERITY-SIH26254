@@ -52,3 +52,15 @@ previous operations preserved by an explicit additive source/whole-API amendment
 Local regression evidence:118 existing backend tests and30 frontend unit tests
 passed; frontend typecheck, lint, format and production build passed. Final
 required CI must pass on the review commit before conditional merge.
+
+The first PR CI browser run exposed the legacy M04 device-placeholder assertion.
+It now verifies the real proposed-identity heading and explicit UNKNOWN/no-physical-
+provisioning limitation; no other workflow assertions or timeouts were changed.
+The preceding notification/contact/realtime/revisit suites also passed56 local
+PostgreSQL cases against the new schema.
+
+Both original M04 browser workflows passed after the assertion update (1.9m).
+The device scenario passed separately (3.1s). A combined local invocation hit
+the existing login-IP throttle; the established per-file CI isolation and limits
+remain unchanged. The interrupted local PostgreSQL cluster was restarted from
+its existing data directory; no unrelated database was reset.
