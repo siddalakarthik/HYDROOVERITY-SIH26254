@@ -1,0 +1,1560 @@
+{
+  "baseline": "886bf01d1c775ce0f1f7ec9f2ff2f27bc65a1d91",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "audio_seconds": 524.7216666666667,
+  "duration_frames": 15832,
+  "rounding": "round each absolute word-anchor time to nearest frame; end ceil(audio samples / 48000 * 30) + 90 frame hold",
+  "status": "DRAFT_TIMING_REVIEW_REQUIRED",
+  "scenes": [
+    {
+      "id": "M10-00",
+      "part": 0,
+      "original_audio": "part0.mp3",
+      "local_start": 0.0,
+      "global_start": 0.0,
+      "from": 0,
+      "kind": "town",
+      "props": {
+        "intro": true,
+        "opening": true
+      },
+      "opening_phrase": "Hello,",
+      "word_index": 0,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 429,
+      "global_end": 14.3,
+      "local_end": 14.288979166666667,
+      "closing_phrase": "water pipeline leak detection and evidence-based maintenance.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 0.0,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-01",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 0.0,
+      "global_start": 14.288979166666667,
+      "from": 429,
+      "kind": "town",
+      "props": {},
+      "opening_phrase": "Every",
+      "word_index": 0,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 275,
+      "global_end": 23.466666666666665,
+      "local_end": 9.177687499999998,
+      "closing_phrase": "drops or water appears where it should not.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 14.3,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-02",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 9.18,
+      "global_start": 23.468979166666667,
+      "from": 704,
+      "kind": "pipe",
+      "props": {},
+      "opening_phrase": "Now imagine a small leak",
+      "word_index": 28,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 162,
+      "global_end": 28.866666666666667,
+      "local_end": 14.5776875,
+      "closing_phrase": "pipe joint. It may stay hidden for days.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 23.466666666666665,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-03",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 14.58,
+      "global_start": 28.86897916666667,
+      "from": 866,
+      "kind": "qualification",
+      "props": {
+        "mode": "rain"
+      },
+      "opening_phrase": "Wet soil could",
+      "word_index": 44,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 161,
+      "global_end": 34.233333333333334,
+      "local_end": 19.944354166666667,
+      "closing_phrase": "come from tank filling or normal demand. And",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 28.866666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-04",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 19.94,
+      "global_start": 34.22897916666667,
+      "from": 1027,
+      "kind": "qualification",
+      "props": {
+        "mode": "supply"
+      },
+      "opening_phrase": "And in areas",
+      "word_index": 61,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 170,
+      "global_end": 39.9,
+      "local_end": 25.61102083333333,
+      "closing_phrase": "hours, detecting a leak becomes even more difficult.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 34.233333333333334,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-05",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 25.62,
+      "global_start": 39.90897916666667,
+      "from": 1197,
+      "kind": "workflow",
+      "props": {
+        "mode": "service"
+      },
+      "opening_phrase": "The challenge is",
+      "word_index": 78,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 222,
+      "global_end": 47.3,
+      "local_end": 33.01102083333333,
+      "closing_phrase": "to investigate and confirming whether a repair worked.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 39.9,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-06",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 33.02,
+      "global_start": 47.308979166666674,
+      "from": 1419,
+      "kind": "town",
+      "props": {
+        "intro": true
+      },
+      "opening_phrase": "This is the problem",
+      "word_index": 94,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 408,
+      "global_end": 60.9,
+      "local_end": 46.61102083333333,
+      "closing_phrase": "the evidence, verify the repair. Hydro-varity brings",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 47.3,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-07",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 46.6,
+      "global_start": 60.88897916666667,
+      "from": 1827,
+      "kind": "workflow",
+      "props": {
+        "mode": "architecture"
+      },
+      "opening_phrase": "brings together four",
+      "word_index": 125,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 338,
+      "global_end": 72.16666666666667,
+      "local_end": 57.87768750000001,
+      "closing_phrase": "one sensor, it builds evidence step by step.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 60.9,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-08",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 57.88,
+      "global_start": 72.16897916666667,
+      "from": 2165,
+      "kind": "qualification",
+      "props": {
+        "mode": "watch"
+      },
+      "opening_phrase": "First",
+      "word_index": 150,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 299,
+      "global_end": 82.13333333333334,
+      "local_end": 67.84435416666668,
+      "closing_phrase": "the software considers supply conditions and instrument quality.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 72.16666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-09",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 67.86,
+      "global_start": 82.14897916666666,
+      "from": 2464,
+      "kind": "qualification",
+      "props": {
+        "mode": "supply"
+      },
+      "opening_phrase": "Is the pipeline",
+      "word_index": 175,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 332,
+      "global_end": 93.2,
+      "local_end": 78.91102083333334,
+      "closing_phrase": "but it does not automatically prove a leak.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 82.13333333333334,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-10",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 78.92,
+      "global_start": 93.20897916666667,
+      "from": 2796,
+      "kind": "guard",
+      "props": {
+        "exploded": false
+      },
+      "opening_phrase": "Next comes",
+      "word_index": 201,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 235,
+      "global_end": 101.03333333333333,
+      "local_end": 86.74435416666667,
+      "closing_phrase": "removable collar around an accessible pipe joint. Inside",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 93.2,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-11",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 86.74,
+      "global_start": 101.02897916666666,
+      "from": 3031,
+      "kind": "guard",
+      "props": {
+        "exploded": true
+      },
+      "opening_phrase": "Inside the proposed",
+      "word_index": 219,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 180,
+      "global_end": 107.03333333333333,
+      "local_end": 92.74435416666667,
+      "closing_phrase": "protected wetness collection paths, called AP and C.",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 101.03333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-12",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 92.76,
+      "global_start": 107.04897916666667,
+      "from": 3211,
+      "kind": "guard",
+      "props": {
+        "exploded": true,
+        "focus": "EXT"
+      },
+      "opening_phrase": "A fourth channel",
+      "word_index": 233,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 172,
+      "global_end": 112.76666666666667,
+      "local_end": 98.4776875,
+      "closing_phrase": "for environmental water, such as rain or splash.",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 107.03333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-13",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 98.48,
+      "global_start": 112.76897916666667,
+      "from": 3383,
+      "kind": "guard",
+      "props": {
+        "exploded": true,
+        "focus": "BYPASS"
+      },
+      "opening_phrase": "A fifth",
+      "word_index": 246,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 158,
+      "global_end": 118.03333333333333,
+      "local_end": 103.74435416666667,
+      "closing_phrase": "water that escapes the intended collection paths. The",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 112.76666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-14",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 103.74,
+      "global_start": 118.02897916666666,
+      "from": 3541,
+      "kind": "qualification",
+      "props": {
+        "mode": "patterns"
+      },
+      "opening_phrase": "The aim is",
+      "word_index": 258,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 133,
+      "global_end": 122.46666666666667,
+      "local_end": 108.1776875,
+      "closing_phrase": "just whether water appeared, but where and why.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 118.03333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-15",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 108.18,
+      "global_start": 122.46897916666667,
+      "from": 3674,
+      "kind": "guard",
+      "props": {
+        "exploded": false
+      },
+      "opening_phrase": "This five channel",
+      "word_index": 272,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 199,
+      "global_end": 129.1,
+      "local_end": 114.81102083333333,
+      "closing_phrase": "real collection performance still needs physical testing. For",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 122.46666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-16",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 114.8,
+      "global_start": 129.08897916666666,
+      "from": 3873,
+      "kind": "ear",
+      "props": {},
+      "opening_phrase": "For suitable pipe",
+      "word_index": 288,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 466,
+      "global_end": 144.63333333333333,
+      "local_end": 130.34435416666665,
+      "closing_phrase": "timing differences can support a possible leak interval.",
+      "source_assets": [
+        "hardware/electronics/interfaces.json",
+        "hardware/electronics/netlist.json"
+      ],
+      "frame_start_seconds": 129.1,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-17",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 130.36,
+      "global_start": 144.6489791666667,
+      "from": 4339,
+      "kind": "ear",
+      "props": {
+        "unresolved": true
+      },
+      "opening_phrase": "If the signal",
+      "word_index": 327,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 244,
+      "global_end": 152.76666666666668,
+      "local_end": 138.4776875,
+      "closing_phrase": "result may be no reliable location at all.",
+      "source_assets": [
+        "hardware/electronics/interfaces.json",
+        "hardware/electronics/netlist.json"
+      ],
+      "frame_start_seconds": 144.63333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-18",
+      "part": 1,
+      "original_audio": "part1.mp3",
+      "local_start": 138.48,
+      "global_start": 152.76897916666667,
+      "from": 4583,
+      "kind": "workflow",
+      "props": {
+        "mode": "architecture"
+      },
+      "opening_phrase": "Together these ideas",
+      "word_index": 352,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 289,
+      "global_end": 162.4,
+      "local_end": 148.11102083333333,
+      "closing_phrase": "Once a problem is reported, what happens next?",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 152.76666666666668,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-19",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 0.0,
+      "global_start": 162.40327083333332,
+      "from": 4872,
+      "kind": "town",
+      "props": {},
+      "opening_phrase": "Let",
+      "word_index": 0,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 249,
+      "global_end": 170.7,
+      "local_end": 8.296729166666665,
+      "closing_phrase": "not a leak found in a real village.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 162.4,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-20",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 8.3,
+      "global_start": 170.70327083333333,
+      "from": 5121,
+      "kind": "software",
+      "props": {
+        "asset": "home.png",
+        "title": "A resident notices\nsomething unusual.",
+        "note": "Simulated demonstration. No real village incident or installed sensor is claimed."
+      },
+      "opening_phrase": "A resident notices",
+      "word_index": 24,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 170,
+      "global_end": 176.36666666666667,
+      "local_end": 13.963395833333351,
+      "closing_phrase": "near a pipeline and opens the HYDROOVERITY website.",
+      "source_assets": [
+        "captures/home.png"
+      ],
+      "frame_start_seconds": 170.7,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-21",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 13.98,
+      "global_start": 176.3832708333333,
+      "from": 5291,
+      "kind": "software",
+      "props": {
+        "asset": "resident-intake.png",
+        "title": "Describe. Submit.\nTrack securely.",
+        "note": "Authenticated service request intake. A submitted concern is not a confirmed leak.",
+        "scrollPixels": 220
+      },
+      "opening_phrase": "They sign in",
+      "word_index": 37,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 357,
+      "global_end": 188.26666666666668,
+      "local_end": 25.863395833333357,
+      "closing_phrase": "automatic proof that a pipe has broken. On",
+      "source_assets": [
+        "captures/resident-intake.png"
+      ],
+      "frame_start_seconds": 176.36666666666667,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-22",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 25.86,
+      "global_start": 188.2632708333333,
+      "from": 5648,
+      "kind": "software",
+      "props": {
+        "asset": "supervisor-triage.png",
+        "title": "Review before\ndispatch.",
+        "note": "Authorized utility review and legitimate investigation linkage.",
+        "scrollPixels": 500
+      },
+      "opening_phrase": "On the supervisor's",
+      "word_index": 69,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 251,
+      "global_end": 196.63333333333333,
+      "local_end": 34.2300625,
+      "closing_phrase": "and connect a legitimate investigation where appropriate. Residents",
+      "source_assets": [
+        "captures/supervisor-triage.png"
+      ],
+      "frame_start_seconds": 188.26666666666668,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-23",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 34.22,
+      "global_start": 196.62327083333332,
+      "from": 5899,
+      "kind": "software",
+      "props": {
+        "asset": "resident-timeline.png",
+        "title": "Progress residents\ncan safely see.",
+        "note": "Customer-safe updates. Internal utility notes remain restricted.",
+        "startScrollPixels": 1220,
+        "scrollPixels": 120
+      },
+      "opening_phrase": "Residents see safe",
+      "word_index": 87,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 187,
+      "global_end": 202.86666666666667,
+      "local_end": 40.46339583333335,
+      "closing_phrase": "restricted to the people who need them. Now",
+      "source_assets": [
+        "captures/resident-timeline.png"
+      ],
+      "frame_start_seconds": 196.63333333333333,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-24",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 40.46,
+      "global_start": 202.86327083333333,
+      "from": 6086,
+      "kind": "software",
+      "props": {
+        "asset": "science-watch.png",
+        "title": "A scientific\nworkspace.",
+        "note": "Stored synthetic recordings, qualified pressure and flow traces.",
+        "science": true,
+        "scrollPixels": 640
+      },
+      "opening_phrase": "Now imagine the engineer",
+      "word_index": 103,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 349,
+      "global_end": 214.5,
+      "local_end": 52.09672916666668,
+      "closing_phrase": "results from its hydraulic, wetness, and acoustic models.",
+      "source_assets": [
+        "captures/science-watch.png"
+      ],
+      "frame_start_seconds": 202.86666666666667,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-25",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 52.1,
+      "global_start": 214.50327083333332,
+      "from": 6435,
+      "kind": "qualification",
+      "props": {
+        "mode": "watch"
+      },
+      "opening_phrase": "Charts show pressure",
+      "word_index": 127,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 248,
+      "global_end": 222.76666666666668,
+      "local_end": 60.36339583333336,
+      "closing_phrase": "for warnings. The screen clearly says simulation. These",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 214.5,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-26",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 60.36,
+      "global_start": 222.7632708333333,
+      "from": 6683,
+      "kind": "software",
+      "props": {
+        "asset": "science-ear.png",
+        "title": "Research scenarios.\nExplicit uncertainty.",
+        "note": "A separate synthetic scientific test capture. No installed sensors or exact-hole claim.",
+        "science": true,
+        "startScrollPixels": 850,
+        "scrollPixels": 220
+      },
+      "opening_phrase": "These are research",
+      "word_index": 143,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 130,
+      "global_end": 227.1,
+      "local_end": 64.69672916666667,
+      "closing_phrase": "research scenarios, not live readings from installed sensors.",
+      "source_assets": [
+        "captures/science-ear.png"
+      ],
+      "frame_start_seconds": 222.76666666666668,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-27",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 64.7,
+      "global_start": 227.10327083333334,
+      "from": 6813,
+      "kind": "ear",
+      "props": {},
+      "opening_phrase": "In our example",
+      "word_index": 153,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 322,
+      "global_end": 237.83333333333334,
+      "local_end": 75.43006250000002,
+      "closing_phrase": "It does not reveal an exact underground hole.",
+      "source_assets": [
+        "hardware/electronics/interfaces.json",
+        "hardware/electronics/netlist.json"
+      ],
+      "frame_start_seconds": 227.1,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-28",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 75.44000000000001,
+      "global_start": 237.84327083333335,
+      "from": 7135,
+      "kind": "software",
+      "props": {
+        "asset": "findings.png",
+        "title": "Authorized work.\nRecorded findings.",
+        "note": "Service requests link to genuinely triaged incidents and permitted work.",
+        "scrollPixels": 430
+      },
+      "opening_phrase": "Next the supervisor",
+      "word_index": 179,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 192,
+      "global_end": 244.23333333333332,
+      "local_end": 81.8300625,
+      "closing_phrase": "work order and selects a suitable technician. Scheduling",
+      "source_assets": [
+        "captures/findings.png"
+      ],
+      "frame_start_seconds": 237.83333333333334,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-29",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 81.82,
+      "global_start": 244.22327083333332,
+      "from": 7327,
+      "kind": "workflow",
+      "props": {
+        "mode": "booking"
+      },
+      "opening_phrase": "Scheduling checks",
+      "word_index": 194,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 154,
+      "global_end": 249.36666666666667,
+      "local_end": 86.96339583333335,
+      "closing_phrase": "checks configured shifts, skills, areas, and bookings. A",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 244.23333333333332,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-30",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 86.96,
+      "global_start": 249.36327083333333,
+      "from": 7481,
+      "kind": "booking",
+      "props": {},
+      "opening_phrase": "A resident may request",
+      "word_index": 202,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 156,
+      "global_end": 254.56666666666666,
+      "local_end": 92.16339583333334,
+      "closing_phrase": "a visit, but only supervisor confirmation reserves time.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 249.36666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-31",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 92.18,
+      "global_start": 254.58327083333333,
+      "from": 7637,
+      "kind": "concurrency",
+      "props": {},
+      "opening_phrase": "Database rules",
+      "word_index": 214,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 179,
+      "global_end": 260.53333333333336,
+      "local_end": 98.13006250000004,
+      "closing_phrase": "appointments from taking the same technician's time. The",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 254.56666666666666,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-32",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 98.12,
+      "global_start": 260.5232708333333,
+      "from": 7816,
+      "kind": "software",
+      "props": {
+        "asset": "findings.png",
+        "title": "A technician\nrecords findings.",
+        "note": "Actual synthetic investigation-work capture. Findings do not fabricate a repair receipt.",
+        "startScrollPixels": 1320,
+        "scrollPixels": 300
+      },
+      "opening_phrase": "The technician opens",
+      "word_index": 227,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 269,
+      "global_end": 269.5,
+      "local_end": 107.09672916666668,
+      "closing_phrase": "details, record investigation findings, and update the visit.",
+      "source_assets": [
+        "captures/findings.png"
+      ],
+      "frame_start_seconds": 260.53333333333336,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-33",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 107.1,
+      "global_start": 269.5032708333333,
+      "from": 8085,
+      "kind": "repair",
+      "props": {},
+      "opening_phrase": "In a future physical trial",
+      "word_index": 252,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 392,
+      "global_end": 282.56666666666666,
+      "local_end": 120.16339583333334,
+      "closing_phrase": "operate the valves or perform the repair itself.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 269.5,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-34",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 120.18,
+      "global_start": 282.58327083333336,
+      "from": 8477,
+      "kind": "verification",
+      "props": {},
+      "opening_phrase": "And this is where",
+      "word_index": 283,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 353,
+      "global_end": 294.3333333333333,
+      "local_end": 131.9300625,
+      "closing_phrase": "as proof that water loss has stopped. Reliable",
+      "source_assets": [
+        "docs/testing/M06_SCIENTIFIC_INTEGRATION.md"
+      ],
+      "frame_start_seconds": 282.56666666666666,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-35",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 131.92,
+      "global_start": 294.3232708333333,
+      "from": 8830,
+      "kind": "verification",
+      "props": {},
+      "opening_phrase": "Reliable verification",
+      "word_index": 316,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 223,
+      "global_end": 301.76666666666665,
+      "local_end": 139.36339583333333,
+      "closing_phrase": "with comparable operating conditions and valid instruments. Our",
+      "source_assets": [
+        "docs/testing/M06_SCIENTIFIC_INTEGRATION.md"
+      ],
+      "frame_start_seconds": 294.3333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-36",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 139.36,
+      "global_start": 301.7632708333333,
+      "from": 9053,
+      "kind": "verification",
+      "props": {
+        "outcomes": true
+      },
+      "opening_phrase": "Our scientific simulations",
+      "word_index": 331,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 216,
+      "global_end": 308.96666666666664,
+      "local_end": 146.56339583333332,
+      "closing_phrase": "conclusions – past, failed, and not verifiable. But",
+      "source_assets": [
+        "docs/testing/M06_SCIENTIFIC_INTEGRATION.md"
+      ],
+      "frame_start_seconds": 301.76666666666665,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-37",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 146.56,
+      "global_start": 308.96327083333335,
+      "from": 9269,
+      "kind": "software",
+      "props": {
+        "asset": "verification.png",
+        "title": "No evidence?\nNo invented success.",
+        "note": "Separate operational boundary-test capture: a manual-only record remains NOT_VERIFIABLE."
+      },
+      "opening_phrase": "But in the current",
+      "word_index": 344,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 313,
+      "global_end": 319.4,
+      "local_end": 156.99672916666665,
+      "closing_phrase": "not verifiable. The system must not invent success.",
+      "source_assets": [
+        "captures/verification.png"
+      ],
+      "frame_start_seconds": 308.96666666666664,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-38",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 157.0,
+      "global_start": 319.4032708333333,
+      "from": 9582,
+      "kind": "software",
+      "props": {
+        "asset": "inbox.png",
+        "title": "Updates inside\nthe application.",
+        "note": "Separate authentic notification test. Delivered and read are distinct; external delivery remains disabled.",
+        "scrollPixels": 180
+      },
+      "opening_phrase": "Residents can track",
+      "word_index": 367,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 157,
+      "global_end": 324.6333333333333,
+      "local_end": 162.2300625,
+      "closing_phrase": "receive in-app notifications, mark them read, and",
+      "source_assets": [
+        "captures/inbox.png"
+      ],
+      "frame_start_seconds": 319.4,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-39",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 162.22,
+      "global_start": 324.6232708333333,
+      "from": 9739,
+      "kind": "software",
+      "props": {
+        "asset": "feedback.png",
+        "title": "Feedback is heard.\nEvidence is separate.",
+        "note": "Separate eligible-closure feedback test using synthetic records. Satisfaction does not prove leak repair.",
+        "mobile": true,
+        "startScrollPixels": 1320,
+        "scrollPixels": 440
+      },
+      "opening_phrase": "and leave feedback",
+      "word_index": 379,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 306,
+      "global_end": 334.8333333333333,
+      "local_end": 172.4300625,
+      "closing_phrase": "it cannot prove that a leak was fixed.",
+      "source_assets": [
+        "captures/feedback.png"
+      ],
+      "frame_start_seconds": 324.6333333333333,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-40",
+      "part": 2,
+      "original_audio": "part2.mp3",
+      "local_start": 172.44,
+      "global_start": 334.84327083333335,
+      "from": 10045,
+      "kind": "workflow",
+      "props": {
+        "mode": "service"
+      },
+      "opening_phrase": "From the first report",
+      "word_index": 402,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 291,
+      "global_end": 344.53333333333336,
+      "local_end": 182.12572916666667,
+      "closing_phrase": "and evidence that stays attached to each decision.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 334.8333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-41",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 0.0,
+      "global_start": 344.529,
+      "from": 10336,
+      "kind": "workflow",
+      "props": {
+        "mode": "architecture"
+      },
+      "opening_phrase": "So,",
+      "word_index": 0,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 467,
+      "global_end": 360.1,
+      "local_end": 15.571000000000026,
+      "closing_phrase": "may suggest a location, complaint portals collect reports.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 344.53333333333336,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-42",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 15.58,
+      "global_start": 360.109,
+      "from": 10803,
+      "kind": "workflow",
+      "props": {
+        "mode": "architecture"
+      },
+      "opening_phrase": "Each is useful",
+      "word_index": 33,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 801,
+      "global_end": 386.8,
+      "local_end": 42.271000000000015,
+      "closing_phrase": "evidence to trust the outcome of a repair.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 360.1,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-43",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 42.28,
+      "global_start": 386.80899999999997,
+      "from": 11604,
+      "kind": "workflow",
+      "props": {
+        "mode": "service"
+      },
+      "opening_phrase": "Our testable idea",
+      "word_index": 103,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 176,
+      "global_end": 392.6666666666667,
+      "local_end": 48.13766666666669,
+      "closing_phrase": "with a complete trail from concern to review.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 386.8,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-44",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 48.14,
+      "global_start": 392.669,
+      "from": 11780,
+      "kind": "guard",
+      "props": {
+        "exploded": false
+      },
+      "opening_phrase": "We are not claiming",
+      "word_index": 118,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 185,
+      "global_end": 398.8333333333333,
+      "local_end": 54.30433333333332,
+      "closing_phrase": "have proven that our caller outperforms existing sensors.",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 392.6666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-45",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 54.32,
+      "global_start": 398.849,
+      "from": 11965,
+      "kind": "evidence",
+      "props": {
+        "kind": "guard"
+      },
+      "opening_phrase": "In fact our own",
+      "word_index": 137,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 291,
+      "global_end": 408.53333333333336,
+      "local_end": 64.00433333333336,
+      "closing_phrase": "sensors performed better on the chosen benchmark. And",
+      "source_assets": [
+        "simulations/evaluation/reference_summary.json",
+        "hardware/bom/m08_bom.json",
+        "docs/testing/PRE_M10_COMPLETION_REGISTER.md"
+      ],
+      "frame_start_seconds": 398.8333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-46",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 64.0,
+      "global_start": 408.529,
+      "from": 12256,
+      "kind": "evidence",
+      "props": {
+        "kind": "ear"
+      },
+      "opening_phrase": "And some acoustic",
+      "word_index": 161,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 159,
+      "global_end": 413.8333333333333,
+      "local_end": 69.30433333333332,
+      "closing_phrase": "confidently wrong, even when the model accepted them.",
+      "source_assets": [
+        "simulations/evaluation/reference_summary.json",
+        "hardware/bom/m08_bom.json",
+        "docs/testing/PRE_M10_COMPLETION_REGISTER.md"
+      ],
+      "frame_start_seconds": 408.53333333333336,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-47",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 69.32000000000001,
+      "global_start": 413.849,
+      "from": 12415,
+      "kind": "evidence",
+      "props": {
+        "kind": "ear"
+      },
+      "opening_phrase": "Rather than hiding",
+      "word_index": 174,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 221,
+      "global_end": 421.2,
+      "local_end": 76.67099999999999,
+      "closing_phrase": "us exactly what future physical experiments must challenge.",
+      "source_assets": [
+        "simulations/evaluation/reference_summary.json",
+        "hardware/bom/m08_bom.json",
+        "docs/testing/PRE_M10_COMPLETION_REGISTER.md"
+      ],
+      "frame_start_seconds": 413.8333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-48",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 76.68,
+      "global_start": 421.209,
+      "from": 12636,
+      "kind": "software",
+      "props": {
+        "asset": "supervisor.png",
+        "title": "Working software.\nExplicit boundaries.",
+        "note": "Authentic private-development dashboard. Synthetic data; no field performance claim."
+      },
+      "opening_phrase": "Our private development software",
+      "word_index": 192,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 329,
+      "global_end": 432.1666666666667,
+      "local_end": 87.63766666666669,
+      "closing_phrase": "feedback, scientific replay, access controls, and audit history.",
+      "source_assets": [
+        "captures/supervisor.png"
+      ],
+      "frame_start_seconds": 421.2,
+      "evidence_label": "AUTHENTIC SYNTHETIC SOFTWARE TEST"
+    },
+    {
+      "id": "M10-49",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 87.64,
+      "global_start": 432.169,
+      "from": 12965,
+      "kind": "evidence",
+      "props": {
+        "kind": "software"
+      },
+      "opening_phrase": "At the current reviewed",
+      "word_index": 212,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 432,
+      "global_end": 446.56666666666666,
+      "local_end": 102.03766666666667,
+      "closing_phrase": "not turn simulated sensor evidence into field validation.",
+      "source_assets": [
+        "simulations/evaluation/reference_summary.json",
+        "hardware/bom/m08_bom.json",
+        "docs/testing/PRE_M10_COMPLETION_REGISTER.md"
+      ],
+      "frame_start_seconds": 432.1666666666667,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-50",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 102.04,
+      "global_start": 446.569,
+      "from": 13397,
+      "kind": "rig",
+      "props": {},
+      "opening_phrase": "The hardware is also",
+      "word_index": 245,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 406,
+      "global_end": 460.1,
+      "local_end": 115.57100000000003,
+      "closing_phrase": "caller, and a portable paired acoustic setup. Its",
+      "source_assets": [
+        "hardware/mechanical-cad/rig_layout.json",
+        "hardware/render_m08.py"
+      ],
+      "frame_start_seconds": 446.56666666666666,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-51",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 115.56,
+      "global_start": 460.089,
+      "from": 13803,
+      "kind": "guard",
+      "props": {
+        "exploded": true
+      },
+      "opening_phrase": "Its engineering files",
+      "word_index": 280,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 169,
+      "global_end": 465.73333333333335,
+      "local_end": 121.20433333333335,
+      "closing_phrase": "CAD, electronic connectivity drafts, and a materials list.",
+      "source_assets": [
+        "hardware/mechanical-cad/guard5.py",
+        "hardware/guard5-collar/envelope.json"
+      ],
+      "frame_start_seconds": 460.1,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-52",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 121.22,
+      "global_start": 465.749,
+      "from": 13972,
+      "kind": "evidence",
+      "props": {
+        "kind": "budget"
+      },
+      "opening_phrase": "The estimated complete",
+      "word_index": 293,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 372,
+      "global_end": 478.1333333333333,
+      "local_end": 133.60433333333333,
+      "closing_phrase": "the ceiling. Affordability remains a goal. Physical tests",
+      "source_assets": [
+        "simulations/evaluation/reference_summary.json",
+        "hardware/bom/m08_bom.json",
+        "docs/testing/PRE_M10_COMPLETION_REGISTER.md"
+      ],
+      "frame_start_seconds": 465.73333333333335,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-53",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 133.6,
+      "global_start": 478.129,
+      "from": 14344,
+      "kind": "tests",
+      "props": {},
+      "opening_phrase": "Physical tests must",
+      "word_index": 320,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 323,
+      "global_end": 488.9,
+      "local_end": 144.37099999999998,
+      "closing_phrase": "clock timing, electrical safety, and repair measurements. Privacy,",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 478.1333333333333,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-54",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 144.36,
+      "global_start": 488.889,
+      "from": 14667,
+      "kind": "workflow",
+      "props": {
+        "mode": "gates"
+      },
+      "opening_phrase": "Privacy offline operation",
+      "word_index": 339,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 206,
+      "global_end": 495.76666666666665,
+      "local_end": 151.23766666666666,
+      "closing_phrase": "and public deployment also have remaining approval gates.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 488.9,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-55",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 151.24,
+      "global_start": 495.769,
+      "from": 14873,
+      "kind": "town",
+      "props": {
+        "closing": true
+      },
+      "opening_phrase": "So hydro severity",
+      "word_index": 352,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 469,
+      "global_end": 511.4,
+      "local_end": 166.87099999999998,
+      "closing_phrase": "design brought together around one practical question. When",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 495.76666666666665,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    },
+    {
+      "id": "M10-56",
+      "part": 3,
+      "original_audio": "part3.mp3",
+      "local_start": 166.86,
+      "global_start": 511.389,
+      "from": 15342,
+      "kind": "town",
+      "props": {
+        "closing": true
+      },
+      "opening_phrase": "When water is lost",
+      "word_index": 389,
+      "alignment_method": "Actual local faster-whisper word estimate; audiovisual review pending",
+      "transition": "Continuous navy stage; frame-driven reveal; no audio overlap",
+      "render_status": "NOT_RENDERED",
+      "duration": 490,
+      "global_end": 527.7333333333333,
+      "local_end": 180.19266666666667,
+      "closing_phrase": "the leak, understand the evidence, verify the repair.",
+      "source_assets": [
+        "docs/project/HYDROOVERITY_MASTER_CONTEXT.md",
+        "CONCEPTUAL_ILLUSTRATION"
+      ],
+      "frame_start_seconds": 511.4,
+      "evidence_label": "SIMULATION / PROPOSED DESIGN / ILLUSTRATIVE"
+    }
+  ]
+}

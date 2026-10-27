@@ -1,0 +1,627 @@
+1
+00:00:00,000 --> 00:00:00,500
+Hello, judges.
+
+2
+00:00:01,920 --> 00:00:05,940
+We are Team TARK, participating in Smart India Hackathon 2026.
+
+3
+00:00:06,600 --> 00:00:10,960
+We present HYDROOVERITY, our proposed solution for smarter water
+
+4
+00:00:10,960 --> 00:00:13,700
+pipeline leak detection and evidence-based maintenance.
+
+5
+00:00:14,289 --> 00:00:17,529
+Every day, water moves through pipelines beneath our roads and homes.
+
+6
+00:00:18,309 --> 00:00:22,329
+We notice it only when taps run dry, pressure drops or water appears where it
+
+7
+00:00:22,329 --> 00:00:22,669
+should not.
+
+8
+00:00:23,469 --> 00:00:26,069
+Now imagine a small leak at a buried pipe joint.
+
+9
+00:00:26,749 --> 00:00:27,989
+It may stay hidden for days.
+
+10
+00:00:28,869 --> 00:00:32,409
+Wet soil could be caused by rain, low pressure might come from tank filling
+
+11
+00:00:32,409 --> 00:00:33,289
+or normal demand.
+
+12
+00:00:34,229 --> 00:00:38,029
+And in areas where water arrives only during certain hours, detecting a leak
+
+13
+00:00:38,029 --> 00:00:39,249
+becomes even more difficult.
+
+14
+00:00:39,909 --> 00:00:43,929
+The challenge is interpreting the evidence, choosing where to investigate
+
+15
+00:00:43,929 --> 00:00:46,329
+and confirming whether a repair worked.
+
+16
+00:00:47,309 --> 00:00:51,629
+This is the problem behind HYDROOVERITY developed by Team TARK for Smart
+
+17
+00:00:51,629 --> 00:00:53,389
+India Hackathon 2026.
+
+18
+00:00:54,289 --> 00:00:58,609
+Our mission is simple, find the leak, understand the evidence, verify
+
+19
+00:00:58,609 --> 00:00:59,229
+the repair.
+
+20
+00:01:00,269 --> 00:01:04,549
+HYDROOVERITY brings together four connected ideas, HYDRO-WATCH, GUARD
+
+21
+00:01:04,549 --> 00:01:07,229
+-5, HYDRO-EAR and HYDRO-VERIFY.
+
+22
+00:01:08,269 --> 00:01:11,489
+Instead of trusting one sensor, it builds evidence step by step.
+
+23
+00:01:12,169 --> 00:01:14,429
+First, HYDRO-WATCH looks at the bigger picture.
+
+24
+00:01:15,069 --> 00:01:18,889
+Its proposed sensors measure pressure and available flow, while the software
+
+25
+00:01:18,889 --> 00:01:21,469
+considers supply conditions and instrument quality.
+
+26
+00:01:22,149 --> 00:01:26,549
+Is the pipeline off, filling, steady, draining, or is the state
+
+27
+00:01:26,549 --> 00:01:26,769
+unknown?
+
+28
+00:01:27,669 --> 00:01:31,009
+A suspicious water imbalance deserves attention, but it does not
+
+29
+00:01:31,009 --> 00:01:32,289
+automatically prove a leak.
+
+30
+00:01:33,209 --> 00:01:36,649
+Next comes our key mechanical design idea, GUARD-5.
+
+31
+00:01:37,189 --> 00:01:40,209
+Picture a removable collar around an accessible pipe joint.
+
+32
+00:01:41,029 --> 00:01:44,429
+Inside the proposed collar are three protected wetness collection paths,
+
+33
+00:01:45,069 --> 00:01:46,229
+called A, B and C.
+
+34
+00:01:47,049 --> 00:01:51,289
+A fourth channel, EXT, watches for environmental water, such as rain
+
+35
+00:01:51,289 --> 00:01:51,769
+or splash.
+
+36
+00:01:52,769 --> 00:01:57,069
+A fifth bypass, watches for water that escapes the intended collection paths.
+
+37
+00:01:58,029 --> 00:02:01,589
+The aim is to ask not just whether water appeared, but where and why.
+
+38
+00:02:02,469 --> 00:02:06,029
+This five-channel collector is digitally designed, but its real collection
+
+39
+00:02:06,029 --> 00:02:08,129
+performance still needs physical testing.
+
+40
+00:02:09,089 --> 00:02:12,589
+For suitable pipe sections, HYDRO-EAR adds another kind of evidence.
+
+41
+00:02:13,469 --> 00:02:15,669
+Two contact pickups listen from different positions.
+
+42
+00:02:16,609 --> 00:02:20,489
+A proposed stereo converter keeps both recordings on the same sampling clock,
+
+43
+00:02:20,909 --> 00:02:23,809
+so timing differences can support a possible leak interval.
+
+44
+00:02:24,649 --> 00:02:28,349
+If the signal is weak, the pressure is insufficient, or the pipe path is
+
+45
+00:02:28,349 --> 00:02:31,849
+uncertain, the correct result may be no reliable location at all.
+
+46
+00:02:32,769 --> 00:02:36,529
+Together, these ideas turn a vague alarm into a more careful investigation.
+
+47
+00:02:37,409 --> 00:02:39,229
+But the next question matters just as much.
+
+48
+00:02:39,989 --> 00:02:42,149
+Once a problem is reported, what happens next?
+
+49
+00:02:42,403 --> 00:02:43,643
+Let us follow one example.
+
+50
+00:02:44,503 --> 00:02:48,103
+The incident you are about to see is a simulated demonstration, not a leak
+
+51
+00:02:48,103 --> 00:02:49,223
+found in a real village.
+
+52
+00:02:50,703 --> 00:02:55,063
+A resident notices unusual water near a pipeline and opens the HYDROOVERITY
+
+53
+00:02:55,063 --> 00:02:55,303
+website.
+
+54
+00:02:56,383 --> 00:03:00,203
+They sign in, describe the issue and submit a report with a trackable
+
+55
+00:03:00,203 --> 00:03:00,483
+reference.
+
+56
+00:03:01,523 --> 00:03:05,963
+Their report becomes a concern for the utility to review, not automatic proof
+
+57
+00:03:05,963 --> 00:03:06,903
+that a pipe has broken.
+
+58
+00:03:08,263 --> 00:03:12,263
+On the supervisor's dashboard, authorized staff review the request, record
+
+59
+00:03:12,263 --> 00:03:15,623
+decisions, and connect a legitimate investigation where appropriate.
+
+60
+00:03:16,623 --> 00:03:20,703
+Residents see safe progress updates, while internal notes remain restricted
+
+61
+00:03:20,703 --> 00:03:22,003
+to the people who need them.
+
+62
+00:03:22,863 --> 00:03:25,943
+Now imagine the engineer opens the scientific workspace.
+
+63
+00:03:26,963 --> 00:03:30,943
+HYDROOVERITY can import and replay saved simulation results from its
+
+64
+00:03:30,943 --> 00:03:33,243
+hydraulic, wetness, and acoustic models.
+
+65
+00:03:34,503 --> 00:03:38,683
+Charts show pressure, wetness patterns, missing data, and reasons for
+
+66
+00:03:38,683 --> 00:03:38,943
+warnings.
+
+67
+00:03:40,103 --> 00:03:41,623
+The screen clearly says simulation.
+
+68
+00:03:42,763 --> 00:03:46,103
+These are research scenarios, not live readings from installed sensors.
+
+69
+00:03:47,103 --> 00:03:51,283
+In our example, the available evidence points to a pipe section that deserves
+
+70
+00:03:51,283 --> 00:03:51,623
+inspection.
+
+71
+00:03:52,743 --> 00:03:53,783
+It guides an investigation.
+
+72
+00:03:54,543 --> 00:03:56,683
+It does not reveal an exact underground hole.
+
+73
+00:03:57,843 --> 00:04:02,123
+Next, the supervisor creates or links an authorized work order and
+
+74
+00:04:02,123 --> 00:04:03,283
+selects a suitable technician.
+
+75
+00:04:04,223 --> 00:04:08,503
+Scheduling checks configured shifts, skills, areas, and bookings.
+
+76
+00:04:09,363 --> 00:04:13,263
+A resident may request a visit, but only supervisor confirmation reserves
+
+77
+00:04:13,263 --> 00:04:13,663
+time.
+
+78
+00:04:14,583 --> 00:04:18,503
+Database rules help prevent two confirmed appointments from taking the same
+
+79
+00:04:18,503 --> 00:04:19,343
+technician's time.
+
+80
+00:04:20,523 --> 00:04:23,643
+The technician opens their assigned work on a mobile-friendly screen.
+
+81
+00:04:24,663 --> 00:04:28,763
+They can see the permitted task details, record investigation findings, and
+
+82
+00:04:28,763 --> 00:04:29,503
+update the visit.
+
+83
+00:04:29,503 --> 00:04:33,783
+In a future physical trial, a qualified worker could inspect
+
+84
+00:04:33,783 --> 00:04:36,343
+the joint and repair the pipe under approved procedures.
+
+85
+00:04:37,623 --> 00:04:41,243
+HYDROOVERITY does not operate the valves or perform the repair itself.
+
+86
+00:04:42,583 --> 00:04:44,663
+And this is where HYDRO-VERIFY becomes important.
+
+87
+00:04:45,843 --> 00:04:48,643
+A completed visit is not the same as a completed repair.
+
+88
+00:04:49,503 --> 00:04:53,363
+A repair record is not the same as proof that water loss has stopped.
+
+89
+00:04:54,323 --> 00:04:57,983
+Reliable verification needs suitable before and after measurements, with
+
+90
+00:04:57,983 --> 00:05:00,583
+comparable operating conditions and valid instruments.
+
+91
+00:05:01,763 --> 00:05:05,843
+Our scientific simulations explore three possible conclusions – passed,
+
+92
+00:05:06,383 --> 00:05:07,943
+failed, and not verifiable.
+
+93
+00:05:08,963 --> 00:05:12,763
+But in the current operational software, a manual repair record without
+
+94
+00:05:12,763 --> 00:05:15,483
+enough measured evidence remains not verifiable.
+
+95
+00:05:16,623 --> 00:05:18,383
+The system must not invent success.
+
+96
+00:05:19,403 --> 00:05:23,203
+Residents can track safe updates, receive in-app notifications,
+
+97
+00:05:24,123 --> 00:05:27,443
+mark them read, and leave feedback after eligible case closure.
+
+98
+00:05:28,603 --> 00:05:32,663
+A satisfaction rating can help improve service, but it cannot prove that a
+
+99
+00:05:32,663 --> 00:05:33,383
+leak was fixed.
+
+100
+00:05:34,843 --> 00:05:38,403
+From the first report to the final review, the objective is accountability.
+
+101
+00:05:39,643 --> 00:05:43,623
+The right information, the right people, and evidence that stays attached to
+
+102
+00:05:43,623 --> 00:05:44,183
+each decision.
+
+103
+00:05:44,529 --> 00:05:48,729
+So, what makes HYDROOVERITY different from a basic leak alarm or
+
+104
+00:05:48,729 --> 00:05:49,629
+complaint website?
+
+105
+00:05:50,509 --> 00:05:54,369
+A pressure alarm detects change, a wetness pad senses contact.
+
+106
+00:05:55,049 --> 00:05:59,189
+Acoustic methods may suggest a location, complaint portals collect reports.
+
+107
+00:06:00,109 --> 00:06:02,229
+Each is useful, but each has limits.
+
+108
+00:06:03,849 --> 00:06:07,209
+Our proposed approach connects these different clues to one accountable
+
+109
+00:06:07,209 --> 00:06:08,309
+maintenance process.
+
+110
+00:06:08,909 --> 00:06:12,309
+HYDRO-WATCH asks whether the supply conditions make an alarm meaningful.
+
+111
+00:06:12,849 --> 00:06:16,829
+GUARD-5 is designed to observe five distinct water paths at an accessible
+
+112
+00:06:16,829 --> 00:06:17,269
+joint.
+
+113
+00:06:17,829 --> 00:06:21,649
+HYDRO-EAR gives a bounded acoustic candidate where the physics supports it.
+
+114
+00:06:22,069 --> 00:06:26,009
+HYDRO-VERIFY asks whether there is enough evidence to trust the outcome of a
+
+115
+00:06:26,009 --> 00:06:26,249
+repair.
+
+116
+00:06:26,809 --> 00:06:30,909
+Our testable idea is better qualified decisions, with a complete trail from
+
+117
+00:06:30,909 --> 00:06:31,909
+concern to review.
+
+118
+00:06:32,669 --> 00:06:36,289
+We are not claiming to have invented leak detection, or to have proven that
+
+119
+00:06:36,289 --> 00:06:38,169
+our collar outperforms existing sensors.
+
+120
+00:06:38,849 --> 00:06:41,929
+In fact, our own simulated results reveal important weaknesses.
+
+121
+00:06:42,829 --> 00:06:46,889
+In one nominal GUARD-5 comparison, simpler reference sensors performed better
+
+122
+00:06:46,889 --> 00:06:47,749
+on the chosen benchmark.
+
+123
+00:06:48,529 --> 00:06:51,869
+And some acoustic estimates were confidently wrong, even when the model
+
+124
+00:06:51,869 --> 00:06:52,649
+accepted them.
+
+125
+00:06:53,849 --> 00:06:56,629
+Rather than hiding those results, we preserved them.
+
+126
+00:06:57,049 --> 00:07:00,649
+That tells us exactly what future physical experiments must challenge.
+
+127
+00:07:01,209 --> 00:07:05,049
+Our private development software already supports resident reports, staff
+
+128
+00:07:05,049 --> 00:07:09,409
+investigation, scheduling, notifications, feedback, scientific replay,
+
+129
+00:07:09,789 --> 00:07:11,749
+access controls, and audit history.
+
+130
+00:07:12,169 --> 00:07:16,469
+At the current reviewed baseline, it has 119 registered API operations
+
+131
+00:07:16,469 --> 00:07:19,249
+and 57 migrated application tables.
+
+132
+00:07:19,569 --> 00:07:23,549
+Automated integration and browser tests pass, but that does not turn
+
+133
+00:07:23,549 --> 00:07:25,849
+simulated sensor evidence into field validation.
+
+134
+00:07:26,569 --> 00:07:28,509
+The hardware is also designed digitally.
+
+135
+00:07:29,169 --> 00:07:32,469
+Our proposed demonstration rig contains a supply and return pipe loop,
+
+136
+00:07:32,809 --> 00:07:36,949
+controlled leak points, pressure and flow instrumentation, a removable GUARD
+
+137
+00:07:36,949 --> 00:07:39,569
+-5 collar, and a portable paired acoustic setup.
+
+138
+00:07:40,089 --> 00:07:43,829
+Its engineering files include parametric CAD, electronic connectivity drafts,
+
+139
+00:07:44,329 --> 00:07:45,229
+and a materials list.
+
+140
+00:07:45,749 --> 00:07:50,249
+The estimated complete prototype budget is 59,870 rupees
+
+141
+00:07:50,249 --> 00:07:52,389
+against a 60,000 rupee planning ceiling.
+
+142
+00:07:52,929 --> 00:07:55,069
+Actual supplier prices could exceed the ceiling.
+
+143
+00:07:55,929 --> 00:07:57,429
+Affordability remains a goal.
+
+144
+00:07:58,129 --> 00:08:02,089
+Physical tests must still cover wetness collection, rain, blockage,
+
+145
+00:08:02,409 --> 00:08:06,809
+calibration, acoustic audibility, clock timing, electrical safety,
+
+146
+00:08:07,209 --> 00:08:08,109
+and repair measurements.
+
+147
+00:08:08,889 --> 00:08:12,949
+Privacy, offline operation, secure uploads, and public deployment
+
+148
+00:08:12,949 --> 00:08:15,029
+also have remaining approval gates.
+
+149
+00:08:15,769 --> 00:08:19,769
+So, HYDROOVERITY is not a claim that every water leak has already been
+
+150
+00:08:19,769 --> 00:08:20,049
+solved.
+
+151
+00:08:20,749 --> 00:08:24,909
+It is a working software platform, a reproducible scientific investigation
+
+152
+00:08:24,909 --> 00:08:29,329
+and a physically unvalidated hardware design brought together around
+
+153
+00:08:29,329 --> 00:08:30,649
+one practical question.
+
+154
+00:08:31,389 --> 00:08:35,529
+When water is lost, can we move beyond suspicion, take responsible
+
+155
+00:08:35,529 --> 00:08:38,589
+action, and know what the evidence really proves?
+
+156
+00:08:39,549 --> 00:08:40,249
+HYDROOVERITY.
+
+157
+00:08:41,029 --> 00:08:44,349
+Find the leak, understand the evidence, verify the repair.

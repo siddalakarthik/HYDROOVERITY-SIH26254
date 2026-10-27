@@ -1,0 +1,31 @@
+name: M10 production source
+on:
+  pull_request:
+    paths: ['animation/m10-production/**', '.github/workflows/m10-production.yml']
+  push:
+    branches: [main]
+    paths: ['animation/m10-production/**', '.github/workflows/m10-production.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  m10-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: animation/m10-production
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.21.0'
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run lint
+      - run: python3 -m unittest discover -s tests -p test_contract.py -v
+      - run: npm run build
+      # Owner audio, derived CAD and synthetic UI captures stay local. A source CI pass
+      # is not a rendered-film/audio quality pass; those checks have separate evidence.
